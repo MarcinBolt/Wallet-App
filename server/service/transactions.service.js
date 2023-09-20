@@ -10,7 +10,7 @@ export const updateTransactionById = async (id, field) =>
 
 export const deleteTransactionById = async id => await Transaction.deleteOne({ _id: id });
 
-export const getTransactionsByKey = async (owner, category) =>
+export const getTransactionsByCategory = async (owner, category) =>
   await await Transaction.find({ owner, category });
 
 export const getStatistics = async (owner, year, month) =>
