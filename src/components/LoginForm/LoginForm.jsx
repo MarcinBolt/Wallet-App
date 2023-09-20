@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../redux/auth/operations';
-import logo from '../assets/images/apple-touch-icon.png';
+import { logIn } from '../../redux/auth/operations';
+import logo from '../../assets/images/apple-touch-icon.png';
 
 const theme = createTheme();
 
@@ -29,6 +29,13 @@ const LoginForm = () => {
   };
 
   return (
+
+
+
+
+
+
+    
     <Container
       maxWidth="sx"
       sx={{
