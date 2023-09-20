@@ -11,7 +11,7 @@ import logo from '../assets/images/apple-touch-icon.png';
 
 const theme = createTheme();
 
-const Login = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -98,4 +98,4 @@ const Login = () => {
     </Container>
   );
 };
-export default Login;
+export default LoginForm;
