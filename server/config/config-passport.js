@@ -1,12 +1,13 @@
-const passport = require("passport");
-const passportJWT = require("passport-jwt");
-require("dotenv").config();
+import passport from 'passport';
+import PassportJwt from 'passport-jwt';
+import * as dotenv from 'dotenv';
+import User from '../service/schema/user.js';
 
+dotenv.config();
 const secretKey = process.env.SECRET;
-const User = require("../service/schema/user.cjs");
 
-const ExtractJWT = passportJWT.ExtractJwt;
-const Strategy = passportJWT.Strategy;
+const ExtractJWT = PassportJwt.ExtractJwt;
+const Strategy = PassportJwt.Strategy;
 const JWTparams = {
   secretOrKey: secretKey,
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
@@ -17,10 +18,10 @@ passport.use(
     User.find({ _id: payload.id })
       .then(([user]) => {
         if (!user) {
-          return done(new Error("User not found"));
+          return done(new Error('User not found'));
         }
         return done(null, user);
       })
-      .catch((error) => done(error));
-  })
+      .catch(error => done(error));
+  }),
 );

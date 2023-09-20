@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bCryptJS = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs'
 
 const Schema = mongoose.Schema;
 
@@ -17,15 +17,23 @@ const userSchema = new Schema({
         type: String,
         default: null,
     },
+    verificationToken: {
+        type: String,
+        default: null,
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 userSchema.methods.setPassword = (password) => {
-    this.password = bCryptJS.hashSync(password, bCryptJS.genSaltSync(9));
+    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(9));
 };
 userSchema.methods.validPassword = (password) => {
-    return bCryptJS.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.password);
 };
 
 const User = mongoose.model('user', userSchema);
 
-module.exports = User;
+export default User;
