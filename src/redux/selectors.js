@@ -4,6 +4,8 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectUserName = state => state.auth.user.name;
 export const selectUserEmail = state => state.auth.user.email;
 
+export const selectCategories = state => state.transactions.categories;
+
 //TODO
 export const selectTransactions = state => state.transactions;
 export const selectIsLoading = state => state.transactions.isLoading;

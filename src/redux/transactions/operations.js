@@ -47,3 +47,14 @@ export const editTransaction = createAsyncThunk(
     }
   },
 );
+
+//w modalAddTransaction 'fetchCategories' potrzebne jest do pobrania dostepnych kategorii transakcji, zeby user mogl wybrać odpowiednią podczas dodawania transakcji 
+
+export const fetchCategories = createAsyncThunk('transactions/fetchCategories', async (_, thunkAPI) => {
+  try {
+    const res = await axiosAPI.get('/transactions/categories');
+    return res.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
