@@ -1,4 +1,5 @@
 import React from 'react';
+import { Labels } from './Labels';
 import { Doughnut } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -6,7 +7,6 @@ import {
     Legend,
     ArcElement,
 } from 'chart.js';
-
 
 ChartJS.register(
     Tooltip,
