@@ -84,7 +84,7 @@ const Login = () => {
               </Button>
               <Button
                 type="button"
-                href="register"
+                href="#/register"
                 fullWidth
                 variant="outlined"
                 sx={{ mt: 3, mb: 2 }}
