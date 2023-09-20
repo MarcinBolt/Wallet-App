@@ -47,6 +47,7 @@ const transaction = new Schema(
         'Other expenses',
         'Entertainment',
       ],
+      required: [true, 'Category is required'],
     },
     comment: {
       type: String,
@@ -57,6 +58,7 @@ const transaction = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
+      required: [true, 'Owner is required'],
     },
   },
   { versionKey: false, timestamps: true },
