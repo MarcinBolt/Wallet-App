@@ -1,0 +1,1 @@
+import{j as e}from"./index-41fd5b56.js";const r=()=>e.jsxDEV("div",{children:"Register Page"},void 0,!1,{fileName:"C:/Users/marci_000/Desktop/Kurs GoIT/Wallet Team Project/Wallet-App/src/pages/Register.jsx",lineNumber:2,columnNumber:10},globalThis);export{r as default};
