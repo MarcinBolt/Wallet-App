@@ -1,6 +1,6 @@
 import User from './schema/user.schema.js';
 
-export const createUser = async (email, password, firstName) => await new User({ email, password, firstName }).save();
+export const createUser = async (email, password, firstName, verificationToken) => await new User({ email, password, firstName, verificationToken }).save();
 
 export const findUserById = async id => await User.findOne({ _id: id });
 
