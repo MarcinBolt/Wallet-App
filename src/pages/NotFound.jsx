@@ -1,6 +1,15 @@
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const NotFound = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timerId = setTimeout(() => navigate(-1, { replace: true }), 3000);
+    return () => clearTimeout(timerId);
+  }, [navigate]);
+
   return (
     <Container
       sx={{
@@ -14,15 +23,7 @@ const NotFound = () => {
       }}
     >
       <h2>404 Page Not Found</h2>
-      <Button
-        type="button"
-        href="/"
-        fullWidth
-        variant="outlined"
-        sx={{ mt: 2, mb: 2, width: '250px' }}
-      >
-        GO BACK
-      </Button>
+      <h3>Redirecting...</h3>
     </Container>
   );
 };
