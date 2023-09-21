@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../utils/hooks/userAuth.js';
+import { useAuth } from '../utils/hooks/user.auth.js';
 
 // eslint-disable-next-line react/prop-types
 const PublicRoute = ({ component, redirect = '/dashboard' }) => {
