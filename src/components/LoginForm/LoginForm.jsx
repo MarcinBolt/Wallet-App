@@ -8,9 +8,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import logo from '../../assets/images/apple-touch-icon.png';
-import { Formik } from 'formik';
+ 
 import * as Yup from "yup";
 import { object, string } from 'yup';
+import { Formik, Form, Field } from 'formik';
+import { NavLink } from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -28,98 +30,48 @@ const LoginForm = () => {
   });
  
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(event.currentTarget);
-    dispatch(
-      logIn({
-        email: data.get('email'),
-        password: data.get('password'),
-      }),
-    );
-
-    form.reset();
-  };
-
+  const handleSubmit =  values  => {
+    // event.preventDefault();
+    // const form = event.currentTarget;
+    // const data = new FormData(event.currentTarget);
+    console.log(values)
+    dispatch(logIn({ email: values.email, password: values.password })); 
+    // form.reset();
+  }; 
   return (
-    <>
-      <Formik
-      initialValues={{ email: '', password: '' }}
-      validationSchema={validationsSchema}
-      onSubmit={handleSubmit}
-      validateOnMount
-      >
-  
-        <Container
-          maxWidth="sx"
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '100vh',
-          }}
-        >
-          <img src={logo} alt="Logo" />
-          <ThemeProvider theme={theme}>
-            <h1>Wallet</h1>
-            <Container component="main" maxWidth="xs">
-              <CssBaseline />
-              <Box
-                sx={{
-                  marginTop: 8,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Box component="form" validate="true" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="E-mail"
-                    title="Username must have at least 7 characters"
-                    pattern=".{7,}"
-                    name="email"
-                    autoComplete="email"
-                    variant="standard"
-                    autoFocus
-                  />
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    title="Password must be at least 7 characters"
-                    pattern=".{7,}"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    variant="standard"
-                  />
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                    LOG IN
-                  </Button>
-                  <Button
-                    type="button"
-                    href="#/register"
-                    fullWidth
-                    variant="outlined"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    REGISTER
-                  </Button>
-                </Box>
-              </Box>
-            </Container>
-          </ThemeProvider>
-        </Container>
-      </Formik> 
-   </> 
+    <div >  
+     <Formik 
+       initialValues={{ 
+        password: '',  
+         email: '', 
+       }} 
+       validationSchema={validationsSchema} 
+       onSubmit={handleSubmit} 
+     >  
+       {({ errors, touched }) => ( 
+         <Form>  
+
+        <div> 
+           <img src={logo} alt="Logo" />
+           <Field name="email" type="email" /> 
+           {errors.email && touched.email ? <div>{errors.email}</div> : null} 
+          
+           <Field name="password" /> 
+           {errors.password && touched.password ? ( 
+             <div>{errors.password}</div> 
+           ) : null} 
+
+        <button type="submit">LOG IN</button>  
+        {/* <button  type="button" href="#/register">REGISTER</button>   */} 
+        <NavLink to="/register" className="main_btn">
+                  REGISTER
+                </NavLink> 
+        </div>
+          
+         </Form> 
+       )} 
+     </Formik> 
+   </div>
   );
 };
 export default LoginForm;
