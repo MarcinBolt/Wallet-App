@@ -1,14 +1,15 @@
 import { Router } from 'express';
+import { authentication, signup } from '../controllers/users.controllers';
 
 const userRouter = Router();
 
-userRouter.post('/signup' /*to do createUser*/);
+userRouter.post('/signup', signup);
 
 userRouter.post('/login' /*to do loginUser*/);
 
-userRouter.get('/logout' /*to do auth, logoutUser*/);
+userRouter.get('/logout', authentication, /* to do logoutUser*/);
 
-userRouter.get('/current' /*to do auth, getCurrentUser*/);
+userRouter.get('/current', authentication, /* to do getCurrentUser*/);
 
 userRouter.get('/verify/:verificationToken' /*to do getVerificationToken*/);
 
