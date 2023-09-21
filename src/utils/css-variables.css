@@ -1,12 +1,4 @@
-@font-face {
-  font-family: 'Poppins';
-  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Circe';
-  src: url('../assets/fonts/Circe-Regular.ttf') format('truetype');
-}
+@import '../stylesheet/fonts.css';
 
 :root {
   /* ------ fonts families ------ */
