@@ -142,12 +142,75 @@ GET "/user/current"
 req
 req.user
 
+res user error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <User not found> 
+
 res success
 Status: 200 OK
 Content-Type: application/json
 ResponseBody: {
     "email": "example@example.com",
     "firstname": "examplefirstname"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+GET "/user/verify/:verificationToken"
+
+req
+req.params.verificationToken
+
+res user error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <User not found> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "message": "User verified"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+POST "/user/verify"
+
+req
+req.body.email
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res user error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <User not found> 
+
+res isVerified true
+Status: 400 
+Content-Type: application/json
+ResponseBody:  <User already verified> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "message": "Verification email sent"
 }
 
 res catch 
@@ -340,12 +403,12 @@ ResponseBody: {
 }
 
 
-GET "/transactions/statistics?year=&month="
+GET "/transactions/statistics/:year/:month"
 
 req
 req.user
-req.query.year
-req.query.month
+req.params.year
+req.params.month
 
 res validation error
 Status: 400 Bad Request
