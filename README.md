@@ -4,7 +4,7 @@
 ## For Developers:
 ## To install all dependencies from package.json use: npm install
 
-### Node version: v18.12.1
+### Node version: v18.17.1
 ### npm version: 9.8.0
 
 ## Install all packages included in package.json: npm install
