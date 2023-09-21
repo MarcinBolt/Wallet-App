@@ -15,6 +15,6 @@ transactionRouter.delete('/:id' /*to do auth, deleteOwnerTransactionById*/);
 transactionRouter.get('/:category' /*to do auth, getOwnerTransactionsByCategory*/);
 
 //proponuję dać rok i miesiąc w params, a nie w query string
-transactionRouter.get('/statistics/:year/:month' /*to do auth, getOwnersTransactionsByDate*/);
+transactionRouter.get('/statistics/:year/:month' /*to do auth, getOwnerTransactionsByDate*/);
 
 export default transactionRouter;
