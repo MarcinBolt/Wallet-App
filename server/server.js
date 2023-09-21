@@ -2,8 +2,10 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import mongoose from 'mongoose';
-// import usersRouter from './api/users.js';
-// import transactionsRouter from './api/transactions.js';
+import process from 'node:process';
+import colors from 'colors';
+import usersRouter from './routers/users.router.js';
+import transactionsRouter from './routers/transactions.router.js';
 import 'dotenv/config';
 import './config/passport.config.js';
 
@@ -15,8 +17,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static('public'));
-// app.use('/users', usersRouter);
-// app.use('/transactions', transactionsRouter);
+app.use('/users', usersRouter);
+app.use('/transactions', transactionsRouter);
 
 app.use((_, res, __) => {
   res.status(404).json({
@@ -47,12 +49,21 @@ const connection = mongoose.connect(databaseURI, {
 
 connection
   .then(() => {
+    console.log(colors.yellow('Database connecting...'));
     app.listen(PORT, () => {
-      console.log('Database connection is successful');
-      console.log(`The server is also running on port: ${PORT}`);
+      console.log(colors.green('Database connection is successful'));
+      console.log(colors.green(`The server is also running on port: ${PORT}`));
     });
   })
   .catch(error => {
-    console.log(`Something wrong with the server, because of: ${error.message}`);
+    console.log(colors.red(`Something wrong with the server, because of: ${error.message}`));
     process.exit(1);
   });
+
+['SIGINT', 'SIGTERM', 'SIGQUIT'].forEach(signal =>
+  process.on(signal, () => {
+    mongoose.disconnect();
+    console.log(colors.magenta('Database disconnected.'));
+    process.exit();
+  }),
+);
