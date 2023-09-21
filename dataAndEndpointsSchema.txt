@@ -5,11 +5,13 @@ interface User {
 	password: string;
 	firstName: string;
 	token: string;
+  verificationToken: string;
+  isVerified: boolean;
 }
 
 interface Transaction {
 	date: string;
-	year: string (number?);
+	year: string;
 	month: [
         "January",
         "February",
@@ -67,7 +69,8 @@ Content-Type: application/json
 ResponseBody: {
   "user": {
     "email": "example@example.com",
-    "firstname": "examplefirstname"
+    "firstname": "examplefirstname",
+    "verificationToken": "verificationToken",
   }
 }
 
