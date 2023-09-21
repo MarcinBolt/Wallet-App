@@ -9,7 +9,7 @@
   "scripts": {
     "deploy": "npm run build && gh-pages -d dist",
     "dev": "vite",
-    "start": "NODE_ENV=production ./server/server.js",
+    "start": "node ./server/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server/server.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
