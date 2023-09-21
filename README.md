@@ -2,9 +2,12 @@
  
  ---
 ## For Developers:
-## To install all dependencies from package.json use: npm install
+# To install all dependencies from package.json use: npm install
 
-### Node version: v18.12.1
+## To run front-end App: npm run dev
+## To run back-end server.js: npm run start:dev
+
+### Node version: v18.17.1
 ### npm version: 9.8.0
 
 ## Install all packages included in package.json: npm install
