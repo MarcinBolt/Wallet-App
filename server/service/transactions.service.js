@@ -5,8 +5,8 @@ export const getOwnerTransactions = async owner => await Transaction.find({ owne
 export const createTransaction = async (date, year, month, type, category, comment, sum, owner) =>
   await Transaction.create({ date, year, month, type, category, comment, sum, owner });
 
-export const updateTransactionById = async (id, field) =>
-  await Transaction.findByIdAndUpdate({ _id: id }, field, { new: true });
+export const updateTransactionById = async (id, fields) =>
+  await Transaction.findByIdAndUpdate({ _id: id }, fields, { new: true });
 
 export const deleteTransactionById = async id => await Transaction.deleteOne({ _id: id });
 
