@@ -6,14 +6,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Formik, Form, Field } from 'formik';
-import './modalAddTransaction.css';
+import './ModalAddTransaction.css';
 import 'react-datetime/css/react-datetime.css';
 import { selectCategories } from '../../redux/selectors';
 import { addTransaction, fetchCategories } from '../../redux/transactions/operations';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import TextField from '@mui/material/TextField'; // Dodany import TextField
+import TextField from '@mui/material/TextField';
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
