@@ -1,91 +1,23 @@
-import Joi from 'joi';
 import {
-  createTransactionByOwner,
-  deleteTransactionByIdAndOwner,
-  getStatisticsByOwner,
-  getTransactionByIdAndOwner,
-  getTransactionsByCategoryAndOwner,
-  getTransactionsByOwner,
-  updateTransactionByIdAndOwner,
+  createOwnerTransactionInDB,
+  deleteOwnerTransactionByIdInDB,
+  getOwnerStatisticsFromBD,
+  getOwnerTransactionByIdFromDB,
+  getOwnerTransactionsByCategoryFromDB,
+  getOwnerTransactionsFromDB,
+  updateOwnerTransactionByIdInDB,
 } from '../service/transactions.service.js';
 
-const transactionBodySchema = Joi.object({
-  date: Joi.string().required(),
-  year: Joi.string().required(),
-  month: Joi.string()
-    .valid(
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    )
-    .required(),
-  type: Joi.string().valid('income', 'expense').required(),
-  category: Joi.string()
-    .valid(
-      'Main expenses',
-      'Products',
-      'Car',
-      'Self care',
-      'Child care',
-      'Household products',
-      'Education',
-      'Leisure',
-      'Other expenses',
-      'Entertainment',
-    )
-    .required(),
-  comment: Joi.string(),
-  sum: Joi.number().required(),
-});
-
-const dateBodySchema = Joi.object({
-  year: Joi.string().required(),
-  month: Joi.string()
-    .valid(
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    )
-    .required(),
-});
-
-const categoryBodySchema = Joi.string()
-  .valid(
-    'Main expenses',
-    'Products',
-    'Car',
-    'Self care',
-    'Child care',
-    'Household products',
-    'Education',
-    'Leisure',
-    'Other expenses',
-    'Entertainment',
-  )
-  .required();
+import {
+  transactionBodySchema,
+  transactionCategoryBodySchema,
+  transactionDateBodySchema,
+} from '../utils/joi.schemas.js';
 
 const getOwnerTransactions = async (req, res, next) => {
   const owner = req.user.id;
   try {
-    const results = await getTransactionsByOwner(owner);
+    const results = await getOwnerTransactionsFromDB(owner);
     res.json({
       status: 'success',
       code: 200,
@@ -109,7 +41,7 @@ const createOwnerTransaction = async (req, res, next) => {
   }
 
   try {
-    const createdTransaction = await createTransactionByOwner(
+    const createdTransaction = await createOwnerTransactionInDB(
       date,
       year,
       month,
@@ -134,7 +66,7 @@ const getOwnerTransactionById = async (req, res, next) => {
   const owner = req.user.id;
   const { id } = req.params;
   try {
-    const transaction = await getTransactionByIdAndOwner(id, owner);
+    const transaction = await getOwnerTransactionByIdFromDB(id, owner);
     if (transaction) {
       return res.json({
         status: 'success',
@@ -165,7 +97,7 @@ const updateOwnerTransactionById = async (req, res, next) => {
   }
 
   try {
-    const updatedTransaction = await updateTransactionByIdAndOwner(id, owner, value);
+    const updatedTransaction = await updateOwnerTransactionByIdInDB(id, owner, value);
     if (transaction) {
       return res.json({
         status: 'success',
@@ -190,7 +122,7 @@ const deleteOwnerTransactionById = async (req, res, next) => {
   const owner = req.user.id;
   const { id } = req.params;
   try {
-    const deletedTransaction = await deleteTransactionByIdAndOwner(id, owner);
+    const deletedTransaction = await deleteOwnerTransactionByIdInDB(id, owner);
     if (deletedTransaction) {
       return res.json({
         status: 'success',
@@ -207,12 +139,12 @@ const deleteOwnerTransactionById = async (req, res, next) => {
 const getOwnerTransactionsByCategory = async (req, res, next) => {
   const owner = req.user.id;
   const { category } = req.params;
-  const { _, error } = categoryBodySchema.validate(category);
+  const { _, error } = transactionCategoryBodySchema.validate(category);
   if (error) {
     return res.status(400).json({ message: error.message });
   }
   try {
-    const transactionsByCategory = await getTransactionsByCategoryAndOwner(owner, category);
+    const transactionsByCategory = await getOwnerTransactionsByCategoryFromDB(owner, category);
     if (transactionsByCategory) {
       return res.json({
         status: 'success',
@@ -229,12 +161,12 @@ const getOwnerTransactionsByCategory = async (req, res, next) => {
 const getOwnerStatisticsByDate = async (req, res, next) => {
   const owner = req.user.id;
   const { year, month } = req.params;
-  const { _, error } = dateBodySchema.validate({ year, month });
+  const { _, error } = transactionDateBodySchema.validate({ year, month });
   if (error) {
     return res.status(400).json({ message: error.message });
   }
   try {
-    const statisticsByDate = await getStatisticsByOwner(owner, year, month);
+    const statisticsByDate = await getOwnerStatisticsFromBD(owner, year, month);
     return res.json({
       status: 'success',
       code: 200,
