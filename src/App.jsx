@@ -6,11 +6,12 @@ import { refreshUser } from './redux/auth/operations.js';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
+
 import './App.css';
 
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
-const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 const App = () => {
@@ -26,19 +27,21 @@ const App = () => {
     <Loader />
   ) : (
     <Suspense fallback={<Loader />}>
-      <Routes>
-        //TODO
-        <Route
+      <Dashboard></Dashboard>
+      {/* <Routes> */}
+      //TODO
+      {/* <Route
           exact
           path={`/dashboard`}
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
-        />
-        //TODO
-        <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
+        /> */}
+      //TODO
+      {/* <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
-        <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
-        <Route path="*" element={<PublicRoute component={<NotFound />} />} />
-      </Routes>
+        <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} /> */}
+      {/* <Route exact path={`/dashboard`} element={<PublicRoute component={<Dashboard />} />} /> */}
+      {/* <Route path="*" element={<PublicRoute component={<NotFound />} />} /> */}
+      {/* </Routes> */}
     </Suspense>
   );
 };

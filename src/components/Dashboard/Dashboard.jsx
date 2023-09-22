@@ -9,6 +9,7 @@ const Dashboard = () => {
       <AppBar />
       <CurrencyTable />
       <Chart />
+      
       <Transactions />
     </>
   );
