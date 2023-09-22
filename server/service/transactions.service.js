@@ -1,17 +1,29 @@
 import Transaction from './schema/transaction.schema.js';
 
-export const getOwnerTransactions = async owner => await Transaction.find({ owner });
+export const getOwnerTransactionsFromDB = async owner => await Transaction.find({ owner });
 
-export const createTransaction = async (date, year, month, type, category, comment, sum, owner) =>
-  await Transaction.create({ date, year, month, type, category, comment, sum, owner });
+export const createOwnerTransactionInDB = async (
+  date,
+  year,
+  month,
+  type,
+  category,
+  comment,
+  sum,
+  owner,
+) => await Transaction.create({ date, year, month, type, category, comment, sum, owner });
 
-export const updateTransactionById = async (id, fields) =>
-  await Transaction.findByIdAndUpdate({ _id: id }, fields, { new: true });
+export const getOwnerTransactionByIdFromDB = async (id, owner) =>
+  await Transaction.findOne({ _id: id, owner });
 
-export const deleteTransactionById = async id => await Transaction.deleteOne({ _id: id });
+export const updateOwnerTransactionByIdInDB = async (id, owner, fields) =>
+  await Transaction.findByIdAndUpdate({ _id: id, owner }, fields, { new: true });
 
-export const getOwnerTransactionsByCategory = async (owner, category) =>
+export const deleteOwnerTransactionByIdInDB = async (id, owner) =>
+  await Transaction.deleteOne({ _id: id, owner });
+
+export const getOwnerTransactionsByCategoryFromDB = async (owner, category) =>
   await await Transaction.find({ owner, category });
 
-export const getOwnerStatistics = async (owner, year, month) =>
+export const getOwnerStatisticsFromBD = async (owner, year, month) =>
   await Transaction.find({ owner, year, month });
