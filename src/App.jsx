@@ -7,6 +7,7 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
 import './App.css';
+import ModalAddTransaction from './components/ModalAddTransaction/ModalAddTransaction.jsx';
 
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
@@ -34,7 +35,7 @@ const App = () => {
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
         />
         //TODO
-        <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
+        <Route exact path={`/`} element={<PublicRoute component={<ModalAddTransaction />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
         <Route path="*" element={<PublicRoute component={<NotFound />} />} />

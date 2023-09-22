@@ -38,12 +38,14 @@ const ModalAddTransaction = ({ closeModal }) => {
 
   const categories = useSelector(selectCategories);
 
-  const categoriesOptions = Object.values(categories)
-    .filter(({ name }) => name !== 'Income')
-    .map(({ id, name }) => ({
-      value: id,
-      label: name,
-    }));
+ const categoriesOptions = categories
+   ? Object.values(categories)
+       .filter(({ name }) => name !== 'Income')
+       .map(({ id, name }) => ({
+         value: id,
+         label: name,
+       }))
+   : [];
 
   const handleSubmit = e => {
     e.preventDefault();
