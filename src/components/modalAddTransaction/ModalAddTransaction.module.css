@@ -170,3 +170,14 @@ input[type='checkbox'].toggle + label::before {
 
 @media (min-width: var(--DesktopWidth)) {
 }
+
+.logo_btn {
+ 
+  background-color: var(--color-text-income-green);
+  border: transparent;
+  margin-bottom: 20px;
+}
+
+.logo_btn:hover{
+  background-color: var(--color-bg-btn-active-hover);
+}
