@@ -8,11 +8,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import logo from '../../assets/images/apple-touch-icon.png';
+import css from "./LoginForm.module.css";
+import btn from "./MainButton.module.css";
  
 import * as Yup from "yup";
 import { object, string } from 'yup';
 import { Formik, Form, Field } from 'formik';
 import { NavLink } from 'react-router-dom';
+import MainButton from './MainButton';
 
 const theme = createTheme();
 
@@ -28,8 +31,9 @@ const LoginForm = () => {
       .max(12, "The password must not be longer then 12 characters")
       .required("Passsword is required!"),
   });
- 
 
+  
+  
   const handleSubmit =  values  => {
     // event.preventDefault();
     // const form = event.currentTarget;
@@ -49,25 +53,28 @@ const LoginForm = () => {
        onSubmit={handleSubmit} 
      >  
        {({ errors, touched }) => ( 
-         <Form>  
-
-        <div> 
-           <img src={logo} alt="Logo" />
-           <Field name="email" type="email" /> 
-           {errors.email && touched.email ? <div>{errors.email}</div> : null} 
-          
-           <Field name="password" /> 
-           {errors.password && touched.password ? ( 
+         <Form className={css.form}>   
+           <div className={css.logo_wrapper}> 
+              <img src={logo} alt="Logo" className={css.logo}/>
+              <h1 className={css.logo_text} >Wallet</h1>
+           </div>
+           <div className={css.container_input}>
+             <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
+             {errors.email && touched.email ? <div>{errors.email}</div> : null}  
+             <Field name="password" className={css.input} placeholder="Password"/> 
+             {errors.password && touched.password ? ( 
              <div>{errors.password}</div> 
-           ) : null} 
-
-        <button type="submit">LOG IN</button>  
-        {/* <button  type="button" href="#/register">REGISTER</button>   */} 
-        <NavLink to="/register" className="main_btn">
-                  REGISTER
-                </NavLink> 
-        </div>
-          
+             ) : null}  
+           </div> 
+           <div className={btn.button_container}>
+             <MainButton
+                type="submit"       
+                text="LOG IN"  
+                className={`${btn.button} ${btn.logo_btn}`}    
+             />
+           </div> 
+           <NavLink to="/register" className={`${btn.button} ${btn.main_btn}`}>REGISTER
+           </NavLink>  
          </Form> 
        )} 
      </Formik> 
