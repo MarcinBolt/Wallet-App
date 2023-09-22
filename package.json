@@ -3,9 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "engines": {
-    "node": ">=18 <17"
-  },
   "scripts": {
     "deploy": "npm run build && gh-pages -d dist",
     "dev": "vite",
@@ -22,14 +19,18 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
     "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "joi": "^17.10.2",
+    "jsonwebtoken": "^9.0.2",
     "modern-normalize": "^2.0.0",
     "mongoose": "^7.5.2",
     "morgan": "^1.10.0",
     "node": "^18.17.1",
+    "nodemailer": "^6.9.5",
     "nodemon": "^3.0.1",
     "notiflix": "^3.2.6",
     "npm": "^9.8.0",

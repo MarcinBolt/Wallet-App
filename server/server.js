@@ -24,7 +24,7 @@ app.use((_, res, __) => {
   res.status(404).json({
     status: 'error',
     code: 404,
-    message: 'Connection error',
+    message: 'The given endpoint does not exist',
     data: 'Not found',
   });
 });
@@ -52,7 +52,7 @@ connection
     console.log(colors.yellow('Database connecting...'));
     app.listen(PORT, () => {
       console.log(colors.green('Database connection is successful'));
-      console.log(colors.green(`The server is also running on port: ${PORT}`));
+      console.log(colors.green(`The server running on port: ${PORT}`));
     });
   })
   .catch(error => {
