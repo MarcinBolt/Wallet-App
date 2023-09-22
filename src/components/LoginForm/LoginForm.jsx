@@ -29,11 +29,9 @@ const LoginForm = () => {
     password: Yup.string("Please enter a password")
       .min(6, "The password must be at least 6 characters long")
       .max(12, "The password must not be longer then 12 characters")
-      .required("Passsword is required!"),
+      .required("Password is required!"),
   });
-
-  
-  
+ 
   const handleSubmit =  values  => {
     // event.preventDefault();
     // const form = event.currentTarget;

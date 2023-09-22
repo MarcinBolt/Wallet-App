@@ -1,0 +1,73 @@
+@import "../../utils/css-variables.css";
+
+.page_wrapper {
+  position: relative;
+  background-color: var(--color-bg-primary);
+ 
+ 
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    height: 1024px;
+
+    background-image: url(../../images/bg-tablet-login/ellipse-down.png),
+      url(../../images/bg-tablet-login/ellipse-up.png),
+      url(../../images/frame-login/frame-tablet.png);
+
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      .page_wrapper {
+        background-image: url(../../images/bg-tablet-login/ellipse-down@2x.png),
+          url(../../images/bg-tablet-login/ellipse-up@2x.png),
+          url(../../images/frame-login/frame-tablet@2x.png);
+      }
+    }
+    background-repeat: no-repeat;
+    background-position: bottom 0 left 0, top 0 right 0, top 60px left 114px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+    height: 720px;
+    background-image: url(../../images/frame-login/frame-desctop.png),
+      url(../../images/bg-desktop-login/ellipse.png),
+      url(../../images/bg-desktop-login/rectangle.png);
+
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      .page_wrapper {
+        background-image: url(../../images/frame-login/frame-desctop@2x.png),
+          url(../../images/bg-desktop-login/ellipse@2x.png),
+          url(../../images/bg-desktop-login/rectangle@2x.png);
+      }
+    }
+    background-repeat: no-repeat;
+    background-position: top 153px left 66px, bottom 0 left 0, top 0 right 0;
+  }
+}
+
+.page_text {
+  @media screen and (min-width: 320px) {
+    display: none;
+  }
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 163px;
+    right: 153px;
+
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+
+    display: inline-block;
+
+    color: var(--primary-text-color);
+  }
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    top: 597px;
+    left: 200px;
+  }
+}  
