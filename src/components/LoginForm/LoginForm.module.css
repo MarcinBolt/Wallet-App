@@ -60,15 +60,7 @@
     color: var(--placeholder-text);
     text-align: center;
   }
-  
-  /* // .loggedIn {
-  //   text-align: center;
-  //   font-family: "Circe";
-  //   font-weight: 800;
-  //   font-size: 22px;
-  //   line-height: 30px;
-  //   color: var(--accent-color-blue);
-  // } */
+ 
   
   .container_input {
     display: flex;
@@ -114,27 +106,14 @@
       width: 409px;
     }
   }
-  
-  .input:focus + .label,
-  .input:not(:placeholder-shown) + .label {
-    transform: translateY(-40px);
-  }
-  
+    
   .button_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
-/*   
-.logo_btn {
  
-    background-color: var(--accent-color-grean);
-    border: transparent;
-    margin-bottom: 20px;
-} */
-
 .logo {
 	width: 30px;
 	height: 30px;

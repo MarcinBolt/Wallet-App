@@ -31,14 +31,14 @@
       } 
   }    
 
-.register_btn { 
+/* .register_btn { 
     background-color: var(-- -color-grean);
     border: transparent;
    
     &:hover {
       background-color: #05bd95;
     }
-  }  
+  }   */
 
   .main_btn { 
     text-decoration: none;
