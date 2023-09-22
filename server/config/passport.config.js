@@ -1,9 +1,8 @@
 import passport from 'passport';
 import PassportJwt from 'passport-jwt';
-import * as dotenv from 'dotenv';
+import 'dotenv/config';
 import User from '../service/schema/user.js';
 
-dotenv.config();
 const secretKey = process.env.SECRET;
 
 const ExtractJWT = PassportJwt.ExtractJwt;
