@@ -7,7 +7,7 @@ dotenv.config();
 
 const secret = process.env.SECRET;
 
-const login = async (req, res, next) => {
+export const login = async (req, res, next) => {
     const { email, password } = req.body;
     try {
         const user = await findUserByEmail({ email });
@@ -45,4 +45,19 @@ const login = async (req, res, next) => {
         console.error(error);
         next(error);
     };
+}
+
+export const logout = async (req, res, next) => {
+    const { _id } = req.user;
+    try {
+        await updateUsersDataById(_id, { token: null });
+        res.status(204).json({
+            status: 'No content',
+            code: 204,
+            message: 'User successfully logged out',
+        });
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
 }
