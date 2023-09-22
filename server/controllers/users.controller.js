@@ -208,7 +208,7 @@ const logoutUser = async (req, res, _) => {
     const id = user.id;
     token = null;
 
-    await updateUsersDataById(id, { token });
+    await updateUserDataById(id, { token });
 
     return res.json({
       status: 'success',
