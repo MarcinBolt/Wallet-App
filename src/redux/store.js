@@ -8,6 +8,7 @@ import { transactionsReducer } from './transactions/transactionsSlice.js';
 // import { authReducer } from './auth/authSlice.js';
 import { authReducer } from '../redux/auth/authSlice.js';
 // import { modalReducer } from './modal/modalSlice';
+import { currencyReducer } from '../redux/currency/currencySlice.js';
 
 const authPersistConfig = {
   key: 'auth',
@@ -20,6 +21,7 @@ export const store = configureStore({
     transactions: transactionsReducer,
     // filter: filterReducer,
     // modal: modalReducer,
+    currency: currencyReducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware: getDefaultMiddleware =>

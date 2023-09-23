@@ -10,3 +10,5 @@ export const selectIsLoading = state => state.transactions.isLoading;
 export const selectError = state => state.transactions.error;
 
 export const selectFilter = state => state.filter;
+
+export const selectCurrency = state => state.currency.currencies;
