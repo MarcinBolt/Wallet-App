@@ -62,11 +62,11 @@ const LoginForm = () => {
            </div>
            <div className={css.container_input}>
 
-             {/* <Field name="email" type="email" as={TextField} 
+             <Field name="email" type="email" as={TextField} 
              variant="outlined" color="primary" label="Email" /> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
 
-             <TextField
+             {/* <TextField
                 margin="normal"
                 required
                 fullWidth
