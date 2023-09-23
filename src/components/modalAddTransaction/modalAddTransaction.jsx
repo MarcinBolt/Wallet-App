@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Formik, Form, Field } from 'formik';
-import './ModalAddTransaction.css';
+import css from './ModalAddTransaction.module.css';
 import 'react-datetime/css/react-datetime.css';
 import { selectCategories } from '../../redux/selectors';
 import { addTransaction, fetchCategories } from '../../redux/transactions/operations';
@@ -38,12 +38,14 @@ const ModalAddTransaction = ({ closeModal }) => {
 
   const categories = useSelector(selectCategories);
 
-  const categoriesOptions = Object.values(categories)
-    .filter(({ name }) => name !== 'Income')
-    .map(({ id, name }) => ({
-      value: id,
-      label: name,
-    }));
+  const categoriesOptions = categories
+    ? Object.values(categories)
+        .filter(({ name }) => name !== 'Income')
+        .map(({ id, name }) => ({
+          value: id,
+          label: name,
+        }))
+    : [];
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -63,11 +65,11 @@ const ModalAddTransaction = ({ closeModal }) => {
 
   return (
     <div>
-      <div className="backdrop" onClick={closeModal}></div>
-      <div className="overlay">
+      <div className={css.backdrop} onClick={closeModal}></div>
+      <div className={css.overlay}>
         <h1>Add transaction</h1>
 
-        <div className="switch">
+        <div className={css.switch}>
           <FormControlLabel
             control={
               <Checkbox
@@ -86,15 +88,15 @@ const ModalAddTransaction = ({ closeModal }) => {
         </div>
         <div>
           <Formik initialValues={formData}>
-            <Form onSubmit={e => handleSubmit(e)} className="form">
+            <Form onSubmit={e => handleSubmit(e)} className={css.form}>
               <Field
-                as={TextField} // Zamiast TextInput użyto TextField
+                as={TextField}
                 type="text"
                 id="amount"
                 name="amount"
                 placeholder="0.0"
                 value={formData.amount}
-                className="input"
+                className={css.input}
                 onChange={e => {
                   const input = e.target.value;
                   const regex = /^(\d+)?(\.\d{0,2})?$/;
@@ -135,7 +137,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                 dateFormat="DD.MM.YYYY"
                 timeFormat={false}
                 value={formData.dateValue}
-                className="datetime"
+                className={css.datetime}
                 onChange={newDate =>
                   setFormData({
                     ...formData,
@@ -147,7 +149,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                 <Field
                   as="textarea"
                   placeholder="Comment"
-                  className="textarea"
+                  className={css.textarea}
                   rows={3}
                   onChange={comment =>
                     setFormData({
@@ -157,12 +159,12 @@ const ModalAddTransaction = ({ closeModal }) => {
                   }
                 />
               </label>
-              <Button type="submit" fullWidth variant="contained" className="logo_btn">
+              <Button type="submit" fullWidth variant="contained" className={css.logo_btn}>
                 ADD
               </Button>
             </Form>
           </Formik>
-          <Button onClick={closeModal} fullWidth variant="outlined" className="main_btn">
+          <Button onClick={closeModal} fullWidth variant="outlined" className={css.main_btn}>
             Cancel
           </Button>
         </div>
