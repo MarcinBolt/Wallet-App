@@ -39,9 +39,9 @@ interface Transaction {
 
 
 
-endpoint "/user"
+endpoint "/users"
 
-POST "/user/signup"
+POST "/users/signup"
 
 req
 Content-Type: application/json
@@ -82,7 +82,7 @@ ResponseBody: {
 }
 
 
-POST "/user/login"
+POST "/users/login"
 
 req
 Content-Type: application/json
@@ -120,7 +120,7 @@ ResponseBody: {
 }
 
 
-GET "/user/logout"
+GET "/users/logout"
 
 res success
 Status: 200 OK
@@ -137,7 +137,7 @@ ResponseBody: {
 }
 
 
-GET "/user/current"
+GET "/users/current"
 
 req
 req.user
@@ -162,7 +162,7 @@ ResponseBody: {
   "message": "Server error"
 }
 
-GET "/user/verify/:verificationToken"
+GET "/users/verify/:verificationToken"
 
 req
 req.params.verificationToken
@@ -186,7 +186,7 @@ ResponseBody: {
   "message": "Server error"
 }
 
-POST "/user/verify"
+POST "/users/verify"
 
 req
 req.body.email
