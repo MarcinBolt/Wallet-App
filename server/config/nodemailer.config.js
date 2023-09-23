@@ -1,5 +1,6 @@
 import { createTransport } from 'nodemailer';
 import 'dotenv/config';
+import { capitalize } from '@mui/material';
 
 const config = {
   pool: true,
@@ -15,14 +16,20 @@ const config = {
   },
 };
 
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? `http://localhost:5173/Wallet-App/#/users/verify/`
+    : 'https://marcinbolt.github.io/Wallet-App/#/users/verify/';
+
 const send = async ({ to, firstName, verificationToken }) => {
-  let body = `<h2>Welcome ${firstName}!</h2>
+  const capitalizedFirstName = capitalize(firstName);
+  let body = `<h2>Welcome ${capitalizedFirstName}!</h2>
       <p>Thank You for registration in our Wallet App.</p>
       <p>Please, click link below to verify Your email.</p>
-      <p>${process.env.BACKEND_SERVER_URL}/users/verify/${verificationToken}</p>
-      <p><b>Please note that for added security this link becomes invalid after ${process.env.VERIFICATION_TOKEN_EXPIRATION_TIME}.</b></p>
+      <p>${baseUrl}${verificationToken}</p>
+      <p>Please, note that for added security this link becomes invalid after ${process.env.VERIFICATION_TOKEN_EXPIRATION_TIME}.</p>
       <p>Best regards,</p>
-      <p>Wallet App Team.</p>`;
+      <p>Wallet App - Hi5 Team.</p>`;
 
   const transporter = createTransport(config);
   const emailOptions = {

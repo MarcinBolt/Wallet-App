@@ -18,6 +18,7 @@ import {
   userEmailReqBodySchema,
 } from '../utils/joi.schemas..js';
 import capitalizeEachWord from '../utils/capitalizer.js';
+import { capitalize } from '@mui/material';
 
 const createNewUser = async (req, res, _) => {
   try {
@@ -39,14 +40,14 @@ const createNewUser = async (req, res, _) => {
       });
     }
 
-    const normalizedFirstName = capitalizeEachWord(firstName.toLowerCase());
+    const capitalizedFirstName = capitalizeEachWord(firstName);
     const hashedPassword = await hashPassword(password);
     const payload = { normalizedEmail };
     const verificationToken = createToken(payload, process.env.VERIFICATION_TOKEN_EXPIRATION_TIME);
 
     const isEmailSend = await send({
       to: normalizedEmail,
-      firstName: normalizedFirstName,
+      firstName: capitalizedFirstName,
       verificationToken,
     });
 
@@ -57,7 +58,7 @@ const createNewUser = async (req, res, _) => {
         message: 'Server error',
       });
     }
-    await createUserInDB(normalizedEmail, hashedPassword, firstName, verificationToken);
+    await createUserInDB(normalizedEmail, hashedPassword, capitalizedFirstName, verificationToken);
 
     return res.status(201).json({
       status: 'created',
@@ -66,7 +67,7 @@ const createNewUser = async (req, res, _) => {
       data: {
         user: {
           email: normalizedEmail,
-          firstName,
+          firstName: capitalizedFirstName,
         },
       },
     });
@@ -91,16 +92,14 @@ const deleteUser = async (req, res, _) => {
     }
 
     const normalizedEmail = email.toLowerCase();
-    const userFromDB = await findUserByEmailInDB(normalizedEmail);
-    const isUserIdValid = userIdFromReqAuthorizedToken === userFromDB.id;
-    const isPasswordValid = await validatePassword(password, userFromDB.password);
+    const user = await findUserByEmailInDB(normalizedEmail);
+    const isPasswordValid = await validatePassword(password, user.password);
 
-    if (!isPasswordValid || !isUserIdValid) {
+    if (!isPasswordValid) {
       return res.status(401).json({
         status: 'unauthorized',
         code: 401,
-        message: 'Wrong email or password',
-        data: 'Unauthorized',
+        message: 'Email is wrong',
       });
     }
 
@@ -110,9 +109,7 @@ const deleteUser = async (req, res, _) => {
       status: 'deleted',
       code: 200,
       data: {
-        deletedUser: {
-          email: normalizedEmail,
-        },
+        email: normalizedEmail,
       },
     });
   } catch (err) {
@@ -164,6 +161,7 @@ const loginUser = async (req, res, _) => {
     }
 
     const { id, firstName } = user;
+    const capitalizedFirstName = capitalizeEachWord(firstName);
     const payload = { id };
     const token = createToken(payload, process.env.TOKEN_EXPIRATION_TIME);
     await updateUserDataByIdInDB(id, { token });
@@ -175,7 +173,7 @@ const loginUser = async (req, res, _) => {
         token,
         user: {
           email: user.email,
-          firstName,
+          firstName: capitalizedFirstName,
         },
       },
     });
@@ -192,14 +190,6 @@ const loginUser = async (req, res, _) => {
 const logoutUser = async (req, res, _) => {
   try {
     let token = req.user.token;
-
-    if (!token) {
-      return res.status(401).json({
-        status: 'unauthorized',
-        code: 401,
-        message: 'Not authorized',
-      });
-    }
 
     const user = await findUserByTokenInDB(token);
     const id = user.id;
@@ -224,23 +214,16 @@ const logoutUser = async (req, res, _) => {
 
 const getCurrentUserDataFromToken = async (req, res, _) => {
   try {
-    const token = req.user.token;
+    const {email, firstName} = req.user;
 
-    if (!token) {
-      return res.status(401).json({
-        status: 'unauthorized',
-        code: 401,
-        message: 'Not authorized',
-      });
-    }
-    const user = await findUserByTokenInDB(token);
+    const capitalizedFirstName = capitalize(firstName);
     return res.json({
       status: 'success',
       code: 200,
       data: {
         currentUser: {
-          email: user.email,
-          firstName: user.firstName,
+          email,
+          firstName: capitalizedFirstName,
         },
       },
     });
@@ -264,8 +247,8 @@ const updateUserData = async (req, res, _) => {
     }
 
     const id = req.user.id;
-
-    await updateUserDataByIdInDB(id, { email, password, firstName });
+const capitalizedFirstName = capitalizeEachWord(firstName);
+    await updateUserDataByIdInDB(id, { email, password, firstName: capitalizedFirstName });
     return res.json({
       status: 'success',
       code: 200,
@@ -345,9 +328,9 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
       });
     }
 
-    const { verify, verificationToken, firstName } = user;
+    const { isVerified, verificationToken, firstName } = user;
 
-    if (verify === true) {
+    if (isVerified === true) {
       return res.status(400).json({
         status: 'error',
         code: 400,
