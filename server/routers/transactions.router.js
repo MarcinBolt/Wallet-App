@@ -11,18 +11,6 @@ import {
 
 const transactionsRouter = Router();
 
-/**
- * @swagger
- * /transactions:
- *   get:
- *     summary: Get an example resource
- *     description: Get all user's transactions
- *     responses:
- *       200:
- *         description: Successful response
- *       404:
- *         description: Resource not found
- */
 transactionsRouter.get('/' /*to do auth*/, getOwnerTransactions);
 
 transactionsRouter.post('/' /*to do auth*/, createOwnerTransaction);
