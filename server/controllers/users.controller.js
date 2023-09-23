@@ -214,7 +214,7 @@ const logoutUser = async (req, res, _) => {
 
 const getCurrentUserDataFromToken = async (req, res, _) => {
   try {
-    const {email, firstName} = req.user;
+    const { email, firstName } = req.user;
 
     const capitalizedFirstName = capitalize(firstName);
     return res.json({
@@ -247,7 +247,7 @@ const updateUserData = async (req, res, _) => {
     }
 
     const id = req.user.id;
-const capitalizedFirstName = capitalizeEachWord(firstName);
+    const capitalizedFirstName = capitalizeEachWord(firstName);
     await updateUserDataByIdInDB(id, { email, password, firstName: capitalizedFirstName });
     return res.json({
       status: 'success',
@@ -330,9 +330,9 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
       });
     }
 
-    const isEmailSend = await send({ to: normalizedEmail, firstName, verificationToken });
+    const isEmailSent = await send({ to: normalizedEmail, firstName, verificationToken });
 
-    if (!isEmailSend) {
+    if (!isEmailSent) {
       return res.status(500).json({
         status: 'error',
         code: 500,
