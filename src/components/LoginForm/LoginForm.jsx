@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { Formik, Form, Field } from 'formik';
 import { NavLink } from 'react-router-dom';
 import MainButton from './MainButton';
+import { Button } from '@mui/material';
  
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const LoginForm = () => {
              ) : null}  
            </div> 
            <div className={btn.button_container}>
+            <Button></Button>
              <MainButton
                 type="submit"       
                 text="LOG IN"  
