@@ -14,4 +14,8 @@ usersRouter.get('/verify/:verificationToken' /*to do getVerificationToken*/);
 
 usersRouter.post('/verify' /*to do verifyUser*/);
 
+usersRouter.delete('/delete', /*auth, deleteUser*/);
+
+usersRouter.put('/', /*updateUserData*/);
+
 export default usersRouter;
