@@ -63,8 +63,8 @@
   }
   @media screen and (min-width: 768px) {
     position: relative;
-    top: -27%;
-    left: 42%;
+    top:  16%;
+    left: 24%;
 
     font-family: Poppins;
     font-weight: 400;
@@ -77,8 +77,8 @@
   }
   @media screen and (min-width: 1280px) {
     position: relative;
-    top: 430px; 
-    left: 240px;
+    top:  83%;
+    left: 6%;
     /* width: 100px; */
     white-space: nowrap
   }
@@ -92,11 +92,14 @@
     height: 800px; 
 }  
 @media screen and (min-width: 1280px) {
-  width: 1113px; 
+  width: 1200px; 
   height: 500px; 
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  /* gap: 100px; */
+  /* justify-content: space-between; */
+
   /* align-items: center; */
    
 
@@ -142,8 +145,8 @@
     
   position: relative;
   top: 2%;
-  left: 0%;  
-
+  left: -20%;  
+    padding-right: 100px;
 
     width: 435px;
     height: 419px; 
@@ -165,14 +168,14 @@
 .subBackround {
 
   @media screen and (min-width: 1280px) {
-     width: 50%;  
+     width: 60%;  
      height: 100%;
     /* height: 720px; */
     background-color:#f1f3f8 ;
    
     position: absolute;  
        
-      left: 50%; 
+      left: 40%; 
       
   }
 
