@@ -1,21 +1,32 @@
 import { Router } from 'express';
+import {
+  createNewUser,
+  deleteUser,
+  loginUser,
+  logoutUser,
+  getCurrentUserDataFromToken,
+  updateUserData,
+  verifyUserByVerificationToken,
+  resendEmailWithVerificationToken,
+} from '../controllers/users.controller.js';
+import auth from '../utils/user.auth.js';
 
 const usersRouter = Router();
 
-usersRouter.post('/signup' /*to do createUser*/);
+usersRouter.post('/signup', createNewUser);
 
-usersRouter.post('/login' /*to do loginUser*/);
+usersRouter.post('/login', loginUser);
 
-usersRouter.get('/logout' /*to do auth, logoutUser*/);
+usersRouter.get('/logout', auth, logoutUser);
 
-usersRouter.get('/current' /*to do auth, getCurrentUser*/);
+usersRouter.get('/current', auth, getCurrentUserDataFromToken);
 
-usersRouter.get('/verify/:verificationToken' /*to do getVerificationToken*/);
+usersRouter.get('/verify/:verificationToken', verifyUserByVerificationToken);
 
-usersRouter.post('/verify' /*to do verifyUser*/);
+usersRouter.post('/verify', resendEmailWithVerificationToken);
 
-usersRouter.delete('/delete', /*auth, deleteUser*/);
+usersRouter.delete('/delete', auth, deleteUser);
 
-usersRouter.put('/', /*updateUserData*/);
+usersRouter.put('/', updateUserData);
 
 export default usersRouter;
