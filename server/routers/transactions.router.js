@@ -1,20 +1,28 @@
 import { Router } from 'express';
+import {
+  createOwnerTransaction,
+  deleteOwnerTransactionById,
+  getOwnerStatisticsByDate,
+  getOwnerTransactionById,
+  getOwnerTransactions,
+  getOwnerTransactionsByCategory,
+  updateOwnerTransactionById,
+} from '../controllers/transactions.controller';
 
-const transactionRouter = Router();
+const transactionsRouter = Router();
 
-transactionRouter.get('/' /*to do auth, getOwnerTransactions*/);
+transactionsRouter.get('/' /*to do auth*/, getOwnerTransactions);
 
-transactionRouter.post('/' /*to do auth, createOwnerTransaction*/);
+transactionsRouter.post('/' /*to do auth*/, createOwnerTransaction);
 
-transactionRouter.get('/:id' /*to do auth, getOwnerTransactionById*/);
+transactionsRouter.get('/:id' /*to do auth*/, getOwnerTransactionById);
 
-transactionRouter.put('/:id' /*to do auth, updateOwnerTransactionById*/);
+transactionsRouter.put('/:id' /*to do auth*/, updateOwnerTransactionById);
 
-transactionRouter.delete('/:id' /*to do auth, deleteOwnerTransactionById*/);
+transactionsRouter.delete('/:id' /*to do auth*/, deleteOwnerTransactionById);
 
-transactionRouter.get('/:category' /*to do auth, getOwnerTransactionsByCategory*/);
+transactionsRouter.get('/:category' /*to do auth*/, getOwnerTransactionsByCategory);
 
-//proponuję dać rok i miesiąc w params, a nie w query string
-transactionRouter.get('/statistics/:year/:month' /*to do auth, getOwnerTransactionsByDate*/);
+transactionsRouter.get('/statistics/:year/:month' /*to do auth*/, getOwnerStatisticsByDate);
 
-export default transactionRouter;
+export default transactionsRouter;
