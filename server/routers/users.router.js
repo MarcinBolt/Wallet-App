@@ -27,6 +27,6 @@ usersRouter.post('/verify', resendEmailWithVerificationToken);
 
 usersRouter.delete('/delete', auth, deleteUser);
 
-usersRouter.patch('/', updateUserData);
+usersRouter.put('/', updateUserData);
 
 export default usersRouter;

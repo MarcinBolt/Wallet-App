@@ -1,12 +1,12 @@
 import 'dotenv/config';
 import {
-  createUser,
-  findUserById,
-  findUserByEmail,
-  findUserByToken,
-  updateUserDataById,
-  deleteUserById,
-  findUserByVerificationToken,
+  createUserInDB,
+  findUserByIdInDB,
+  findUserByEmailInDB,
+  findUserByTokenInDB,
+  updateUserDataByIdInDB,
+  deleteUserByIdInDB,
+  findUserByVerificationTokenInDB,
 } from '../service/users.service.js';
 import createToken from '../utils/token.creator.js';
 import send from '../config/nodemailer.config.js';
@@ -28,24 +28,21 @@ const createNewUser = async (req, res, _) => {
       return res.status(400).json({ status: 'error', code: 400, message: error.message });
     }
 
-    const normalizedFirstName = capitalizeEachWord(firstName.toLowerCase());
     const normalizedEmail = email.toLowerCase();
-    const user = await findUserByEmail(normalizedEmail);
+    const user = await findUserByEmailInDB(normalizedEmail);
 
     if (user) {
       return res.status(409).json({
-        status: 'error',
+        status: 'conflict',
         code: 409,
         message: 'Email in use',
-        data: 'Conflict',
       });
     }
 
+    const normalizedFirstName = capitalizeEachWord(firstName.toLowerCase());
     const hashedPassword = await hashPassword(password);
     const payload = { normalizedEmail };
     const verificationToken = createToken(payload, process.env.VERIFICATION_TOKEN_EXPIRATION_TIME);
-
-    // let verificationToken = await createEmailVerificationToken();
 
     const isEmailSend = await send({
       to: normalizedEmail,
@@ -60,14 +57,16 @@ const createNewUser = async (req, res, _) => {
         message: 'Server error',
       });
     }
-    await createUser(normalizedEmail, hashedPassword, firstName, verificationToken);
+    await createUserInDB(normalizedEmail, hashedPassword, firstName, verificationToken);
 
     return res.status(201).json({
       status: 'created',
       code: 201,
+      message: 'User created.',
       data: {
         user: {
           email: normalizedEmail,
+          firstName,
         },
       },
     });
@@ -92,7 +91,7 @@ const deleteUser = async (req, res, _) => {
     }
 
     const normalizedEmail = email.toLowerCase();
-    const userFromDB = await findUserByEmail(normalizedEmail);
+    const userFromDB = await findUserByEmailInDB(normalizedEmail);
     const isUserIdValid = userIdFromReqAuthorizedToken === userFromDB.id;
     const isPasswordValid = await validatePassword(password, userFromDB.password);
 
@@ -105,7 +104,7 @@ const deleteUser = async (req, res, _) => {
       });
     }
 
-    await deleteUserById(userIdFromReqAuthorizedToken);
+    await deleteUserByIdInDB(userIdFromReqAuthorizedToken);
 
     res.status(200).json({
       status: 'deleted',
@@ -136,14 +135,13 @@ const loginUser = async (req, res, _) => {
     }
 
     const normalizedEmail = email.toLowerCase();
-    const user = await findUserByEmail(normalizedEmail);
+    const user = await findUserByEmailInDB(normalizedEmail);
 
     if (!user) {
       return res.status(401).json({
         status: 'unauthorized',
         code: 401,
         message: 'Email or password is wrong',
-        data: 'Unauthorized',
       });
     }
 
@@ -154,7 +152,6 @@ const loginUser = async (req, res, _) => {
         status: 'unauthorized',
         code: 401,
         message: 'Email or password is wrong',
-        data: 'Unauthorized',
       });
     }
 
@@ -166,10 +163,10 @@ const loginUser = async (req, res, _) => {
       });
     }
 
-    const id = user.id;
+    const { id, firstName } = user;
     const payload = { id };
     const token = createToken(payload, process.env.TOKEN_EXPIRATION_TIME);
-    await updateUserDataById(id, { token });
+    await updateUserDataByIdInDB(id, { token });
 
     return res.json({
       status: 'success',
@@ -178,7 +175,7 @@ const loginUser = async (req, res, _) => {
         token,
         user: {
           email: user.email,
-          subscription: user.subscription,
+          firstName,
         },
       },
     });
@@ -204,11 +201,11 @@ const logoutUser = async (req, res, _) => {
       });
     }
 
-    const user = await findUserByToken(token);
+    const user = await findUserByTokenInDB(token);
     const id = user.id;
     token = null;
 
-    await updateUserDataById(id, { token });
+    await updateUserDataByIdInDB(id, { token });
 
     return res.json({
       status: 'success',
@@ -236,14 +233,14 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
         message: 'Not authorized',
       });
     }
-    const user = await findUserByToken(token);
+    const user = await findUserByTokenInDB(token);
     return res.json({
       status: 'success',
       code: 200,
       data: {
         currentUser: {
           email: user.email,
-          subscription: user.subscription,
+          firstName: user.firstName,
         },
       },
     });
@@ -257,7 +254,7 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
   }
 };
 
-const updateUserData = async (req, res, next) => {
+const updateUserData = async (req, res, _) => {
   try {
     const { value, error } = userRegisterReqBodySchema.validate(req.body);
     const { email, password, firstName } = value;
@@ -268,7 +265,7 @@ const updateUserData = async (req, res, next) => {
 
     const id = req.user.id;
 
-    await updateUserDataById(id, { email, password, firstName });
+    await updateUserDataByIdInDB(id, { email, password, firstName });
     return res.json({
       status: 'success',
       code: 200,
@@ -296,20 +293,20 @@ const verifyUserByVerificationToken = async (req, res, _) => {
       });
     }
 
-    const user = await findUserByVerificationToken(verificationToken);
+    const user = await findUserByVerificationTokenInDB(verificationToken);
 
     if (!user) {
       return res.status(404).json({
         status: 'error',
         code: 404,
-        message: `User not found.`,
+        message: `Invalid verification token.`,
       });
     }
 
     const id = user.id;
     verificationToken = null;
 
-    await updateUserDataById(id, { verificationToken, isVerified: true });
+    await updateUserDataByIdInDB(id, { verificationToken, isVerified: true });
 
     return res.json({
       status: 'success',
@@ -338,7 +335,7 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
     }
 
     const normalizedEmail = email.toLowerCase();
-    const user = await findUserByEmail(normalizedEmail);
+    const user = await findUserByEmailInDB(normalizedEmail);
 
     if (!user) {
       return res.status(404).json({
