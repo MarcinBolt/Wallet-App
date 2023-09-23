@@ -1,7 +1,7 @@
 import passport from 'passport';
 import PassportJwt from 'passport-jwt';
 import 'dotenv/config';
-import User from '../service/schema/user.js';
+import User from '../service/schema/user.schema.js';
 
 const secretKey = process.env.SECRET;
 
