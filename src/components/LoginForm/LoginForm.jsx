@@ -66,9 +66,28 @@ const LoginForm = () => {
            </div>
            <div className={css.container_input}>
 
-             <Field name="email" type="email" as={TextField} 
+             {/* <Field name="email" type="email" as={TextField} 
              variant="outlined" color="primary" label="Email" /> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
+
+             <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="E-mail"
+                title="Username must have at least 7 characters"
+                pattern=".{7,}"
+                name="email"
+                autoComplete="email"
+                variant="standard"
+                autoFocus
+              /> */}
+
+
+
+
+
 
             <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  

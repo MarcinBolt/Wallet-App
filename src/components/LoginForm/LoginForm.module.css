@@ -10,10 +10,10 @@
       margin: 0 auto;
     }
     @media screen and (min-width: 767px) {
-      position: absolute;
-      bottom: 110px;
-      right: 50%;
-      transform: translate(50%);
+      /* position: absolute; */
+      /* bottom: 10%;
+      right: 50%; */
+      /* transform: translate(50%); */
       width: 540px;
       border-radius: 20px;
       padding-top: 40px;
@@ -22,8 +22,8 @@
     }
     @media screen and (min-width: 1280px) {
       bottom: 50%;
-      right: 85px;
-      transform: translateY(50%);
+      /* right: 85px; */
+      /* transform: translateY(50%); */
       margin: 0;
     }
   

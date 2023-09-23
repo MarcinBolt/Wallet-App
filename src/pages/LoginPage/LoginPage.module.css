@@ -3,17 +3,23 @@
 .page_wrapper {
   position: relative;
   background-color: var(--color-bg-primary);
-  margin: auto; 
-  
+  /* margin: auto;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  margin: auto;
+
   
   @media screen and (min-width: 768px) {
-    width: 768px;
-    height: 1024px;
+    /* width: 768px; */
+    width: 100vw;
+    height: 100vw;
 
     background-image: 
       url(../../assets/images/ellipse-down.png),
-      url(../../assets/images/ellipse-up.png),
-      url(../../assets/images/frame-tablet.png);
+      url(../../assets/images/ellipse-up.png);
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
@@ -21,19 +27,18 @@
       .page_wrapper {
         background-image: 
           url(../../assets/images/ellipse-down@2x.png),
-          url(../../assets/images/ellipse-up@2x.png),
-          url(../../assets/images/frame-tablet@2x.png);
+          url(../../assets/images/ellipse-up@2x.png);
       }
     }
     background-repeat: no-repeat;
-    background-position: bottom 0 left 0, top 0 right 0, top 60px left 114px;
+    background-position: bottom 0 left 0, top 0 right 0;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 1280px;
-    height: 720px;
+    /* width: 1280px; */
+    /* height: 720px; */
     background-image: 
-      url(../../assets/images/frame-desktop.png),
+      
       url(../../assets/images/ellipse.png),
       url(../../assets/images/rectangle.png);
 
@@ -42,13 +47,13 @@
       screen and (min-resolution: 2dppx) {
       .page_wrapper {
         background-image: 
-          url(../../assets/images/frame-desktop@2x.png),
+         
           url(../../assets/images/ellipse@2x.png),
           url(../../assets/images/rectangle@2x.png);
       }
     }
     background-repeat: no-repeat;
-    background-position: top 153px left 66px, bottom 0 left 0, top 0 right 0;
+    background-position: bottom 0 left 0, top 0 right 0;
   }
 }
 
@@ -57,9 +62,9 @@
     display: none;
   }
   @media screen and (min-width: 768px) {
-    position: absolute;
-    top: 163px;
-    right: 153px;
+    position: relative;
+    top: 120px;
+    left: 120px;
 
     font-family: Poppins;
     font-weight: 400;
@@ -71,8 +76,72 @@
     color: var(--color-text-primary);
   }
   @media screen and (min-width: 1280px) {
-    position: absolute;
+    /* position: absolute;
     top: 597px;
-    left: -600px;
+    left: -600px; */
   }
+}  
+
+  .form_wrapper {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; */
+
+  @media screen and (min-width: 768px) {
+    width: 533px;
+     
+    height: 800px; 
+}  
+@media screen and (min-width: 1280px) {
+  /* position: absolute;
+  top: 597px;
+  left: -600px; */
+}
+
+
+
+  }
+
+.frame {
+  
+  @media screen and (min-width: 768px) {
+
+    position: relative;
+    top: -50px;
+    left: 0px;
+    
+    width: 260px;
+    height: 250px; 
+    padding-bottom: 40px ;
+    
+    background-image:  
+      url(../../assets/images/frame-tablet.png);
+
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      .page_wrapper {
+        background-image:  
+          url(../../assets/images/frame-tablet@2x.png);
+      }
+    } 
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 435px;
+    height: 419px; 
+    background-image: 
+      url(../../assets/images/frame-desktop.png) ;
+
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      .page_wrapper {
+        background-image: 
+          url(../../assets/images/frame-desktop@2x.png) ;
+      }
+    }
+   
+  } 
 }  

@@ -1,13 +1,17 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
 import css from "./LoginPage.module.css";
+ 
 
   //      import LoginForm from "../components/LoginForm/LoginForm_altt";
 const LoginPage = () => {
     return (
     <div> 
-      <div className={css.page_wrapper}>
-        <p className={css.page_text}>Finance App</p>
-        <LoginForm />
+      <div className={css.page_wrapper}> 
+        <div className={css.form_wrapper}> 
+          <p className={css.page_text}>Finance App</p>
+          <div className={css.frame}></div>
+          <LoginForm />
+        </div> 
       </div> 
     </div>
     )
