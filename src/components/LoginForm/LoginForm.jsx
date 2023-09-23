@@ -16,10 +16,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
-
-
-
  
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -84,11 +80,7 @@ const LoginForm = () => {
                 autoFocus
               /> */}
 
-
-
-
-
-
+ 
             <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
              <Field name="password" className={css.input} placeholder="Password"/> 

@@ -7,8 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-
+  position: relative; 
   margin: auto;
 
   
@@ -64,8 +63,8 @@
   }
   @media screen and (min-width: 768px) {
     position: relative;
-    top: 120px;
-    left: 120px;
+    top: -27%;
+    left: 42%;
 
     font-family: Poppins;
     font-weight: 400;
@@ -77,24 +76,32 @@
     color: var(--color-text-primary);
   }
   @media screen and (min-width: 1280px) {
-    /* position: absolute;
-    top: 597px;
-    left: -600px; */
+    position: relative;
+    top: 430px; 
+    left: 240px;
+    /* width: 100px; */
+    white-space: nowrap
   }
 }  
 
   .form_wrapper {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; */
+
 
   @media screen and (min-width: 768px) {
-    width: 533px;
-     
+    width: 533px; 
     height: 800px; 
 }  
 @media screen and (min-width: 1280px) {
+  width: 1113px; 
+  height: 500px; 
+
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+   
+
+
+
   /* position: absolute;
   top: 597px;
   left: -600px; */
@@ -131,6 +138,13 @@
   }
 
   @media screen and (min-width: 1280px) {
+
+    
+  position: relative;
+  top: 2%;
+  left: 0%;  
+
+
     width: 435px;
     height: 419px; 
     background-image: 
@@ -164,17 +178,24 @@
 
   background-image: 
   
-  url(../../assets/images/rectangle.png);
+  url(../../assets/images/Ellipse-desk.png);
 
 @media screen and (min-device-pixel-ratio: 2),
   screen and (min-resolution: 192dpi),
   screen and (min-resolution: 2dppx) {
-  .page_wrapper {
+  .subBackround {
     background-image: 
       
-      url(../../assets/images/rectangle@2x.png);
+      url(../../assets/images/Ellipse-desk@2x.png);
   }
 }
 background-repeat: no-repeat;
 background-position:  top 0 right 0;  
+}
+
+
+.form {
+  position: relative;
+  /* top: 10%; */
+  /* left: 50%;   */
 }

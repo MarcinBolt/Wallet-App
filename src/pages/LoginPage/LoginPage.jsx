@@ -7,12 +7,13 @@ const LoginPage = () => {
     return (
     <div>  
       <div className={css.page_wrapper}> 
-      <div className={css.subBackround}></div>
-        <div className={css.form_wrapper}> 
+      <div className={css.subBackround}></div> 
+        <div className={css.form_wrapper}>  
           <p className={css.page_text}>Finance App</p>
           <div className={css.frame}></div>
-          
-          <LoginForm />
+          <div className={css.form}>
+            <LoginForm/>
+          </div> 
         </div> 
       </div> 
     </div>

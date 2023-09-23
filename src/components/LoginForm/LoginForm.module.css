@@ -1,7 +1,7 @@
 
 @import "../../utils/css-variables.css";
   
-.form {
+.form { 
     @media screen and (min-width: 320px) {
       width: 320px;
       height: auto;
@@ -21,8 +21,10 @@
       margin: auto;
     }
     @media screen and (min-width: 1280px) {
-      bottom: 50%;
-      /* right: 85px; */
+      position: relative;
+      z-index: 100;
+      /* bottom: 50%; */
+       right: 10%;  
       /* transform: translateY(50%); */
       margin: 0;
     }
@@ -134,5 +136,4 @@
       margin-left: 20px;
     }
   }
-
 
