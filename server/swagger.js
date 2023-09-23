@@ -1,6 +1,5 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 
-
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -10,7 +9,7 @@ const options = {
       description: "API documentation for Express application to manage users and transactions in database",
     },
   },
-  apis: ['./routers/*.js', './service/schema/*.js', './controllers/*.js'],
+  apis: ['./routers/*.router.js', './service/schema/*.schema.js', './controllers/*.controller.js', './service/*.js'],
 };
 
 export const openSpec = swaggerJsdoc(options);
