@@ -1,0 +1,47 @@
+
+@import '../../styles/main.scss';
+
+.logoutModalOverlay {
+  opacity: 0.4;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(53, 53, 53, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+.logoutModalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 180px;
+  background-color: var(--color-bg-secondary);
+  box-shadow: 0 2px 8px var(--color-bg-backdrop);
+  z-index: 9999;
+  border-radius: 14px;
+}
+
+.logoutModalContainer .logoutModalContent {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logoutModalContainer .logoutModalContent .logoutInfo {
+  font-size: 16px;
+}
+
+.logoutModalContainer .logoutModalContent .confirmButtons {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+}
