@@ -7,8 +7,19 @@ import btn from "./MainButton.module.css";
 import * as Yup from "yup"; 
 import { Formik, Form, Field } from 'formik';
 import { NavLink } from 'react-router-dom';
-import MainButton from './MainButton';
-import { Button } from '@mui/material';
+import MainButton from './MainButton'; 
+     
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
+
+
+
  
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -38,8 +49,14 @@ const LoginForm = () => {
         password: '',  
          email: '', 
        }} 
-       validationSchema={validationsSchema} 
-       onSubmit={handleSubmit} 
+       validationSchema={validationsSchema}
+        onSubmit={handleSubmit}
+
+      //  onSubmit={[handleSubmit, (formikHelpers => {
+      //   formikHelpers.resetForm();
+      //   })]}
+
+
      >  
        {({ errors, touched }) => ( 
          <Form className={css.form}>   
@@ -48,7 +65,12 @@ const LoginForm = () => {
               <h1 className={css.logo_text} >Wallet</h1>
            </div>
            <div className={css.container_input}>
-             <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
+
+             <Field name="email" type="email" as={TextField} 
+             variant="outlined" color="primary" label="Email" /> 
+             {errors.email && touched.email ? <div>{errors.email}</div> : null}  
+
+            <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
              <Field name="password" className={css.input} placeholder="Password"/> 
              {errors.password && touched.password ? ( 
@@ -56,7 +78,7 @@ const LoginForm = () => {
              ) : null}  
            </div> 
            <div className={btn.button_container}>
-            <Button></Button>
+            {/* <Button>LOG IN</Button> */}
              <MainButton
                 type="submit"       
                 text="LOG IN"  
