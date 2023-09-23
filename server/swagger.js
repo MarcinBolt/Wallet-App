@@ -10,7 +10,7 @@ const options = {
       description: "API documentation for Express application to manage users and transactions in database",
     },
   },
-  apis: ['server.js', './routers/*.js', './service/schema/*.js', './controllers/*.js'],
+  apis: ['./routers/*.js', './service/schema/*.js', './controllers/*.js'],
 };
 
 export const openSpec = swaggerJsdoc(options);
