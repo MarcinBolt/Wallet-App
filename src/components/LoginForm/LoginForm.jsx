@@ -63,10 +63,22 @@ const LoginForm = () => {
            <div className={css.container_input}>
 
              <Field name="email" type="email" as={TextField} 
+             className={css.test} 
+             
+            sx={{
+              "& fieldset": { border: 'none' },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center', 
+              borderBottom: 1,
+              borderColor: 'grey.300',
+              padding: 0, 
+            }} 
              variant="outlined" color="primary" label="Email" /> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
 
-             {/* <TextField
+             <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -78,15 +90,27 @@ const LoginForm = () => {
                 autoComplete="email"
                 variant="standard"
                 autoFocus
-              /> */}
-
+              />
+            <Field name="password" type="password" as={TextField} 
+             className={css.test} 
+             
+            sx={{
+              "& fieldset": { border: 'none' }, 
+              borderBottom: 1,
+              borderColor: 'grey.300',
+              padding: 0, 
+            }} 
+             variant="outlined" color="primary" label="Password" /> 
+             {errors.password && touched.password ? ( 
+             <div>{errors.password}</div> 
+             ) : null} 
  
-            <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
+            {/* <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
              <Field name="password" className={css.input} placeholder="Password"/> 
              {errors.password && touched.password ? ( 
              <div>{errors.password}</div> 
-             ) : null}  
+             ) : null}   */}
            </div> 
            <div className={btn.button_container}>
             {/* <Button>LOG IN</Button> */}
