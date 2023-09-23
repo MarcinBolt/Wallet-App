@@ -2,8 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import mongoose from 'mongoose';
-// import usersRouter from './api/users.js';
-// import transactionsRouter from './api/transactions.js';
+import usersRouter from './routers/users.router.js';
+import transactionsRouter from './routers/transactions.router.js';
 import 'dotenv/config';
 import './config/passport.config.js';
 
@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static('public'));
-// app.use('/users', usersRouter);
-// app.use('/transactions', transactionsRouter);
+app.use('/users', usersRouter);
+app.use('/transactions', transactionsRouter);
 
 app.use((_, res, __) => {
   res.status(404).json({
