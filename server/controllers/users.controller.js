@@ -268,14 +268,6 @@ const verifyUserByVerificationToken = async (req, res, _) => {
   try {
     let verificationToken = req.params.verificationToken;
 
-    if (!verificationToken) {
-      return res.status(401).json({
-        status: 'unauthorized',
-        code: 401,
-        message: 'Not authorized',
-      });
-    }
-
     const user = await findUserByVerificationTokenInDB(verificationToken);
 
     if (!user) {
