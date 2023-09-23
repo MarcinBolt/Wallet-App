@@ -1,0 +1,432 @@
+schematy danych
+
+interface User {
+	email: string;
+	password: string;
+	firstName: string;
+	token: string;
+  verificationToken: string;
+  isVerified: boolean;
+}
+
+interface Transaction {
+	date: string;
+	year: string;
+	month: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+	type: ["income", "expense"];
+	category: ["Main expenses", "Products", "Car", "Self care", "Child care", "Household products", "Education", "Leisure", "Other expenses", "Entertainment"];
+	comment: string;
+	sum: number;
+	owner: {
+      		type: Schema.Types.ObjectId,
+     	 	ref: 'user',
+    }
+}
+
+
+
+
+endpoint "/users"
+
+POST "/users/signup"
+
+req
+Content-Type: application/json
+RequestBody: {
+  "email": "example@example.com",
+  "password": "examplepassword",
+  "firstName": "examplefirstname" 
+}
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res conflict error
+Status: 409 Conflict
+Content-Type: application/json
+ResponseBody: {
+  "message": "Email in use"
+}
+
+res success
+Status: 201 Created
+Content-Type: application/json
+ResponseBody: {
+  "user": {
+    "email": "example@example.com",
+    "firstname": "examplefirstname",
+    "verificationToken": "verificationToken",
+  }
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+POST "/users/login"
+
+req
+Content-Type: application/json
+RequestBody: {
+  "email": "example@example.com",
+  "password": "examplepassword"
+}
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res user or password error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <Email or password is incorrect> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+  "token": "exampletoken",
+  "user": {
+    "email": "example@example.com",
+    "firstname": "examplefirstname"
+  }
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+GET "/users/logout"
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+  "message": "User successfully logged out"
+  }
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+GET "/users/current"
+
+req
+req.user
+
+res user error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <User not found> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "email": "example@example.com",
+    "firstname": "examplefirstname"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+GET "/users/verify/:verificationToken"
+
+req
+req.params.verificationToken
+
+res user error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <User not found> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "message": "User verified"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+POST "/users/verify"
+
+req
+req.body.email
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res user error
+Status: 401 Anauthorized
+Content-Type: application/json
+ResponseBody:  <User not found> 
+
+res isVerified true
+Status: 400 
+Content-Type: application/json
+ResponseBody:  <User already verified> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "message": "Verification email sent"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+endpoint "/transactions"
+
+GET "/transactions"
+
+req
+req.user
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "transactions": "[array of transactions]"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+POST "/transactions"
+
+req
+req.user
+Content-Type: application/json
+RequestBody: {
+    "date": "exampledate",
+    "type": "exampletype",
+    "category": "examplecategory",
+    "comment": "examplecomment",
+    "sum": "examplesum"
+}
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res success
+Status: 201 Created
+Content-Type: application/json
+ResponseBody: {
+  "transaction": {
+     "date": "exampledate",
+    "type": "exampletype",
+    "category": "examplecategory",
+    "comment": "examplecomment",
+    "sum": "examplesum"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+}
+
+
+GET "/transactions/:id"
+
+req
+req.user
+transaction id z params
+
+res no id
+Status: 404 Bad Request
+Content-Type: application/json
+ResponseBody:  <"No transaction"> 
+
+res success
+ResponseBody: {
+    "_id": "mongodbid",
+    "date": "exampledate",
+    "type": "exampletype",
+    "category": "examplecategory",
+    "comment": "examplecomment",
+    "sum": "examplesum"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+PUT "/transactions/:id"
+
+req
+req.user.id
+RequestBody: {
+    "_id": "mongodbid",
+    "date": "exampledate",
+    "type": "exampletype",
+    "category": "examplecategory",
+    "comment": "examplecomment",
+    "sum": "examplesum"
+}
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res no id
+Status: 404 Bad Request
+Content-Type: application/json
+ResponseBody:  <"No transaction"> 
+
+res success
+ResponseBody: {
+    "_id": "mongodbid",
+    "date": "exampledate",
+    "type": "exampletype",
+    "category": "examplecategory",
+    "comment": "examplecomment",
+    "sum": "examplesum"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+DELETE "/transactions/:id"
+
+req
+req.user.id
+transaction id z params
+
+res no id
+Status: 404 Bad Request
+Content-Type: application/json
+ResponseBody:  <"No transaction"> 
+
+res success
+ResponseBody: {
+    "message": "Transaction {id} deleted"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+GET "/transactions/:category"
+
+req
+req.user.id
+category z params
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+       "category": "examplecategory"
+       "transactions": "[array of transactions]"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
+
+
+GET "/transactions/statistics/:year/:month"
+
+req
+req.user
+req.params.year
+req.params.month
+
+res validation error
+Status: 400 Bad Request
+Content-Type: application/json
+ResponseBody:  <Błąd z Joi lub innej biblioteki walidacji> 
+
+res success
+Status: 200 OK
+Content-Type: application/json
+ResponseBody: {
+    "year": "query.year",
+    "month": "query.month",
+    "transactions": "[array of transactions]"
+}
+
+res catch 
+Status: 500 error
+Content-Type: application/json
+ResponseBody: {
+  "message": "Server error"
+}
