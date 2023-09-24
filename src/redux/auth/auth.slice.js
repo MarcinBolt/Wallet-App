@@ -1,15 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logOut, refreshUser, register } from './operations.js';
+import { logIn, logOut, refreshUser, register, verify } from './auth.operations.js';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { firstName: null, email: null, balance: 0 },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
   error: null,
 };
 
-const handleFulfilledRegisterAndLogIn = (state, action) => {
+const handleFulfilledRegister = (state, action) => {
+  state.user = action.payload.user;
+};
+const handleFulfilledVerify = (state, action) => {
+  state.user = action.payload.user;
+  state.user.isVerified = true;
+};
+const handleFulfilledLogIn = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
@@ -20,10 +27,11 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, handleFulfilledRegisterAndLogIn)
-      .addCase(logIn.fulfilled, handleFulfilledRegisterAndLogIn)
+      .addCase(register.fulfilled, handleFulfilledRegister)
+      .addCase(verify.fulfilled, handleFulfilledVerify)
+      .addCase(logIn.fulfilled, handleFulfilledLogIn)
       .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null };
+        state.user = { firstName: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
       })

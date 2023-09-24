@@ -1,33 +1,43 @@
 import Notiflix from 'notiflix';
 
-const notifyUserRegisterSuccess = () => {
+const notifyUserEmailSenTSuccess = email => {
+  Notiflix.Report.success('Verification email sent!', `Check:${email} Inbox.`, 'OK!');
+};
+
+const notifyUserEmailSenTFailure = message => {
+  Notiflix.Report.failure(
+    'Sending the verification email failed.',
+    `Message from server: ${message}.`,
+    'Try again',
+  );
+};
+
+const notifyUserEmailVerifiedSuccess = firstName => {
   Notiflix.Report.success(
-    'Registration Success!',
-    'Now You have an account in Wallet.',
+    `Hi, ${firstName}! Email is verified!`,
+    'Now You have an account in Wallet App.',
     'Have fun!',
   );
 };
 
-const notifyRegistrationFailure = () => {
-  Notiflix.Report.failure(
-    'Registration Fail!ed.',
-    'This User already exist or too short Username / e-mail / password (each must have at least 7 characters).',
-    'Try again',
-  );
+const notifyUserEmailVerifiedFailure = message => {
+  Notiflix.Report.failure('Registration Fail!ed.', `Message from server: ${message}.`, 'Try again');
 };
 
-const notifyLoginFailure = () => {
-  Notiflix.Report.failure(
-    'Something goes wrong.',
-    'Do You have an account? Check if Username and Password are correct. Please try again or contact our service.',
-    'Try again',
-  );
+const notifyLoginFailure = message => {
+  Notiflix.Report.failure('Something goes wrong.', `Message from server: ${message}.`, 'Try again');
+};
+const notifyLogoutFailure = message => {
+  Notiflix.Report.failure('Something goes wrong.', `Message from server: ${message}.`);
 };
 
 const notification = {
-  notifyUserRegisterSuccess,
-  notifyRegistrationFailure,
+  notifyUserEmailSenTSuccess,
+  notifyUserEmailSenTFailure,
+  notifyUserEmailVerifiedSuccess,
+  notifyUserEmailVerifiedFailure,
   notifyLoginFailure,
+  notifyLogoutFailure,
 };
 
 export default notification;
