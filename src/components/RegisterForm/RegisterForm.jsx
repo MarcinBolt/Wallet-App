@@ -1,6 +1,6 @@
 //TODO
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/auth.operations';
+import { logIn, register } from '../../redux/auth/auth.operations';
 import logo from '../../assets/images/apple-touch-icon.png';
 import css from "./RegisterForm.module.css"; 
 import * as Yup from "yup"; 
@@ -61,9 +61,9 @@ const RegisterForm = () => {
            </div>
            <div className={css.container_input}>
 
+
              <Field name="email" type="email" as={TextField} 
-             className={css.test} 
-              
+             className={css.test}  
             sx={{
               "& fieldset": { border: 'none' },
               display: 'flex',
@@ -77,9 +77,9 @@ const RegisterForm = () => {
              variant="outlined" color="primary" label="E-mail" /> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
  
+
             <Field name="password" type="password" as={TextField} 
-             className={css.test} 
-             
+             className={css.test}  
             sx={{
               "& fieldset": { border: 'none' }, 
               borderBottom: 1,
@@ -91,9 +91,8 @@ const RegisterForm = () => {
              <div>{errors.password}</div> 
              ) : null} 
 
-            <Field name="password" type="password" as={TextField} 
-             className={css.test} 
-             
+            <Field name="confirmPassword" type="password" as={TextField} 
+             className={css.test}  
             sx={{
               "& fieldset": { border: 'none' }, 
               borderBottom: 1,
@@ -101,14 +100,13 @@ const RegisterForm = () => {
               padding: 0, 
             }} 
              variant="outlined" color="primary" label="Confirm password" /> 
-             {errors.password && touched.password ? ( 
-             <div>{errors.password}</div> 
+             {errors.confirmPassword && touched.confirmPassword ? ( 
+             <div>{errors.confirmPassword}</div> 
              ) : null} 
-
+ 
 
             <Field name="name" type="text" as={TextField} 
-             className={css.test} 
-             
+             className={css.test}  
             sx={{
               "& fieldset": { border: 'none' }, 
               borderBottom: 1,
