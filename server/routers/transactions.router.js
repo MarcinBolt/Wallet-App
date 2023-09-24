@@ -8,21 +8,22 @@ import {
   getOwnerTransactionsByCategory,
   updateOwnerTransactionById,
 } from '../controllers/transactions.controller.js';
+import auth from '../utils/user.auth.js';
 
 const transactionsRouter = Router();
 
-transactionsRouter.get('/' /*to do auth*/, getOwnerTransactions);
+transactionsRouter.get('/', auth, getOwnerTransactions);
 
-transactionsRouter.post('/' /*to do auth*/, createOwnerTransaction);
+transactionsRouter.post('/', auth, createOwnerTransaction);
 
-transactionsRouter.get('/:id' /*to do auth*/, getOwnerTransactionById);
+transactionsRouter.get('/:id', auth, getOwnerTransactionById);
 
-transactionsRouter.put('/:id' /*to do auth*/, updateOwnerTransactionById);
+transactionsRouter.put('/:id', auth, updateOwnerTransactionById);
 
-transactionsRouter.delete('/:id' /*to do auth*/, deleteOwnerTransactionById);
+transactionsRouter.delete('/:id', auth, deleteOwnerTransactionById);
 
-transactionsRouter.get('/:category' /*to do auth*/, getOwnerTransactionsByCategory);
+transactionsRouter.get('/:category', auth, getOwnerTransactionsByCategory);
 
-transactionsRouter.get('/statistics/:year/:month' /*to do auth*/, getOwnerStatisticsByDate);
+transactionsRouter.get('/statistics/:year/:month', auth, getOwnerStatisticsByDate);
 
 export default transactionsRouter;
