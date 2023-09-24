@@ -1,4 +1,4 @@
-import Transaction from './schema/transactions.schema.js';
+import Transaction from './schema/transaction.schema.js';
 
 export const getOwnerTransactionsFromDB = async owner => await Transaction.find({ owner });
 

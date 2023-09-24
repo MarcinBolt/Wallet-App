@@ -1,197 +1,344 @@
 const swaggerOutput = {
-  "swagger": "2.0",
-  "info": {
-    "version": "1.0.0",
-    "title": "Wallet API",
-    "description": "Express App to manage user and transactions in db"
+  swagger: '2.0',
+  info: {
+    version: '1.0.0',
+    title: 'Wallet App REST API',
+    description: 'Express App to manage users and transactions in db',
   },
-  "host": "localhost:3000",
-  "basePath": "/",
-  "tags": [
+  host: 'https://wallet-lpqy.onrender.com',
+  basePath: '/',
+  schemes: ['http', 'https'],
+  consumes: ['application/json'],
+  produces: ['application/json'],
+  tags: [
     {
-      "name": "Transactions",
-      "description": "Endpoints"
-    }
+      name: 'User',
+      description: 'Endpoints',
+    },
+    {
+      name: 'Transaction',
+      description: 'Endpoints',
+    },
   ],
-  "schemes": [
-    "http", "https"
-  ],
-  "securityDefinitions": {
-    "apiKeyAuth": {
-      "type": "apiKey",
-      "in": "header",
-      "name": "X-API-KEY",
-      "description": "any description..."
-    }
+  paths: {
+    '/transactions/': {
+      get: {
+        tags: ['Transaction'],
+        description: '',
+        responses: {
+          200: {
+            description: 'OK',
+          },
+        },
+      },
+      post: {
+        tags: ['Transaction'],
+        description: '',
+        responses: {
+          201: {
+            description: 'Created',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+        },
+      },
+    },
+    '/transactions/{id}': {
+      get: {
+        tags: ['Transaction'],
+        description: '',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          404: {
+            description: 'Not Found',
+          },
+        },
+      },
+      put: {
+        tags: ['Transaction'],
+        description: '',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+          404: {
+            description: 'Not Found',
+          },
+        },
+      },
+      delete: {
+        tags: ['Transaction'],
+        description: '',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+          },
+        },
+      },
+    },
+    '/transactions/{category}': {
+      get: {
+        tags: ['Transaction'],
+        description: '',
+        parameters: [
+          {
+            name: 'category',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+        },
+      },
+    },
+    '/transactions/statistics/{year}/{month}': {
+      get: {
+        tags: ['Transaction'],
+        description: '',
+        parameters: [
+          {
+            name: 'year',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+          {
+            name: 'month',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+        },
+      },
+    },
+    '/users/signup': {
+      post: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          201: {
+            description: 'Created',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+          409: {
+            description: 'Conflict',
+          },
+          500: {
+            description: 'Internal Server Error',
+          },
+        },
+      },
+    },
+    '/users/login': {
+      post: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+          401: {
+            description: 'Unauthorized',
+          },
+          500: {
+            description: 'Internal Server Error',
+          },
+        },
+      },
+    },
+    '/users/logout': {
+      get: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          500: {
+            description: 'Internal Server Error',
+          },
+        },
+      },
+    },
+    '/users/current': {
+      get: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          default: {
+            description: '',
+          },
+        },
+      },
+    },
+    '/users/verify/{verificationToken}': {
+      get: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          default: {
+            description: '',
+          },
+        },
+      },
+    },
+    '/users/verify': {
+      post: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          default: {
+            description: '',
+          },
+        },
+      },
+    },
+    '/users/delete': {
+      delete: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          200: {
+            description: 'OK',
+          },
+          400: {
+            description: 'Bad Request',
+          },
+          401: {
+            description: 'Unauthorized',
+          },
+          500: {
+            description: 'Internal Server Error',
+          },
+        },
+      },
+    },
+    '/users/': {
+      put: {
+        tags: ['User'],
+        description: '',
+        responses: {
+          default: {
+            description: '',
+          },
+        },
+      },
+    },
   },
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/transactions/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+  definitions: {
+    User: {
+      type: 'object',
+      properties: {
+        _id: {
+          type: 'string',
+          description: 'Backend-generated unique identifier',
+        },
+        email: {
+          type: 'string',
+          description: 'Email',
+        },
+        password: {
+          type: 'string',
+          description: 'Password',
+        },
+        firstName: {
+          type: 'string',
+          description: 'User name',
+        },
       },
-      "post": {
-        "description": "",
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
+      required: ['email', 'password', 'firstName'],
+      example: `{ _id: '3245345436354423', email: 'examplel@email.com', password: 'try67hgj', firstName: 'John Doe' }`
     },
-    "/transactions/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
+    Transaction: {
+      type: 'object',
+      properties: {
+        date: {
+          type: 'string',
+          description: `Transaction's date`,
+        },
+        year: {
+          type: 'string',
+          description: `Year that transaction was made`,
+        },
+        month: {
+          type: 'string',
+          description: `Month that transaction was made`,
+        },
+        type: {
+          type: 'string',
+          description: `Transaction type`,
+        },
+        category: {
+          type: 'string',
+          description: `Transaction category`,
+        },
+        comment: {
+          type: 'string',
+          description: `User's description of transaction`,
+        },
+        sum: {
+          type: 'number',
+          description: `Sum`,
+        },
+        owner: {
+          type: 'string',
+          description: `User's id from database`,
+        },
       },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
+      required: ['date', 'year', 'month', 'type', 'category', 'sum'],
+      example: `{ date: '2023:07:12', year: '2023', month: 'July', type: 'Expense', category: 'Products', comment: 'Grocery', sum: 27, owner: '3245345436354423' }`,
     },
-    "/transactions/{category}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "category",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/transactions/statistics/{year}/{month}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "month",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    }
   },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string",
-          "example": "exampleemail@exampleemail.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "try67hgj"
-        },
-        "firstName": {
-          "type": "string",
-          "example": "John Doe"
-        }
-      }
-    },
-    "Transaction": {
-      "type": "object",
-      "properties": {
-        "father": {
-          "type": "string",
-          "example": "Simon Doe"
-        },
-        "mother": {
-          "type": "string",
-          "example": "Marie Doe"
-        }
-      }
-    }
-  }
-}
+};
 
-export default swaggerOutput
+export default swaggerOutput;
