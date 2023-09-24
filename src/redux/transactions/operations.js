@@ -1,5 +1,5 @@
 import axios from 'axios';
-import 'dotenv/config';
+// import 'dotenv/config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // ! W pliku .env możesz zmienić sobie wstawić BACKEND_SERVER_URL='http://127.0.0.1:3000' na lokalny serwer, 

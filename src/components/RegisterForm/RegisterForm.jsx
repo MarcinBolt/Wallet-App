@@ -27,7 +27,7 @@ const LoginForm = () => {
       .min(6, "The password must be at least 6 characters long")
       .max(12, "The password must not be longer then 12 characters")
       .required("Password is required!"),
-    firstName: Yup.string("Please enter a name")
+      confirmPassword: Yup.string("Please repeat the password")
     .oneOf([Yup.ref("password")], "Passwords do not match")
     .required("Password is required!"),
 

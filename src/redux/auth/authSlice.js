@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
+  error: null,
 };
 
 const handleFulfilledRegisterAndLogIn = (state, action) => {
@@ -36,6 +37,16 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.error = action.message;
+      })
+      .addCase(register.rejected, state => {
+        state.error = action.message;
+      })
+      .addCase(logIn.rejected, state => {
+        state.error =  action.message;
+      })
+      .addCase(logOut.rejected, state => {
+        state.error =  action.message;
       });
   },
 });
