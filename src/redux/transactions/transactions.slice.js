@@ -4,7 +4,7 @@ import {
   deleteTransaction,
   editTransaction,
   fetchTransactions,
-} from './operations';
+} from './transactions.operations.js';
 
 const initState = {
   transactions: [],

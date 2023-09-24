@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import passport from 'passport';
 import {
   createUserInDB,
   findUserByIdInDB,
@@ -280,7 +281,7 @@ const verifyUserByVerificationToken = async (req, res, _) => {
 
     const id = user.id;
     verificationToken = null;
-
+    
     await updateUserDataByIdInDB(id, { verificationToken, isVerified: true });
 
     return res.json({
