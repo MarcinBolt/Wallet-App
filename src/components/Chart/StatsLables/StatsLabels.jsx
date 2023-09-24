@@ -2,9 +2,9 @@ import css from './Chart.module.css';
 
 export const Labels = () => {
     return (
-        <div className={css.lablesContainer}>
-            <label htmlFor="month" ></label>
-            <select name="month" id="month" className={css.label}>
+        <div className={css.selectContainer}>
+            <label htmlFor="month"></label>
+            <select name="month" id="month" className={css.select}>
                 <option value=""></option>
                 <option value="January">January</option>
                 <option value="February">February</option>
@@ -21,13 +21,13 @@ export const Labels = () => {
             </select>
     
             <label htmlFor="year" ></label>
-            <select name="year" id="year" className={css.label}>
+            <select name="year" id="year" className={css.select}>
                 <option value=""></option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
                 <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
             </select>
         </div>
     )
