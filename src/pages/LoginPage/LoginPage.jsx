@@ -1,5 +1,5 @@
 // import LoginForm from "../../components/LoginForm/LoginForm";
-import LoginForm from "../../components/LoginForm/LoginForm_alt";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import css from "./LoginPage.module.css";
  
 

@@ -144,3 +144,31 @@
     text-decoration: solid; 
     border-bottom: 1px solid #e0e0e0;
   }
+
+  .btn_container {
+
+    width: 280px;
+
+
+    @media screen and (min-width: 768px) {
+      width: 300px;
+    } 
+  }
+
+  .container_input2{ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .container_input3 {
+    width: 280px;
+   
+
+
+    @media screen and (min-width: 768px) {
+      width: 300px;
+    } 
+  }
