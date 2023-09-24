@@ -17,16 +17,16 @@
    height: 100vw;  
     min-height: 1024px;
     background-image: 
-      url(../../assets/images/ellipse-down.png),
-      url(../../assets/images/ellipse-up.png);
+      url(../../assets/images/bg-tablet/ellipse-down.png),
+      url(../../assets/images/bg-tablet/ellipse-up.png);
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
       .page_wrapper {
         background-image: 
-          url(../../assets/images/ellipse-down@2x.png),
-          url(../../assets/images/ellipse-up@2x.png);
+          url(../../assets/images/bg-tablet/ellipse-down@2x.png),
+          url(../../assets/images/bg-tablet/ellipse-up@2x.png);
       }
     }
     background-repeat: no-repeat;
@@ -39,8 +39,8 @@
     /* background-color:#f1f3f8 ; */
     background-image: 
       
-      url(../../assets/images/ellipse.png),
-      url(../../assets/images/rectangle.png);
+      url(../../assets/images/bg-desktop/ellipse.png),
+      url(../../assets/images/bg-desktop/rectangle.png);
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
@@ -48,8 +48,8 @@
       .page_wrapper {
         background-image: 
          
-          url(../../assets/images/ellipse@2x.png),
-          url(../../assets/images/rectangle@2x.png);
+          url(../../assets/images/bg-desktop/ellipse@2x.png),
+          url(../../assets/images/bg-desktop/rectangle@2x.png);
       }
     }
     background-repeat: no-repeat;
