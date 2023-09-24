@@ -1,44 +1,34 @@
 import Notiflix from 'notiflix';
 
-const notifyUserEmailSenTSuccess = (email) => {
-  Notiflix.Report.success(
-    'Registration Success!',
-    'Now You have to verify your email:',
-    `${email}`,
-    'Please, check verification link!',
-  );
+const notifyUserEmailSenTSuccess = email => {
+  Notiflix.Report.success('Verification email sent!', `Check :${email} Inbox.`, 'OK!');
 };
 
-const notifyUserEmailSenTFailure = () => {
+const notifyUserEmailSenTFailure = message => {
   Notiflix.Report.failure(
     'Sending the verification email failed.',
-    'Is your email address valid?',
+    `Message from server: ${message}.`,
     'Try again',
   );
 };
 
-const notifyUserEmailVerifiedSuccess = () => {
+const notifyUserEmailVerifiedSuccess = firstName => {
   Notiflix.Report.success(
-    'Verification success!',
+    `Hi, ${firstName}! Email verified!`,
     'Now You have an account in Wallet App.',
     'Have fun!',
   );
 };
 
-const notifyUserEmailVerifiedFailure = () => {
-  Notiflix.Report.failure(
-    'Registration Fail!ed.',
-    'This Email could already exist or too short Username / e-mail / password.',
-    'Try again',
-  );
+const notifyUserEmailVerifiedFailure = message => {
+  Notiflix.Report.failure('Registration Fail!ed.', `Message from server: ${message}.`, 'Try again');
 };
 
-const notifyLoginFailure = () => {
-  Notiflix.Report.failure(
-    'Something goes wrong.',
-    'Do You have an account? Check if Username and Password are correct. Please try again or contact our service.',
-    'Try again',
-  );
+const notifyLoginFailure = message => {
+  Notiflix.Report.failure('Something goes wrong.', `Message from server: ${message}.`, 'Try again');
+};
+const notifyLogoutFailure = message => {
+  Notiflix.Report.failure('Something goes wrong.', `Message from server: ${message}.`);
 };
 
 const notification = {
@@ -47,6 +37,7 @@ const notification = {
   notifyUserEmailVerifiedSuccess,
   notifyUserEmailVerifiedFailure,
   notifyLoginFailure,
+  notifyLogoutFailure,
 };
 
 export default notification;

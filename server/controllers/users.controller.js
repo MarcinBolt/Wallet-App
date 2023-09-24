@@ -65,11 +65,9 @@ const createNewUser = async (req, res, _) => {
       status: 'created',
       code: 201,
       message: 'User created.',
-      data: {
-        user: {
-          email: normalizedEmail,
-          firstName: capitalizedFirstName,
-        },
+      user: {
+        email: normalizedEmail,
+        firstName: capitalizedFirstName,
       },
     });
   } catch (err) {
@@ -109,7 +107,7 @@ const deleteUser = async (req, res, _) => {
     res.status(200).json({
       status: 'deleted',
       code: 200,
-      data: {
+      user: {
         email: normalizedEmail,
       },
     });
@@ -170,12 +168,10 @@ const loginUser = async (req, res, _) => {
     return res.json({
       status: 'success',
       code: 200,
-      data: {
-        token,
-        user: {
-          email: user.email,
-          firstName: capitalizedFirstName,
-        },
+      token,
+      user: {
+        email: user.email,
+        firstName: capitalizedFirstName,
       },
     });
   } catch (err) {
@@ -221,11 +217,9 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
     return res.json({
       status: 'success',
       code: 200,
-      data: {
-        currentUser: {
-          email,
-          firstName: capitalizedFirstName,
-        },
+      user: {
+        email,
+        firstName: capitalizedFirstName,
       },
     });
   } catch (err) {
@@ -281,13 +275,19 @@ const verifyUserByVerificationToken = async (req, res, _) => {
 
     const id = user.id;
     verificationToken = null;
-    
+
     await updateUserDataByIdInDB(id, { verificationToken, isVerified: true });
 
+    console.log(`user.email: ${user.email}`);
+    console.log(`user.firstName: ${user.firstName}`);
     return res.json({
       status: 'success',
       code: 200,
       message: 'Verification successful',
+      user: {
+        email: user.email,
+        firstName: user.firstName,
+      },
     });
   } catch (err) {
     console.error(err);

@@ -6,6 +6,8 @@ const backendBaseUrl = (import.meta.env.VITE_NODE_ENV = 'development'
   ? `http://127.0.0.1:3000`
   : `${import.meta.env.VITE_BACKEND_SERVER_URL}/#`);
 
+axios.defaults.baseURL = backendBaseUrl;
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -15,42 +17,43 @@ const clearAuthHeader = () => {
 
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post(`${backendBaseUrl}/users/signup`, credentials);
+    const response = await axios.post(`/users/signup`, credentials);
     notification.notifyUserEmailSenTSuccess(response.data.user.email);
     return response.data;
   } catch (error) {
-    notification.notifyUserEmailSenTFailure();
+    notification.notifyUserEmailSenTFailure(response.massage);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const verify = createAsyncThunk('auth/verify', async (verificationToken, thunkAPI) => {
   try {
-    const response = await axios.get(`${backendBaseUrl}/users/verify/${verificationToken}`);
-    notification.notifyUserEmailVerifiedSuccess();
+    const response = await axios.get(`/users/verify/${verificationToken}`);
+    notification.notifyUserEmailVerifiedSuccess(response.data.user.firstName);
     return response.data;
   } catch (error) {
-    notification.notifyUserEmailVerifiedFailure();
+    notification.notifyUserEmailVerifiedFailure(error.massage);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post(`${backendBaseUrl}/users/login`, credentials);
+    const response = await axios.post(`/users/login`, credentials);
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    notification.notifyLoginFailure();
+    notification.notifyLoginFailure(error.massage);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post(`${backendBaseUrl}/users/logout`);
+    await axios.post(`/users/logout`);
     clearAuthHeader();
   } catch (error) {
+    notification.notifyLogoutFailure(error.massage);
     return thunkAPI.rejectWithValue(error.message);
   }
 });

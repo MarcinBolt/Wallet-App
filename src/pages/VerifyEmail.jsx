@@ -3,17 +3,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { verify } from '../redux/auth/auth.operations.js';
+import Button from '@mui/material/Button';
 
 const VerifyEmail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { verificationToken } = useParams();
 
-  useEffect(() => {
+  const handleClick = event => {
     dispatch(verify(verificationToken));
-    const timerId = setTimeout(() => navigate('/login', { replace: true }), 3000);
-    return () => clearTimeout(timerId);
-  }, [verificationToken]);
+    navigate('/login', { replace: true });
+  };
 
   return (
     <Container
@@ -27,8 +27,10 @@ const VerifyEmail = () => {
         backgroundColor: 'transparent',
       }}
     >
-      <h2>Email verified!</h2>
-      <h3>Redirecting to Login page...</h3>
+      <h2>Email verification</h2>
+      <Button type="button" onClick={handleClick} fullWidth variant="outlined" sx={{ mt: 3, mb: 2, maxWidth: "200px" }}>
+        Verify email.
+      </Button>
     </Container>
   );
 };

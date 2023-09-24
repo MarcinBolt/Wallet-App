@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshUser, register, verify } from './auth.operations.js';
 
 const initialState = {
-  user: { firstName: null, email: null, verificationToken: null, isVerified: null, balance: 0 },
+  user: { firstName: null, email: null, balance: 0 },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
@@ -12,7 +12,7 @@ const handleFulfilledRegister = (state, action) => {
   state.user = action.payload.user;
 };
 const handleFulfilledVerify = (state, action) => {
-  state.user.verificationToken = action.payload.user;
+  state.user = action.payload.user;
   state.user.isVerified = true;
 };
 const handleFulfilledLogIn = (state, action) => {
