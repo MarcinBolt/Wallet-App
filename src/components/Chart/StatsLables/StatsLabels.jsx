@@ -2,7 +2,7 @@ import css from './Chart.module.css';
 
 export const Labels = () => {
     return (
-        <div className={css.lablesContainer} style={{}}>
+        <div className={css.lablesContainer}>
             <label htmlFor="month" ></label>
             <select name="month" id="month" className={css.label}>
                 <option value=""></option>

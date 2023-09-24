@@ -1,0 +1,27 @@
+.lablesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+    @media screen and (min-width: 768px) {
+        margin-top: 100px;
+        justify-content: space-between;
+        width: 336px;
+    }
+
+}
+
+.label {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border-radius: 40px;
+    font-size: 16px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+
+
+    @media screen and (min-width: 768px) {
+        width: 48%;
+    }
+}
