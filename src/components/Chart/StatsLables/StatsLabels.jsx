@@ -1,6 +1,6 @@
-import css from './Chart.module.css';
+import css from './StatsLables.module.css';
 
-export const Labels = () => {
+export const StatsLabels = () => {
     return (
         <div className={css.selectContainer}>
             <label htmlFor="month"></label>
@@ -32,3 +32,5 @@ export const Labels = () => {
         </div>
     )
 }
+
+export default StatsLabels;
