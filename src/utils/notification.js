@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 
 const notifyUserEmailSenTSuccess = email => {
-  Notiflix.Report.success('Verification email sent!', `Check :${email} Inbox.`, 'OK!');
+  Notiflix.Report.success('Verification email sent!', `Check:${email} Inbox.`, 'OK!');
 };
 
 const notifyUserEmailSenTFailure = message => {
