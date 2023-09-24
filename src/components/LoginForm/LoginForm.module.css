@@ -172,3 +172,59 @@
       width: 300px;
     } 
   }
+
+
+  
+.button {
+  display: inline-block;
+  height: 50px;
+  width: 280px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  
+  border-radius: 20px;
+  text-align: center;
+  color: var(--color-text-secondary);
+
+  transition: 100ms linear, color 100ms linear, border-color 100ms linear;
+
+  @media screen and (min-width: 768px) {
+      width: 300px;
+    } 
+}
+
+  .logo_btn { 
+  background-color: var(--color-bg-btn-active-hover);
+  border: transparent;
+  margin-bottom: 20px;
+  &:hover {
+      background-color: #35a78e;
+    } 
+}    
+
+/* .register_btn { 
+  background-color: var(-- -color-grean);
+  border: transparent;
+ 
+  &:hover {
+    background-color: #05bd95;
+  }
+}   */
+
+.main_btn { 
+  text-decoration: none;
+  color: var(--color-text-btn-cancel);
+  background-color: var(--color-bg-secondary);
+  border: 2px solid var(--color-border-btn-cancel);
+  padding-top: 10px;
+
+  &:hover {
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-widget-currency);
+  }
+}

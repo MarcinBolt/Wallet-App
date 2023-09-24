@@ -10,7 +10,7 @@ import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
-const Register = lazy(() => import('./pages/Register.jsx'));
+const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 

@@ -1,13 +1,12 @@
 //TODO
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/operations';
+import { logIn } from '../../redux/auth/auth.operations';
 import logo from '../../assets/images/apple-touch-icon.png';
-import css from "./LoginForm.module.css";
-import btn from "./MainButton.module.css"; 
+import css from "./RegisterForm.module.css"; 
 import * as Yup from "yup"; 
 import { Formik, Form, Field } from 'formik';
 import { NavLink } from 'react-router-dom';
-import MainButton from './MainButton'; 
+// import MainButton from './MainButton'; 
      
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,7 +15,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container'; 
 
  
-const LoginForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const validationsSchema = Yup.object().shape({
@@ -122,7 +121,7 @@ const LoginForm = () => {
              ) : null} 
   
            </div> 
-           <div className={btn.button_container}> 
+           <div className={css.button_container}> 
               <Button type="submit"  
                sx={{ mt: 3, mb: 2 , width: 280,
                 background: '#24cca7',
@@ -150,7 +149,7 @@ const LoginForm = () => {
                }}
               >LOG IN
               </Button> 
-{/* <NavLink to="/register" className={`${btn.button} ${btn.main_btn}`}>REGISTER
+{/* <NavLink to="/register" className={`${css.button} ${css.main_btn}`}>REGISTER
            </NavLink>  */} 
            </div>  
          </Form> 
@@ -159,4 +158,4 @@ const LoginForm = () => {
    </div>
   );
 };
-export default LoginForm;
+export default RegisterForm;

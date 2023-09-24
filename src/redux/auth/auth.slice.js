@@ -43,17 +43,17 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, action)  => {
         state.isRefreshing = false;
         state.error = action.message;
       })
-      .addCase(register.rejected, state => {
+      .addCase(register.rejected, (state, action)  => {
         state.error = action.message;
       })
-      .addCase(logIn.rejected, state => {
+      .addCase(logIn.rejected, (state, action)  => {
         state.error =  action.message;
       })
-      .addCase(logOut.rejected, state => {
+      .addCase(logOut.rejected, (state, action)  => {
         state.error =  action.message;
       });
   },

@@ -1,6 +1,7 @@
 // import LoginForm from "../../components/LoginForm/LoginForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import css from "./LoginPage.module.css";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import css from "./RegisterPage.module.css";
  
 
   //      import LoginForm from "../components/LoginForm/LoginForm_altt";
@@ -13,7 +14,7 @@ const RegisterPage = () => {
           <p className={css.page_text}>Finance App</p>
           <div className={css.frame}></div>
           <div className={css.form}>
-            <LoginForm/>
+            <RegisterForm/>
           </div> 
         </div> 
       </div> 

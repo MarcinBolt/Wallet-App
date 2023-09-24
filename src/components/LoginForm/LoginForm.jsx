@@ -1,6 +1,6 @@
 //TODO
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/operations';
+import { logIn } from '../../redux/auth/auth.operations';
 import logo from '../../assets/images/apple-touch-icon.png';
 import css from "./LoginForm.module.css";
 import btn from "./MainButton.module.css"; 
@@ -92,7 +92,7 @@ const LoginForm = () => {
              ) : null} 
   
            </div> 
-           <div className={btn.button_container}> 
+           <div className={css.button_container}> 
               <Button type="submit"  
                sx={{ mt: 3, mb: 2 , width: 280,
                 background: '#24cca7',
@@ -120,7 +120,7 @@ const LoginForm = () => {
                }}
               >REGISTER
               </Button> 
-{/* <NavLink to="/register" className={`${btn.button} ${btn.main_btn}`}>REGISTER
+{/* <NavLink to="/register" className={`${css.button} ${css.main_btn}`}>REGISTER
            </NavLink>  */} 
            </div>  
          </Form> 
