@@ -9,6 +9,7 @@ import Loader from './components/Loader/Loader.jsx';
 import './App.css';
 import Home from './components/Home/Home.jsx';
 import CurrencyTable from './components/CurrencyTable/CurrencyTable.jsx';
+import Chart from './components/Chart/Chart.jsx';
 
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
@@ -36,7 +37,7 @@ const App = () => {
         >
           <Route index element={<Home />} />
           <Route path={'home'} element={<Home />} />
-          <Route path={'diagram'} element={<Home />} />
+          <Route path={'diagram'} element={<Chart />} />
           <Route path={'dollar'} element={<CurrencyTable />} />{' '}
         </Route>
         <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
