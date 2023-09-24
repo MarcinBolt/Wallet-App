@@ -65,3 +65,4 @@ const transactionsSlice = createSlice({
 });
 
 export const transactionsReducer = transactionsSlice.reducer;
+export const selectUserBalanceAfter = state => state.transactions.balance;

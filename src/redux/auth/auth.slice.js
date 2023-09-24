@@ -49,3 +49,5 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+
+export const selectUserBalance = state => state.auth.user.balance;

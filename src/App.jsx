@@ -13,6 +13,7 @@ const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+// const Balance = lazy(() => import('./components/Balance/Balance.jsx'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App = () => {
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
         />
         //TODO
+        {/* <Route exact path={`/`} element={<PublicRoute component={<Balance />} />} /> */}
         <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
