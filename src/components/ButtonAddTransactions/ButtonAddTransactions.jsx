@@ -6,7 +6,7 @@ export const ButtonAddTransactions = ({ handleClick }) => {
     <>
       <button className={css.openModal} onClick={handleClick}>
         <svg>
-          <use xlinkHref="../../assets/icons/sprite.svg#icon-btnOpenModal" />
+          <use href="../../assets/icons/sprite.svg#icon-btnOpenModal" />
         </svg>
       </button>
     </>
