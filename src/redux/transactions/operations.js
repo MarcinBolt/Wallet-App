@@ -1,7 +1,10 @@
 import axios from 'axios';
+import 'dotenv/config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+// ! W pliku .env możesz zmienić sobie wstawić BACKEND_SERVER_URL='http://127.0.0.1:3000' na lokalny serwer, 
+// ! uruchamiany przez: npm run start: dev
+axios.defaults.baseURL = process.env.BACKEND_SERVER_URL;
 
 export const fetchTransactions = createAsyncThunk('transactions/fetchAll', async (_, thunkAPI) => {
   try {
