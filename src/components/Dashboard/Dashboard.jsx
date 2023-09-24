@@ -2,7 +2,7 @@ import AppBar from '../AppBar/AppBar';
 import CurrencyTable from '../CurrencyTable/CurrencyTable.jsx';
 import Chart from '../Chart/Chart.jsx';
 import Transactions from '../Transactions/Transactions.jsx';
-import StatsLabels from '../Chart/StatsLables/StatsLabels';
+import StatsLabels from '../StatsLables/StatsLabels';
 
 const Dashboard = () => {
   return (
