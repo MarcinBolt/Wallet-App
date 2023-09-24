@@ -13,10 +13,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { InputAdornment } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Container from '@mui/material/Container'; 
 
  
 const LoginForm = () => {
@@ -66,16 +63,7 @@ const LoginForm = () => {
 
              <Field name="email" type="email" as={TextField} 
              className={css.test} 
-             
-             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AddCircleIcon />
-                </InputAdornment>
-              ),
-            }}
- 
-
+              
             sx={{
               "& fieldset": { border: 'none' },
               display: 'flex',
