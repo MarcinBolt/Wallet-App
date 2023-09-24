@@ -22,7 +22,7 @@ const getOwnerTransactions = async (req, res, next) => {
       status: 'success',
       code: 200,
       data: {
-        contacts: results,
+        transactions: results,
       },
     });
   } catch (err) {

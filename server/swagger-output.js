@@ -24,7 +24,7 @@ const swaggerOutput = {
     '/transactions/': {
       get: {
         tags: ['Transaction'],
-        description: '',
+        description: `Returns all user's transactions`,
         responses: {
           200: {
             description: 'OK',
@@ -33,7 +33,7 @@ const swaggerOutput = {
       },
       post: {
         tags: ['Transaction'],
-        description: '',
+        description: `Creates new user's transaction`,
         responses: {
           201: {
             description: 'Created',
@@ -159,7 +159,18 @@ const swaggerOutput = {
     '/users/signup': {
       post: {
         tags: ['User'],
-        description: '',
+        summary: 'Registers new user',
+        requestBody: {
+          description: 'Create user in database',
+          content: {
+            'application/json': {
+             /* schema: {
+                $ref: '#/components/schemas/User',
+              },*/
+            },
+          },
+          required: true,
+        },
         responses: {
           201: {
             description: 'Created',
@@ -176,169 +187,161 @@ const swaggerOutput = {
         },
       },
     },
-    '/users/login': {
-      post: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          200: {
-            description: 'OK',
+      '/users/login': {
+        post: {
+          tags: ['User'],
+          description: '',
+          responses: {
+            200: {
+              description: 'OK',
+            },
+            400: {
+              description: 'Bad Request',
+            },
+            401: {
+              description: 'Unauthorized',
+            },
+            500: {
+              description: 'Internal Server Error',
+            },
           },
-          400: {
-            description: 'Bad Request',
+        },
+      },
+      '/users/logout': {
+        get: {
+          tags: ['User'],
+          description: '',
+          responses: {
+            200: {
+              description: 'OK',
+            },
+            500: {
+              description: 'Internal Server Error',
+            },
           },
-          401: {
-            description: 'Unauthorized',
+        },
+      },
+      '/users/current': {
+        get: {
+          tags: ['User'],
+          description: '',
+          responses: {
+            default: {
+              description: '',
+            },
           },
-          500: {
-            description: 'Internal Server Error',
+        },
+      },
+      '/users/verify/{verificationToken}': {
+        get: {
+          tags: ['User'],
+          description: '',
+          responses: {
+            default: {
+              description: '',
+            },
+          },
+        },
+      },
+      '/users/verify': {
+       
+      },
+      '/users/delete': {
+        delete: {
+          tags: ['User'],
+          description: '',
+          responses: {
+            200: {
+              description: 'OK',
+            },
+            400: {
+              description: 'Bad Request',
+            },
+            401: {
+              description: 'Unauthorized',
+            },
+            500: {
+              description: 'Internal Server Error',
+            },
+          },
+        },
+      },
+      '/users/': {
+        put: {
+          tags: ['User'],
+          description: '',
+          responses: {
+            default: {
+              description: '',
+            },
           },
         },
       },
     },
-    '/users/logout': {
-      get: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          200: {
-            description: 'OK',
+    definitions: {
+      User: {
+        type: 'object',
+        properties: {
+          _id: {
+            type: 'string',
+            description: 'Backend-generated unique identifier',
           },
-          500: {
-            description: 'Internal Server Error',
+          email: {
+            type: 'string',
+            description: 'Email',
+          },
+          password: {
+            type: 'string',
+            description: 'Password',
+          },
+          firstName: {
+            type: 'string',
+            description: 'User name',
           },
         },
+        required: ['email', 'password', 'firstName'],
+        example: `{ _id: '3245345436354423', email: 'examplel@email.com', password: 'try67hgj', firstName: 'John Doe' }`,
+      },
+      Transaction: {
+        type: 'object',
+        properties: {
+          date: {
+            type: 'string',
+            description: `Transaction's date`,
+          },
+          year: {
+            type: 'string',
+            description: `Year that transaction was made`,
+          },
+          month: {
+            type: 'string',
+            description: `Month that transaction was made`,
+          },
+          type: {
+            type: 'string',
+            description: `Transaction type`,
+          },
+          category: {
+            type: 'string',
+            description: `Transaction category`,
+          },
+          comment: {
+            type: 'string',
+            description: `User's description of transaction`,
+          },
+          sum: {
+            type: 'number',
+            description: `Sum`,
+          },
+          owner: {
+            type: 'string',
+            description: `User's id from database`,
+          },
+        },
+        required: ['date', 'year', 'month', 'type', 'category', 'sum'],
+        example: `{ date: '2023:07:12', year: '2023', month: 'July', type: 'Expense', category: 'Products', comment: 'Grocery', sum: 27, owner: '3245345436354423' }`,
       },
     },
-    '/users/current': {
-      get: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          default: {
-            description: '',
-          },
-        },
-      },
-    },
-    '/users/verify/{verificationToken}': {
-      get: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          default: {
-            description: '',
-          },
-        },
-      },
-    },
-    '/users/verify': {
-      post: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          default: {
-            description: '',
-          },
-        },
-      },
-    },
-    '/users/delete': {
-      delete: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          200: {
-            description: 'OK',
-          },
-          400: {
-            description: 'Bad Request',
-          },
-          401: {
-            description: 'Unauthorized',
-          },
-          500: {
-            description: 'Internal Server Error',
-          },
-        },
-      },
-    },
-    '/users/': {
-      put: {
-        tags: ['User'],
-        description: '',
-        responses: {
-          default: {
-            description: '',
-          },
-        },
-      },
-    },
-  },
-  definitions: {
-    User: {
-      type: 'object',
-      properties: {
-        _id: {
-          type: 'string',
-          description: 'Backend-generated unique identifier',
-        },
-        email: {
-          type: 'string',
-          description: 'Email',
-        },
-        password: {
-          type: 'string',
-          description: 'Password',
-        },
-        firstName: {
-          type: 'string',
-          description: 'User name',
-        },
-      },
-      required: ['email', 'password', 'firstName'],
-      example: `{ _id: '3245345436354423', email: 'examplel@email.com', password: 'try67hgj', firstName: 'John Doe' }`
-    },
-    Transaction: {
-      type: 'object',
-      properties: {
-        date: {
-          type: 'string',
-          description: `Transaction's date`,
-        },
-        year: {
-          type: 'string',
-          description: `Year that transaction was made`,
-        },
-        month: {
-          type: 'string',
-          description: `Month that transaction was made`,
-        },
-        type: {
-          type: 'string',
-          description: `Transaction type`,
-        },
-        category: {
-          type: 'string',
-          description: `Transaction category`,
-        },
-        comment: {
-          type: 'string',
-          description: `User's description of transaction`,
-        },
-        sum: {
-          type: 'number',
-          description: `Sum`,
-        },
-        owner: {
-          type: 'string',
-          description: `User's id from database`,
-        },
-      },
-      required: ['date', 'year', 'month', 'type', 'category', 'sum'],
-      example: `{ date: '2023:07:12', year: '2023', month: 'July', type: 'Expense', category: 'Products', comment: 'Grocery', sum: 27, owner: '3245345436354423' }`,
-    },
-  },
-};
+  }
 
 export default swaggerOutput;
