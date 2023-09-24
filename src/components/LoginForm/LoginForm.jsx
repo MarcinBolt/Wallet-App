@@ -15,6 +15,8 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { InputAdornment } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
  
 const LoginForm = () => {
@@ -65,6 +67,15 @@ const LoginForm = () => {
              <Field name="email" type="email" as={TextField} 
              className={css.test} 
              
+             InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AddCircleIcon />
+                </InputAdornment>
+              ),
+            }}
+ 
+
             sx={{
               "& fieldset": { border: 'none' },
               display: 'flex',
@@ -75,7 +86,7 @@ const LoginForm = () => {
               borderColor: 'grey.300',
               padding: 0, 
             }} 
-             variant="outlined" color="primary" label="Email" /> 
+             variant="outlined" color="primary" label="E-mail" /> 
              {errors.email && touched.email ? <div>{errors.email}</div> : null}  
  
             <Field name="password" type="password" as={TextField} 
@@ -91,24 +102,39 @@ const LoginForm = () => {
              {errors.password && touched.password ? ( 
              <div>{errors.password}</div> 
              ) : null} 
- 
-            {/* <Field name="email" type="email" className={css.input} placeholder="E-mail"/> 
-             {errors.email && touched.email ? <div>{errors.email}</div> : null}  
-             <Field name="password" className={css.input} placeholder="Password"/> 
-             {errors.password && touched.password ? ( 
-             <div>{errors.password}</div> 
-             ) : null}   */}
+  
            </div> 
-           <div className={btn.button_container}>
-            {/* <Button>LOG IN</Button> */}
-             <MainButton
-                type="submit"       
-                text="LOG IN"  
-                className={`${btn.button} ${btn.logo_btn}`}    
-             />
-           </div> 
-           <NavLink to="/register" className={`${btn.button} ${btn.main_btn}`}>REGISTER
-           </NavLink>  
+           <div className={btn.button_container}> 
+              <Button type="submit"  
+               sx={{ mt: 3, mb: 2 , width: 280,
+                background: '#24cca7',
+                "&:hover": {
+                  background: '#35a78e'
+                },
+                color: '#ffffff',
+                fontSize: 18,
+                borderRadius: 20
+               }}
+              >LOG IN
+              </Button>
+              <Button  
+               type="button"
+               href="#/register" 
+               sx={{  width: 280,
+                background: '#ffffff',
+                "&:hover": {
+                  background: '#4a56e2',
+                  color: '#ffffff',
+                },
+                color: '#4a56e2',
+                fontSize: 18,
+                borderRadius: 20
+               }}
+              >REGISTER
+              </Button> 
+{/* <NavLink to="/register" className={`${btn.button} ${btn.main_btn}`}>REGISTER
+           </NavLink>  */} 
+           </div>  
          </Form> 
        )} 
      </Formik> 
