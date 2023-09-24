@@ -32,6 +32,7 @@
     "node": "^18.17.1",
     "nodemailer": "^6.9.5",
     "nodemon": "^3.0.1",
+    "normalize.css": "^8.0.1",
     "notiflix": "^3.2.6",
     "npm": "^9.8.0",
     "passport": "^0.6.0",

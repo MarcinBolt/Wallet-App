@@ -1,4 +1,6 @@
 .statsHeader {
     font-size: 30px;
+    font-weight: 400;
     justify-content: left;
+    line-height: 45px;
 }
