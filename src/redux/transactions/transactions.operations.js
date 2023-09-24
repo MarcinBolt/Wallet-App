@@ -1,10 +1,10 @@
 import axios from 'axios';
-import 'dotenv/config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// ! W pliku .env możesz zmienić sobie wstawić BACKEND_SERVER_URL='http://127.0.0.1:3000' na lokalny serwer, 
-// ! uruchamiany przez: npm run start: dev
-axios.defaults.baseURL = process.env.BACKEND_SERVER_URL;
+const backendBaseUrl = (import.meta.env.VITE_NODE_ENV = 'development'
+  ? `http://127.0.0.1:3000`
+  : `${import.meta.env.VITE_BACKEND_SERVER_URL}/#`);
+
 
 export const fetchTransactions = createAsyncThunk('transactions/fetchAll', async (_, thunkAPI) => {
   try {
