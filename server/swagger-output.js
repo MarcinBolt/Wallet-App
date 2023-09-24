@@ -1,107 +1,487 @@
 const swaggerOutput = {
-  swagger: '2.0',
+  openapi: '3.0.0',
   info: {
-    version: '1.0.0',
     title: 'Wallet App REST API',
-    description: 'Express App to manage users and transactions in db',
-  },
-  host: 'https://wallet-lpqy.onrender.com',
-  basePath: '/',
-  schemes: ['http', 'https'],
-  consumes: ['application/json'],
-  produces: ['application/json'],
-  tags: [
-    {
-      name: 'User',
-      description: 'Endpoints',
+    version: '1.0.0',
+    contact: {
+      name: 'Hi5',
+      url: 'https://github.com/MarcinBolt/Wallet-App',
     },
+  },
+  servers: [
     {
-      name: 'Transaction',
-      description: 'Endpoints',
+      url: 'https://wallet-lpqy.onrender.com',
+      description: 'API base URL',
     },
   ],
   paths: {
-    '/transactions/': {
-      get: {
-        tags: ['Transaction'],
-        description: `Returns all user's transactions`,
+    '/users/signup': {
+      post: {
+        summary: 'Create a new user',
+        tags: ['User'],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/User',
+              },
+            },
+          },
+        },
+        responses: {
+          201: {
+            description: 'User created.',
+          },
+          409: {
+            description: 'Email in use.',
+          },
+          400: {
+            description: 'User creation error.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/users/login': {
+      post: {
+        summary: 'Login user',
+        tags: ['User'],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                required: ['email', 'password'],
+                properties: {
+                  email: {
+                    type: 'string',
+                    format: 'string',
+                  },
+                  password: {
+                    type: 'string',
+                    format: 'string',
+                  },
+                },
+              },
+            },
+          },
+        },
         responses: {
           200: {
-            description: 'OK',
+            description: 'User is logged in.',
+          },
+          400: {
+            description: 'Login error.',
+          },
+          401: {
+            description: 'Email or password is wrong.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/users/logout': {
+      post: {
+        summary: 'Log out user',
+        tags: ['User'],
+        parameters: [
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: 'The user is logged out.',
+          },
+          401: {
+            description: 'Missing header with authorization token.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/users/current': {
+      get: {
+        summary: 'Get information about the current user',
+        tags: ['User'],
+        parameters: [
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Information found.',
+          },
+          401: {
+            description: 'Missing header with authorization token.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/users/verify/{verificationToken}': {
+      get: {
+        summary: 'Verify user by email',
+        tags: ['User'],
+        description: '',
+        parameters: [
+          {
+            name: 'verificationToken',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Information found.',
+          },
+          404: {
+            description: 'Invalid verification token.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/users/verify': {
+      post: {
+        summary: 'Resends email for signup confirmation',
+        tags: ['User'],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                required: ['email'],
+                properties: {
+                  email: {
+                    type: 'string',
+                    format: 'string',
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: 'Verification email sent.',
+          },
+          400: {
+            description: 'Missing required field: email.',
+          },
+          400: {
+            description: 'Verification has already been passed.',
+          },
+          401: {
+            description: 'Missing header with authorization token.',
+          },
+          404: {
+            description: 'User not found.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/users/delete': {
+      delete: {
+        tags: ['User'],
+        summary: 'Deletes user',
+        description: '',
+        parameters: [
+          {
+            name: 'verificationToken',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'User successfully logged out',
+          },
+          401: {
+            description: 'Bad Request',
+          },
+          401: {
+            description: 'Missing header with authorization token',
+          },
+          500: {
+            description: 'Internal Server Error',
+          },
+        },
+      },
+    },
+    '/users': {
+      put: {
+        summary: 'Updates user',
+        tags: ['User'],
+        parameters: [
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/User',
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: `User's data successfully updated.`,
+          },
+          400: {
+            description: 'User update error.',
+          },
+          500: {
+            description: 'Server error.',
+          },
+        },
+      },
+    },
+    '/transactions': {
+      get: {
+        summary: 'Get all user transactions',
+        tags: ['Transaction'],
+        parameters: [
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: 'transactions found.',
+          },
+          401: {
+            description: 'Missing header with authorization token',
+          },
+          500: {
+            description: 'Server error.',
           },
         },
       },
       post: {
+        summary: 'Create a new transaction',
         tags: ['Transaction'],
-        description: `Creates new user's transaction`,
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/Transaction',
+              },
+            },
+          },
+        },
+        parameters: [
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
         responses: {
           201: {
-            description: 'Created',
+            description: 'The transaction was successfully created.',
           },
           400: {
-            description: 'Bad Request',
+            description: 'Creating transaction failed.',
+          },
+          401: {
+            description: 'Missing header with authorization token.',
+          },
+          500: {
+            description: 'Server error.',
           },
         },
       },
     },
     '/transactions/{id}': {
       get: {
+        summary: `Resends transaction's details.`,
         tags: ['Transaction'],
-        description: '',
         parameters: [
           {
-            name: 'id',
             in: 'path',
             required: true,
-            type: 'string',
+            name: 'id',
+            schema: {
+              type: 'string',
+            },
+            description: 'Transaction ID.',
+          },
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
           },
         ],
         responses: {
           200: {
-            description: 'OK',
+            description: `Transaction's details`,
+          },
+          401: {
+            description: 'Missing header with authorization token.',
           },
           404: {
-            description: 'Not Found',
+            description: `Transaction wasn't found`,
+          },
+          500: {
+            description: 'Server error.',
           },
         },
       },
       put: {
+        summary: 'Update an existing transaction',
         tags: ['Transaction'],
-        description: '',
         parameters: [
           {
-            name: 'id',
             in: 'path',
             required: true,
-            type: 'string',
+            name: 'id',
+            schema: {
+              type: 'string',
+            },
+            description: 'Transaction ID.',
+          },
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/Transaction',
+              },
+            },
+          },
+        },
+        parameters: [
+          {
+            in: 'path',
+            required: true,
+            name: 'contactId',
+            schema: {
+              type: 'integer',
+            },
+            description: 'Contact ID.',
+          },
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
           },
         ],
         responses: {
           200: {
-            description: 'OK',
+            description: 'The contact was successfully updated.',
           },
           400: {
-            description: 'Bad Request',
+            description: 'Contact update failed.',
           },
-          404: {
-            description: 'Not Found',
+          401: {
+            description: 'Missing header with authorization token.',
           },
         },
       },
       delete: {
+        summary: 'Delete transaction.',
         tags: ['Transaction'],
-        description: '',
         parameters: [
           {
-            name: 'id',
             in: 'path',
             required: true,
-            type: 'string',
+            name: 'id',
+            schema: {
+              type: 'string',
+            },
+            description: 'Transaction ID.',
+          },
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
           },
         ],
         responses: {
           200: {
-            description: 'OK',
+            description: 'Transaction was successfully deleted.',
+          },
+          401: {
+            description: 'Missing header with authorization token.',
+          },
+          404: {
+            description: 'There is no such user collection.',
+          },
+          500: {
+            description: 'Server error.',
           },
         },
       },
@@ -109,6 +489,7 @@ const swaggerOutput = {
     '/transactions/{category}': {
       get: {
         tags: ['Transaction'],
+        summary: 'Filters transactions by category.',
         description: '',
         parameters: [
           {
@@ -117,13 +498,25 @@ const swaggerOutput = {
             required: true,
             type: 'string',
           },
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
         ],
         responses: {
           200: {
-            description: 'OK',
+            description: 'Transactions by category',
           },
           400: {
             description: 'Bad Request',
+          },
+          500: {
+            description: 'Server error.',
           },
         },
       },
@@ -131,6 +524,7 @@ const swaggerOutput = {
     '/transactions/statistics/{year}/{month}': {
       get: {
         tags: ['Transaction'],
+        summary: 'Filters transactions by date.',
         description: '',
         parameters: [
           {
@@ -145,203 +539,140 @@ const swaggerOutput = {
             required: true,
             type: 'string',
           },
+          {
+            in: 'header',
+            required: true,
+            name: 'Authorization',
+            description: 'The token issued to the current user.',
+            schema: {
+              type: 'string',
+            },
+          },
         ],
         responses: {
           200: {
-            description: 'OK',
+            description: 'Transactions by date',
           },
           400: {
             description: 'Bad Request',
-          },
-        },
-      },
-    },
-    '/users/signup': {
-      post: {
-        tags: ['User'],
-        summary: 'Registers new user',
-        requestBody: {
-          description: 'Create user in database',
-          content: {
-            'application/json': {
-             /* schema: {
-                $ref: '#/components/schemas/User',
-              },*/
-            },
-          },
-          required: true,
-        },
-        responses: {
-          201: {
-            description: 'Created',
-          },
-          400: {
-            description: 'Bad Request',
-          },
-          409: {
-            description: 'Conflict',
           },
           500: {
-            description: 'Internal Server Error',
+            description: 'Server error.',
           },
         },
       },
     },
-      '/users/login': {
-        post: {
-          tags: ['User'],
-          description: '',
-          responses: {
-            200: {
-              description: 'OK',
-            },
-            400: {
-              description: 'Bad Request',
-            },
-            401: {
-              description: 'Unauthorized',
-            },
-            500: {
-              description: 'Internal Server Error',
-            },
-          },
-        },
-      },
-      '/users/logout': {
-        get: {
-          tags: ['User'],
-          description: '',
-          responses: {
-            200: {
-              description: 'OK',
-            },
-            500: {
-              description: 'Internal Server Error',
-            },
-          },
-        },
-      },
-      '/users/current': {
-        get: {
-          tags: ['User'],
-          description: '',
-          responses: {
-            default: {
-              description: '',
-            },
-          },
-        },
-      },
-      '/users/verify/{verificationToken}': {
-        get: {
-          tags: ['User'],
-          description: '',
-          responses: {
-            default: {
-              description: '',
-            },
-          },
-        },
-      },
-      '/users/verify': {
-       
-      },
-      '/users/delete': {
-        delete: {
-          tags: ['User'],
-          description: '',
-          responses: {
-            200: {
-              description: 'OK',
-            },
-            400: {
-              description: 'Bad Request',
-            },
-            401: {
-              description: 'Unauthorized',
-            },
-            500: {
-              description: 'Internal Server Error',
-            },
-          },
-        },
-      },
-      '/users/': {
-        put: {
-          tags: ['User'],
-          description: '',
-          responses: {
-            default: {
-              description: '',
-            },
-          },
-        },
-      },
-    },
-    definitions: {
+  },
+  components: {
+    schemas: {
       User: {
         type: 'object',
+        required: ['firstName', 'email', 'password'],
         properties: {
-          _id: {
+          id: {
             type: 'string',
-            description: 'Backend-generated unique identifier',
-          },
-          email: {
-            type: 'string',
-            description: 'Email',
-          },
-          password: {
-            type: 'string',
-            description: 'Password',
+            description: 'Backend-generated unique identifier.',
           },
           firstName: {
             type: 'string',
-            description: 'User name',
+            description: 'Username.',
+          },
+          email: {
+            type: 'string',
+            description: 'E-mail address.',
+          },
+          password: {
+            type: 'string',
+            description: 'Password.',
           },
         },
-        required: ['email', 'password', 'firstName'],
-        example: `{ _id: '3245345436354423', email: 'examplel@email.com', password: 'try67hgj', firstName: 'John Doe' }`,
+        example: {
+          firstName: 'John Doe',
+          email: 'example@mail.com',
+          password: 'examplepwd12345',
+        },
       },
       Transaction: {
         type: 'object',
+        required: ['date', 'year', 'month', 'type', 'category', 'sum'],
         properties: {
+          id: {
+            type: 'string',
+            description: 'Backend-generated unique identifier.',
+          },
           date: {
             type: 'string',
-            description: `Transaction's date`,
+            description: "Transaction's date.",
           },
           year: {
             type: 'string',
-            description: `Year that transaction was made`,
+            description: "Transaction's year.",
           },
           month: {
             type: 'string',
-            description: `Month that transaction was made`,
+            enum: [
+              'January',
+              'February',
+              'March',
+              'April',
+              'May',
+              'June',
+              'July',
+              'August',
+              'September',
+              'October',
+              'November',
+              'December',
+            ],
+            description: 'The name of the month that transaction was made.',
           },
           type: {
             type: 'string',
-            description: `Transaction type`,
+            enum: ['Income', 'Expense'],
+            description: 'The type of transaction.',
           },
           category: {
             type: 'string',
-            description: `Transaction category`,
+            enum: [
+              'Main expenses',
+              'Products',
+              'Car',
+              'Self care',
+              'Child care',
+              'Household products',
+              'Education',
+              'Leisure',
+              'Other expenses',
+              'Entertainment',
+            ],
+            description: 'Category of transaction.',
           },
           comment: {
             type: 'string',
-            description: `User's description of transaction`,
+            description: "User's comment to transaction.",
           },
           sum: {
-            type: 'number',
-            description: `Sum`,
+            type: 'string',
+            description: "Transaction's sum.",
           },
           owner: {
             type: 'string',
-            description: `User's id from database`,
+            description: "Owner's id in database.",
           },
         },
-        required: ['date', 'year', 'month', 'type', 'category', 'sum'],
-        example: `{ date: '2023:07:12', year: '2023', month: 'July', type: 'Expense', category: 'Products', comment: 'Grocery', sum: 27, owner: '3245345436354423' }`,
+        example: {
+          date: '2023:07:12',
+          year: '2023',
+          month: 'July',
+          type: 'Expense',
+          category: 'Products',
+          comment: 'Grocery store',
+          sum: '27',
+        },
       },
     },
-  }
+  },
+  tags: [],
+};
 
 export default swaggerOutput;
