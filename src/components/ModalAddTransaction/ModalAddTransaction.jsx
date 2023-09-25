@@ -10,13 +10,13 @@ import plusbtn from '../../assets/icons/plusbtn.svg'
 import minusbtn from '../../assets/icons/minusbtn.svg'
 
 const switchStyles = {
-  width: '80px', // Dostosuj szerokość Switch
-  height: '40px', // Dostosuj wysokość Switch
+  width: '80px', 
+  height: '40px', 
 };
 
 const iconStyles = {
-  width: '44px', // Dostosuj szerokość ikon
-  height: '44px', // Dostosuj wysokość ikon
+  width: '44px', 
+  height: '44px', 
 };
 
 const ModalAddTransaction = ({ closeModal }) => {
@@ -92,8 +92,8 @@ const ModalAddTransaction = ({ closeModal }) => {
                 }
                 name="transaction-type"
                 style={switchStyles}
-                icon={<img src={minusbtn} alt="Plus Icon" style={iconStyles} />}
-                checkedIcon={<img src={plusbtn} alt="minus Icon" style={iconStyles} />}
+                icon={<img src={plusbtn} alt="plus Icon" style={iconStyles} />}
+                checkedIcon={<img src={minusbtn} alt="minus Icon" style={iconStyles} />}
               />
             }
             label={formData.isChecked ? 'Expense' : 'Income'}
