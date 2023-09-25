@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
+import Header from './components/Header/Header.jsx';
 
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
@@ -35,7 +36,7 @@ const App = () => {
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
         />
         //TODO
-        <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
+        <Route exact path={`/`} element={<PublicRoute component={<Header />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
         <Route

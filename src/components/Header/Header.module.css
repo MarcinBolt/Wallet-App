@@ -1,0 +1,39 @@
+.headerWrapper {
+  background-color: var(--color-bg-secondary);
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  width: 100vw;
+
+  @media screen and (min-width: 768px) {
+    height: 80px;
+  }
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.userWrapper {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 700;
+  margin-right: 15.56;
+}
+
+.name {
+  font-family: var(--font-secondary);
+  font-size: 24px;
+  font-weight: 700;
+  margin-left: 15.56;
+}
