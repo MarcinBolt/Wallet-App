@@ -1,0 +1,15 @@
+.statisticsContainer {
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: 768px) {
+        width: 768px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 715px;
+    }
+
+}
