@@ -1,8 +1,25 @@
 .openModal {
   border: none;
+  padding: 0;
   background: none;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
+  background-image: url(./add_circle_black_24dp.svg);
+  background-size: cover;
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 20px;
+  right: 20px;
+  filter: drop-shadow(0px 10px 5px #24cca869);
+  -webkit-filter: drop-shadow(0px 10px 5px #24cca869);
+  -moz-filter: drop-shadow(0px 10px 5px #24cca869);
+  @media screen and (min-width: 768px) {
+    bottom: 40px;
+    right: 40px;
+  }
+}
+.openModal:hover {
+  filter: drop-shadow(0px 10px 5px #24cca8a4);
+  -webkit-filter: drop-shadow(0px 10px 5px #24cca8a4);
+  -moz-filter: drop-shadow(0px 10px 5px #24cca8a4);
 }
