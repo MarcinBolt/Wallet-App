@@ -1,14 +1,14 @@
-import AppBar from '../AppBar/AppBar';
+// import AppBar from '../AppBar/AppBar';
 import CurrencyTable from '../CurrencyTable/CurrencyTable.jsx';
-import Chart from '../Statistics/Chart/Chart.jsx';
+import Statistics from '../Statistics/Statistics';
 import Transactions from '../Transactions/Transactions.jsx';
 
 const Dashboard = () => {
   return (
     <>
-      <AppBar />
+      {/* <AppBar /> */}
       <CurrencyTable />
-      <Chart />
+      <Statistics />
       <Transactions />
     </>
   );
