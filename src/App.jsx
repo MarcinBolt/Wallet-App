@@ -13,7 +13,7 @@ import Logo from './components/Logo/Logo.jsx';
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
-const BtnDelete = lazy(() => import('./components/ButtonDelete/ButtonDelete.jsx'));
+
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
         />
         //TODO
-        <Route exact path={`/`} element={<PublicRoute component={<BtnDelete />} />} />
+        
         <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
