@@ -30,6 +30,7 @@
     "modern-normalize": "^2.0.0",
     "mongoose": "^7.5.2",
     "morgan": "^1.10.0",
+    "mui": "^0.0.1",
     "node": "^18.17.1",
     "nodemailer": "^6.9.5",
     "nodemon": "^3.0.1",
@@ -44,6 +45,9 @@
     "react-router-dom": "^6.16.0",
     "redux-persist": "^6.0.0",
     "yup": "^1.2.0"
+    "swagger-autogen": "^2.23.6",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.22",
