@@ -31,12 +31,12 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          {/* <Route index element={<LoginPage />} />
+          <Route index element={<Login />} />
           <Route
             path="/register"
             element={
               <PublicRoute
-                component={<RegisterPage />}
+                component={<Register />}
                 redirectTo={<Navigate to="/dashboard" replace />}
               />
             }
@@ -46,10 +46,10 @@ const App = () => {
             element={
               <PublicRoute
                 redirectTo={<Navigate to="/dashboard" replace />}
-                component={<LoginPage />}
+                component={<Login />}
               />
             }
-          /> */}
+          />
           <Route
             path="/dashboard"
             element={
