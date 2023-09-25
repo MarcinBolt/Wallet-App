@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
-import Logo from './components/Logo/Logo.jsx';
 
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
