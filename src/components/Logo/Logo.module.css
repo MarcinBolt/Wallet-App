@@ -1,3 +1,5 @@
+@import '../../stylesheet/vars.css';
+
 .logoWrapper {
   display: flex;
   justify-content: left;
@@ -5,9 +7,9 @@
 }
 
 .logo {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary-bold);
   font-size: 24px;
-  font-weight: 700;
+  font-weight: bold;
   margin-left: 15.56px;
   @media screen and (min-width: 768px) {
     font-size: 30px;
