@@ -33,7 +33,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('../../assets/icons/vector.svg');
+    background-image: url('../../../assets//icons/vector.svg');
     background-position: right 15px top 50%;
     background-repeat: no-repeat;
     background-size: 18px;
