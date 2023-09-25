@@ -8,29 +8,14 @@
     align-items: center;
   }
   @media screen and (min-width: 767px) {
-   width: fit-content;
-   height: fit-content;
+    width: fit-content;
+    height: fit-content;
     padding: 40px 59px 62px 67px;
     border-radius: 20px;
   }
 
   background-color: var(--color-bg-secondary);
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-}
-
-.logo_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* margin-bottom: 50px; */
-}
-
-.container_google {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 15px;
 }
 
 .text {
@@ -74,7 +59,7 @@
   justify-content: center;
 
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-icons-form-);
   outline-style: none;
   padding-left: 25px;
   width: 250px;
@@ -98,57 +83,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.logo {
-  width: 30px;
-  height: 30px;
-
-  @media screen and (min-width: 768px) {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.logo_text {
-  margin-left: 15px;
-  font-size: 22px;
-  font-weight: bold;
-
-  @media screen and (min-width: 768px) {
-    font-size: 30px;
-    margin-left: 20px;
-  }
-}
-
-.test {
-  border: none;
-  text-decoration: solid;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.btn_container {
-  width: 280px;
-
-  @media screen and (min-width: 768px) {
-    width: 300px;
-  }
-}
-
-.container_input2 {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0;
-}
-
-.container_input3 {
-  width: 280px;
-
-  @media screen and (min-width: 768px) {
-    width: 300px;
-  }
+  margin-top: 20px;
 }
 
 .button {
@@ -177,33 +112,12 @@
   }
 }
 
-.logo_btn {
-  background-color: var(--color-bg-btn-active-hover);
-  border: transparent;
-  margin-bottom: 20px;
-  &:hover {
-    background-color: #35a78e;
-  }
+.test {
+  width: 280px;
+  height: 32px;
 }
 
-/* .register_btn { 
-  background-color: var(-- -color-grean);
-  border: transparent;
- 
-  &:hover {
-    background-color: #05bd95;
-  }
-}   */
-
-.main_btn {
-  text-decoration: none;
-  color: var(--color-text-btn-cancel);
-  background-color: var(--color-bg-secondary);
-  border: 2px solid var(--color-border-btn-cancel);
-  padding-top: 10px;
-
-  &:hover {
-    color: var(--color-text-secondary);
-    background-color: var(--color-bg-widget-currency);
-  }
+.test::placeholder {
+  padding-bottom: 12px;
+  color: var(--placeholder-text);
 }
