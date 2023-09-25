@@ -168,6 +168,7 @@ const loginUser = async (req, res, _) => {
     return res.json({
       status: 'success',
       code: 200,
+      message: 'User is logged in',
       token,
       user: {
         email: user.email,
@@ -192,7 +193,7 @@ const logoutUser = async (req, res, _) => {
     const id = user.id;
     token = null;
 
-    await updateUserDataByIdInDB(id, { token });
+     await updateUserDataByIdInDB(id, { token });
 
     return res.json({
       status: 'success',
@@ -307,7 +308,7 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
     if (error) {
       return res
         .status(400)
-        .json({ status: 'error', code: 400, message: 'missing required field email' });
+        .json({ status: 'error', code: 400, message: 'Missing required field email' });
     }
 
     const normalizedEmail = email.toLowerCase();
