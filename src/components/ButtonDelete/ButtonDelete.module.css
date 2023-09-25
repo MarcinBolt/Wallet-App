@@ -1,0 +1,13 @@
+@import '../../stylesheet/vars.css';
+
+.ButtonDelete {
+  background-color: var(--color-bg-btn-delete);
+  border-radius: var(--radius-btn-delete);
+  width: 43;
+  height: 18;
+  text-transform: capitalize;
+}
+
+.ButtonDelete:hover {
+  background-color: var(--color-bg-btn-expanse);
+}
