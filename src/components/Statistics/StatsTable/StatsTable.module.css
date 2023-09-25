@@ -1,0 +1,54 @@
+.tableContainer {
+    min-width: 280px;
+
+    @media screen and (min-width: 768px) {
+        width: 336px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 395px;
+    }
+
+}
+
+.headerCategory {
+    border-top-left-radius: var(--radius-stats-table-header);
+    border-bottom-left-radius: var(--radius-stats-table-header);
+    font-family: var(--font-secondary-bold);
+    font-size: 18px;
+}
+
+.headerSum {
+    border-top-right-radius: var(--radius-stats-table-header);
+    border-bottom-right-radius: var(--radius-stats-table-header);
+    font-family: var(--font-secondary-bold);
+    font-size: 18px;
+    text-align: right;
+}
+
+.row {
+    max-width: 280px;
+}
+
+.row span {
+    width: 24px;
+    height: 24px;
+    display: block;
+    float: left;
+    margin: 1px 10px 0px 0px;
+}
+
+.tableCategoryCell {
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-family: var(--font-secondary);
+}
+
+.tableSumCell {
+    font-family: inherit;
+    padding: 10;
+    font-size: 16px;
+    font-family: var(--font-secondary);
+}
