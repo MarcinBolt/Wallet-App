@@ -21,9 +21,7 @@ const getOwnerTransactions = async (req, res, next) => {
     res.json({
       status: 'success',
       code: 200,
-      data: {
-        transactions: results,
-      },
+      transactions: results,
     });
   } catch (err) {
     console.error(err);
@@ -58,7 +56,7 @@ const createOwnerTransaction = async (req, res, next) => {
     res.status(201).json({
       status: 'created',
       code: 201,
-      createdTransaction,
+      transaction: createdTransaction,
       message: 'The transaction was successfully created',
     });
   } catch (err) {
@@ -116,7 +114,7 @@ const updateOwnerTransactionById = async (req, res, next) => {
       return res.json({
         status: 'success',
         code: 200,
-        data: { updatedTransaction },
+        transaction: updatedTransaction,
       });
     } else {
       res.status(404).json({
@@ -172,7 +170,7 @@ const getOwnerTransactionsByCategory = async (req, res, next) => {
         status: 'success',
         code: 200,
         message: `Transactions by category`,
-        transactionsByCategory,
+        transactions: transactionsByCategory,
       });
     }
   } catch (err) {
@@ -197,7 +195,7 @@ const getOwnerStatisticsByDate = async (req, res, next) => {
     return res.json({
       status: 'success',
       code: 200,
-      data: statisticsByDate,
+      transactions: statisticsByDate,
     });
   } catch (err) {
     console.error(err);
