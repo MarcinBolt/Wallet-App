@@ -36,7 +36,7 @@ const App = () => {
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
         />
         //TODO
-        {/* <Route exact path={`/`} element={<PublicRoute component={<Balance />} />} /> */}
+       
         <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
