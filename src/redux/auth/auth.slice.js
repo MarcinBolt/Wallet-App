@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
+  isModalLogoutOpen: false,
 };
 
 const handleFulfilledRegister = (state, action) => {
@@ -24,6 +25,14 @@ const handleFulfilledLogIn = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    openModalLogout: (state, action) => {
+      state.isModalLogoutOpen = true;
+    },
+    closeModalLogout: (state, action) => {
+      state.isModalLogoutOpen = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, handleFulfilledRegister)
@@ -33,6 +42,7 @@ const authSlice = createSlice({
         state.user = { firstName: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isModalLogoutOpen = false;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
@@ -49,3 +59,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { openModalLogout, closeModalLogout } = authSlice.actions;

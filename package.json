@@ -29,6 +29,7 @@
     "modern-normalize": "^2.0.0",
     "mongoose": "^7.5.2",
     "morgan": "^1.10.0",
+    "mui": "^0.0.1",
     "node": "^18.17.1",
     "nodemailer": "^6.9.5",
     "nodemon": "^3.0.1",
