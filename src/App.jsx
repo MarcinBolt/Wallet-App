@@ -31,7 +31,7 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Login />} />
+          <Route index element={<Register />} />
           <Route
             path="/register"
             element={

@@ -1,15 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../redux/auth/auth.operations.js';
-import logo from '../../assets/images/apple-touch-icon.png';
 import css from './RegisterForm.module.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Container from '@mui/system/Container';
-import Box from '@mui/system/Box';
+import Logo from '../Logo/Logo.jsx';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -55,8 +52,7 @@ const RegisterForm = () => {
     <>
       <form onSubmit={formik.handleSubmit} className={css.form}>
         <div className={css.logo_wrapper}>
-          <img src={logo} alt="Logo" className={css.logo} />
-          <h1 className={css.logo_text}>Wallet</h1>
+          <Logo />
         </div>
         <div className={css.container_input}>
           <TextField
