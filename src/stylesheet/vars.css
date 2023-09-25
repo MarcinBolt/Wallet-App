@@ -1,9 +1,27 @@
-@import '../stylesheet/fonts.css';
+@font-face {
+  font-family: 'Poppins 400';
+  src: url('../assets//fonts/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins 700';
+  src: url('../assets/fonts/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Circe 400';
+  src: url('../assets/fonts/Circe-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Circe 700';
+  src: url('../assets/fonts/Circe-Bold.ttf') format('truetype');
+}
 
 :root {
   /* ------ fonts families ------ */
-  --font-primary: 'Poppins';
-  --font-secondary: 'Circe', sans-serif;
+  --font-primary: 'Poppins 400';
+  --font-primary-bold: 'Poppins 700';
+  --font-secondary: 'Circe 400', sans-serif;
+  --font-secondary-bold: 'Circe 700', sans-serif;
 
   /* ------ font colors ----- */
   --color-text-primary: #000000;
