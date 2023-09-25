@@ -17,7 +17,7 @@ body.modal-open {
   overflow: hidden;
 }
 
-.backdrop {
+/* .backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@ body.modal-open {
   z-index: 999;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .overlay h1 {
   margin-top: 30px;
@@ -82,82 +82,13 @@ body.modal-open {
   margin-bottom: 40px;
 }
 
-.toggle-label.expense {
-  border: 1px solid red;
-  color: var(--color-bg-btn-expanse);
-}
-
-.toggle-label.income {
-  color: var(--color-border-bottom-btn-form);
-}
-
-input[type='checkbox'].toggle:checked + label.toggle-label.expense {
-  color: var(--color-border-bottom-btn-form);
-}
-
-input[type='checkbox'].toggle:checked + label.toggle-label.expense {
-  color: var(--color-text-income-green);
-}
-
-input[type='checkbox'].toggle {
-  opacity: 0;
-}
-
-input[type='checkbox'].toggle + label {
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-input[type='checkbox'].toggle + label::before {
-  content: '';
-  width: 4.8em;
-  height: 2em;
-  border-radius: 1.5em;
-  margin-right: 0.5em;
-  transition: background-color 200ms ease-in-out;
-}
-
-input[type='checkbox'].toggle + label::after {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  content: '\002D';
-  font-size: 1.2em;
-  width: 2em;
-  height: 2em;
-  background-color: var(--color-bg-btn-expanse);
-  color: var(--color-text-secondary);
-  border-radius: 1.5em;
-  transition:
-    background-color 200ms ease-in-out,
-    transform 200ms ease-in-out;
-}
-
-input[type='checkbox'].toggle:checked + label::after {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  content: '\002B';
-  transform: translateX(100%);
-  background-color: var(--color-text-income-green);
-}
-
-input[type='checkbox'].toggle + label::before {
-  border: 1px solid var(--color-text-disabled-btn-gray);
-}
-
-/* Styl dla tabletu */
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .overlay {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 540px; 
-    height: 508px; 
+    width: 540px;
+    height: 508px;
     max-width: 700px;
     height: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -172,14 +103,10 @@ input[type='checkbox'].toggle + label::before {
   }
 }
 
-/* Styl dla desktopa */
-@media screen and (min-width:1200px) {
+@media screen and (min-width: 1200px) {
   .overlay {
-   
-    
-    
-    height: 603px; 
-    
+    height: 603px;
+
     height: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;

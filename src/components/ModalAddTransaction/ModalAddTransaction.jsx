@@ -169,7 +169,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                   as="textarea"
                   placeholder="Comment"
                   className={css.textarea}
-                  rows={3}
+                  rows={1}
                   name="comment"
                 />
               </label>
