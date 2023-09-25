@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, FormControlLabel,FormControl, TextField, Select, MenuItem, Button } from '@mui/material';
+import {
+  Switch,
+  FormControlLabel,
+  FormControl,
+  TextField,
+  Select,
+  MenuItem,
+  Button,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-// import { addTransaction } from '../../redux/transactions/transactions.operations'; 
+// import { addTransaction } from '../../redux/transactions/transactions.operations';
 import css from './ModalAddTransaction.module.css';
-import plusbtn from '../../assets/icons/plusbtn.svg'
-import minusbtn from '../../assets/icons/minusbtn.svg'
+import plusbtn from '../../assets/icons/plusbtn.svg';
+import minusbtn from '../../assets/icons/minusbtn.svg';
 
 const switchStyles = {
-  width: '80px', 
-  height: '40px', 
+  width: '40px',
+  height: '40px',
 };
 
 const iconStyles = {
-  width: '44px', 
-  height: '44px', 
+  width: '44px',
+  height: '44px',
 };
 
 const ModalAddTransaction = ({ closeModal }) => {
@@ -40,7 +48,7 @@ const ModalAddTransaction = ({ closeModal }) => {
     amount: '',
   });
 
-  const categories = useSelector(state => state.categories); 
+  const categories = useSelector(state => state.categories);
   const categoriesOptions = categories
     ? Object.values(categories)
         .filter(({ name }) => name !== 'Income')
@@ -52,20 +60,20 @@ const ModalAddTransaction = ({ closeModal }) => {
 
   // const handleSubmit = async (values, { setSubmitting, resetForm }) => {
   //   try {
-      
-      // await dispatch(
-      //   addTransaction({
-      //     isExpense: !formData.isChecked,
-      //     amount: Number(formData.amount),
-      //     date: formData.dateValue,
-      //     category: formData.isChecked ? 'Income' : formData.selectedCategory,
-      //     comment: formData.comment,
-      //   }),
-      // );
+
+  // await dispatch(
+  //   addTransaction({
+  //     isExpense: !formData.isChecked,
+  //     amount: Number(formData.amount),
+  //     date: formData.dateValue,
+  //     category: formData.isChecked ? 'Income' : formData.selectedCategory,
+  //     comment: formData.comment,
+  //   }),
+  // );
 
   //     toast.success('Transaction created successfully');
-  //     closeModal(); 
-  //     resetForm(); 
+  //     closeModal();
+  //     resetForm();
   //   } catch (error) {
   //     toast.error('Failed to create transaction');
   //   } finally {
@@ -111,24 +119,27 @@ const ModalAddTransaction = ({ closeModal }) => {
             // onSubmit={handleSubmit}
           >
             <Form className={css.form}>
-              <Field
-                as={TextField}
-                type="standard-basic"
-                variant="standard"
-                id="amount"
-                name="amount"
-                placeholder="0.0"
-                className={css.input}
-              />
+              <div className={css.inputWrapper}>
+                <Field
+                  as={TextField}
+                  type="standard-basic"
+                  variant="standard"
+                  id="amount"
+                  name="amount"
+                  placeholder="0.0"
+                  className={css.input}
+                />
+              </div>
+              <div className={css.inputWrapper}>
+                <Field
+                  as={TextField}
+                  type="date"
+                  id="dateValue"
+                  name="dateValue"
+                  className={css.datetime}
+                />
+              </div>
               <ErrorMessage name="amount" component="div" />
-              
-              <Field
-                as={TextField}
-                type="date"
-                id="dateValue"
-                name="dateValue"
-                className={css.datetime}
-              />
               <ErrorMessage name="dateValue" component="div" />
 
               {formData.isChecked ? null : (
@@ -165,13 +176,15 @@ const ModalAddTransaction = ({ closeModal }) => {
               <ErrorMessage name="dateValue" component="div" /> */}
 
               <label className="label">
-                <Field
-                  as="textarea"
-                  placeholder="Comment"
-                  className={css.textarea}
-                  rows={1}
-                  name="comment"
-                />
+                <div className={css.textareaWrapper}>
+                  <Field
+                    as="textarea"
+                    placeholder="Comment"
+                    className={css.textarea}
+                    rows={1}
+                    name="comment"
+                  />
+                </div>
               </label>
               <Button type="submit" fullWidth variant="contained" className={css.logo_btn}>
                 ADD
