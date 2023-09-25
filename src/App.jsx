@@ -13,7 +13,7 @@ const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
-// const Balance = lazy(() => import('./components/Balance/Balance.jsx'));
+
 
 const App = () => {
   const dispatch = useDispatch();

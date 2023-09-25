@@ -1,19 +1,15 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-// import css from '../../utils/css-variables.css';
-
-import { formatMoney } from '../../utils/formatMoney';
-import { selectBalance } from '../../redux/store';
 
 export default function Balance() {
-  const balance = useSelector(selectBalance);
   return (
     <Container
       sx={{
         '@media (min-width: 780px)': {
           width: '360px',
+          padding: '8px 40px 11px',
         },
         '@media (min-width: 1200px)': {
           width: '395px',
@@ -21,10 +17,9 @@ export default function Balance() {
         width: '280px',
         backgroundColor: 'white',
         borderRadius: 30,
-        height: 'auto',
+        height: 80,
         textTransform: 'uppercase',
-        marginBottom: 32,
-        fontSize: 12,
+        padding: '8px 32px 11px',
       }}
     >
       <Box
@@ -32,10 +27,9 @@ export default function Balance() {
           fontSize: 12,
           fontWeight: 400,
           color: '#a6a6a6',
-          fontWeight: 'bold',
+
           display: 'flex',
           alignItems: 'start',
-          padding: '10px',
         }}
       >
         Your Balance
@@ -43,16 +37,14 @@ export default function Balance() {
       <Box
         sx={{
           fontSize: 30,
-          fontWeight: 400,
+          fontWeight: 700,
           color: 'black',
-          fontWeight: 'bold',
-          paddingBottom: '15px',
-          paddingLeft: '15px',
+
           display: 'flex',
           alignItems: 'start',
         }}
       >
-        ₴ {formatMoney(balance)}
+        ₴
       </Box>
     </Container>
   );
