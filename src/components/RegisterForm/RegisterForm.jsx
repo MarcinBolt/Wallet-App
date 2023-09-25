@@ -1,159 +1,187 @@
-//TODO
 import { useDispatch } from 'react-redux';
-import { logIn, register } from '../../redux/auth/auth.operations';
+import { register } from '../../redux/auth/auth.operations';
 import logo from '../../assets/images/apple-touch-icon.png';
-import css from "./RegisterForm.module.css"; 
-import * as Yup from "yup"; 
-import { Formik, Form, Field } from 'formik';
-import { NavLink } from 'react-router-dom';
-// import MainButton from './MainButton'; 
-     
+import css from './RegisterForm.module.css';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container'; 
+import Container from '@mui/system/Container';
+import Box from '@mui/system/Box';
 
- 
+const validationSchema = Yup.object().shape({
+  email: Yup.string('Please enter an e-mail')
+    .email('Please enter a valid e-mail')
+    .required('Email is required!'),
+  password: Yup.string('Please enter a password')
+    .min(6, 'The password must be at least 6 characters long')
+    .max(12, 'The password must not be longer then 12 characters')
+    .required('Password is required!'),
+  confirmPassword: Yup.string('Please repeat the password')
+    .oneOf([Yup.ref('password')], 'Passwords do not match')
+    .required('Password is required!'),
+  firstName: Yup.string('Please enter Your name')
+    .min(1, 'The password must be at least 1 character long')
+    .max(12, 'The password must not be longer then 12 characters')
+    .required('Password is required!'),
+});
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const validationsSchema = Yup.object().shape({
-    email: Yup.string("Please enter an e-mail")
-      .email("Please enter a valid e-mail")
-      .required("Email is required!"),
-    password: Yup.string("Please enter a password")
-      .min(6, "The password must be at least 6 characters long")
-      .max(12, "The password must not be longer then 12 characters")
-      .required("Password is required!"),
-      confirmPassword: Yup.string("Please repeat the password")
-    .oneOf([Yup.ref("password")], "Passwords do not match")
-    .required("Password is required!"),
-
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      firstName: '',
+    },
+    validationSchema,
+    onSubmit: values => {
+      dispatch(
+        register({
+          email: values.email,
+          password: values.password,
+          firstName: values.firstName,
+        }),
+      );
+      resetForm();
+    },
   });
- 
-  const handleSubmit =  values  => {
-    // event.preventDefault();
-    // const form = event.currentTarget;
-    // const data = new FormData(event.currentTarget);
-    console.log(values)
-    dispatch(register({ email: values.email, password: values.password, firstName: values.name })); 
-    // form.reset();
-  }; 
+
   return (
-    <div >  
-     <Formik 
-       initialValues={{ 
-        password: '',  
-        mail: '', 
-        confirmPassword:'',
-        name: '',
-       }} 
-       validationSchema={validationsSchema}
-        onSubmit={handleSubmit}
-  
-     >  
-       {({ errors, touched }) => ( 
-         <Form className={css.form}>   
-           <div className={css.logo_wrapper}> 
-              <img src={logo} alt="Logo" className={css.logo}/>
-              <h1 className={css.logo_text} >Wallet</h1>
-           </div>
-           <div className={css.container_input}>
-
-
-             <Field name="email" type="email" as={TextField} 
-             className={css.test}  
+    <>
+      <form onSubmit={formik.handleSubmit} className={css.form}>
+        <div className={css.logo_wrapper}>
+          <img src={logo} alt="Logo" className={css.logo} />
+          <h1 className={css.logo_text}>Wallet</h1>
+        </div>
+        <div className={css.container_input}>
+          <TextField
+            name="email"
+            type="email"
+            label="E-mail"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+            variant="outlined"
+            color="primary"
+            className={css.test}
             sx={{
-              "& fieldset": { border: 'none' },
+              '& fieldset': { border: 'none' },
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              alignItems: 'center', 
+              alignItems: 'center',
               borderBottom: 1,
               borderColor: 'grey.300',
-              padding: 0, 
-            }} 
-             variant="outlined" color="primary" label="E-mail" /> 
-             {errors.email && touched.email ? <div>{errors.email}</div> : null}  
- 
+              padding: 0,
+            }}
+          />
 
-            <Field name="password" type="password" as={TextField} 
-             className={css.test}  
+          <TextField
+            name="password"
+            type="password"
+            label="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            variant="outlined"
+            color="primary"
+            className={css.test}
             sx={{
-              "& fieldset": { border: 'none' }, 
+              '& fieldset': { border: 'none' },
               borderBottom: 1,
               borderColor: 'grey.300',
-              padding: 0, 
-            }} 
-             variant="outlined" color="primary" label="Password" /> 
-             {errors.password && touched.password ? ( 
-             <div>{errors.password}</div> 
-             ) : null} 
+              padding: 0,
+            }}
+          />
 
-            <Field name="confirmPassword" type="password" as={TextField} 
-             className={css.test}  
+          <TextField
+            name="confirmPassword"
+            type="password"
+            label="Confirm password"
+            value={formik.values.confirmPassword}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+            helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+            variant="outlined"
+            color="primary"
+            className={css.test}
             sx={{
-              "& fieldset": { border: 'none' }, 
+              '& fieldset': { border: 'none' },
               borderBottom: 1,
               borderColor: 'grey.300',
-              padding: 0, 
-            }} 
-             variant="outlined" color="primary" label="Confirm password" /> 
-             {errors.confirmPassword && touched.confirmPassword ? ( 
-             <div>{errors.confirmPassword}</div> 
-             ) : null} 
- 
+              padding: 0,
+            }}
+          />
 
-            <Field name="name" type="text" as={TextField} 
-             className={css.test}  
+          <TextField
+            name="firstName"
+            type="text"
+            label="First Name"
+            value={formik.values.firstName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+            helperText={formik.touched.firstName && formik.errors.firstName}
+            variant="outlined"
+            color="primary"
+            className={css.test}
             sx={{
-              "& fieldset": { border: 'none' }, 
+              '& fieldset': { border: 'none' },
               borderBottom: 1,
               borderColor: 'grey.300',
-              padding: 0, 
-            }} 
-             variant="outlined" color="primary" label="First Name" /> 
-             {errors.name && touched.name ? ( 
-             <div>{errors.name}</div> 
-             ) : null} 
-  
-           </div> 
-           <div className={css.button_container}> 
-              <Button type="submit"  
-               sx={{ mt: 3, mb: 2 , width: 280,
-                background: '#24cca7',
-                "&:hover": {
-                  background: '#35a78e'
-                },
+              padding: 0,
+            }}
+          />
+        </div>
+        <div className={css.button_container}>
+          <Button
+            type="submit"
+            sx={{
+              mt: 3,
+              mb: 2,
+              width: 280,
+              background: '#24cca7',
+              '&:hover': {
+                background: '#35a78e',
+              },
+              color: '#ffffff',
+              fontSize: 18,
+              borderRadius: 20,
+            }}
+          >
+            REGISTER
+          </Button>
+          <Button
+            type="button"
+            href="#/login"
+            sx={{
+              width: 280,
+              background: '#ffffff',
+              border: 1,
+              borderColor: '#4a56e2',
+              '&:hover': {
+                background: '#4a56e2',
                 color: '#ffffff',
-                fontSize: 18,
-                borderRadius: 20
-               }}
-              >REGISTER
-              </Button>
-              <Button  
-               type="button"
-               href="#/login" 
-               sx={{  width: 280,
-                background: '#ffffff',
-                "&:hover": {
-                  background: '#4a56e2',
-                  color: '#ffffff',
-                },
-                color: '#4a56e2',
-                fontSize: 18,
-                borderRadius: 20
-               }}
-              >LOG IN
-              </Button> 
-{/* <NavLink to="/register" className={`${css.button} ${css.main_btn}`}>REGISTER
-           </NavLink>  */} 
-           </div>  
-         </Form> 
-       )} 
-     </Formik> 
-   </div>
+              },
+              color: '#4a56e2',
+              fontSize: 18,
+              borderRadius: 20,
+            }}
+          >
+            LOG IN
+          </Button>
+        </div>
+      </form>
+    </>
   );
 };
 export default RegisterForm;

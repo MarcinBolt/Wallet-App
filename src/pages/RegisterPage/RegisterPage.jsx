@@ -1,14 +1,21 @@
-// import LoginForm from "../../components/LoginForm/LoginForm";
+import { Container } from "@mui/material";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import css from "./RegisterPage.module.css";
  
-
-  //      import LoginForm from "../components/LoginForm/LoginForm_altt";
 const RegisterPage = () => {
     return (
-    <div>  
-      <div className={css.page_wrapper}> 
+    <Container
+      maxWidth="sx"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+      }}
+    >  
+      {/* <div className={css.page_wrapper}>  */}
       <div className={css.subBackround}></div> 
         <div className={css.form_wrapper}>  
           <p className={css.page_text}>Finance App</p>
@@ -17,8 +24,8 @@ const RegisterPage = () => {
             <RegisterForm/>
           </div> 
         </div> 
-      </div> 
-    </div>
+     {/* </div> */}
+      </Container> 
     )
   };
   export default RegisterPage;
