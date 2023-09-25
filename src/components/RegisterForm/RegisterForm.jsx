@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/auth.operations';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../redux/auth/auth.operations.js';
 import logo from '../../assets/images/apple-touch-icon.png';
 import css from './RegisterForm.module.css';
 import * as Yup from 'yup';
@@ -29,7 +30,7 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -46,7 +47,7 @@ const RegisterForm = () => {
           firstName: values.firstName,
         }),
       );
-      resetForm();
+      formik.resetForm();
     },
   });
 

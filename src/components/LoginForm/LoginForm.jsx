@@ -1,17 +1,17 @@
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/auth.operations';
+import { logIn } from '../../redux/auth/auth.operations.js';
 import logo from '../../assets/images/apple-touch-icon.png';
 import css from './LoginForm.module.css';
-import btn from './MainButton.module.css';
+// import btn from './MainButton.module.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { NavLink } from 'react-router-dom';
-import MainButton from './MainButton';
+// import { NavLink } from 'react-router-dom';
+// import MainButton from './MainButton';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+// import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+// import Box from '@mui/material/Box';
+// import Container from '@mui/material/Container';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -34,12 +34,12 @@ const LoginForm = () => {
     validationSchema,
     onSubmit: values => {
       dispatch(
-        register({
+        logIn({
           email: values.email,
           password: values.password,
         }),
       );
-      resetForm();
+      formik.resetForm();
     },
   });
 
