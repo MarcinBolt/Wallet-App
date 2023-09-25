@@ -39,7 +39,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path={'home'} element={<Home />} />
           <Route path={'diagram'} element={<Chart />} />
-          <Route path={'dollar'} element={<CurrencyTable />} />{' '}
+          <Route path={'statistics'} element={<CurrencyTable />} />{' '}
         </Route>
         <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />

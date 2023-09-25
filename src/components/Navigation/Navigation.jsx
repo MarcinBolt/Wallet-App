@@ -11,8 +11,7 @@ const Navigation = () => {
       <NavLink className={css.diagram__link} to="diagram">
         <span className={css.diagram__span}>Statistics</span>
       </NavLink>
-      <NavLink className={css.dollar__link} to="dollar">
-      </NavLink>
+      <NavLink className={css.dollar__link} to="statistics"></NavLink>
     </nav>
   );
 };

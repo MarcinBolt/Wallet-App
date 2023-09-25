@@ -98,6 +98,6 @@
     background-color: var(--color-bg-widget-currency);
     box-shadow: 0px 3px 10px 0px;
     opacity: 50%;
-    font-weight: 700;
+    font-family: var(--font-primary-bold);
   }
 }
