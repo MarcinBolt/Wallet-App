@@ -1,8 +1,9 @@
 import Media from 'react-media';
-import  from '.../utils/constants.js'
+import { mediaQueries } from '../../utils/constants';
 
 const Dashboard = () => {
-    return (
+const { mobile, tablet, desktop } = mediaQueries;
+  return (
         <Media>
 
         </Media>
