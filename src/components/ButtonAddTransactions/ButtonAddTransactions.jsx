@@ -13,3 +13,13 @@ export const ButtonAddTransactions = ({ handleClick }) => {
   );
 };
  
+//trzeba zaimportowac ten komponent do HomeTab import { ButtonAddTransactions } from '../../components/buttonAddTransactions/buttonAddTransactions'
+//cos takiego    <ButtonAddTransactions
+      //   handleClick={() => {
+      //     dispatch(openModal('isModalAddTransactionOpen'));
+      //     const scrollToTop = () => {
+      //       window.scrollTo(0, 0);
+      //     };
+      //     scrollToTop();
+      //   }}
+      // />
