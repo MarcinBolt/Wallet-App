@@ -1,0 +1,16 @@
+.logoWrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 700;
+  margin-left: 15.56px;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+    margin-left: 20px;
+  }
+}
