@@ -1,5 +1,4 @@
 import SvgIcon from '@mui/material/SvgIcon';
-import { Typography } from '@mui/material';
 import css from './Logo.module.css';
 
 const Logo = () => {
