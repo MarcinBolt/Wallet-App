@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsModalLogoutOpen } from '../../redux/selectors';
 import { openModalLogout } from '../../redux/auth/auth.slice';
 import { selectUserFirstName } from '../../redux/selectors';
+import Logo from '../Logo/Logo';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
@@ -39,7 +40,7 @@ const Header = () => {
             justifyContent: 'left',
           }}
         >
-          /** tu będzie komponent logo */
+          <Logo />
         </div>
         <div className={css.userWrapper} onClick={handleModalLogoutOpen}>
           <p className={css.text}>{name}</p>
@@ -66,7 +67,6 @@ const Header = () => {
             </SvgIcon>
             <p className={css.exit}>Exit</p>
           </div>
-         
         </div>
       </Container>
     </div>
@@ -75,4 +75,4 @@ const Header = () => {
 
 export default Header;
 
- // logika dodawania modala logout
+// logika dodawania modala logout
