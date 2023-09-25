@@ -21,10 +21,10 @@ const Header = () => {
     <div className={css.headerWrapper}>
       <Container
         sx={{
-          '@media (min-width: 780px)': {
+          '@media screen and (min-width: 780px)': {
             padding: '0 32px',
           },
-          '@media (min-width: 1280px)': {
+          '@media screen and (min-width: 1280px)': {
             padding: '0 16px',
           },
           padding: '0 20px',

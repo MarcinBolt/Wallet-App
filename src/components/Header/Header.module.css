@@ -1,11 +1,10 @@
 .headerWrapper {
-  background-color: var(--color-bg-secondary);
-  width: 100vw;
-  height: 60px;
   display: flex;
   justify-content: center;
   margin: 0;
+  background-color: var(--color-bg-secondary);
   width: 100vw;
+  height: 60px;
 
   @media screen and (min-width: 768px) {
     height: 80px;
@@ -25,9 +24,9 @@
 }
 
 .exitWrapper {
-  height: 30px;
   display: flex;
   justify-content: center;
+  height: 30px;
   align-items: center;
   @media screen and (min-width: 768px) {
     margin-left: 0;
