@@ -9,6 +9,7 @@
     "start": "nodemon ./server/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server/server.js",
     "build": "vite build",
+    "faker:t": "node ./server/utils/transactions.faker.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -51,6 +52,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
