@@ -1,6 +1,6 @@
 import css from './Button.module.css';
 
-const Button = ({ type, content, onClick = null, idDisabled = false, hasAccent = false }) => {
+const MainButton = ({ type, content, onClick = null, idDisabled = false, hasAccent = false }) => {
   const setBgColor = hasAccent => (hasAccent ? `#24CCA7` : `#ffffff`);
   const setColor = hasAccent => (hasAccent ? `#ffffff` : `#4A56E2`);
   const setBorder = hasAccent => (hasAccent ? `#24CCA7` : `#4A56E2`);
@@ -23,4 +23,4 @@ const Button = ({ type, content, onClick = null, idDisabled = false, hasAccent =
   );
 };
 
-export default Button;
+export default MainButton;
