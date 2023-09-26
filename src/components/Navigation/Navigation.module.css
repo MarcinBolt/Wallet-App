@@ -1,3 +1,5 @@
+@import '../../utils/css-variables.css';
+
 @media screen and (max-width: 767px) {
   .list {
     margin: 0 auto;
@@ -23,6 +25,10 @@
     background-image: url('../../assets/icons/home.svg');
   }
 
+  .home__link:hover::before {
+    background-image: url('../../assets/icons/home-hover.svg');
+  }
+
   .diagram__link::before {
     display: block;
     content: '';
@@ -32,6 +38,10 @@
     background-image: url('../../assets/icons/diagram.svg');
   }
 
+  .diagram__link:hover::before {
+    background-image: url('../../assets/icons/diagram-hover.svg');
+  }
+
   .dollar__link::before {
     display: block;
     content: '';
@@ -39,6 +49,10 @@
     height: 44px;
     background-size: contain;
     background-image: url('../../assets/icons/currency.svg');
+  }
+
+   .dollar__link:hover::before {
+    background-image: url('../../assets/icons/currency-hover.svg');
   }
 
   .active {
@@ -77,6 +91,10 @@
     }
   }
 
+  .home__link:hover::before {
+    background-image: url('../../assets/icons/home-hover.svg');
+  }
+
   .diagram__link {
     width: 128px;
     display: inline-flex;
@@ -93,6 +111,10 @@
     }
   }
 
+  .diagram__link:hover::before {
+    background-image: url('../../assets/icons/diagram-hover.svg');
+  }
+
   .dollar__link {
     display: none;
   }
@@ -102,6 +124,11 @@
     font-family: var(--font-primary);
     font-size: 18px;
     margin-left: 23px;
+  }
+
+  .home__span:hover,
+  .diagram__span:hover {
+    font-weight: 700;
   }
 
   .active {

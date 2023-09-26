@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
-import Home from './components/Home/Home.jsx';
 import CurrencyTable from './components/CurrencyTable/CurrencyTable.jsx';
 import Chart from './components/Chart/Chart.jsx';
 
@@ -36,8 +35,8 @@ const App = () => {
           path={`/dashboard`}
           element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
         >
-          <Route index element={<Home />} />
-          <Route path={'home'} element={<Home />} />
+          <Route index element={<Dashboard />} />
+          <Route path={'home'} element={<Dashboard />} />
           <Route path={'diagram'} element={<Chart />} />
           <Route path={'statistics'} element={<CurrencyTable />} />{' '}
         </Route>
