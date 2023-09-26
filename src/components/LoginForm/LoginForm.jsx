@@ -113,7 +113,7 @@ const LoginForm = () => {
               span: { color: 'grey.400' },
               '&::before': {
                 position: 'absolute',
-                bottom: '12px',
+                top: '16px',
                 left: '12px',
                 display: 'block',
                 content: '""',
@@ -188,7 +188,7 @@ const LoginForm = () => {
               span: { color: 'grey.400' },
               '&::before': {
                 position: 'absolute',
-                bottom: '12px',
+                top: '11px',
                 left: '12px',
                 display: 'block',
                 content: '""',
