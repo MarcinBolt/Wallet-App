@@ -13,7 +13,9 @@ import css from './Dashboard.module.css';
 const DashboardMobile = () => {
   return (
     <>
-      <TempNavi />
+      <div className={css.navMobileWrapper}>
+        <TempNavi />
+      </div>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
