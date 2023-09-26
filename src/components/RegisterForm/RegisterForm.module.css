@@ -18,10 +18,13 @@
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 }
 
-
 .form-field {
   position: relative;
   margin-bottom: 40px;
+}
+
+.container_input {
+  position: relative;
 }
 
 .button_container {
@@ -29,21 +32,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .button {
   display: inline-block;
   height: 50px;
   width: 280px;
-
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-
   border-radius: 20px;
   text-align: center;
   color: var(--color-text-secondary);

@@ -18,10 +18,8 @@
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 }
 
-
-.form-field {
+.container_input {
   position: relative;
-  margin-bottom: 40px;
 }
 
 .button_container {
@@ -29,7 +27,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .button {
@@ -57,4 +56,3 @@
     width: 300px;
   }
 }
-
