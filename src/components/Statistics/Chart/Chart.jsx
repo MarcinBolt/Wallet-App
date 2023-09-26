@@ -29,7 +29,7 @@ const Chart = () => {
       backgroundColor: [...bgColor],
       borderColor: [...borderColor],
         borderWidth: 1,
-        cutout: '80%',
+        cutout: '70%',
     }],  
 }
 
