@@ -9,12 +9,14 @@
     "start": "nodemon ./server/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server/server.js",
     "build": "vite build",
+    "faker:t": "node ./server/utils/transactions.faker.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.10",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
@@ -24,6 +26,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "formik": "^2.4.5",
     "joi": "^17.10.2",
     "jsonwebtoken": "^9.0.2",
     "modern-normalize": "^2.0.0",
@@ -45,9 +48,11 @@
     "redux-persist": "^6.0.0",
     "swagger-autogen": "^2.23.6",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
