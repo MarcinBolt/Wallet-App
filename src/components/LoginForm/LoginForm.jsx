@@ -11,7 +11,7 @@ import Logo from '../Logo/Logo.jsx';
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
     .email('Please enter a valid e-mail')
-    .required('Email is required!'),
+    .required('E-mail is required!'),
   password: Yup.string('Please enter a password')
     .min(6, 'Minimum 6 characters long')
     .max(12, 'Maximum 12 characters long')
