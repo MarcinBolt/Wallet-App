@@ -24,6 +24,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "joi": "^17.10.2",
     "jsonwebtoken": "^9.0.2",
     "modern-normalize": "^2.0.0",
     "mongoose": "^7.5.2",

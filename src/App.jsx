@@ -41,7 +41,7 @@ const App = () => {
           <Route path={'diagram'} element={<Chart />} />
           <Route path={'statistics'} element={<CurrencyTable />} />{' '}
         </Route>
-        <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
+        <Route exact path={`/`} element={<PublicRoute component={<Dashboard />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
         <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
         <Route

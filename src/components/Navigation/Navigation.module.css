@@ -1,9 +1,12 @@
 @media screen and (max-width: 767px) {
-  .nav {
+  .list {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 280px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 12px;
+    list-style: none;
   }
 
   .home__span,
@@ -46,16 +49,22 @@
 }
 
 @media screen and (min-width: 768px) {
-  .nav {
-    display: flex;
-    flex-direction: column;
-    padding: 40px 0 28px 32px;
-    gap: 12px;
+  .list {
+    margin: 0 auto;
+    & > li {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+    }
+    & > li:nth-child(1) {
+      margin-bottom: 12px;
+    }
   }
 
   .home__link {
-    width: 99px;
+    width: 100px;
     display: inline-flex;
+    align-items: center;
     text-decoration: none;
     font-size: 18px;
     &::before {
@@ -63,14 +72,15 @@
       content: '';
       width: 24px;
       height: 24px;
-      background-size: contain;
+      background-size: cover;
       background-image: url('../../assets/icons/home.svg');
     }
   }
 
   .diagram__link {
-    width: 125px;
+    width: 128px;
     display: inline-flex;
+    align-items: center;
     text-decoration: none;
     font-size: 18px;
     &::before {
@@ -78,7 +88,7 @@
       content: '';
       width: 24px;
       height: 24px;
-      background-size: contain;
+      background-size: cover;
       background-image: url('../../assets/icons/diagram.svg');
     }
   }
@@ -91,7 +101,7 @@
   .diagram__span {
     font-family: var(--font-primary);
     font-size: 18px;
-    margin-left: 20px;
+    margin-left: 23px;
   }
 
   .active {
