@@ -18,65 +18,11 @@
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 }
 
-/* .text {
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 25px;
 
-  font-family: 'Circe';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-
-  color: var(--placeholder-text);
-  text-align: center;
-} */
-
-/* .container_input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding-left: 12.5px;
-  padding-right: 12.5px;
-
-  @media screen and (min-width: 767px) {
-    padding-left: 45px;
-    padding-right: 45px;
-  }
-} */
-
-/* .form-field {
+.form-field {
   position: relative;
   margin-bottom: 40px;
-} */
-
-/* .input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-  border-bottom: 1px solid var(--color-icons-form-);
-  outline-style: none;
-  padding-left: 25px;
-  width: 250px;
-  height: 35px;
-
-  padding-left: 25px;
-  margin-bottom: 25px;
-
-  font-family: 'Circe';
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-
-  @media screen and (min-width: 768px) {
-    width: 409px;
-  }
-} */
+}
 
 .button_container {
   display: flex;
@@ -111,14 +57,3 @@
     width: 300px;
   }
 }
-
-/* .test {
-  width: 280px;
-  height: 32px;
-  margin-top: 40px;
-} */
-
-/* .test::placeholder {
-  padding-bottom: 8px;
-  color: var(--placeholder-text);
-} */

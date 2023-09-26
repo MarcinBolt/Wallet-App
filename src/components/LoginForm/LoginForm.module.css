@@ -18,63 +18,11 @@
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 }
 
-/* .text {
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 25px;
-
-  font-family: 'Circe';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-
-  color: var(--placeholder-text);
-  text-align: center;
-} */
-
-/* .container_input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-
-  @media screen and (min-width: 767px) {
-    padding-left: 45px;
-    padding-right: 45px;
-  }
-} */
 
 .form-field {
   position: relative;
   margin-bottom: 40px;
 }
-
-/* .input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-  border-bottom: 1px solid var(--color-icons-form-);
-  outline-style: none;
-  padding-left: 25px;
-  width: 250px;
-  height: 35px;
-
-  padding-left: 25px;
-  margin-bottom: 25px;
-
-  font-family: 'Circe';
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-
-  @media screen and (min-width: 768px) {
-    width: 409px;
-  }
-} */
 
 .button_container {
   display: flex;
@@ -110,90 +58,3 @@
   }
 }
 
-/* .email {
-  border: none;
-  border-color: grey.400;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-top: 20px;
-  margin-bottom: 0px;
-  width: 280px;
-
-  .email > div {
-    outline: none;
-  }
-
-  .email > fieldset {
-    
-    border: none;
-    outline: none;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border-color: grey;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .email > input {
-    border: none;
-    outline: none;
-    color: grey;
-    font-family: var(--font-primary);
-    font-size: 18px;
-    margin-left: 40px;
-    padding-left: 0px;
-    padding-top: 8px;
-    padding-bottom: 11px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .email > fieldset:focus, 
-  .email > fieldset:hover, 
-  .email > fieldset:active, 
-  .email > input:focus, 
-  .email > input:hover {
-    border: none;
-    outline: none;
-    color: grey;
-    font-family: var(--font-primary);
-    font-size: 18px;
-    margin-left: 40px;
-    padding-left: 0px;
-    padding-top: 8px;
-    padding-bottom: 11px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  &label {
-    color: grey;
-    padding-left: 5px;
-  }
-  &p {
-    color: grey.400;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &legend {
-    color: grey;
-  }
-  &span {
-    color: grey;
-  }
-} */
-
-/* .test::placeholder {
-  padding-bottom: 12px;
-  color: var(--placeholder-text);
-} */

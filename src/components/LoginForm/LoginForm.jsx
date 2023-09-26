@@ -63,6 +63,7 @@ const LoginForm = () => {
             color="grey"
             className={css.email}
             sx={{
+              position: 'relative',
               border: 'none',
               borderColor: 'grey.400',
               paddingTop: '0px',
@@ -110,6 +111,17 @@ const LoginForm = () => {
               },
               legend: { color: 'grey.400' },
               span: { color: 'grey.400' },
+              '&::before': {
+                position: 'absolute',
+                bottom: '12px',
+                left: '12px',
+                display: 'block',
+                content: '""',
+                backgroundImage: 'URL("../../assets/icons/sprite.svg#icon-email")',
+                backgroundSize: 'contain',
+                width: '20px',
+                height: '16px',
+              },
             }}
           />
 
@@ -126,6 +138,7 @@ const LoginForm = () => {
             color="grey"
             className={css.test}
             sx={{
+              position: 'relative',
               border: 0,
               borderColor: 'grey.400',
               paddingTop: '0px',
@@ -173,6 +186,17 @@ const LoginForm = () => {
               },
               legend: { color: 'grey.400' },
               span: { color: 'grey.400' },
+              '&::before': {
+                position: 'absolute',
+                bottom: '12px',
+                left: '12px',
+                display: 'block',
+                content: '""',
+                backgroundImage: 'URL("../../assets/icons/sprite.svg#icon-name")',
+                backgroundSize: 'contain',
+                width: '16px',
+                height: '21px',
+              },
             }}
           />
         </div>

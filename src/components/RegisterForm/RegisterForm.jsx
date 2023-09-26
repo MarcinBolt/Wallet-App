@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Logo from '../Logo/Logo.jsx';
+import { background } from '@chakra-ui/react';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -66,6 +67,7 @@ const RegisterForm = () => {
             color="grey"
             className={css.test}
             sx={{
+              position: 'relative',
               border: 0,
               borderColor: 'grey.400',
               paddingTop: '0px',
@@ -113,6 +115,17 @@ const RegisterForm = () => {
               },
               legend: { color: 'grey.400' },
               span: { color: 'grey.400' },
+              '&::before': {
+                position: 'absolute',
+                bottom: '12px',
+                left: '12px',
+                display: 'block',
+                content: '""',
+                backgroundImage: 'URL("../../assets/icons/sprite.svg#icon-email")',
+                backgroundSize: 'contain',
+                width: '20px',
+                height: '16px',
+              },
             }}
           />
 
@@ -129,6 +142,7 @@ const RegisterForm = () => {
             color="grey"
             className={css.test}
             sx={{
+              position: 'relative',
               border: 0,
               borderColor: 'grey.400',
               paddingTop: '0px',
@@ -176,6 +190,17 @@ const RegisterForm = () => {
               },
               legend: { color: 'grey.400' },
               span: { color: 'grey.400' },
+              '&::before': {
+                position: 'absolute',
+                bottom: '34px',
+                left: '12px',
+                display: 'block',
+                content: '""',
+                backgroundImage: 'URL("../../assets/icons/sprite.svg#icon-lock")',
+                backgroundSize: 'contain',
+                width: '16px',
+                height: '21px',
+              },
             }}
           />
 
@@ -192,6 +217,7 @@ const RegisterForm = () => {
             color="grey"
             className={css.test}
             sx={{
+              position: 'relative',
               border: 0,
               borderColor: 'grey.400',
               paddingTop: '0px',
@@ -239,6 +265,17 @@ const RegisterForm = () => {
               },
               legend: { color: 'grey.400' },
               span: { color: 'grey.400' },
+              '&::before': {
+                position: 'absolute',
+                bottom: '12px',
+                left: '12px',
+                display: 'block',
+                content: '""',
+                backgroundImage: 'URL("../../assets/icons/sprite.svg#icon-name")',
+                backgroundSize: 'contain',
+                width: '16px',
+                height: '21px',
+              },
             }}
           />
 
@@ -255,6 +292,7 @@ const RegisterForm = () => {
             color="grey"
             className={css.test}
             sx={{
+              position: 'relative',
               border: 0,
               borderColor: 'grey.400',
               paddingTop: '0px',
@@ -302,6 +340,17 @@ const RegisterForm = () => {
               },
               legend: { color: 'grey.400' },
               span: { color: 'grey.400' },
+              '&::before': {
+                position: 'absolute',
+                bottom: '12px',
+                left: '12px',
+                display: 'block',
+                content: '""',
+                backgroundImage: 'URL("../../assets/icons/sprite.svg#icon-name")',
+                backgroundSize: 'contain',
+                width: '18px',
+                height: '18px',
+              },
             }}
           />
         </div>
