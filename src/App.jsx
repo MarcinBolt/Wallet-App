@@ -9,9 +9,9 @@ import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
 
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard.jsx'));
 const Login = lazy(() => import('./pages/Login.jsx'));
 const Register = lazy(() => import('./pages/Register.jsx'));
-const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 const App = () => {

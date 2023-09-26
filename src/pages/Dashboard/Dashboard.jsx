@@ -1,23 +1,30 @@
 import Media from 'react-media';
 import { mediaQueries } from '../../utils/constants';
 import Container from '@mui/material/Container';
-import Header from '../Header/Header';
-import TempNavi from '../temporary components/TempNavi';
+import Header from '../../components/Header/Header';
+import TempNavi from '../../components/temporary components/TempNavi';
 
 const DashboardMobile = () => {
-  <>
-    <h1>Dashboard Mobile</h1>
-  </>;
+  return (
+    <>
+      <TempNavi />
+      
+    </>
+  );
 };
 const DashboardTablet = () => {
-  <>
-    <h1>Dashboard Tablet</h1>
-  </>;
+  return (
+    <>
+      <h1>Dashboard Tablet</h1>
+    </>
+  );
 };
 const DashboradDesktop = () => {
-  <>
-    <h1>Dashboard Desktop</h1>
-  </>;
+  return (
+    <>
+      <h1>Dashboard Desktop</h1>
+    </>
+  );
 };
 
 const Dashboard = () => {
@@ -26,11 +33,12 @@ const Dashboard = () => {
   return (
     <div>
       <Header />
+      /* PageContainer
       <Media
         queries={{
-          small: `${mobile}`,
-          medium: `${tablet}`,
-          large: `${desktop}`,
+          small: mobile,
+          medium: tablet,
+          large: desktop,
         }}
       >
         {matches => (
