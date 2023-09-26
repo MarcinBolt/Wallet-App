@@ -29,11 +29,12 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         //TODO
-        <Route
-          exact
-          path={`/dashboard`}
-          element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
-        />
+        <Route exact path={`/dashboard`} element={<PrivateRoute component={<Dashboard />} redirect={'/'} />} >
+        
+          <Route exact path={'/transactions'} element={<PrivateRoute component={<HomeTab/>} redirect={'/'} />}>
+
+         </Route>
+         
         //TODO
         <Route exact path={`/`} element={<PublicRoute component={<Dashboard />} />} />
         <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
