@@ -39,7 +39,7 @@ const StatsTable = ()=> {
             <TableCell className={css.headerSum}>Sum</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody >
+        <TableBody>
           {rows.map((row) => (
             <TableRow key={row.category}  className={css.row}>
               <TableCell component="th" scope="row" className={css.tableCategoryCell} ><span style={{ backgroundColor: row.color }} className={css.span}></span>

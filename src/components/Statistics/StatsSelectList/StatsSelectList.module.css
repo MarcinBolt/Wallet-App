@@ -46,7 +46,10 @@
 
 .select option {
     background-color: var(--color-bg-primary);
+    font-size: 16px;
+    font-family: var(--font-secondary);
 }
+
 
 .select option:checked,
 .select option:hover {
