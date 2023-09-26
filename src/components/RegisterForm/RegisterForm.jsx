@@ -21,9 +21,9 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref('password')], 'Passwords do not match')
     .required('Password is required!'),
   firstName: Yup.string('Please enter Your name')
-    .min(6, 'Minimum 1 character long')
+    .min(1, 'Minimum 1 character long')
     .max(12, 'Maximum 12 characters long')
-    .required('Password is required!'),
+    .required('First Name is required!'),
 });
 
 const RegisterForm = () => {
