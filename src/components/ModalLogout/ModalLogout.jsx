@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import css from './ModalLogout.module.css';
+import { toast } from 'react-toastify';
 
 export const ModalLogout = ({ closeModal, handleLogout }) => {
   useEffect(() => {
@@ -11,6 +12,16 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
   }, [closeModal]);
+
+  const confirmLogout = async () => {
+    try {
+      await handleLogout();
+      closeModal();
+    } catch (error) {
+      toast.error('Błąd podczas wylogowywania.');
+      closeModal();
+    }
+  };
 
   return (
     <>
@@ -24,7 +35,7 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
               type="button"
               text="LOGOUT"
               className={`${css.logo} ${css.logout_button}`}
-              onClick={handleLogout}
+              onClick={confirmLogout}
             >
               {' '}
               Confirm{' '}
