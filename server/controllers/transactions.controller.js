@@ -160,7 +160,6 @@ const deleteOwnerTransactionById = async (req, res, next) => {
 const getOwnerTransactionsByCategory = async (req, res, next) => {
   const owner = req.user.id;
   const { category } = req.params;
-  console.log(category);
   const { _, error } = transactionCategoryBodySchema.validate(category);
   if (error) {
     return res.status(400).json({ message: error.message });
