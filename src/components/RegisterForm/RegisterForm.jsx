@@ -12,18 +12,18 @@ import Logo from '../Logo/Logo.jsx';
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
     .email('Please enter a valid e-mail')
-    .required('Email is required!'),
+    .required('E-mail is required!'),
   password: Yup.string('Please enter a password')
     .min(6, 'Minimum 6 characters long')
     .max(12, 'Maximum 12 characters long')
     .required('Password is required!'),
   confirmPassword: Yup.string('Please repeat the password')
     .oneOf([Yup.ref('password')], 'Passwords do not match')
-    .required('Password is required!'),
+    .required('Confirmation is required!'),
   firstName: Yup.string('Please enter Your name')
-    .min(6, 'Minimum 1 character long')
+    .min(1, 'Minimum 1 character long')
     .max(12, 'Maximum 12 characters long')
-    .required('Password is required!'),
+    .required('First Name is required!'),
 });
 
 const RegisterForm = () => {
