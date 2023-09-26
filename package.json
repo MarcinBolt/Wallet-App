@@ -19,7 +19,6 @@
     "dotenv": "^16.3.1",
     "modern-normalize": "^2.0.0",
     "notiflix": "^3.2.6",
-    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
