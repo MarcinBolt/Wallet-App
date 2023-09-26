@@ -31,8 +31,8 @@ const rows = [
 
 const StatsTable = ()=> {
   return (
-    <TableContainer className={css.tableContainer} component={Paper} elevation={0} style={{backgroundColor: '#e7eaf2'}}>
-      <Table aria-label="simple table">
+    <TableContainer className={css.tableContainer} component={Paper} elevation={0} style={{backgroundColor: 'transparent'}}>
+      <Table aria-label="simple table" style={{borderCollapse: 'unset'}}>
         <TableHead style={{backgroundColor: 'white', width: '100%'}} sx={{ '&:first-child td, &:first-child th': { border: 0 } }}>
           <TableRow className={css.tableRow}>
             <TableCell className={css.headerCategory}>Category</TableCell>
