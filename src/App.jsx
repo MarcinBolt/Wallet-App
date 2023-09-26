@@ -9,8 +9,6 @@ import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
-import LoginPage from './pages/LoginPage/LoginPage.jsx';
-import LoginForm from './components/LoginForm/LoginForm.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
