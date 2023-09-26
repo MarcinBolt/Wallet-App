@@ -10,6 +10,7 @@ import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
 import CurrencyTable from './components/CurrencyTable/CurrencyTable.jsx';
 import DiagramTab from './components/DiagramTab/DiagramTab.jsx';
+import HomeTab from './components/HomeTab/HomeTab.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
@@ -36,12 +37,12 @@ const App = () => {
             <Route exact index element={<PrivateRoute component={<HomeTab />} />} />
             <Route
               exact
-              path={'/statistics'}
+              path={'statistics'}
               element={<PrivateRoute component={<DiagramTab />} />}
             />
             <Route
               exact
-              path={'/currency'}
+              path={'currency'}
               element={<PrivateRoute component={<CurrencyTable />} />}
             />
           </Route>

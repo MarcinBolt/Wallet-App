@@ -4,16 +4,15 @@ import { mediaQueries } from '../../utils/constants';
 import Header from '../../components/Header/Header';
 import TempNavi from '../../components/temporary components/TempNavi';
 import { Outlet } from 'react-router-dom';
-import { css } from '@emotion/react';
 import CurrencyTable from '../../components/CurrencyTable/CurrencyTable';
 import TempBalance from '../../components/temporary components/TempBalance';
 import Loader from '../../components/Loader/Loader';
 import PageContainer from '../../components/PageContainer/PageContainer ';
+import css from './Dashboard.module.css';
 
 const DashboardMobile = () => {
   return (
     <>
-      <Header />
       <TempNavi />
       <Suspense fallback={<Loader />}>
         <Outlet />
@@ -23,29 +22,27 @@ const DashboardMobile = () => {
 };
 const DashboardTablet = () => {
   return (
-    <>
-      <Header />
-      <div className={css.dashboardTabletWrapper}>
-        <div>
-          <TempNavi />
-          <TempBalance />
+    <PageContainer>
+      <div className={css.dashboardTablet}>
+        <div className={css.dashboardTabletWrapper}>
+          <div className={css.navBalTabletWrapper}>
+            <TempNavi />
+            <TempBalance />
+          </div>
+          <div className={css.currTabletWrapper}>
+            <CurrencyTable />
+          </div>
         </div>
-        <div>
-          <CurrencyTable />
-        </div>
-      </div>
-      <div>
         <Suspense fallback={<Loader />}>
           <Outlet />
-        </Suspense>
+        </Suspense>{' '}
       </div>
-    </>
+    </PageContainer>
   );
 };
-const DashboradDesktop = () => {
+const DashboardDesktop = () => {
   return (
     <>
-      <Header />
       <div>
         <TempNavi />
         <TempBalance />
@@ -64,25 +61,23 @@ const Dashboard = () => {
   const { mobile, tablet, desktop } = mediaQueries;
 
   return (
-    <div>
+    <div className={css.dashboard}>
       <Header />
-      <PageContainer>
-        <Media
-          queries={{
-            small: mobile,
-            medium: tablet,
-            large: desktop,
-          }}
-        >
-          {matches => (
-            <div>
-              {matches.small && <DashboardMobile />}
-              {matches.medium && <DashboardTablet />}
-              {matches.large && <DashboradDesktop />}
-            </div>
-          )}
-        </Media>
-      </PageContainer>
+      <Media
+        queries={{
+          small: mobile,
+          medium: tablet,
+          large: desktop,
+        }}
+      >
+        {matches => (
+          <div>
+            {matches.small && <DashboardMobile />}
+            {matches.medium && <DashboardTablet />}
+            {matches.large && <DashboardDesktop />}
+          </div>
+        )}
+      </Media>
     </div>
   );
 };
