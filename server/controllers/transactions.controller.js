@@ -99,7 +99,7 @@ const getOwnerTransactionById = async (req, res, next) => {
   }
 };
 
-const updateOwnerTransactionById = async (req, res, next) => {
+const updateOwnerTransactionById = async (req, res, _) => {
   const owner = req.user.id;
   const { id } = req.params;
   const { value, error } = transactionBodySchema.validate(req.body);
@@ -110,7 +110,7 @@ const updateOwnerTransactionById = async (req, res, next) => {
 
   try {
     const updatedTransaction = await updateOwnerTransactionByIdInDB(id, owner, value);
-    if (transaction) {
+    if (updatedTransaction) {
       return res.json({
         status: 'success',
         code: 200,
@@ -137,6 +137,7 @@ const updateOwnerTransactionById = async (req, res, next) => {
 const deleteOwnerTransactionById = async (req, res, next) => {
   const owner = req.user.id;
   const { id } = req.params;
+
   try {
     const deletedTransaction = await deleteOwnerTransactionByIdInDB(id, owner);
     if (deletedTransaction) {

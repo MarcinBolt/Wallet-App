@@ -17,9 +17,10 @@ import {
   userRegisterReqBodySchema,
   userLoginReqBodySchema,
   userEmailReqBodySchema,
-} from '../utils/joi.schemas..js';
+} from '../utils/joi.schemas.js';
 import capitalizeEachWord from '../utils/capitalizer.js';
 import { capitalize } from '@mui/material';
+import { deleteOwnerAllTransactionsIdInDB } from '../service/transactions.service.js';
 
 const createNewUser = async (req, res, _) => {
   try {
@@ -101,7 +102,7 @@ const deleteUser = async (req, res, _) => {
         message: 'Email is wrong',
       });
     }
-
+    await deleteOwnerAllTransactionsIdInDB(userIdFromReqAuthorizedToken);
     await deleteUserByIdInDB(userIdFromReqAuthorizedToken);
 
     res.status(200).json({
@@ -193,7 +194,7 @@ const logoutUser = async (req, res, _) => {
     const id = user.id;
     token = null;
 
-     await updateUserDataByIdInDB(id, { token });
+    await updateUserDataByIdInDB(id, { token });
 
     return res.json({
       status: 'success',
