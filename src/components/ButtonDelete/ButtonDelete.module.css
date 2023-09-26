@@ -3,9 +3,12 @@
 .ButtonDelete {
   background-color: var(--color-bg-btn-delete);
   border-radius: var(--radius-btn-delete);
-  width: 43;
-  height: 18;
+  width: 67px;
+  height: 26px;
   text-transform: capitalize;
+  border: 0;
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
 }
 
 .ButtonDelete:hover {

@@ -1,11 +1,10 @@
-import Button from '@mui/material/Button';
 import css from './ButtonDelete.module.css';
 
-const ButtonDelete = () => {
+const ButtonDelete = ({ handleClick }) => {
   return (
-    <Button variant="contained" className={css.ButtonDelete}>
+    <button type="button" className={css.ButtonDelete} onClick={handleClick}>
       Delete
-    </Button>
+    </button>
   );
 };
 
