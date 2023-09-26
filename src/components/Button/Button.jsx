@@ -1,26 +1,26 @@
-import Button from '@mui/material/Button';
+import css from './Button.module.css';
 
-const MainButton = ({ type, content, onClick = null, disabled = false, hasaccent = false }) => {
-  const setBgColor = hasaccent => (hasaccent ? `#24CCA7` : `#ffffff`);
-  const setColor = hasaccent => (hasaccent ? `#ffffff` : `#4A56E2`);
-  const setBorder = hasaccent => (hasaccent ? `#24CCA7` : `#4A56E2`);
+const Button = ({ type, content, onClick = null, idDisabled = false, hasAccent = false }) => {
+  const setBgColor = hasAccent => (hasAccent ? `#24CCA7` : `#ffffff`);
+  const setColor = hasAccent => (hasAccent ? `#ffffff` : `#4A56E2`);
+  const setBorder = hasAccent => (hasAccent ? `#24CCA7` : `#4A56E2`);
 
   return (
-    <Button
+    <button
       type={type}
       onClick={onClick}
-      disabled={disabled}
-      hasAccent={hasaccent}
-      className={css.MainButton}
+      disabled={idDisabled}
+      hasAccent={hasAccent}
+      className={css.Button}
       sx={{
-        backgroundColor: setBgColor(hasaccent),
-        color: setColor(hasaccent),
-        border: `1px solid ${setBorder(hasaccent)}`,
+        backgroundColor: setBgColor(hasAccent),
+        color: setColor(hasAccent),
+        border: `1px solid ${setBorder(hasAccent)}`,
       }}
     >
       {content}
-    </Button>
+    </button>
   );
 };
 
-export default MainButton;
+export default Button;
