@@ -5,9 +5,7 @@ const Schema = mongoose.Schema;
 const transaction = new Schema(
   {
     date: {
-      // TODO co przychodzi z kompnentu?
-      //type: String,
-      //required: [true, 'Date is required'],
+      type: String,
     },
     year: {
       type: Number,
@@ -33,7 +31,7 @@ const transaction = new Schema(
     },
     type: {
       type: String,
-      enum: ['income', 'expense'],
+      enum: ['Income', 'Expense'],
       required: [true, 'Type is required'],
     },
     category: {
