@@ -8,7 +8,7 @@ const RegisterPage = () => {
     <div className={css.wrapper}>
       <div className={css.introWrapper}>
         <div className={css.img}></div>
-        <p>Finance App</p>
+        <p className={css.text}>Finance App</p>
       </div>
       <div className={css.formWrapper}>
         <RegisterForm />

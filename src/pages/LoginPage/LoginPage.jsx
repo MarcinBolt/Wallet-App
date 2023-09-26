@@ -1,5 +1,5 @@
 // import LoginForm from "../../components/LoginForm/LoginForm";
-import LoginForm from '../../components/LoginForm/LoginForm';
+import LoginForm from '../../components/LoginForm/LoginForm.jsx';
 import css from './LoginPage.module.css';
 
 const LoginPage = () => {
@@ -7,7 +7,7 @@ const LoginPage = () => {
     <div className={css.wrapper}>
       <div className={css.introWrapper}>
         <div className={css.img}></div>
-        <p>Finance App</p>
+        <p className={css.text}>Finance App</p>
       </div>
       <div className={css.formWrapper}>
         <LoginForm />

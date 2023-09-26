@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 // import { NavLink } from 'react-router-dom';
 // import MainButton from './MainButton';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 // import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
+import { TextField, Button } from '@mui/material';
 import Logo from '../Logo/Logo.jsx';
 // import Box from '@mui/material/Box';
 // import Container from '@mui/material/Container';
@@ -60,17 +60,56 @@ const LoginForm = () => {
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
             variant="outlined"
-            color="primary"
-            className={css.test}
+            color="grey"
+            className={css.email}
             sx={{
-              '& fieldset': { border: 'none' },
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderBottom: 1,
-              borderColor: 'grey.300',
-              padding: 0,
+              border: 'none',
+              borderColor: 'grey.400',
+              paddingTop: '0px',
+              paddingBottom: '0px',
+              marginTop: '20px',
+              marginBottom: '0px',
+              width: '280px',
+
+              fieldset: {
+                borderRadius: 0,
+                border: 'none',
+                borderBottom: 1,
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                marginTop: '0px',
+                marginBottom: '0px',
+                borderColor: 'grey.400',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              },
+              input: {
+                color: 'grey.700',
+                fontFamily: 'var(--font-primary)',
+                fontSize: '18px',
+                marginLeft: '40px',
+                paddingLeft: '0px',
+                paddingTop: '8px',
+                paddingBottom: '11px',
+                marginTop: '0px',
+                marginBottom: '0px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              },
+              label: {
+                color: 'grey.400',
+                paddingLeft: '35px',
+              },
+              p: {
+                color: 'grey.400',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+              legend: { color: 'grey.400' },
+              span: { color: 'grey.400' },
             }}
           />
 
@@ -84,13 +123,56 @@ const LoginForm = () => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
             variant="outlined"
-            color="primary"
+            color="grey"
             className={css.test}
             sx={{
-              '& fieldset': { border: 'none' },
-              borderBottom: 1,
-              borderColor: 'grey.300',
-              padding: 0,
+              border: 0,
+              borderColor: 'grey.400',
+              paddingTop: '0px',
+              paddingBottom: '0px',
+              marginTop: '20px',
+              marginBottom: '0px',
+              width: '280px',
+
+              fieldset: {
+                borderRadius: 0,
+                border: 'none',
+                borderBottom: 1,
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                marginTop: '0px',
+                marginBottom: '0px',
+                borderColor: 'grey.400',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              },
+              input: {
+                color: 'grey.700',
+                fontFamily: 'var(--font-primary)',
+                fontSize: '18px',
+                marginLeft: '40px',
+                paddingLeft: '0px',
+                paddingTop: '8px',
+                paddingBottom: '11px',
+                marginTop: '0px',
+                marginBottom: '0px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+              },
+              label: {
+                color: 'grey.400',
+                paddingLeft: '35px',
+              },
+              p: {
+                color: 'grey.400',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+              legend: { color: 'grey.400' },
+              span: { color: 'grey.400' },
             }}
           />
         </div>

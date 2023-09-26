@@ -73,3 +73,18 @@
     background-image: url('../../assets/images/registration/register-desktop@2x.png');
   }
 }
+
+.text {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}
