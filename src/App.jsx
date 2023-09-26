@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth } from './utils/hooks/user.auth.js';
 import { refreshUser } from './redux/auth/auth.operations.js';
@@ -8,9 +8,12 @@ import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
+import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
+import LoginPage from './pages/LoginPage/LoginPage.jsx';
+import LoginForm from './components/LoginForm/LoginForm.jsx';
 
-const Login = lazy(() => import('./pages/Login.jsx'));
-const Register = lazy(() => import('./pages/Register.jsx'));
+const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
+const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
@@ -28,21 +31,41 @@ const App = () => {
   ) : (
     <Suspense fallback={<Loader />}>
       <Routes>
-        //TODO
-        <Route
-          exact
-          path={`/dashboard`}
-          element={<PrivateRoute component={<Dashboard />} redirect={'/'} />}
-        />
-        //TODO
-        <Route exact path={`/`} element={<PublicRoute component={<Login />} />} />
-        <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
-        <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
-        <Route
-          path={`/users/verify/:verificationToken`}
-          element={<PublicRoute component={<VerifyEmail />} />}
-        />
-        <Route path="*" element={<PublicRoute component={<NotFound />} />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Login />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                component={<Register />}
+                redirectTo={<Navigate to="/dashboard" replace />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute
+                redirectTo={<Navigate to="/dashboard" replace />}
+                component={<Login />}
+              />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute
+                redirectTo={<Navigate to="/login" replace />}
+                component={<Dashboard />}
+              />
+            }
+          />
+          <Route
+            path={`/users/verify/:verificationToken`}
+            element={<PublicRoute component={<VerifyEmail />} />}
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
