@@ -7,9 +7,11 @@ const transaction = new Schema(
     date: {
       // TODO co przychodzi z kompnentu?
       //type: String,
+      //required: [true, 'Date is required'],
     },
     year: {
       type: Number,
+      required: [true, 'Year is required'],
     },
     month: {
       type: String,
@@ -27,6 +29,7 @@ const transaction = new Schema(
         'November',
         'December',
       ],
+      required: [true, 'Month is required'],
     },
     type: {
       type: String,
@@ -54,6 +57,7 @@ const transaction = new Schema(
     },
     sum: {
       type: Number,
+      required: [true, 'Sum is required'],
     },
     owner: {
       type: Schema.Types.ObjectId,
