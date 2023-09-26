@@ -1,4 +1,4 @@
-@import '../../utils/css-variables.css';
+@import '../../stylesheet/vars.css';
 @import '../../utils/breakpoints.css';
 
 .Button {
