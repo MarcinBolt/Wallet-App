@@ -12,14 +12,14 @@ import css from './Dashboard.module.css';
 
 const DashboardMobile = () => {
   return (
-    <>
+    <PageContainer>
       <div className={css.navMobileWrapper}>
         <TempNavi />
       </div>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </>
+    </PageContainer>
   );
 };
 const DashboardTablet = () => {
@@ -37,25 +37,28 @@ const DashboardTablet = () => {
         </div>
         <Suspense fallback={<Loader />}>
           <Outlet />
-        </Suspense>{' '}
+        </Suspense>
       </div>
     </PageContainer>
   );
 };
 const DashboardDesktop = () => {
   return (
-    <>
-      <div>
-        <TempNavi />
-        <TempBalance />
-        <CurrencyTable />
+    <PageContainer>
+      <div className={css.dashboardDesktopWrapper}>
+        <div className={css.navBalCurrDesktopWrapper}>
+          <TempNavi />
+          <TempBalance />
+          <CurrencyTable />
+        </div>
+        <div className={css.desktopSeparator}></div>
+        <div className={css.homeTabDesktopWrapper}>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </div>
       </div>
-      <div>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </div>
-    </>
+    </PageContainer>
   );
 };
 
@@ -63,7 +66,7 @@ const Dashboard = () => {
   const { mobile, tablet, desktop } = mediaQueries;
 
   return (
-    <div className={css.dashboard}>
+    <>
       <Header />
       <Media
         queries={{
@@ -73,14 +76,14 @@ const Dashboard = () => {
         }}
       >
         {matches => (
-          <div>
+          <div className={css.dashboard}>
             {matches.small && <DashboardMobile />}
             {matches.medium && <DashboardTablet />}
             {matches.large && <DashboardDesktop />}
           </div>
         )}
       </Media>
-    </div>
+    </>
   );
 };
 
