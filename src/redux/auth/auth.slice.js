@@ -2,12 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshUser, register, verify } from './auth.operations.js';
 
 const initialState = {
-  user: { firstName: null, email: null, balance: 0 },
+  user: { firstName: null, email: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
   error: null,
-  isModalLogoutOpen: false,
 };
 
 const handleFulfilledRegister = (state, action) => {

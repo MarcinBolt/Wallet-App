@@ -33,24 +33,11 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route exact path={`/dashboard`} element={<PrivateRoute component={<Dashboard />} />}>
-            <Route exact index element={<PrivateRoute component={<HomeTab />} />} />
-            <Route
-              exact
-              path={'statistics'}
-              element={<PrivateRoute component={<DiagramTab />} />}
-            />
-            <Route
-              exact
-              path={'currency'}
-              element={<PrivateRoute component={<CurrencyTable />} />}
-            />
-          </Route>
-          <Route exact index element={<PublicRoute component={<Dashboard />} />} />
-          <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
-          <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
-          <Route path={`/verify`} element={<PublicRoute component={<VerifyEmail />} />} />
-          <Route path="*" element={<PublicRoute component={<NotFound />} />} />
+          <Route index element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
+          <Route path="/register" element={<PublicRoute component={<Register />} redirectTo={<Navigate to="/dashboard" replace />} />} />
+          <Route path="/login" element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
+          <Route path="/dashboard" element={<PrivateRoute redirectTo={<Navigate to="/login" replace />} component={<Dashboard />} />} />
+          <Route path={`/users/verify/:verificationToken`} element={<PublicRoute component={<VerifyEmail />} />} />
         </Route>
       </Routes>
     </Suspense>
