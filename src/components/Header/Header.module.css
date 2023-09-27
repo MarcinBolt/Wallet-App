@@ -1,7 +1,4 @@
-
-.headerWrapper {
-  display: flex;
-  justify-content: center;
+.header {
   margin: 0;
   background-color: var(--color-bg-secondary);
   width: 100%;
@@ -10,6 +7,13 @@
   @media screen and (min-width: 768px) {
     height: 80px;
   }
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 
 .logoWrapper {
