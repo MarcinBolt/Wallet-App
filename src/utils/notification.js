@@ -20,7 +20,11 @@ const notifyUserEmailVerifiedSuccess = firstName => {
   );
 };
 
-const notifyUserRegistrationFailure = (message) => {
+const notifyUserProcessTSuccess = message => {
+  Notiflix.Report.success('Success!', `Message: ${message} `, 'OK!');
+};
+
+const notifyUserRegistrationFailure = message => {
   Notiflix.Report.failure('Registration fail!ed.', `Message: ${message}.`, 'Try again');
 };
 
@@ -32,11 +36,11 @@ const notifyProcessFailure = message => {
   Notiflix.Report.failure('Something goes wrong.', `Message: ${message}.`, 'Try again');
 };
 
-
 const notification = {
   notifyUserEmailSenTSuccess,
   notifyUserEmailSenTFailure,
   notifyUserEmailVerifiedSuccess,
+  notifyUserProcessTSuccess,
   notifyUserRegistrationFailure,
   notifyUserEmailVerifiedFailure,
   notifyProcessFailure,
