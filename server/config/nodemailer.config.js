@@ -26,7 +26,7 @@ const send = async ({ to, firstName, verificationToken }) => {
   let body = `<h2>Dear ${capitalizedFirstName},</h2>
       <p>Thank You for registration in our Wallet App.</p>
       <p>To confirm your email address, please click on the link below:</p>
-      <h3><a href="${baseUrl}${verificationToken}" target="_blank" rel="noopener noreferrer nofollow"><strong>Link to confirm email address</strong></a></h3>
+      <h3><a href="${baseUrl}${verificationToken}" target="_blank" rel="noopener noreferrer nofollow"><strong>Link to confirm e-mail address</strong></a></h3>
       <p>Please note that the link will only be active for ${process.env.VERIFICATION_TOKEN_EXPIRATION_TIME}.</p>
       <p>If you did not register on our website, please ignore this message.</p>
       <p></p>
@@ -37,7 +37,7 @@ const send = async ({ to, firstName, verificationToken }) => {
   const emailOptions = {
     from: process.env.NODEMAILER_FROM_MAIL,
     to,
-    subject: 'Email verification - Wallet',
+    subject: 'E-mail verification - Wallet',
     html: body,
   };
   return await transporter
