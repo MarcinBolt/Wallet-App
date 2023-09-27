@@ -17,6 +17,7 @@ const initState = {
   income: 0,
   expanse: 0,
   balance: 0,
+  
 };
 
 const handlePending = state => {

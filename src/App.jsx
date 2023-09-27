@@ -9,6 +9,7 @@ import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
+import TransactionDetails from './components/HomeTab/TransactionDetails/TransactionDetails.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
@@ -30,7 +31,7 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Login />} />
+          <Route index element={<TransactionDetails />} />
           <Route
             path="/register"
             element={

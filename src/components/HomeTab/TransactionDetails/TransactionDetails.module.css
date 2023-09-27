@@ -1,0 +1,106 @@
+.transactionDetailsList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-widget-mobile-transaction-details);
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 15% 15% 20% 25% 10% 15%;
+    background-color: transparent;
+    border-radius: 0;
+  }
+}
+
+.incomeBorder {
+  border-left: 5px solid var(--color-border-details-income);
+  @media screen and (min-width: 768px) {
+    border-left: 0;
+  }
+}
+
+.expanseBorder {
+  border-left: 5px solid var(--color-border-details-expanse);
+  @media screen and (min-width: 768px) {
+    border-left: 0;
+  }
+}
+
+.transactionDetailsItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 47px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    gap: 8px;
+    justify-content: left;
+  }
+}
+
+.transactionDetailsItem:not(:first-child) {
+  border-top: 1px solid var(--color-border-details-separator);
+}
+
+.transactionDetailsItem:nth-child(2) {
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.transactionDetailsItem:nth-child(5) {
+  @media screen and (min-width: 768px) {
+    justify-content: right;
+  }
+}
+
+.transactionDetailsItem:last-child {
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.itemType {
+  font-family: var(--font-secondary-bold);
+  font-size: 18px;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.itemValue {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+
+.typeOperator {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    color: var(--color-text-primary);
+  }
+}
+.typeString {
+  display: flex;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--color-text-primary);
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.incomeText {
+  color: var(--color-border-details-income);
+}
+
+.expanseText {
+  color: var(--color-border-details-expanse);
+}
