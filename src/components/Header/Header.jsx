@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container';
 import SvgIcon from '@mui/material/SvgIcon';
 import css from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +5,7 @@ import { selectIsModalLogoutOpen } from '../../redux/selectors';
 import { openModalLogout } from '../../redux/auth/auth.slice';
 import { selectUserFirstName } from '../../redux/selectors';
 import Logo from '../Logo/Logo';
+import PageContainer from '../PageContainer/PageContainer ';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
@@ -19,20 +19,7 @@ const Header = () => {
 
   return (
     <div className={css.headerWrapper}>
-      <Container
-        sx={{
-          '@media screen and (min-width: 780px)': {
-            padding: '0 32px',
-          },
-          '@media screen and (min-width: 1280px)': {
-            padding: '0 16px',
-          },
-          padding: '0 20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      <PageContainer>
         <div
           className={css.logoWrapper}
           sx={{
@@ -68,7 +55,7 @@ const Header = () => {
             <p className={css.exit}>Exit</p>
           </div>
         </div>
-      </Container>
+      </PageContainer>
     </div>
   );
 };
