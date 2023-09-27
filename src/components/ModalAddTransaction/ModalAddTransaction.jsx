@@ -175,7 +175,11 @@ const ModalAddTransaction = ({ closeModal }) => {
             validationSchema={Yup.object({
               amount: Yup.number().required('Required').positive('Must be a positive number'),
               dateValue: Yup.date().required('Required'),
-              selectedCategory: Yup.string().required('Required'),
+              selectedCategory: Yup.string().when('isChecked', {
+                is: false,
+                then: Yup.string().required('Required'),
+                otherwise: Yup.string(),
+              }),
               comment: Yup.string(),
             })}
             // onSubmit={handleSubmit}
