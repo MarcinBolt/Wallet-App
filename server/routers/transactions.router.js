@@ -18,11 +18,11 @@ transactionsRouter.post('/', auth, createOwnerTransaction);
 
 transactionsRouter.get('/:id', auth, getOwnerTransactionById);
 
-transactionsRouter.put('/:id', auth, updateOwnerTransactionById);
+transactionsRouter.patch('/:id', auth, updateOwnerTransactionById);
 
 transactionsRouter.delete('/:id', auth, deleteOwnerTransactionById);
 
-transactionsRouter.get('/:category', auth, getOwnerTransactionsByCategory);
+transactionsRouter.get('/category/:category', auth, getOwnerTransactionsByCategory);
 
 transactionsRouter.get('/statistics/:year/:month', auth, getOwnerStatisticsByDate);
 

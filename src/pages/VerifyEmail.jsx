@@ -1,6 +1,5 @@
 import { Container } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { verify } from '../redux/auth/auth.operations.js';
 import Button from '@mui/material/Button';
@@ -28,7 +27,14 @@ const VerifyEmail = () => {
       }}
     >
       <h2>Email verification</h2>
-      <Button type="button" onClick={handleClick} fullWidth variant="outlined" sx={{ mt: 3, mb: 2, maxWidth: "200px" }}>
+      // TODO - change to a stylized button component (green)
+      <Button
+        type="button"
+        onClick={handleClick}
+        fullWidth
+        variant="outlined"
+        sx={{ mt: 3, mb: 2, maxWidth: '200px' }}
+      >
         Verify email.
       </Button>
     </Container>

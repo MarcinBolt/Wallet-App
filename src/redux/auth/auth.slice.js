@@ -6,6 +6,8 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
+  error: null,
+  isModalLogoutOpen: false,
 };
 
 const handleFulfilledRegister = (state, action) => {
@@ -24,6 +26,14 @@ const handleFulfilledLogIn = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    openModalLogout: (state, action) => {
+      state.isModalLogoutOpen = true;
+    },
+    closeModalLogout: (state, action) => {
+      state.isModalLogoutOpen = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, handleFulfilledRegister)
@@ -33,6 +43,7 @@ const authSlice = createSlice({
         state.user = { firstName: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isModalLogoutOpen = false;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
@@ -42,10 +53,21 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, action)  => {
         state.isRefreshing = false;
+        state.error = action.message;
+      })
+      .addCase(register.rejected, (state, action)  => {
+        state.error = action.message;
+      })
+      .addCase(logIn.rejected, (state, action)  => {
+        state.error =  action.message;
+      })
+      .addCase(logOut.rejected, (state, action)  => {
+        state.error =  action.message;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
+export const { openModalLogout, closeModalLogout } = authSlice.actions;

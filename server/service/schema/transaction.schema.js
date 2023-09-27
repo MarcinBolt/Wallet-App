@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const transaction = new Schema(
   {
     date: {
-      // TODO co przychodzi z kompnentu?
-      //type: String,
+      type: String,
     },
     year: {
       type: Number,
+      required: [true, 'Year is required'],
     },
     month: {
       type: String,
@@ -27,10 +27,11 @@ const transaction = new Schema(
         'November',
         'December',
       ],
+      required: [true, 'Month is required'],
     },
     type: {
       type: String,
-      enum: ['income', 'expense'],
+      enum: ['Income', 'Expense'],
       required: [true, 'Type is required'],
     },
     category: {
@@ -54,6 +55,7 @@ const transaction = new Schema(
     },
     sum: {
       type: Number,
+      required: [true, 'Sum is required'],
     },
     owner: {
       type: Schema.Types.ObjectId,
