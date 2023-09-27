@@ -18,9 +18,6 @@ import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
-
-
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
     document.body.classList.add('modal-open');
@@ -28,7 +25,6 @@ const ModalAddTransaction = ({ closeModal }) => {
       document.body.classList.remove('modal-open');
     };
   }, []);
-
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -43,15 +39,14 @@ const ModalAddTransaction = ({ closeModal }) => {
     amount: '',
   });
 
-let extraMargin = formData.isChecked ? '0' : '20px';
+  let extraMargin = formData.isChecked ? '0' : '20px';
 
-const switchStyles = {
-  width: '44px',
-  marginLeft: extraMargin,
-};
+  const switchStyles = {
+    width: '44px',
+    marginLeft: extraMargin,
+  };
 
-const iconStyles = {};
-  
+  const iconStyles = {};
 
   const categories = useSelector(state => state.categories);
   const categoriesOptions = categories
@@ -109,9 +104,7 @@ const iconStyles = {};
                       height: 40,
                       overflow: 'visible',
                     },
-                    // '& .Mui-checked': {
-                    //   transform: 'translateX(25px)',
-                    // },
+
                     '& .MuiSwitch-thumb': {
                       backgroundColor: 'transparent',
                     },
@@ -123,11 +116,6 @@ const iconStyles = {};
                         border: '0px solid transparent',
                       },
                     },
-                    // "MuiSwitch-track": {
-                    //  color: "purple",
-                    //  backgroundColor: "purple",
-                    //  display: 'none'
-                    // }
                   }}
                   style={switchStyles}
                   onChange={() =>
@@ -148,10 +136,7 @@ const iconStyles = {};
         </div>
         {formData.isChecked ? null : (
           <div>
-            <FormControl
-              // style={{ width: '100%' }}
-              className={css.selectContainer}
-            >
+            <FormControl className={css.selectContainer}>
               <Select
                 sx={{
                   boxShadow: 'none',
