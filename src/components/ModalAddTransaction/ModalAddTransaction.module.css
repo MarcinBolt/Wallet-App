@@ -1,4 +1,4 @@
-@import '../../utils/css-variables.css';
+@import '../../stylesheet/vars.css';
 @import '../../utils/breakpoints.css';
 
 .overlay {
@@ -7,7 +7,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 60px;
+  top: 10px;
   left: 0px;
   z-index: 99;
   text-align: center;
@@ -44,28 +44,36 @@ body.modal-open {
 }
 
 .textarea {
-  border: none;
-  outline-style: none;
+   
+  /* border: 1px; */
+   border-top: 1px;
+   border-left: 1px;
+   border-right: 1px;
+   /* border: 1px 1px 0px 1px; */
+  /* outline-style: none; */
   padding-left: 25px;
-  width: 250px;
+  width: 280px;
   font-family: 'Circe';
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  resize: none;
+  resize: none; 
+  height: 84px;
 }
 
 .textareaWrapper {
-  display: flex; /* Ustaw display na flex */
+  display: flex; 
   align-items: center;
-  flex-direction: column; /* Zmień flex-direction na column */
+  flex-direction: column;
   margin-top: 20px;
   margin-bottom: 15px;
 }
 
 .inputWrapper {
   display: inline-block;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  width: 280px;
+  padding-bottom: 50px;
 }
 
 .datetime {
@@ -76,10 +84,11 @@ body.modal-open {
   /* display: flex; */
   /* align-items: center; */
   /* justify-content: center; */
-  padding-left: 25px;
+  /* padding-left: 25px; */
   padding-bottom: 10px;
   width: 275px;
 }
+
 
 .datetime input {
   border: none;
@@ -94,9 +103,22 @@ body.modal-open {
   margin-left: -15px;
   margin-bottom: 40px;
 }
+
 .form .input {
   width: 280px;
 }
+
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+.selectContainer {
+  width: 280px;
+}
+
 
 @media screen and (min-width: 768px) {
   .overlay {
@@ -117,12 +139,39 @@ body.modal-open {
   .form .input {
     width: 181px;
   }
+  .inputContainer {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 400px;
+    gap: 40px;
+  }
+  .inputWrapper {
+     
+    width: 180px;
+  }
+
+  .datetime { 
+    width: 180px; 
+  }
+
+  .selectContainer {
+    width: 394px;
+  }
+
+  .textarea { 
+    width: 394px; 
+    height: 32px;
+  }
+
 }
 
 @media screen and (min-width: 1200px) {
   .overlay {
     height: 603px;
-
     height: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;
@@ -138,3 +187,27 @@ body.modal-open {
 .logo_btn:hover {
   background-color: var(--color-bg-btn-active-hover);
 }
+
+.text_green {
+  color: #24cca7;
+
+  padding: 0 20px;
+}
+
+.text_pink {
+  color:var(--color-text-expanse-pink);
+}
+
+.text_defaultLeft {
+  padding: 0 20px;
+  font-size: 16px;
+  color: var(--color-text-disabled-btn-gray);
+}
+
+.text_defaultRight {  font-size: 16px;
+  color: var(--color-text-disabled-btn-gray);
+}
+
+.TEST {
+  color: #ffc0cb;
+} 

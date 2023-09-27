@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const switchStyles = {
   width: '40px',
@@ -23,8 +24,10 @@ const switchStyles = {
 };
 
 const iconStyles = {
-  width: '44px',
-  height: '44px',
+  width: '64px',
+  height: '64px',
+
+
 };
 
 const ModalAddTransaction = ({ closeModal }) => {
@@ -58,28 +61,30 @@ const ModalAddTransaction = ({ closeModal }) => {
         }))
     : [];
 
-  // const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-  //   try {
+  const theme = createTheme({
+    components: {
+      MuiSwitch: {
+        styleOverrides: {
+          switchBase: {
+            color: 'none',
+            height: 50,
+          },
+          colorPrimary: {
+            '&.Mui-checked': {
+              color: 'none',
+            },
+          },
+          track: {
+            '.Mui-checked.Mui-checked + &': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+    },
+  });
 
-  // await dispatch(
-  //   addTransaction({
-  //     isExpense: !formData.isChecked,
-  //     amount: Number(formData.amount),
-  //     date: formData.dateValue,
-  //     category: formData.isChecked ? 'Income' : formData.selectedCategory,
-  //     comment: formData.comment,
-  //   }),
-  // );
 
-  //     toast.success('Transaction created successfully');
-  //     closeModal();
-  //     resetForm();
-  //   } catch (error) {
-  //     toast.error('Failed to create transaction');
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
 
   return (
     <div>
@@ -88,25 +93,59 @@ const ModalAddTransaction = ({ closeModal }) => {
         <h1>Add transaction</h1>
 
         <div className={css.switch}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={formData.isChecked}
-                onChange={() =>
-                  setFormData({
-                    ...formData,
-                    isChecked: !formData.isChecked,
-                  })
-                }
-                name="transaction-type"
-                style={switchStyles}
-                icon={<img src={plusbtn} alt="plus Icon" style={iconStyles} />}
-                checkedIcon={<img src={minusbtn} alt="minus Icon" style={iconStyles} />}
-              />
-            }
-            label={formData.isChecked ? 'Expense' : 'Income'}
-          />
+          <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
+          <ThemeProvider theme={theme}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={!formData.isChecked}
+                  sx={{
+                    '&.MuiSwitch-root': {
+                      border: '1px solid #e0e0e0',
+                      borderRadius: 30,
+                      p: 0,
+                      mx: 2,
+                      width: 80,
+                      height: 40,
+                    },
+                    '& .Mui-checked': {
+                      transform: 'translateX(25px)',
+                    },
+                    '& .MuiSwitch-thumb': {
+                      backgroundColor: 'transparent',
+                    },
+                    '& .MuiSwitch-track': {
+                      backgroundColor: 'transparent',
+                      border: '0px solid transparent',
+                      '& .MultiSwitch-thumb': {
+                        backgroundColor: 'transparent',
+                        border: '0px solid transparent',
+                      },
+                    },
+                    // "MuiSwitch-track": {
+                    //  color: "purple",
+                    //  backgroundColor: "purple",
+                    //  display: 'none'
+                    // }
+                  }}
+                  style={switchStyles}
+                  onChange={() =>
+                    setFormData({
+                      ...formData,
+                      isChecked: !formData.isChecked,
+                    })
+                  }
+                  name="transaction-type"
+                  icon={<img src={plusbtn} alt="plus Icon" style={iconStyles} />}
+                  checkedIcon={<img src={minusbtn} alt="minus Icon" style={iconStyles} />}
+                />
+              }
+              // label={formData.isChecked ? 'Expense' : 'Income'}
+            />
+          </ThemeProvider>
+          <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>Expense</div>
         </div>
+
         <div>
           <Formik
             initialValues={formData}
@@ -119,26 +158,41 @@ const ModalAddTransaction = ({ closeModal }) => {
             // onSubmit={handleSubmit}
           >
             <Form className={css.form}>
-              <div className={css.inputWrapper}>
-                <Field
-                  as={TextField}
-                  type="standard-basic"
-                  variant="standard"
-                  id="amount"
-                  name="amount"
-                  placeholder="0.0"
-                  className={css.input}
-                />
+              <div className={css.inputContainer}>
+                <div className={css.inputWrapper}>
+                  <Field
+                    inputProps={{
+                      style: {
+                        paddingBottom: 0,
+                        height: 32,
+                      },
+                    }}
+                    as={TextField}
+                    type="standard-basic"
+                    variant="standard"
+                    id="amount"
+                    name="amount"
+                    placeholder="0.0"
+                    className={css.input}
+                  />
+                </div>
+                <div className={css.inputWrapper}>
+                  <Field
+                    inputProps={{
+                      style: {
+                        height: 36,
+                        padding: 0,
+                      },
+                    }}
+                    as={TextField}
+                    type="date"
+                    id="dateValue"
+                    name="dateValue"
+                    className={css.datetime}
+                  />
+                </div>
               </div>
-              <div className={css.inputWrapper}>
-                <Field
-                  as={TextField}
-                  type="date"
-                  id="dateValue"
-                  name="dateValue"
-                  className={css.datetime}
-                />
-              </div>
+
               <ErrorMessage name="amount" component="div" />
               <ErrorMessage name="dateValue" component="div" />
 
@@ -165,15 +219,6 @@ const ModalAddTransaction = ({ closeModal }) => {
                   </FormControl>
                 </div>
               )}
-
-              {/* <Field
-                as={TextField}
-                type="date"
-                id="dateValue"
-                name="dateValue"
-                className={css.datetime}
-              />
-              <ErrorMessage name="dateValue" component="div" /> */}
 
               <label className="label">
                 <div className={css.textareaWrapper}>
