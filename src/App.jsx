@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth } from './utils/hooks/user.auth.js';
 import { refreshUser } from './redux/auth/auth.operations.js';
@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
 import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
-import TransactionDetails from './components/HomeTab/TransactionDetails/TransactionDetails.jsx';
 import HomeTab from './components/HomeTab/HomeTab.jsx';
 import CurrencyTable from './components/CurrencyTable/CurrencyTable.jsx';
 import DiagramTab from './components/DiagramTab/DiagramTab.jsx';
