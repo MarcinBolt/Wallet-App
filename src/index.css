@@ -1,13 +1,12 @@
-@import './utils/css-variables.css';
+@import './stylesheet/vars.css';
 
 :root {
   font-family: var(--font-primary);
   line-height: 1.5;
-  font-weight: 400;
   font-size: 16px;
   color: var(--color-text-primary);
-
-  color-scheme: light dark;
+height: 100vh;
+  /* color-scheme: light dark; */
   background-color: var(--color-bg-primary);
 }
 
