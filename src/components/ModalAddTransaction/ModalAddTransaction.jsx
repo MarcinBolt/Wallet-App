@@ -124,6 +124,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                     setFormData({
                       ...formData,
                       isChecked: !formData.isChecked,
+                      selectedCategory: 'Main expenses',
                     })
                   }
                   name="transaction-type"
@@ -131,7 +132,6 @@ const ModalAddTransaction = ({ closeModal }) => {
                   checkedIcon={<img src={minusbtn} alt="minus Icon" style={iconStyles} />}
                 />
               }
-              // label={formData.isChecked ? 'Expense' : 'Income'}
             />
           </ThemeProvider>
           <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>Expense</div>
