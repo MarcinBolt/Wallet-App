@@ -23,13 +23,15 @@ const baseUrl =
 
 const send = async ({ to, firstName, verificationToken }) => {
   const capitalizedFirstName = capitalize(firstName);
-  let body = `<h2>Welcome ${capitalizedFirstName}!</h2>
+  let body = `<h2>Dear ${capitalizedFirstName},</h2>
       <p>Thank You for registration in our Wallet App.</p>
-      <p>Please, click link below to verify Your email.</p>
-      <p>${baseUrl}${verificationToken}</p>
-      <p>Please, note that for added security this link becomes invalid after ${process.env.VERIFICATION_TOKEN_EXPIRATION_TIME}.</p>
+      <p>To confirm your email address, please click on the link below:</p>
+      <h3><a href="${baseUrl}${verificationToken}" target="_blank" rel="noopener noreferrer nofollow"><strong>Link to confirm email address</strong></a></h3>
+      <p>Please note that the link will only be active for ${process.env.VERIFICATION_TOKEN_EXPIRATION_TIME}.</p>
+      <p>If you did not register on our website, please ignore this message.</p>
+      <p></p>
       <p>Best regards,</p>
-      <p>Wallet App - Hi5 Team.</p>`;
+      <p>Customer Support Team - Wallet App - Hi5.</p>`;
 
   const transporter = createTransport(config);
   const emailOptions = {

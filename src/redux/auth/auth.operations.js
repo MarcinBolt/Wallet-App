@@ -18,10 +18,13 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
     const response = await axios.post(`/users/signup`, credentials);
+    if (response.status !== 201) {
+      return notification.notifyProcessFailure(response.data.message);
+    }
     notification.notifyUserEmailSenTSuccess(response.data.user.email);
     return response.data;
   } catch (error) {
-    notification.notifyUserEmailSenTFailure(response.massage);
+    notification.notifyProcessFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -29,10 +32,13 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
 export const verify = createAsyncThunk('auth/verify', async (verificationToken, thunkAPI) => {
   try {
     const response = await axios.get(`/users/verify/${verificationToken}`);
+    if (response.status !== 200) {
+      return notification.notifyProcessFailure(response.data.message);
+    }
     notification.notifyUserEmailVerifiedSuccess(response.data.user.firstName);
     return response.data;
   } catch (error) {
-    notification.notifyUserEmailVerifiedFailure(error.massage);
+    notification.notifyProcessFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -40,10 +46,13 @@ export const verify = createAsyncThunk('auth/verify', async (verificationToken, 
 export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const response = await axios.post(`/users/login`, credentials);
+    if (response.status != 200) {
+      return notification.notifyProcessFailure(error.response.data.message);
+    }
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    notification.notifyLoginFailure(error.massage);
+    notification.notifyProcessFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -53,7 +62,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post(`/users/logout`);
     clearAuthHeader();
   } catch (error) {
-    notification.notifyLogoutFailure(error.massage);
+    notification.notifyLogoutFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -72,8 +81,12 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
     const response = await axios.get('/users/current');
+    if (response.data.code !== 200) {
+      return notification.notifyProcessFailure(response.data.message);
+    }
     return response.data;
   } catch (error) {
+    notification.notifyLoginFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
