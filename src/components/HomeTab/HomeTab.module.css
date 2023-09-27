@@ -1,0 +1,19 @@
+.tableHeader {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 15% 15% 20% 25% 10% 15%;
+    list-style-type: none;
+    height: 58px;
+    padding: 0;
+    margin: 10px;
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--radius-widget-transactions-header);
+  }
+}
+
+.tableHeaderItem {
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 700;
+}

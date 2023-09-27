@@ -9,6 +9,7 @@ import Loader from './components/Loader/Loader.jsx';
 import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
+import HomeTab from './components/HomeTab/HomeTab.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
@@ -30,7 +31,7 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
+          <Route index element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<HomeTab />} />} />
           <Route path="/register" element={<PublicRoute component={<Register />} redirectTo={<Navigate to="/dashboard" replace />} />} />
           <Route path="/login" element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
           <Route path="/dashboard" element={<PrivateRoute redirectTo={<Navigate to="/login" replace />} component={<Dashboard />} />} />
