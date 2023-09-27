@@ -20,15 +20,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const switchStyles = {
   width: '44px',
-  height: '40px',
 };
 
-const iconStyles = {
-  // width: '64px',
-  // height: '64px',
-
-
-};
+const iconStyles = {};
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -47,7 +41,7 @@ const ModalAddTransaction = ({ closeModal }) => {
     isChecked: false,
     dateValue: new Date(),
     selectedCategory: 'Main expenses',
-    comment: '-',
+    comment: '',
     amount: '',
   });
 
@@ -84,8 +78,6 @@ const ModalAddTransaction = ({ closeModal }) => {
     },
   });
 
-
-
   return (
     <div>
       <div className={css.backdrop} onClick={closeModal}></div>
@@ -107,14 +99,14 @@ const ModalAddTransaction = ({ closeModal }) => {
                       mx: 2,
                       width: 80,
                       height: 40,
-                      overflow:'visible',
+                      overflow: 'visible',
                     },
                     '& .Mui-checked': {
                       transform: 'translateX(25px)',
                     },
                     '& .MuiSwitch-thumb': {
                       backgroundColor: 'transparent',
-                    },  
+                    },
                     '& .MuiSwitch-track': {
                       backgroundColor: 'transparent',
                       border: '0px solid transparent',
@@ -146,6 +138,41 @@ const ModalAddTransaction = ({ closeModal }) => {
           </ThemeProvider>
           <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>Expense</div>
         </div>
+        {formData.isChecked ? null : (
+          <div>
+            <FormControl
+              // style={{ width: '100%' }}
+              className={css.selectContainer}
+            >
+              <Select
+                sx={{
+                  boxShadow: 'none',
+                  '.MuiOutlinedInput-notchedOutline': {
+                    border: 0,
+                    borderBottom: 1,
+                    borderRadius: 0,
+                    borderColor: 'rgb(150, 150, 150)',
+                  },
+                }}
+                id="selectedCategory"
+                name="selectedCategory"
+                value={formData.selectedCategory}
+                onChange={e =>
+                  setFormData({
+                    ...formData,
+                    selectedCategory: e.target.value,
+                  })
+                }
+              >
+                {categoriesOptions.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+        )}
 
         <div>
           <Formik
@@ -173,7 +200,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                     variant="standard"
                     id="amount"
                     name="amount"
-                    placeholder="0.0"
+                    placeholder="0.00"
                     className={css.input}
                   />
                 </div>
@@ -188,7 +215,9 @@ const ModalAddTransaction = ({ closeModal }) => {
                     as={TextField}
                     type="date"
                     id="dateValue"
+                    variant="standard"
                     name="dateValue"
+                    fullWidth
                     className={css.datetime}
                   />
                 </div>
@@ -196,30 +225,6 @@ const ModalAddTransaction = ({ closeModal }) => {
 
               <ErrorMessage name="amount" component="div" />
               <ErrorMessage name="dateValue" component="div" />
-
-              {formData.isChecked ? null : (
-                <div>
-                  <FormControl style={{ width: '100%' }}>
-                    <Select
-                      id="selectedCategory"
-                      name="selectedCategory"
-                      value={formData.selectedCategory}
-                      onChange={e =>
-                        setFormData({
-                          ...formData,
-                          selectedCategory: e.target.value,
-                        })
-                      }
-                    >
-                      {categoriesOptions.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </div>
-              )}
 
               <label className="label">
                 <div className={css.textareaWrapper}>

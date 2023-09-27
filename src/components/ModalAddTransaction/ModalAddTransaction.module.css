@@ -44,25 +44,22 @@ body.modal-open {
 }
 
 .textarea {
-   
-  /* border: 1px; */
-   border-top: 1px;
-   border-left: 1px;
-   border-right: 1px;
-   /* border: 1px 1px 0px 1px; */
-  /* outline-style: none; */
+  border-top: 1px;
+  border-left: 1px;
+  border-right: 1px;
   padding-left: 25px;
   width: 280px;
   font-family: 'Circe';
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  resize: none; 
+  resize: none;
   height: 84px;
+  background-color: var(--color-bg-secondary);
 }
 
 .textareaWrapper {
-  display: flex; 
+  display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 20px;
@@ -71,7 +68,6 @@ body.modal-open {
 
 .inputWrapper {
   display: inline-block;
-  /* margin-right: 10px; */
   width: 280px;
   padding-bottom: 50px;
 }
@@ -81,14 +77,9 @@ body.modal-open {
   color: var(--color-text-btn-placeholder);
   margin-top: 20px;
   margin-bottom: 15px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* padding-left: 25px; */
   padding-bottom: 10px;
   width: 275px;
 }
-
 
 .datetime input {
   border: none;
@@ -108,17 +99,15 @@ body.modal-open {
   width: 280px;
 }
 
-
 .inputContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 .selectContainer {
   width: 280px;
 }
-
 
 @media screen and (min-width: 768px) {
   .overlay {
@@ -140,7 +129,7 @@ body.modal-open {
     width: 181px;
   }
   .inputContainer {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -150,23 +139,21 @@ body.modal-open {
     gap: 40px;
   }
   .inputWrapper {
-     
     width: 180px;
   }
 
-  .datetime { 
-    width: 180px; 
+  .datetime {
+    width: 180px;
   }
 
   .selectContainer {
     width: 394px;
   }
 
-  .textarea { 
-    width: 394px; 
+  .textarea {
+    width: 394px;
     height: 32px;
   }
-
 }
 
 @media screen and (min-width: 1200px) {
@@ -195,7 +182,7 @@ body.modal-open {
 }
 
 .text_pink {
-  color:var(--color-text-expanse-pink);
+  color: var(--color-text-expanse-pink);
 }
 
 .text_defaultLeft {
@@ -204,10 +191,7 @@ body.modal-open {
   color: var(--color-text-disabled-btn-gray);
 }
 
-.text_defaultRight {  font-size: 16px;
+.text_defaultRight {
+  font-size: 16px;
   color: var(--color-text-disabled-btn-gray);
 }
-
-.TEST {
-  color: #ffc0cb;
-} 
