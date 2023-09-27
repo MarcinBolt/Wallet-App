@@ -9,6 +9,7 @@
   border: 0;
   font-family: var(--font-secondary);
   color: var(--color-text-secondary);
+  font-size: 14px;
 }
 
 .ButtonDelete:hover {
