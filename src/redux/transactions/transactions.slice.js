@@ -14,7 +14,7 @@ const initState = {
   transactionsFilteredByYearAndMonth: [],
   categories: [],
   year: new Date().getFullYear(),
-  month: date.toLocaleString('en-us', { month: 'long' }),
+  month: new Date().toLocaleString('en-us', { month: 'long' }),
   selectedTransactionCategory: '',
   selectedTransactionId: '',
   incomesSum: 0,
