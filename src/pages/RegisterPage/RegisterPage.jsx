@@ -1,6 +1,4 @@
-import { Container } from '@mui/material';
-import LoginForm from '../../components/LoginForm/LoginForm';
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
 import css from './RegisterPage.module.css';
 
 const RegisterPage = () => {

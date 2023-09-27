@@ -8,11 +8,10 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../Logo/Logo.jsx';
 
-
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
     .email('Please enter a valid e-mail')
-    .required('Email is required!'),
+    .required('E-mail is required!'),
   password: Yup.string('Please enter a password')
     .min(6, 'Minimum 6 characters long')
     .max(12, 'Maximum 12 characters long')
@@ -40,7 +39,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div>
+    <>
       <form onSubmit={formik.handleSubmit} className={css.form}>
         <div className={css.logo_wrapper}>
           <Logo />
@@ -248,7 +247,7 @@ const LoginForm = () => {
           </Button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 export default LoginForm;
