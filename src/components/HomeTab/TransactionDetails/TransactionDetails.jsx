@@ -8,7 +8,7 @@ const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
     date: '22.07.2023',
     type: 'Income',
     category: 'asdfg',
-    comment: 'so many expances',
+    comment: 'so many expences',
     sum: 12345,
   };
   const { id, date, type, category, comment, sum } = props;
@@ -63,3 +63,7 @@ const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
 };
 
 export default TransactionDetails;
+
+
+// TODO
+// logika edycji i usuwania transakcji
