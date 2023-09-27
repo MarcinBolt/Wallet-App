@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
 
@@ -25,6 +24,11 @@ const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
   };
 
   const handleEdit = ev => {
+    ev.preventDefault;
+    //TODO
+  };
+
+  const handleDelete = ev => {
     ev.preventDefault;
     //TODO
   };
@@ -63,7 +67,6 @@ const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
 };
 
 export default TransactionDetails;
-
 
 // TODO
 // logika edycji i usuwania transakcji
