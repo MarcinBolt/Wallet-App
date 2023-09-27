@@ -18,11 +18,8 @@ import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const switchStyles = {
-  width: '44px',
-};
 
-const iconStyles = {};
+
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -31,6 +28,7 @@ const ModalAddTransaction = ({ closeModal }) => {
       document.body.classList.remove('modal-open');
     };
   }, []);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,6 +42,16 @@ const ModalAddTransaction = ({ closeModal }) => {
     comment: '',
     amount: '',
   });
+
+let extraMargin = formData.isChecked ? '0' : '20px';
+
+const switchStyles = {
+  width: '44px',
+  marginLeft: extraMargin,
+};
+
+const iconStyles = {};
+  
 
   const categories = useSelector(state => state.categories);
   const categoriesOptions = categories
@@ -101,9 +109,9 @@ const ModalAddTransaction = ({ closeModal }) => {
                       height: 40,
                       overflow: 'visible',
                     },
-                    '& .Mui-checked': {
-                      transform: 'translateX(25px)',
-                    },
+                    // '& .Mui-checked': {
+                    //   transform: 'translateX(25px)',
+                    // },
                     '& .MuiSwitch-thumb': {
                       backgroundColor: 'transparent',
                     },
