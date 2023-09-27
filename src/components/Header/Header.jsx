@@ -1,7 +1,7 @@
 import SvgIcon from '@mui/material/SvgIcon';
 import css from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsModalLogoutOpen } from '../../redux/selectors';
+import { selectGlobalIsModalLogoutOpen } from '../../redux/selectors';
 import { openModalLogout } from '../../redux/auth/auth.slice';
 import { selectUserFirstName } from '../../redux/selectors';
 import Logo from '../Logo/Logo';
@@ -9,7 +9,7 @@ import PageContainer from '../PageContainer/PageContainer ';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
-  const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
+  const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   const dispatch = useDispatch();
 
   const handleModalLogoutOpen = ev => {
