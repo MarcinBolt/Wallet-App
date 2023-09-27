@@ -1,4 +1,4 @@
-import css from './Button.module.css';
+import css from './MainButton.module.css';
 // color === 'primary' | 'secondary'
 const MainButton = ({ type, content, onClick = null, color }) => {
   const btnClass = color => `${color === 'primary' ? css.buttonPrimary : css.buttonSecondary}`;
