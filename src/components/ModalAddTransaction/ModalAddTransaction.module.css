@@ -58,18 +58,18 @@ body.modal-open {
   background-color: var(--color-bg-secondary);
 }
 
+.inputWrapper {
+  display: inline-block;
+  width: 280px;
+  padding-bottom: 50px;
+}
+
 .textareaWrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 20px;
   margin-bottom: 15px;
-}
-
-.inputWrapper {
-  display: inline-block;
-  width: 280px;
-  padding-bottom: 50px;
 }
 
 .datetime {
