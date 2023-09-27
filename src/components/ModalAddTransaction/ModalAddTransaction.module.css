@@ -47,15 +47,15 @@ body.modal-open {
   border-top: 1px;
   border-left: 1px;
   border-right: 1px;
-  padding-left: 25px;
+  padding-left: 15px;
   width: 280px;
   font-family: 'Circe';
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   resize: none;
-  height: 84px;
-  background-color: var(--color-bg-secondary);
+  height: 32px;
+  background-color: transparent;
 }
 
 .inputWrapper {
@@ -73,13 +73,21 @@ body.modal-open {
 }
 
 .datetime {
-  border-bottom: 1px solid #e0e0e0;
-  color: var(--color-text-btn-placeholder);
-  margin-top: 20px;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  width: 275px;
+  /* border-bottom: 1px solid #e0e0e0; */
+  /* color: var(--color-text-btn-placeholder); */
+  /* background-color: #e0e0e0; */
+  /* margin-top: 20px; */
+  /* margin-bottom: 15px; */
+  /* width: 275px; */
 }
+
+.calendarIcon{
+  /* position: relative; */
+ margin-right: 10px;
+ margin-bottom: 10px;
+  
+}
+
 
 .datetime input {
   border: none;

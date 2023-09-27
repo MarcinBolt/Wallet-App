@@ -7,17 +7,18 @@ import {
   Select,
   MenuItem,
   Button,
+  InputAdornment,
+  IconButton,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import { toast } from 'react-toastify';
-// import Datetime from 'react-datetime';
-// import 'react-datetime/css/react-datetime.css';
-// import { addTransaction } from '../../redux/transactions/transactions.operations';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
+import vectorIcon from '../../assets/icons/vector.svg'; // Twoja ikona kalendarza
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const ModalAddTransaction = ({ closeModal }) => {
@@ -82,6 +83,13 @@ const ModalAddTransaction = ({ closeModal }) => {
       },
     },
   });
+
+  const handleDateChange = date => {
+    setFormData({
+      ...formData,
+      dateValue: date,
+    });
+  };
 
   return (
     <div>
@@ -204,6 +212,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                   />
                 </div>
                 <div className={css.inputWrapper}>
+                  {/* Pole daty */}
                   <Field
                     inputProps={{
                       style: {
@@ -217,7 +226,17 @@ const ModalAddTransaction = ({ closeModal }) => {
                     variant="standard"
                     name="dateValue"
                     fullWidth
-                    className={css.datetime}
+                    value={formData.dateValue}
+                    onChange={() => {}}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={() => {}}>
+                            <img src={vectorIcon} alt="Calendar" className={css.calendarIcon} />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
               </div>
