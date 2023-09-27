@@ -19,13 +19,13 @@ import minusbtn from '../../assets/icons/minusbtn.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const switchStyles = {
-  width: '40px',
+  width: '44px',
   height: '40px',
 };
 
 const iconStyles = {
-  width: '64px',
-  height: '64px',
+  // width: '64px',
+  // height: '64px',
 
 
 };
@@ -107,13 +107,14 @@ const ModalAddTransaction = ({ closeModal }) => {
                       mx: 2,
                       width: 80,
                       height: 40,
+                      overflow:'visible',
                     },
                     '& .Mui-checked': {
                       transform: 'translateX(25px)',
                     },
                     '& .MuiSwitch-thumb': {
                       backgroundColor: 'transparent',
-                    },
+                    },  
                     '& .MuiSwitch-track': {
                       backgroundColor: 'transparent',
                       border: '0px solid transparent',
