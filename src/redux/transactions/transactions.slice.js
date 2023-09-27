@@ -10,8 +10,16 @@ import {
 
 const initState = {
   transactions: [],
-  filteredTransactionsByCategory: [],
-  filteredTransactionsByYearAndMonth: [],
+  transactionsFilteredByCategory: [],
+  transactionsFilteredByYearAndMonth: [],
+  categories: [],
+  year: new Date().getFullYear(),
+  month: new Date().toLocaleString('en-us', { month: 'long' }),
+  selectedTransactionCategory: '',
+  selectedTransactionId: '',
+  incomesSum: 0,
+  expansesSum: 0,
+  balance: 0,
   isLoading: false,
   error: null,
   income: 0,
@@ -74,12 +82,12 @@ const transactionsSlice = createSlice({
       .addCase(fetchTransactionsByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.filteredTransactionsByCategory = action.payload;
+        state.transactionsFilteredByCategory = action.payload;
       })
       .addCase(fetchTransactionsByYearAndMonth.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.filteredTransactionsByYearAndMonth = action.payload;
+        state.transactionsFilteredByYearAndMonth = action.payload;
       });
   },
 });

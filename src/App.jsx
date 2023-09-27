@@ -31,38 +31,11 @@ const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<TransactionDetails />} />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute
-                component={<Register />}
-                redirectTo={<Navigate to="/dashboard" replace />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <PublicRoute
-                redirectTo={<Navigate to="/dashboard" replace />}
-                component={<Login />}
-              />
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute
-                redirectTo={<Navigate to="/login" replace />}
-                component={<Dashboard />}
-              />
-            }
-          />
-          <Route
-            path={`/users/verify/:verificationToken`}
-            element={<PublicRoute component={<VerifyEmail />} />}
-          />
+          <Route index element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
+          <Route path="/register" element={<PublicRoute component={<Register />} redirectTo={<Navigate to="/dashboard" replace />} />} />
+          <Route path="/login" element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
+          <Route path="/dashboard" element={<PrivateRoute redirectTo={<Navigate to="/login" replace />} component={<Dashboard />} />} />
+          <Route path={`/users/verify/:verificationToken`} element={<PublicRoute component={<VerifyEmail />} />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
