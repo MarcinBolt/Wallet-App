@@ -50,6 +50,8 @@
   --color-bg-btn-cancel: #ede9e8;
   --color-bg-btn-income: #24cca7;
   --color-bg-btn-expanse: #ff6596;
+  --color-bg-btn-active-hover-shadow: #24cca840;
+  --color-border-btn-cancel-shadow: #4a57e246;
 
   /* ------ borders colors ----- */
   --color-border-btn-date-filter: #000000;
