@@ -22,7 +22,8 @@ const NotFound = () => {
         backgroundColor: 'transparent',
       }}
     >
-      <h2>404 Page Not Found</h2>
+      <h2>Status 404</h2>
+      <h2>Page Not Found</h2>
       <h3>Redirecting...</h3>
     </Container>
   );
