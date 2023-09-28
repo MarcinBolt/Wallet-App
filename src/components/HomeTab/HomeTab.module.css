@@ -20,6 +20,21 @@
   font-weight: 700;
 }
 
+.transactionDetailsItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 47px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    gap: 8px;
+    justify-content: left;
+    height: 54px;
+  }
+}
+
+
 .tableHeaderItem:nth-child(2) {
     justify-content: center;
 }
