@@ -16,6 +16,8 @@ const Register = lazy(() => import('./pages/UserPanel/UserPanel.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
+// zmiana valuty do store user currency; jest selector pole do wpisywania, domyslne chrywny usercurrency
+
 const App = () => {
   const dispatch = useDispatch();
 

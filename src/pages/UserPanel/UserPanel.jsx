@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container'; 
+import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../../utils/hooks/user.auth';
 // import { logIn } from '../redux/auth/auth.operations.js';
@@ -37,11 +37,12 @@ import { red } from '@mui/material/colors';
     .max(12, 'Maximum 12 characters long')
     .required('First Name is required!'),
 });
+ 
 
  
  
 const UserPanel = () => {
-
+ 
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -86,16 +87,13 @@ const UserPanel = () => {
  
 
   //for testing ONLY
-  const handleClick = () => {
-    console.log('works')
-    
-    isShown = !isShown;
-    console.log(isShown)
-    
+  const DeleteUser = () => {
+    console.log('works') 
+      
   }
 
   return (
-    <Container
+    <Box
       // maxWidth="sx"
       sx={{
         display: 'flex',
@@ -103,8 +101,8 @@ const UserPanel = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        maxWidth: '200px',
-        background: 'red'
+        maxWidth: '240px',
+        background: 'white'
       }}
     >
       
@@ -115,6 +113,20 @@ const UserPanel = () => {
         <Button onClick={handleOpen}>Update/Delete user</Button>
       <Dialog
        
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        maxWidth: '200px',
+        background: 'red',
+        position: 'absolute',
+        left: 10,
+        top: 50,
+        background: 'transparent'
+      }}
+
         open={open}
         onClose={handleClose} 
       > 
@@ -466,7 +478,7 @@ const UserPanel = () => {
           </Button>
           <Button
             type="button"
-            href="#/login"
+            onClick={DeleteUser()}
             sx={{
               width: 280,
               background: '#ffffff',
@@ -484,27 +496,14 @@ const UserPanel = () => {
             DELETE ACCOUNT
           </Button>
         </div>
-      </form>
-
-
-
-
-
-
-
-
-
-
-
-
- 
+      </form> 
 
         </Dialog>
         
          
        
       </ThemeProvider>
-    </Container>
+    </Box>
   );
 };
 export default UserPanel;
