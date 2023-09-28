@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import passport from 'passport';
 import {
   createUserInDB,
   findUserByIdInDB,
@@ -16,9 +17,10 @@ import {
   userRegisterReqBodySchema,
   userLoginReqBodySchema,
   userEmailReqBodySchema,
-} from '../utils/joi.schemas..js';
+} from '../utils/joi.schemas.js';
 import capitalizeEachWord from '../utils/capitalizer.js';
 import { capitalize } from '@mui/material';
+import { deleteOwnerAllTransactionsIdInDB } from '../service/transactions.service.js';
 
 const createNewUser = async (req, res, _) => {
   try {
@@ -64,11 +66,9 @@ const createNewUser = async (req, res, _) => {
       status: 'created',
       code: 201,
       message: 'User created.',
-      data: {
-        user: {
-          email: normalizedEmail,
-          firstName: capitalizedFirstName,
-        },
+      user: {
+        email: normalizedEmail,
+        firstName: capitalizedFirstName,
       },
     });
   } catch (err) {
@@ -102,13 +102,13 @@ const deleteUser = async (req, res, _) => {
         message: 'Email is wrong',
       });
     }
-
+    await deleteOwnerAllTransactionsIdInDB(userIdFromReqAuthorizedToken);
     await deleteUserByIdInDB(userIdFromReqAuthorizedToken);
 
     res.status(200).json({
       status: 'deleted',
       code: 200,
-      data: {
+      user: {
         email: normalizedEmail,
       },
     });
@@ -169,12 +169,11 @@ const loginUser = async (req, res, _) => {
     return res.json({
       status: 'success',
       code: 200,
-      data: {
-        token,
-        user: {
-          email: user.email,
-          firstName: capitalizedFirstName,
-        },
+      message: 'User is logged in',
+      token,
+      user: {
+        email: user.email,
+        firstName: capitalizedFirstName,
       },
     });
   } catch (err) {
@@ -220,11 +219,9 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
     return res.json({
       status: 'success',
       code: 200,
-      data: {
-        currentUser: {
-          email,
-          firstName: capitalizedFirstName,
-        },
+      user: {
+        email,
+        firstName: capitalizedFirstName,
       },
     });
   } catch (err) {
@@ -283,10 +280,16 @@ const verifyUserByVerificationToken = async (req, res, _) => {
 
     await updateUserDataByIdInDB(id, { verificationToken, isVerified: true });
 
+    console.log(`user.email: ${user.email}`);
+    console.log(`user.firstName: ${user.firstName}`);
     return res.json({
       status: 'success',
       code: 200,
       message: 'Verification successful',
+      user: {
+        email: user.email,
+        firstName: user.firstName,
+      },
     });
   } catch (err) {
     console.error(err);
@@ -306,7 +309,7 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
     if (error) {
       return res
         .status(400)
-        .json({ status: 'error', code: 400, message: 'missing required field email' });
+        .json({ status: 'error', code: 400, message: 'Missing required field email' });
     }
 
     const normalizedEmail = email.toLowerCase();
