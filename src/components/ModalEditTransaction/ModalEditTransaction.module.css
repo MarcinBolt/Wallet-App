@@ -1,5 +1,5 @@
 @import '../../stylesheet/vars.css';
-@import '../../utils/breakpoints.css';
+/* @import '../../utils/breakpoints.css'; */
 
 .overlay {
   opacity: 1;
@@ -204,7 +204,7 @@ input[type='checkbox'].toggle:checked + label::after {
   margin-bottom: 3px;
 }
 
-@media (min-width: var(--TabletWidth)) {
+@media (min-width: 768px) {
   .overlay {
     top: 0;
   }

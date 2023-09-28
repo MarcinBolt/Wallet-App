@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { toast } from 'react-toastify';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import Select from 'react-select';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { toast } from 'react-toastify';
-import { updateTransactionById } from '../../redux/transactions/operations';
+import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import css from './ModalEditTransaction.module.css';
 
 export const MainButton = ({ type, text, className }) => (
@@ -15,11 +15,12 @@ export const MainButton = ({ type, text, className }) => (
 );
 
 const ModalEditTransaction = ({ closeModal, transaction }) => {
-  const [isChecked, setIsChecked] = useState(transaction.isExpense);
+  // const [isChecked, setIsChecked] = useState(transaction.isExpense);
+  const [isExpense, setIsExpense] = useState(transaction.category !== 'Income');
   const [amount, setAmount] = useState(transaction.amount);
   const [selectedCategory, setSelectedCategory] = useState(transaction.category);
   const [comment, setComment] = useState(transaction.comment);
-  const [dateValue, setDateValue] = useState(transaction.date);
+  const [dateValue, setDateValue] = useState(new Date(transaction.date));
 
   useEffect(() => {
     const scrollToTop = () => {
@@ -34,25 +35,25 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
 
   const dispatch = useDispatch();
 
-  const initialValues = {
-    amount: transaction.amount,
-    date: transaction.date,
-    comment: transaction.comment,
-  };
+  // const initialValues = {
+  //   amount: transaction.amount,
+  //   date: transaction.date,
+  //   comment: transaction.comment,
+  // };
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const date = new Date(dateValue);
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
+      // const date = new Date(dateValue);
+      // const year = date.getFullYear();
+      // const month = date.getMonth() + 1;
 
       await dispatch(
         updateTransactionById({
           id: transaction._id,
-          date: dateValue,
-          year: year,
-          month: month,
-          category: isChecked ? selectedCategory : 'Income',
+          date: dateValue.toISOString(),
+          // year: year,
+          // month: month,
+          category: isExpense ? selectedCategory : 'Income',
           comment: comment,
           sum: Number(amount),
         }),
@@ -66,34 +67,29 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
       setSubmitting(false);
     }
   };
-
   return (
     <div>
       <div className={css.backdrop} onClick={closeModal}></div>
       <div className={`${css.overlay} edit-modal`}>
         <h1>Edit transaction</h1>
 
-        <div className={css.switch}>
-          <label htmlFor="check1" className={`toggle-label ${isChecked ? 'income' : 'expense'}`}>
+        <div className={css.incomeExpenseToggle}>
+          <button
+            className={`${css.toggleButton} ${!isExpense && css.active}`}
+            onClick={() => setIsExpense(false)}
+          >
             Income
-          </label>
-          <input
-            type="checkbox"
-            id="check1"
-            className="toggle"
-            name="transaction-type"
-            checked={isChecked}
-            onChange={() => {
-              setIsChecked(!isChecked);
-              setSelectedCategory('Main Expense');
-            }}
-          />
-          <label htmlFor="check1" className={`toggle-label ${isChecked ? 'expense' : 'income'}`}>
+          </button>
+          <button
+            className={`${css.toggleButton} ${isExpense && css.active}`}
+            onClick={() => setIsExpense(true)}
+          >
             Expense
-          </label>
+          </button>
         </div>
+
         <div>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Formik initialValues={{ amount, dateValue, comment }} onSubmit={handleSubmit}>
             <Form className={css.form}>
               <Field
                 type="text"
@@ -112,7 +108,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
               />
               <ErrorMessage name="amount" component="div" />
 
-              {isChecked ? (
+              {isExpense && (
                 <div>
                   <Select
                     options={[
@@ -129,7 +125,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
                     value={{ value: selectedCategory, label: selectedCategory }}
                   />
                 </div>
-              ) : null}
+              )}
               <Field
                 as={Datetime}
                 dateFormat="DD-MM-YY"
@@ -137,8 +133,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
                 value={dateValue}
                 className={css.datetime}
                 onChange={newDate => {
-                  const isoDate = new Date(newDate._d).toISOString();
-                  setDateValue(isoDate);
+                  setDateValue(newDate);
                 }}
               />
               <ErrorMessage name="date" component="div" />
@@ -156,10 +151,14 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
                   }}
                 />
               </label>
-              <MainButton type="submit" text="Save" className={`${css.logo_btn} ${css.main_btn}`} />
+              <button type="submit" className={`${css.logo_btn} ${css.main_btn}`}>
+                Save
+              </button>
             </Form>
           </Formik>
-          <MainButton type="button" text="Cancel" className={css.logo_btn} onClick={closeModal} />
+          <button type="button" className={css.logo_btn} onClick={closeModal}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
