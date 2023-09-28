@@ -14,6 +14,16 @@ const TransactionDetails = ({ id, date, type, category, comment, sum }) => {
     return type === 'Income' ? '+' : '-';
   };
   
+  var unifiedDate = new Date(date);
+
+  // Pobieramy dzień, miesiąc i rok z daty
+  var day = unifiedDate.getDate();
+  var month = unifiedDate.getMonth() + 1; // Miesiące są indeksowane od 0, więc dodajemy 1
+  var year = unifiedDate.getFullYear() % 100; // Pobieramy tylko dwie ostatnie cyfry roku
+  
+  // Formatujemy datę w formacie "dd.mm.yy"
+  var formattedDate = (day < 10 ? '0' : '') + day + '.' + (month < 10 ? '0' : '') + month + '.' + (year < 10 ? '0' : '') + year;
+
   const handleEdit = ev => {
     ev.preventDefault;
     //TODO
@@ -29,7 +39,7 @@ const TransactionDetails = ({ id, date, type, category, comment, sum }) => {
     <ul className={listClassName}>
       <li key={`${id}date`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Date</p>
-        <p className={css.itemValue}>{date}</p>
+        <p className={css.itemValue}>{formattedDate}</p>
       </li>
       <li key={`${id}type`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Type</p>
@@ -44,7 +54,7 @@ const TransactionDetails = ({ id, date, type, category, comment, sum }) => {
       </li>
       <li key={`${id}comment`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Comment</p>
-        <p className={css.itemValue}>{comment}</p>
+        <p className={`${css.itemValue} ${css.comment}`}>{comment}</p>
       </li>
       <li key={`${id}sum`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Sum</p>

@@ -1,29 +1,48 @@
 .homeTab {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
   @media screen and (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    width: 100%;
-    max-width: 715px;
     padding-top: 20px;
+    overflow: hidden;
   }
   @media screen and (min-width: 1280px) {
-    padding-top: 46px;
+    align-items: end;
+    padding-top: 0;
   }
+}
+
+.tableBody {
+  max-width: 715px;
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0;
+  margin: 0;
+  @media screen and (min-width: 768px) {
+    padding: 0 0 0 20px;
+  }
+}
+
+.tableItem:not(:first-child):not(:nth-child(2)) {
+border-top: 1px solid var(--color-border-transactions-separator);
 }
 
 .tableHeader {
   display: none;
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 15% 10% 20% 30% 10% 15%;
+    grid-template-columns: 14% 8% 25% 25% 13% 15%;
     list-style-type: none;
-    height: 58px;
     padding: 0;
     margin: 0;
+    width: 100%;
+    min-width: 440px;
     background-color: var(--color-bg-secondary);
-    border-radius: var(--radius-widget-transactions-header);
+    border-radius: var(--radius-widget-mobile-transaction-details);
+     border-radius: var(--radius-widget-transactions-header);
   }
 }
 
@@ -35,20 +54,17 @@
   font-weight: 700;
 }
 
-.transactionDetailsItem {
+.tableHeaderItem {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: left;
+    align-items: center;
   padding: 0 20px;
-  height: 47px;
+  height: 54px;
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
     gap: 8px;
-    justify-content: left;
-    height: 54px;
   }
 }
-
 
 .tableHeaderItem:nth-child(2) {
   justify-content: center;
@@ -58,13 +74,4 @@
   justify-content: right;
 }
 
-.tableHeaderItem:last-child {
-  justify-content: center;
-}
 
-.tableBody {
-  list-style-type: none;
-  list-style-position: outside;
-  padding: 0;
-  margin: 0;
-}

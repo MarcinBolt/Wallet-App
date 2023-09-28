@@ -10,7 +10,7 @@
   border-radius: var(--radius-widget-mobile-transaction-details);
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 15% 10% 20% 30% 10% 15%;
+    grid-template-columns: 14% 8% 25% 25% 13% 15%;
     background-color: transparent;
     border-radius: 0;
   }
@@ -69,6 +69,46 @@
   }
 }
 
+.transactionDetailsItem:nth-child(3) {
+  @media screen and (min-width: 768px) {
+    overflow: hidden;
+    text-wrap: wrap;
+    text-align: left;
+  }
+}
+
+.transactionDetailsItem:nth-child(4) {
+  @media screen and (min-width: 768px) {
+    overflow: hidden;
+    text-wrap: nowrap;
+    transition: all 250ms ease-in-out;
+  }
+}
+
+.transactionDetailsItem:nth-child(4):hover {
+  @media screen and (min-width: 768px) {
+    z-index: 2;
+    overflow: visible;
+    text-align: left;
+  }
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: fit-content;
+transition: all 250ms ease-in-out;
+}
+
+.comment:hover {
+  @media screen and (min-width: 768px) {
+    color: var(--color-text-secondary);
+    text-shadow: 0 0 2px var(--color-text-primary);
+    background-color: var(--color-bg-btn-active-hover);
+  }
+}
+
 .itemType {
   font-family: var(--font-secondary-bold);
   font-size: 18px;
@@ -104,8 +144,10 @@
 
 .incomeText {
   color: var(--color-border-details-income);
+  font-weight: 700;
 }
 
 .expanseText {
   color: var(--color-border-details-expanse);
+  font-weight: 700;
 }

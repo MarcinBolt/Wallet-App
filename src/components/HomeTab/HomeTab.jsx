@@ -7,16 +7,17 @@ import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
 
 const formatDate = date => {
- 
-const dateObject = new Date(date);
+  const dateObject = new Date(date);
 
-const year = dateObject.getFullYear();
-const month = dateObject.getMonth() + 1;
-const day = dateObject.getDate();
-const formattedDate = `${year}.${month.toString().padStart(2, '0')}.${day.toString().padStart(2, '0')}`;
-return formattedDate
-}
- 
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+  const formattedDate = `${year}.${month.toString().padStart(2, '0')}.${day
+    .toString()
+    .padStart(2, '0')}`;
+  return formattedDate;
+};
+
 const HomeTab = () => {
   const dispatch = useDispatch();
 
@@ -25,8 +26,7 @@ const HomeTab = () => {
   }, [dispatch]);
 
   const transactions = useSelector(selectTransactions);
-  console.log(transactions);
-
+ 
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
 
@@ -34,7 +34,7 @@ const HomeTab = () => {
     <>
       <div className={css.homeTab}>
         <ul className={css.tableBody}>
-          <li>
+          <li key={'header'} className={css.tableItem}>
             <ul className={css.tableHeader}>
               <li key={`date`} className={css.tableHeaderItem}>
                 <p className={css.itemType}>Date</p>
@@ -56,7 +56,7 @@ const HomeTab = () => {
           </li>
           {transactions.length > 0 &&
             sortedToNewestTransactions.map(({ id, date, type, category, comment, sum }) => (
-              <li key={id}>
+              <li key={id} className={css.tableItem}>
                 {
                   <TransactionDetails
                     id={id}
