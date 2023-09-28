@@ -40,7 +40,7 @@ body.modal-open {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 10px;
+  row-gap: 0px;
 }
 
 .textarea {
@@ -70,8 +70,6 @@ body.modal-open {
   flex-direction: column;
   margin-bottom: 55px;
 }
-
-
 
 .calendarIcon {
   /* position: absolute; */
@@ -105,9 +103,47 @@ body.modal-open {
 }
 .selectContainer {
   width: 280px;
-  
 }
 
+.logo_btn {
+  background-color: var(--color-text-income-green);
+  border: transparent;
+  margin-bottom: 20px;
+}
+
+.logo_btn:hover {
+  background-color: var(--color-bg-btn-active-hover);
+}
+
+.text_green {
+  color: #24cca7;
+
+  padding: 0 20px;
+}
+
+.text_pink {
+  color: var(--color-text-expanse-pink);
+}
+
+.text_defaultLeft {
+  padding: 0 20px;
+  font-size: 16px;
+  color: var(--color-text-disabled-btn-gray);
+}
+
+.text_defaultRight {
+  font-size: 16px;
+  color: var(--color-text-disabled-btn-gray);
+}
+button {
+  margin-bottom: 15px;
+}
+
+.paddingButton {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
 @media screen and (min-width: 768px) {
   .overlay {
     top: 50%;
@@ -152,7 +188,6 @@ body.modal-open {
   .textarea {
     width: 394px;
     height: 32px;
-
   }
 }
 
@@ -163,35 +198,4 @@ body.modal-open {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;
   }
-}
-
-.logo_btn {
-  background-color: var(--color-text-income-green);
-  border: transparent;
-  margin-bottom: 20px;
-}
-
-.logo_btn:hover {
-  background-color: var(--color-bg-btn-active-hover);
-}
-
-.text_green {
-  color: #24cca7;
-
-  padding: 0 20px;
-}
-
-.text_pink {
-  color: var(--color-text-expanse-pink);
-}
-
-.text_defaultLeft {
-  padding: 0 20px;
-  font-size: 16px;
-  color: var(--color-text-disabled-btn-gray);
-}
-
-.text_defaultRight {
-  font-size: 16px;
-  color: var(--color-text-disabled-btn-gray);
 }

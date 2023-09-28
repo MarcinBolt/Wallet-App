@@ -226,6 +226,7 @@ const ModalAddTransaction = ({ closeModal }) => {
               <div className={css.inputContainer}>
                 <div className={css.inputWrapper}>
                   <Field
+                    
                     inputProps={{
                       style: {
                         paddingBottom: 0,
@@ -248,6 +249,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                       style: {
                         height: 36,
                         padding: 0,
+                        
                       },
                     }}
                     as={TextField}
@@ -279,31 +281,28 @@ const ModalAddTransaction = ({ closeModal }) => {
                   <Field
                     as="textarea"
                     placeholder="Comment"
-                    className={css.textarea}
                     rows={1}
                     name="comment"
-                   
+                    className={css.textarea}
                   />
                 </div>
               </label>{' '}
             </Form>
           </Formik>
-
-          <CustomButton
-            type="button"
-            fullWidth
-            color="primary"
-            content="ADD"
-            onClick={closeModal}
-          ></CustomButton>
-
-          <CustomButton
-            type="button"
-            fullWidth
-            color="secondary"
-            content="Cancel"
-            onClick={closeModal}
-          ></CustomButton>
+          <div className={css.paddingButton}>
+            <CustomButton
+              type="button"
+              color="primary"
+              content="ADD"
+              onClick={closeModal}
+            ></CustomButton>
+            <CustomButton
+              type="button"
+              color="secondary"
+              content="Cancel"
+              onClick={'#'}
+            ></CustomButton>
+          </div>
         </div>
       </div>
     </div>
