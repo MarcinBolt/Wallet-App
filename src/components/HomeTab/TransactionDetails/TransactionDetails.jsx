@@ -1,39 +1,31 @@
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
 
-const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
-  const props = {
-    id: 212,
-    date: '22.07.2023',
-    type: 'Income',
-    category: 'asdfg',
-    comment: 'so many expences',
-    sum: 12345,
-  };
-  const { id, date, type, category, comment, sum } = props;
-
+const TransactionDetails = ({ id, date, type, category, comment, sum }) => {
+  
   const isIncome = () => (type === 'Income' ? true : false);
-
+  
   const listClassName = `${css.transactionDetailsList} ${
     isIncome() ? css.incomeBorder : css.expanseBorder
   }`;
   const textClassName = `${css.itemValue} ${isIncome() ? css.incomeText : css.expanseText}`;
-
+  
   const typeOperator = type => {
     return type === 'Income' ? '+' : '-';
   };
-
+  
   const handleEdit = ev => {
     ev.preventDefault;
     //TODO
   };
-
+  
   const handleDelete = ev => {
     ev.preventDefault;
     //TODO
   };
-
+  
   return (
+
     <ul className={listClassName}>
       <li key={`${id}date`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Date</p>

@@ -6,18 +6,35 @@
     list-style-type: none;
     height: 58px;
     padding: 0;
-    margin: 10px;
+    margin: 0;
     background-color: var(--color-bg-secondary);
     border-radius: var(--radius-widget-transactions-header);
   }
 }
 
 .tableHeaderItem {
+  display: flex;
+  align-items: center;
   font-family: var(--font-secondary);
   font-size: 18px;
   font-weight: 700;
 }
 
-.tableItem {
-  
+.tableHeaderItem:nth-child(2) {
+    justify-content: center;
+}
+
+.tableHeaderItem:nth-child(5) {
+    justify-content: right;
+}
+
+.tableHeaderItem:last-child {
+    justify-content: center;
+}
+
+.tableBody {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0;
+  margin: 0;
 }

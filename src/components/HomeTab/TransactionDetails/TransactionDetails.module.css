@@ -3,17 +3,16 @@
   flex-direction: column;
   list-style-type: none;
   padding: 0;
-  margin: 10px;
-  width: 80%;
+  margin: 0;
+  width: 100%;
   min-width: 440px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-widget-mobile-transaction-details);
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 15% 15% 20% 25% 10% 15%;
+    grid-template-columns: 15% 10% 20% 30% 10% 15%;
     background-color: transparent;
     border-radius: 0;
-    max-width: 700px;
   }
 }
 
@@ -41,11 +40,15 @@
     flex-direction: row-reverse;
     gap: 8px;
     justify-content: left;
+    height: 54px;
   }
 }
 
 .transactionDetailsItem:not(:first-child) {
   border-top: 1px solid var(--color-border-details-separator);
+  @media screen and (min-width: 768px) {
+    border-top: 0;
+  }
 }
 
 .transactionDetailsItem:nth-child(2) {

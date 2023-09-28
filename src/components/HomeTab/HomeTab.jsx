@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectTransactions } from '../../redux/selectors';
-import TempTransactionDetails from '../temporary/TempTransactionDetails';
+
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
-import css from './HomeTab.module.css'
+import css from './HomeTab.module.css';
+import TransactionDetails from './TransactionDetails/TransactionDetails';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,11 @@ const HomeTab = () => {
   }, [dispatch]);
 
   const transactions = useSelector(selectTransactions);
-  const sortedToNewestTransactions = [...transactions].sort((a, b) => b.date.localeCompare(a.date));
+  console.log(transactions)
+
+  const sortedToNewestTransactions = (transactions.length > 0)
+    ? [...transactions].sort((a, b) => b.date.localeCompare(a.date))
+    : null;
 
   return (
     <>
@@ -36,9 +41,9 @@ const HomeTab = () => {
           </li>
           <li key={`operations`} className={css.tableHeaderItem}></li>
         </ul>
-        <ul>
-          {sortedToNewestTransactions.map(({ id, date, type, category, comment, sum }) => (
-            <li key={id}>{<TempTransactionDetails />}</li>
+        <ul className={css.tableBody}>
+          {transactions && sortedToNewestTransactions.map(({ id, date, type, category, comment, sum }) => (
+            <li key={id}>{<TransactionDetails id={id} date={date} type={type} category={category} comment={comment} sum={sum} />}</li>
           ))}
         </ul>
       </div>
