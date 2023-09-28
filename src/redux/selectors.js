@@ -6,18 +6,15 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectAuthError = state => state.auth.error;
 
 export const selectTransactions = state => state.transactions.transactions;
-export const selectTransactionsFilteredByCategory = state =>
-  state.transactions.transactionsFilteredByCategory;
-export const selectTransactionsFilteredByYearAndMonth = state =>
-  state.transactions.transactionsFilteredByYearAndMonth;
+export const selectTransactionsFilteredByCategory = state => state.transactions.transactionsFilteredByCategory;
+export const selectTransactionsFilteredByYearAndMonth = state => state.transactions.transactionsFilteredByYearAndMonth;
 export const selectTransactionsCategories = state => state.transactions.categories;
-export const selectTransactionsCategory = state => state.transactions.category;
-export const selectTransactionsYear = state => state.transactions.year;
-export const selectTransactionsMonth = state => state.transactions.month;
-export const selectTransactionsSelectedTransactionCategory = state =>
-  state.transactions.selectedTransactionCategory;
-export const selectTransactionsSelectedTransactionId = state =>
-  state.transactions.selectedTransactionId;
+export const selectTransactionsRealizationYear = state => state.transactions.realizationYear;
+export const selectTransactionsRealizationMonth = state => state.transactions.realizationMonth;
+export const selectTransactionsFilterCategory = state => state.transactions.selectedFilterCategory;
+export const selectTransactionId = state => state.transactions.selectedId;
+export const selectTransactionFilterYear = state => state.transactions.selectedFilterYear;
+export const selectTransactionFilterMonth = state => state.transactions.selectedFilterMonth;
 export const selectTransactionsIncomesSum = state => state.transactions.incomesSum;
 export const selectTransactionsExpanseSum = state => state.transactions.expansesSum;
 export const selectTransactionsBalance = state => state.transactions.balance;
@@ -26,10 +23,8 @@ export const selectTransactionsError = state => state.transactions.error;
 
 export const selectGlobalIsLoading = state => state.global.isLoading;
 export const selectGlobalIsModalLogoutOpen = state => state.global.isModalLogoutOpen;
-export const selectGlobalIsModalAddTransactionOpen = state =>
-  state.global.isModalAddTransactionOpen;
-export const selectGlobalIsModalEditTransactionOpen = state =>
-  state.global.isModalEditTransactionOpen;
+export const selectGlobalIsModalAddTransactionOpen = state => state.global.isModalAddTransactionOpen;
+export const selectGlobalIsModalEditTransactionOpen = state => state.global.isModalEditTransactionOpen;
 export const selectGlobalIsListCategoriesOpen = state => state.global.isListCategoriesOpen;
 export const selectGlobalIsListYearsOpen = state => state.global.isListYearsOpen;
 export const selectGlobalIsListMonthsOpen = state => state.global.isListMonthsOpen;
