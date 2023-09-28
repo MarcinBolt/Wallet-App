@@ -8,20 +8,27 @@ import Select from 'react-select';
 import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import css from './ModalEditTransaction.module.css';
 
+
+//tym komponentem wymysliłem ze bedzie  używany do renderowania przycisków w modalu.
 export const MainButton = ({ type, text, className }) => (
   <button className={className} type={type}>
     {text}
   </button>
 );
 
+//ponizszy komponent przyjmuje trzy propsy: closeModal, transaction, które są przekazywane do komponentu, aby móc zamknąć modal i edytować transakcję.
 const ModalEditTransaction = ({ closeModal, transaction }) => {
   // const [isChecked, setIsChecked] = useState(transaction.isExpense);
+
+  //ustalam stan poszczegolnych komponentow - zeby przechowywac stan edytowanej transakcji 
   const [isExpense, setIsExpense] = useState(transaction.category !== 'Income');
   const [amount, setAmount] = useState(transaction.amount);
   const [selectedCategory, setSelectedCategory] = useState(transaction.category);
   const [comment, setComment] = useState(transaction.comment);
   const [dateValue, setDateValue] = useState(new Date(transaction.date));
 
+
+  //to przewijanie storny na góre chyba nie jest potrzebne ale widzialem w jakims przykladzie 
   useEffect(() => {
     const scrollToTop = () => {
       window.scrollTo(0, 0);
@@ -33,6 +40,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
     };
   }, []);
 
+  //dostep do funkcji z Redux , wykorzystanie hooka useDispatch
   const dispatch = useDispatch();
 
   // const initialValues = {
@@ -41,6 +49,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
   //   comment: transaction.comment,
   // };
 
+  //funkcja obsluguej wysylanie zmienionych danych do redux i informuje o bledize lub sukcesie z wykorzystaniem Toast, przynajmnije powinna 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       // const date = new Date(dateValue);
