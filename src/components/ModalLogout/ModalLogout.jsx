@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import css from './ModalLogout.module.css';
 import { toast } from 'react-toastify';
+import closeIcon from '../../assets/icons/close.svg';
+import CustomButton from '../CustomButton/CustomButton';
+
 
 export const ModalLogout = ({ closeModal, handleLogout }) => {
   useEffect(() => {
@@ -27,22 +30,34 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
     <>
       <div className={css.logoutModalOverlay} onClick={closeModal}></div>
       <div className={css.logoutModalContainer}>
+        <div className={css.closeIconContainer}>
+          {/* Ikona close w prawym górnym rogu modalu */}
+          <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={closeModal} />
+        </div>
         <div className={css.logoutModalContent}>
           <h2>Confirm</h2>
           <span className={css.logoutInfo}>return to login page</span>
           <div className={css.confirmButtons}>
-            <button
+            <CustomButton
               type="button"
-              text="LOGOUT"
+              color="primary"
+              content="confirm"
+              onClick={closeModal}
               className={`${css.logo} ${css.logout_button}`}
-              onClick={confirmLogout}
+             
             >
               {' '}
               Confirm{' '}
-            </button>
-            <button onClick={closeModal} type="button" className={css.main_btn}>
+            </CustomButton>
+            <CustomButton
+              type="button"
+              color="secondary"
+              content="Cancel"
+              onClick={'#'}
+              className={css.main_btn}
+            >
               Cancel
-            </button>
+            </CustomButton>
           </div>
         </div>
       </div>
