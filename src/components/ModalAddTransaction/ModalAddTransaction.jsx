@@ -18,8 +18,10 @@ import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
-import vectorIcon from '../../assets/icons/vector.svg'; // Twoja ikona kalendarza
+import vectorIcon from '../../assets/icons/vector.svg'; 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { addTransaction } from '../../redux/transactions/transactions.operations';
+import { updateIsModalAddTransactionOpen,} from '../../redux/global/global.slice'
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -29,9 +31,37 @@ const ModalAddTransaction = ({ closeModal }) => {
     };
   }, []);
 
+  const handleAddTransaction = async (formData, dispatch) => {
+  try {
+  
+    const response = await dispatch(
+      addTransaction({
+        date: formData.dateValue,
+        year: formData.year, 
+        month: formData.month,
+        type: formData.type,
+        category: formData.selectedCategory,
+        comment: formData.comment,
+        sum: formData.amount,
+      }),
+    );
+    
+    if (addTransaction.fulfilled.match(response)) {
+     
+      dispatch(updateIsModalAddTransactionOpen(false));
+
+      
+    } else {
+      
+    }
+  } catch (error) {
+   
+  }
+};
+
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(categories());
+  
   }, [dispatch]);
 
   const [formData, setFormData] = useState({
@@ -87,7 +117,7 @@ const ModalAddTransaction = ({ closeModal }) => {
   const handleDateChange = date => {
     setFormData({
       ...formData,
-      dateValue: date,
+      dateValue: date.toDate(),
     });
   };
 
@@ -190,8 +220,13 @@ const ModalAddTransaction = ({ closeModal }) => {
               }),
               comment: Yup.string(),
             })}
-            // onSubmit={handleSubmit}
+            onSubmit={(values, { setSubmitting }) => {
+             
+              handleAddTransaction(values, dispatch);
+              setSubmitting(false);
+            }}
           >
+           
             <Form className={css.form}>
               <div className={css.inputContainer}>
                 <div className={css.inputWrapper}>
