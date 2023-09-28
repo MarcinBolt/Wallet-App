@@ -103,9 +103,7 @@ transition: all 250ms ease-in-out;
 
 .comment:hover {
   @media screen and (min-width: 768px) {
-    color: var(--color-text-secondary);
-    text-shadow: 0 0 2px var(--color-text-primary);
-    background-color: var(--color-bg-btn-active-hover);
+       background-color: var(--color-bg-primary);
   }
 }
 
