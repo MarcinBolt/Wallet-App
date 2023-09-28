@@ -21,7 +21,6 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 app.use('/users', usersRouter);
-
 app.use('/transactions', transactionsRouter);
 
 app.use((_, res, __) => {
