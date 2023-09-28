@@ -5,7 +5,7 @@ import 'react-datetime/css/react-datetime.css';
 import Select from 'react-select';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import { editTransaction } from '../../redux/transactions/operations';
+import { updateTransactionById } from '../../redux/transactions/operations';
 import css from './ModalEditTransaction.module.css';
 
 export const MainButton = ({ type, text, className }) => (
@@ -42,14 +42,19 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      const date = new Date(dateValue);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
       await dispatch(
-        editTransaction({
-          _id: transaction._id,
-          isExpense: isChecked,
-          amount: Number(amount),
+        updateTransactionById({
+          id: transaction._id,
           date: dateValue,
+          year: year,
+          month: month,
           category: isChecked ? selectedCategory : 'Income',
           comment: comment,
+          sum: Number(amount),
         }),
       );
 
