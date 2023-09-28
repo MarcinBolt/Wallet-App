@@ -81,13 +81,11 @@ body.modal-open {
   /* width: 275px; */
 }
 
-.calendarIcon{
+.calendarIcon {
   /* position: relative; */
- margin-right: 10px;
- margin-bottom: 10px;
-  
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
-
 
 .datetime input {
   border: none;

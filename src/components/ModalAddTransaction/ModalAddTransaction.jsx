@@ -13,15 +13,15 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Datetime from 'react-datetime';
+import Datetime from 'react-datetime';// bedzie potrzebne , probowalem juz, - robilem wykorzytsujac biblioteke datetime ustawienie bieżacej daty ale raz dzialalo raz nie dzialalo (nie wiem czemu) w dodatku uzycie biblioteki zakrywalo iconę kalendarza . , 
 import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
-import vectorIcon from '../../assets/icons/vector.svg'; 
+import vectorIcon from '../../assets/icons/vector.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
-import { updateIsModalAddTransactionOpen,} from '../../redux/global/global.slice'
+import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -31,38 +31,31 @@ const ModalAddTransaction = ({ closeModal }) => {
     };
   }, []);
 
+  //funkcja obslugujaca dodawanie transakcji , próbuje wykonac operację addTransaction za pomocą dispatch.  przekazuje dane z formularza transakcji. Jesli zakonczy sie sukcesem ma zostac wywolana akcja Redux updateIsModalAddTransactionOpen(false) i nastepuje zamkniecie modala
   const handleAddTransaction = async (formData, dispatch) => {
-  try {
-  
-    const response = await dispatch(
-      addTransaction({
-        date: formData.dateValue,
-        year: formData.year, 
-        month: formData.month,
-        type: formData.type,
-        category: formData.selectedCategory,
-        comment: formData.comment,
-        sum: formData.amount,
-      }),
-    );
-    
-    if (addTransaction.fulfilled.match(response)) {
-     
-      dispatch(updateIsModalAddTransactionOpen(false));
+    try {
+      const response = await dispatch(
+        addTransaction({
+          date: formData.dateValue,
+          year: formData.year,
+          month: formData.month,
+          type: formData.type,
+          category: formData.selectedCategory,
+          comment: formData.comment,
+          sum: formData.amount,
+        }),
+      );
 
-      
-    } else {
-      
-    }
-  } catch (error) {
-   
-  }
-};
+      if (addTransaction.fulfilled.match(response)) {
+        dispatch(updateIsModalAddTransactionOpen(false));
+      } else {
+      }
+    } catch (error) {}
+  };
 
+  // daje dostep do funkcji dispatch Redux,
   const dispatch = useDispatch();
-  useEffect(() => {
-  
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   const [formData, setFormData] = useState({
     isChecked: false,
@@ -81,6 +74,7 @@ const ModalAddTransaction = ({ closeModal }) => {
 
   const iconStyles = {};
 
+  //useSelector  ma byc uzyte do pobierania danych z Redux Store w tym kategorie
   const categories = useSelector(state => state.categories);
   const categoriesOptions = categories
     ? Object.values(categories)
@@ -114,10 +108,12 @@ const ModalAddTransaction = ({ closeModal }) => {
     },
   });
 
-  const handleDateChange = date => {
+  //funkcja jest uzywana do aktualizacji daty na podstawie wybranej daty, [BUG] - problem : kalendarz da sie ywbrac date ale nie zapisuje sie w formularzu wybrana
+  const handleDateChange = (dateString) => {
+    const selectedDate = new Date(dateString);
     setFormData({
       ...formData,
-      dateValue: date.toDate(),
+      dateValue: selectedDate,
     });
   };
 
@@ -221,12 +217,10 @@ const ModalAddTransaction = ({ closeModal }) => {
               comment: Yup.string(),
             })}
             onSubmit={(values, { setSubmitting }) => {
-             
               handleAddTransaction(values, dispatch);
               setSubmitting(false);
             }}
           >
-           
             <Form className={css.form}>
               <div className={css.inputContainer}>
                 <div className={css.inputWrapper}>
@@ -261,8 +255,10 @@ const ModalAddTransaction = ({ closeModal }) => {
                     variant="standard"
                     name="dateValue"
                     fullWidth
-                    value={formData.dateValue}
-                    onChange={() => {}}
+                    // value={formData.dateValue}// 
+                    onChange={(e) => {
+                      handleDateChange(e.target.value);
+                    }}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
