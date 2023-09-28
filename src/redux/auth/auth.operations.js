@@ -94,3 +94,43 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+ 
+export const deleteUser = createAsyncThunk(
+  'auth/delete', async (verificationToken, thunkAPI) => {
+    try {
+      console.log('works!')
+      const response = await axios.get(`/users/delete/${verificationToken}`);
+      if (response.status !== 200) {
+        return notification.notifyProcessFailure(response.data.message);
+      }
+      notification.notifyUserEmailVerifiedSuccess(response.data.user.firstName);
+      return response.data;
+    } catch (error) {
+      notification.notifyProcessFailure(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  });
+
+  export const updateUser = createAsyncThunk(
+  'transactions/editTransaction',
+  async ({ id, date, year, month, type, category, comment, sum }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/transactions/${id}`, {
+        date,
+        year,
+        month,
+        type,
+        category,
+        comment,
+        sum,
+      });
+      if (response.status !== 200) {
+        return notification.notifyProcessFailure(response.data.message);
+      }
+      return response.data;
+    } catch (e) {
+      notification.notifyProcessFailure(e.response.data.message);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
