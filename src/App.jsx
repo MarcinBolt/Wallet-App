@@ -11,7 +11,8 @@ import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
-const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
+// const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
+const Register = lazy(() => import('./pages/UserPanel/UserPanel.jsx'));
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
@@ -31,6 +32,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
+          {/* <Route path="/register" element={<PublicRoute component={<Register />} redirectTo={<Navigate to="/dashboard" replace />} />} /> */}
           <Route path="/register" element={<PublicRoute component={<Register />} redirectTo={<Navigate to="/dashboard" replace />} />} />
           <Route path="/login" element={<PublicRoute redirectTo={<Navigate to="/dashboard" replace />} component={<Login />} />} />
           <Route path="/dashboard" element={<PrivateRoute redirectTo={<Navigate to="/login" replace />} component={<Dashboard />} />} />
