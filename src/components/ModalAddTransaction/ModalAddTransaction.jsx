@@ -23,6 +23,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
 import CustomButton from '../CustomButton/CustomButton';
+import closeIcon from '../../assets/icons/close.svg';
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -122,6 +123,21 @@ const ModalAddTransaction = ({ closeModal }) => {
     <div>
       <div className={css.backdrop} onClick={closeModal}></div>
       <div className={css.overlay}>
+        <IconButton
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: '16px',
+            width: '16px',
+            height: '16px',
+            border: '0px solid #000',
+            transform: 'rotate(90deg)',
+          }}
+          onClick={closeModal}
+        >
+          <img src={closeIcon} alt="Close" />
+        </IconButton>
+
         <h1>Add transaction</h1>
 
         <div className={css.switch}>
@@ -226,7 +242,6 @@ const ModalAddTransaction = ({ closeModal }) => {
               <div className={css.inputContainer}>
                 <div className={css.inputWrapper}>
                   <Field
-                    
                     inputProps={{
                       style: {
                         paddingBottom: 0,
@@ -249,7 +264,6 @@ const ModalAddTransaction = ({ closeModal }) => {
                       style: {
                         height: 36,
                         padding: 0,
-                        
                       },
                     }}
                     as={TextField}
