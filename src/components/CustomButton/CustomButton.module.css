@@ -1,0 +1,50 @@
+.buttonPrimary {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: var(--color-bg-btn-income);
+  cursor: pointer;
+  border: 0;
+  text-transform: uppercase;
+  color: var(--color-text-btn-active-hover);
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  box-shadow:
+    0 2px 2px var(--color-bg-btn-active-hover-shadow),
+    inset 0 5px 5px var(--color-bg-blur);
+  transition: all 250ms ease-in-out;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
+}
+.buttonPrimary:hover {
+  box-shadow: 0 2px 8px var(--color-bg-btn-active-hover-shadow);
+  background-color: var(--color-bg-btn-active-hover-shadow-darker);
+}
+.buttonSecondary {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  color: var(--color-text-btn-cancel);
+  cursor: pointer;
+  border: 0;
+  text-transform: uppercase;
+  color: var(--color-text-btn-cancel);
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  background-color: transparent;
+  box-shadow:
+    0 2px 2px var(--color-bg-btn-cancel),
+    inset 0 2px 35px var(--color-border-btn-cancel-shadow-light);
+  border: 1px solid var(--color-border-btn-cancel);
+  transition: all 250ms ease-in-out;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
+}
+.buttonSecondary:hover {
+  box-shadow:
+    0 2px 2px var(--color-border-btn-cancel-shadow),
+    inset 0 2px 8px var(--color-border-btn-cancel-shadow);
+  background-color: var(--color-border-btn-cancel-shadow-darker);
+}
