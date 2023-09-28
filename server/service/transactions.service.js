@@ -27,3 +27,6 @@ export const getOwnerTransactionsByCategoryFromDB = async (owner, category) =>
 
 export const getOwnerStatisticsFromBD = async (owner, year, month) =>
   await Transaction.find({ owner, year, month });
+
+export const deleteOwnerAllTransactionsIdInDB = async owner =>
+  await Transaction.deleteMany({ owner });
