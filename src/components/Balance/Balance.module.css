@@ -8,14 +8,14 @@
   padding: 8px 32px 11px;
 }
 
-@media (min-width: 780px) {
-  .Balance {
+@media screen and (min-width: 780px) {
+  .BalanceContainer {
     width: 360px;
     padding: 8px 40px 11px;
   }
 }
-@media (min-width: 1200px) {
-  .Balance {
+@media screen and (min-width: 1200px) {
+  .BalanceContainer {
     width: 395px;
   }
 }
@@ -28,7 +28,7 @@
   align-items: start;
 }
 .BalanceBox {
-  font-size: 30;
+  font-size: 30px;
   font-weight: 700;
   color: var(--color-text-primary);
   display: flex;
