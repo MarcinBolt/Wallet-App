@@ -2,19 +2,19 @@ import { Suspense } from 'react';
 import Media from 'react-media';
 import { mediaQueries } from '../../utils/constants';
 import Header from '../../components/Header/Header';
-import TempNavi from '../../components/temporary components/TempNavi';
 import { Outlet } from 'react-router-dom';
 import CurrencyTable from '../../components/CurrencyTable/CurrencyTable';
 import TempBalance from '../../components/temporary components/TempBalance';
 import Loader from '../../components/Loader/Loader';
 import PageContainer from '../../components/PageContainer/PageContainer ';
 import css from './Dashboard.module.css';
+import Navigation from '../../components/Navigation/Navigation';
 
 const DashboardMobile = () => {
   return (
     <PageContainer>
       <div className={css.navMobileWrapper}>
-        <TempNavi />
+        <Navigation />
       </div>
       <Suspense fallback={<Loader />}>
         <Outlet />
@@ -28,7 +28,7 @@ const DashboardTablet = () => {
       <div className={css.dashboardTablet}>
         <div className={css.dashboardTabletWrapper}>
           <div className={css.navBalTabletWrapper}>
-            <TempNavi />
+            <Navigation />
             <TempBalance />
           </div>
           <div className={css.currTabletWrapper}>
@@ -47,7 +47,7 @@ const DashboardDesktop = () => {
     <PageContainer>
       <div className={css.dashboardDesktopWrapper}>
         <div className={css.navBalCurrDesktopWrapper}>
-          <TempNavi />
+          <Navigation />
           <TempBalance />
           <CurrencyTable />
         </div>
