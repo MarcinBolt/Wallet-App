@@ -10,14 +10,15 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from '../../utils/hooks/user.auth';
 // import { logIn } from '../redux/auth/auth.operations.js';
 import css from './UserPanel.module.css';
-import { Modal } from '@mui/material';
+import { DialogTitle, IconButton, Modal } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { red } from '@mui/material/colors';
- 
+import MoneyIcon from '@mui/icons-material/Money';
+import CloseIcon from '@mui/icons-material/Close';
 
  const theme = createTheme();
 
@@ -37,9 +38,7 @@ import { red } from '@mui/material/colors';
     .max(12, 'Maximum 12 characters long')
     .required('First Name is required!'),
 });
- 
-
- 
+  
  
 const UserPanel = () => {
  
@@ -101,37 +100,91 @@ const UserPanel = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        maxWidth: '240px',
-        background: 'white'
+        maxWidth: '260px',
+        background: 'white',
+        position: 'fixed',
+        top: 0,
+        right: 0,
       }}
     >
       
       <ThemeProvider theme={theme}>
         <h1>Hello {userName} </h1>
         <p>Your E-mail is {userEmail}</p>
-
-        <Button onClick={handleOpen}>Update/Delete user</Button>
-      <Dialog
-       
+ 
+        <Button
+            type="button"
+            onClick={handleOpen}
+            sx={{
+              mt: 3,
+              mb: 2,
+              width: 250,
+              marginTop: '5px',
+              marginLeft: '10px',
+              marginRight: '10px',
+              background: '#24cca7',
+              '&:hover': {
+                background: '#35a78e',
+              },
+              color: '#ffffff',
+              fontSize: 18,
+              borderRadius: 20,
+            }}
+          >
+            UPDATE ACCOUNT
+          </Button>
+  
+        <Button
+            type="button"
+            onClick={DeleteUser()}
+            sx={{ 
+              mt: 3,
+              mb: 2,
+              width: 250,
+              marginTop: '5px',
+              marginLeft: '10px',
+              marginRight: '10px', 
+              background: '#ffffff',
+              border: 1,
+              borderColor: '#FF0000',
+              '&:hover': {
+                background: '#FF0000',
+                color: '#ffffff',
+              },
+              color: '#FF0000',
+              fontSize: 18,
+              borderRadius: 20,
+            }}
+          >
+            DELETE ACCOUNT
+          </Button>
+ 
+      <Dialog 
       sx={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        maxWidth: '200px',
-        background: 'red',
-        position: 'absolute',
-        left: 10,
-        top: 50,
-        background: 'transparent'
+        maxWidth: '200px', 
+        background: 'transparent', 
+        left: '70%', 
       }}
+      // PaperProps={{sx: {position: 'absolute',   m: 0}}}
 
+      className="mui-fixed" 
         open={open}
-        onClose={handleClose} 
+        // onClose={handleClose} 
       > 
 
-<form onSubmit={formik.handleSubmit} className={css.form}>
+      <DialogTitle sx={{ display: 'flex', alignItems: 'center',
+       p: '20', pr: '20', pb: '0'  }}> 
+          <IconButton sx={{ ml: 'auto', pb: '0' }}>
+              <CloseIcon sx={{ ml: 'auto' }} onClick={handleClose}/>
+          </IconButton>
+      </DialogTitle>
+ 
+     <form onSubmit={formik.handleSubmit} className={css.form}>
         
         <div className={css.container_form}>
           <div className={css.container_input}>
@@ -154,7 +207,8 @@ const UserPanel = () => {
                 paddingBottom: '0px',
                 marginTop: '20px',
                 marginBottom: '0px',
-                width: '100%',
+                width: '80%',
+                marginLeft: '25px', 
                 height: '80px',
 
                 fieldset: {
@@ -210,8 +264,8 @@ const UserPanel = () => {
               sx={{
                 position: 'absolute',
                 fill: 'lightgray',
-                top: '10px',
-                left: '10px',
+                top: '82px',
+                left: '30px',
               }}
             />
           </div>
@@ -233,9 +287,10 @@ const UserPanel = () => {
                 borderColor: 'grey.400',
                 paddingTop: '0px',
                 paddingBottom: '0px',
+                marginLeft: '25px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
+                width: '80%',
                 height: '80px',
 
                 fieldset: {
@@ -290,8 +345,8 @@ const UserPanel = () => {
               sx={{
                 position: 'absolute',
                 fill: 'lightgray',
-                top: '10px',
-                left: '10px',
+                top: '160px',
+                left: '30px',
               }}
             />
           </div>
@@ -315,7 +370,8 @@ const UserPanel = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
+                width: '80%',
+                marginLeft: '25px',
                 height: '80px',
 
                 fieldset: {
@@ -370,8 +426,8 @@ const UserPanel = () => {
               sx={{
                 position: 'absolute',
                 fill: 'lightgray',
-                top: '10px',
-                left: '10px',
+                top: '240px',
+                left: '30px',
               }}
             />
           </div>
@@ -396,7 +452,8 @@ const UserPanel = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
+                width: '80%',
+                marginLeft: '25px',
                 height: '80px',
 
                 fieldset: {
@@ -451,11 +508,94 @@ const UserPanel = () => {
               sx={{
                 position: 'absolute',
                 fill: 'lightgray',
-                top: '12px',
-                left: '10px',
+                top: '320px',
+                left: '30px',
               }}
             />
           </div>
+
+          <div className={css.container_input}>
+            <TextField
+              name="currency"
+              type="text"
+              label="Currency"
+              // value={formik.values.firstName}
+              // onChange={formik.handleChange}
+              // onBlur={formik.handleBlur}
+              // error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+              // helperText={formik.touched.firstName && formik.errors.firstName}
+              variant="outlined"
+              color="grey"
+              className={css.test}
+              sx={{
+                border: 'none',
+                borderColor: 'grey.400',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                marginTop: '0px',
+                marginBottom: '0px',
+                width: '80%',
+                marginLeft: '25px',
+                height: '80px',
+
+                fieldset: {
+                  borderRadius: 0,
+                  border: 'none',
+                  borderBottom: 1,
+                },
+                input: {
+                  position: 'relative',
+                  color: 'grey.600',
+                  fontFamily: 'var(--font-primary)',
+                  lineHeight: 1,
+                  fontSize: '18px',
+                  marginLeft: '45px',
+                  marginTop: '0px',
+                  marginBottom: '10px',
+                  paddingLeft: '0px',
+                  paddingTop: '8px',
+                  paddingBottom: '0px',
+                },
+                label: {
+                  color: 'grey.400',
+                  fontFamily: 'var(--font-primary)',
+                  lineHeight: 1,
+                  fontSize: '18px',
+                  marginLeft: '30px',
+                },
+                p: {
+                  color: 'grey.400',
+                  fontFamily: 'var(--font-primary)',
+                  lineHeight: 1,
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'start',
+                  paddingLeft: '0px',
+                },
+                legend: {
+                  color: 'grey.400',
+                  fontFamily: 'var(--font-primary)',
+                  lineHeight: 1,
+                  marginLeft: '30px',
+                  marginTop: '0px',
+                  marginBottom: '0px',
+                  paddingLeft: '0px',
+                  paddingTop: '0px',
+                  paddingBottom: '0px',
+                },
+                span: { color: 'grey.400', fontFamily: 'var(--font-primary)', lineHeight: 1 },
+              }}
+            />
+            <MoneyIcon
+              sx={{
+                position: 'absolute',
+                fill: 'lightgray',
+                top: '400px',
+                left: '30px',
+              }}
+            />
+          </div>
+  
         </div>
         <div className={css.button_container}>
           <Button
@@ -463,8 +603,10 @@ const UserPanel = () => {
             sx={{
               mt: 3,
               mb: 2,
-              width: 280,
+              width: 250,
               marginTop: '5px',
+              marginLeft: '10px',
+              marginRight: '10px',
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
@@ -474,34 +616,14 @@ const UserPanel = () => {
               borderRadius: 20,
             }}
           >
-            REGISTER
+            UPDATE INFORMATION
           </Button>
-          <Button
-            type="button"
-            onClick={DeleteUser()}
-            sx={{
-              width: 280,
-              background: '#ffffff',
-              border: 1,
-              borderColor: '#4a56e2',
-              '&:hover': {
-                background: '#4a56e2',
-                color: '#ffffff',
-              },
-              color: '#4a56e2',
-              fontSize: 18,
-              borderRadius: 20,
-            }}
-          >
-            DELETE ACCOUNT
-          </Button>
+          
         </div>
       </form> 
 
         </Dialog>
-        
          
-       
       </ThemeProvider>
     </Box>
   );
