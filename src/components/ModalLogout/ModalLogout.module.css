@@ -15,17 +15,29 @@
 
 .logoutModalContainer {
   position: fixed;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 320px;
   height: 240px;
   background-color: var(--color-bg-secondary);
   box-shadow: 0 2px 8px var(--color-bg-backdrop);
-  z-index: 9999;
+  z-index: 999;
   border-radius: 14px;
 }
+@media (min-width: 768px) {
+  .logoutModalContainer {
+    width: 90%;
+    max-width: 340px;
+  }
+}
 
+@media (min-width: 1200px) {
+  .logoutModalContainer {
+    width: 70%;
+    max-width: 400px;
+  }
+}
 .logoutModalContainer .logoutModalContent {
   text-align: center;
   display: flex;
@@ -60,9 +72,10 @@
 .logout_button:hover,
 .logout_button:focus {
   cursor: pointer;
-  filter: drop-shadow(0px 10px 5px #24cca8a4);
-  -webkit-filter: drop-shadow(0px 10px 5px #24cca8a4);
-  -moz-filter: drop-shadow(0px 10px 5px #24cca8a4);
+  filter: drop-shadow(0px 5px 5px #24cca8a4);
+  -webkit-filter: drop-shadow(0px 5px 5px #24cca8a4);
+  -moz-filter: drop-shadow(0px 5px 5px #24cca8a4);
+  background-color: var(--color-category-other);
 }
 .main_btn {
   width: 120px;
@@ -81,6 +94,9 @@
   cursor: pointer;
   border: 1px solid #4655a8;
   color: #4655a8;
+  filter: drop-shadow(0px 5px 5px #24cca8a4);
+  -webkit-filter: drop-shadow(0px 5px 5px var(--color-border-btn-cancel));
+  -moz-filter: drop-shadow(0px 5px 5px #24cca8a4);
   background-color: #f9faff;
   cursor: pointer;
 }
