@@ -1,3 +1,18 @@
+.homeTab {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 715px;
+    padding-top: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 46px;
+  }
+}
+
 .tableHeader {
   display: none;
   @media screen and (min-width: 768px) {
@@ -36,15 +51,15 @@
 
 
 .tableHeaderItem:nth-child(2) {
-    justify-content: center;
+  justify-content: center;
 }
 
 .tableHeaderItem:nth-child(5) {
-    justify-content: right;
+  justify-content: right;
 }
 
 .tableHeaderItem:last-child {
-    justify-content: center;
+  justify-content: center;
 }
 
 .tableBody {
