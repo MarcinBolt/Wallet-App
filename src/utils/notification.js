@@ -1,13 +1,13 @@
 import Notiflix from 'notiflix';
 
 const notifyUserEmailSenTSuccess = email => {
-  Notiflix.Report.success('Verification email sent!', `Check:${email} Inbox.`, 'OK!');
+  Notiflix.Report.success('Verification email sent!', `Check: ${email} Inbox.`, 'OK!');
 };
 
 const notifyUserEmailSenTFailure = message => {
   Notiflix.Report.failure(
     'Sending the verification email failed.',
-    `Message from server: ${message}.`,
+    `Message: ${message}.`,
     'Try again',
   );
 };
@@ -20,24 +20,30 @@ const notifyUserEmailVerifiedSuccess = firstName => {
   );
 };
 
-const notifyUserEmailVerifiedFailure = message => {
-  Notiflix.Report.failure('Registration Fail!ed.', `Message from server: ${message}.`, 'Try again');
+const notifyUserProcessTSuccess = message => {
+  Notiflix.Report.success('Success!', `Message: ${message} `, 'OK!');
 };
 
-const notifyLoginFailure = message => {
-  Notiflix.Report.failure('Something goes wrong.', `Message from server: ${message}.`, 'Try again');
+const notifyUserRegistrationFailure = message => {
+  Notiflix.Report.failure('Registration fail!ed.', `Message: ${message}.`, 'Try again');
 };
-const notifyLogoutFailure = message => {
-  Notiflix.Report.failure('Something goes wrong.', `Message from server: ${message}.`);
+
+const notifyUserEmailVerifiedFailure = message => {
+  Notiflix.Report.failure('Verification fail!ed.', `Message: ${message}.`, 'Try again');
+};
+
+const notifyProcessFailure = message => {
+  Notiflix.Report.failure('Something goes wrong.', `Message: ${message}.`, 'Try again');
 };
 
 const notification = {
   notifyUserEmailSenTSuccess,
   notifyUserEmailSenTFailure,
   notifyUserEmailVerifiedSuccess,
+  notifyUserProcessTSuccess,
+  notifyUserRegistrationFailure,
   notifyUserEmailVerifiedFailure,
-  notifyLoginFailure,
-  notifyLogoutFailure,
+  notifyProcessFailure,
 };
 
 export default notification;
