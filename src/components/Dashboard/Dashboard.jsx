@@ -1,13 +1,15 @@
 import AppBar from '../AppBar/AppBar';
-import Navigation from '../Navigation/Navigation';
-import { Outlet } from 'react-router';
+import CurrencyTable from '../CurrencyTable/CurrencyTable.jsx';
+import Chart from '../Chart/Chart.jsx';
+import Transactions from '../Transactions/Transactions.jsx';
 
 const Dashboard = () => {
   return (
     <>
       <AppBar />
-      <Navigation />
-      <Outlet />
+      <CurrencyTable />
+      <Chart />
+      <Transactions />
     </>
   );
 };

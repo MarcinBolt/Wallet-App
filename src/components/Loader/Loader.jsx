@@ -9,7 +9,7 @@ const Loader = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
+        minHeight: '100%',
       }}
     >
       <Grid

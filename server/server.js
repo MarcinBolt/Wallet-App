@@ -8,6 +8,8 @@ import usersRouter from './routers/users.router.js';
 import transactionsRouter from './routers/transactions.router.js';
 import 'dotenv/config';
 import './config/passport.config.js';
+import  swaggerOutput from './swagger-output.js';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -17,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static('public'));
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 app.use('/users', usersRouter);
 app.use('/transactions', transactionsRouter);
 
