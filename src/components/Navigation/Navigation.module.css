@@ -1,16 +1,14 @@
-@import '../../utils/css-variables.css';
-
 @media screen and (max-width: 767px) {
   .list {
     margin: 0 auto;
     padding: 0;
-    max-width: 280px;
+    width: 280px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     list-style: none;
   }
-
+  
   .home__span,
   .diagram__span {
     display: none;
@@ -23,8 +21,11 @@
     height: 44px;
     background-size: contain;
     background-image: url('../../assets/icons/home.svg');
+    will-change: background-image;
+    transform: background-image;
+    transition: background-image 250ms ease-in-out;
   }
-
+  
   .home__link:hover::before {
     background-image: url('../../assets/icons/home-hover.svg');
   }
@@ -36,12 +37,15 @@
     height: 44px;
     background-size: contain;
     background-image: url('../../assets/icons/diagram.svg');
+    will-change: background-image;
+    transform: background-image;
+    transition: background-image 250ms ease-in-out;
   }
-
+  
   .diagram__link:hover::before {
     background-image: url('../../assets/icons/diagram-hover.svg');
   }
-
+  
   .dollar__link::before {
     display: block;
     content: '';
@@ -49,12 +53,15 @@
     height: 44px;
     background-size: contain;
     background-image: url('../../assets/icons/currency.svg');
+    will-change: background-image;
+    transform: background-image;
+    transition: background-image 250ms ease-in-out;
   }
-
-   .dollar__link:hover::before {
+  
+  .dollar__link:hover::before {
     background-image: url('../../assets/icons/currency-hover.svg');
   }
-
+  
   .active {
     background-color: var(--color-bg-widget-currency);
     box-shadow: 0px 3px 10px 0px;
@@ -88,13 +95,16 @@
       height: 24px;
       background-size: cover;
       background-image: url('../../assets/icons/home.svg');
+      will-change: background-image;
+      transform: background-image;
+      transition: background-image 250ms ease-in-out;
     }
   }
-
+  
   .home__link:hover::before {
     background-image: url('../../assets/icons/home-hover.svg');
   }
-
+  
   .diagram__link {
     width: 128px;
     display: inline-flex;
@@ -108,29 +118,35 @@
       height: 24px;
       background-size: cover;
       background-image: url('../../assets/icons/diagram.svg');
+      will-change: background-image;
+      transform: background-image;
+      transition: background-image 250ms ease-in-out;
     }
   }
-
+  
   .diagram__link:hover::before {
     background-image: url('../../assets/icons/diagram-hover.svg');
   }
-
+  
   .dollar__link {
     display: none;
   }
-
+  
   .home__span,
   .diagram__span {
     font-family: var(--font-primary);
     font-size: 18px;
     margin-left: 23px;
+    will-change: font-weight;
+    transform: font-weight;
+    transition: font-weight 250ms ease-in-out;
   }
-
+  
   .home__span:hover,
   .diagram__span:hover {
     font-weight: 700;
   }
-
+  
   .active {
     background-color: var(--color-bg-widget-currency);
     box-shadow: 0px 3px 10px 0px;
@@ -138,3 +154,4 @@
     font-family: var(--font-primary-bold);
   }
 }
+

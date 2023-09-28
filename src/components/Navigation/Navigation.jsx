@@ -7,17 +7,17 @@ const Navigation = () => {
     <nav className={css.nav}>
       <ul className={css.list}>
         <li>
-          <NavLink className={css.home__link} to="home">
+          <NavLink className={css.home__link} to="/">
             <span className={css.home__span}>Home</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className={css.diagram__link} to="diagram">
+          <NavLink className={css.diagram__link} to="statistics">
             <span className={css.diagram__span}>Statistics</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className={css.dollar__link} to="statistics"></NavLink>
+          <NavLink className={css.dollar__link} to="currency"></NavLink>
         </li>
       </ul>
     </nav>
