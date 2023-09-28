@@ -68,21 +68,13 @@ body.modal-open {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 55px;
 }
 
-.datetime {
-  /* border-bottom: 1px solid #e0e0e0; */
-  /* color: var(--color-text-btn-placeholder); */
-  /* background-color: #e0e0e0; */
-  /* margin-top: 20px; */
-  /* margin-bottom: 15px; */
-  /* width: 275px; */
-}
+
 
 .calendarIcon {
-  /* position: relative; */
+  /* position: absolute; */
   margin-right: 10px;
   margin-bottom: 10px;
 }
@@ -113,6 +105,7 @@ body.modal-open {
 }
 .selectContainer {
   width: 280px;
+  
 }
 
 @media screen and (min-width: 768px) {
@@ -159,6 +152,7 @@ body.modal-open {
   .textarea {
     width: 394px;
     height: 32px;
+
   }
 }
 

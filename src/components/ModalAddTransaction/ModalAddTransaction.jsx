@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Datetime from 'react-datetime';// bedzie potrzebne , probowalem juz, - robilem wykorzytsujac biblioteke datetime ustawienie bieżacej daty ale raz dzialalo raz nie dzialalo (nie wiem czemu) w dodatku uzycie biblioteki zakrywalo iconę kalendarza . , 
+import Datetime from 'react-datetime'; // bedzie potrzebne , probowalem juz, - robilem wykorzytsujac biblioteke datetime ustawienie bieżacej daty ale raz dzialalo raz nie dzialalo (nie wiem czemu) w dodatku uzycie biblioteki zakrywalo iconę kalendarza . ,
 import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
@@ -22,6 +22,7 @@ import vectorIcon from '../../assets/icons/vector.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
+import CustomButton from '../CustomButton/CustomButton';
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -109,7 +110,7 @@ const ModalAddTransaction = ({ closeModal }) => {
   });
 
   //funkcja jest uzywana do aktualizacji daty na podstawie wybranej daty, [BUG] - problem : kalendarz da sie ywbrac date ale nie zapisuje sie w formularzu wybrana
-  const handleDateChange = (dateString) => {
+  const handleDateChange = dateString => {
     const selectedDate = new Date(dateString);
     setFormData({
       ...formData,
@@ -255,8 +256,8 @@ const ModalAddTransaction = ({ closeModal }) => {
                     variant="standard"
                     name="dateValue"
                     fullWidth
-                    // value={formData.dateValue}// 
-                    onChange={(e) => {
+                    // value={formData.dateValue}//
+                    onChange={e => {
                       handleDateChange(e.target.value);
                     }}
                     InputProps={{
@@ -271,10 +272,8 @@ const ModalAddTransaction = ({ closeModal }) => {
                   />
                 </div>
               </div>
-
               <ErrorMessage name="amount" component="div" />
               <ErrorMessage name="dateValue" component="div" />
-
               <label className="label">
                 <div className={css.textareaWrapper}>
                   <Field
@@ -283,17 +282,28 @@ const ModalAddTransaction = ({ closeModal }) => {
                     className={css.textarea}
                     rows={1}
                     name="comment"
+                   
                   />
                 </div>
-              </label>
-              <Button type="submit" fullWidth variant="contained" className={css.logo_btn}>
-                ADD
-              </Button>
+              </label>{' '}
             </Form>
           </Formik>
-          <Button onClick={closeModal} fullWidth variant="outlined" className={css.main_btn}>
-            Cancel
-          </Button>
+
+          <CustomButton
+            type="button"
+            fullWidth
+            color="primary"
+            content="ADD"
+            onClick={closeModal}
+          ></CustomButton>
+
+          <CustomButton
+            type="button"
+            fullWidth
+            color="secondary"
+            content="Cancel"
+            onClick={closeModal}
+          ></CustomButton>
         </div>
       </div>
     </div>
