@@ -17,9 +17,10 @@ import {
   userRegisterReqBodySchema,
   userLoginReqBodySchema,
   userEmailReqBodySchema,
-} from '../utils/joi.schemas..js';
+} from '../utils/joi.schemas.js';
 import capitalizeEachWord from '../utils/capitalizer.js';
 import { capitalize } from '@mui/material';
+import { deleteOwnerAllTransactionsIdInDB } from '../service/transactions.service.js';
 
 const createNewUser = async (req, res, _) => {
   try {
@@ -101,7 +102,7 @@ const deleteUser = async (req, res, _) => {
         message: 'Email is wrong',
       });
     }
-
+    await deleteOwnerAllTransactionsIdInDB(userIdFromReqAuthorizedToken);
     await deleteUserByIdInDB(userIdFromReqAuthorizedToken);
 
     res.status(200).json({
@@ -168,6 +169,7 @@ const loginUser = async (req, res, _) => {
     return res.json({
       status: 'success',
       code: 200,
+      message: 'User is logged in',
       token,
       user: {
         email: user.email,
@@ -307,7 +309,7 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
     if (error) {
       return res
         .status(400)
-        .json({ status: 'error', code: 400, message: 'missing required field email' });
+        .json({ status: 'error', code: 400, message: 'Missing required field email' });
     }
 
     const normalizedEmail = email.toLowerCase();
