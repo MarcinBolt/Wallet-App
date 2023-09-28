@@ -9,8 +9,6 @@ export const selectTransactions = state => state.transactions.transactions;
 export const selectTransactionsFilteredByCategory = state => state.transactions.transactionsFilteredByCategory;
 export const selectTransactionsFilteredByYearAndMonth = state => state.transactions.transactionsFilteredByYearAndMonth;
 export const selectTransactionsCategories = state => state.transactions.categories;
-export const selectTransactionsRealizationYear = state => state.transactions.realizationYear;
-export const selectTransactionsRealizationMonth = state => state.transactions.realizationMonth;
 export const selectTransactionsFilterCategory = state => state.transactions.selectedFilterCategory;
 export const selectTransactionId = state => state.transactions.selectedId;
 export const selectTransactionFilterYear = state => state.transactions.selectedFilterYear;

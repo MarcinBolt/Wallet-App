@@ -24,8 +24,6 @@ const initState = {
     'Other expenses',
     'Entertainment',
   ],
-  realizationYear: '',
-  realizationMonth: '',
   selectedFilterCategory: '',
   selectedId: '',
   selectedFilterYear: new Date().getFullYear(),
