@@ -76,7 +76,7 @@ const transactionsSlice = createSlice({
         const index = state.transactions.findIndex(
           transaction => transaction.id === action.payload.transaction.id,
         );
-        state.transactions[index] = action.payload.transactions;
+        state.transactions[index] = action.payload.transaction;
       })
       .addCase(fetchTransactionsByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
