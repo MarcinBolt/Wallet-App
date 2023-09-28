@@ -50,7 +50,9 @@
   --color-bg-btn-cancel: #ede9e8;
   --color-bg-btn-income: #24cca7;
   --color-bg-btn-expanse: #ff6596;
-
+  --color-bg-btn-active-hover-shadow: #24cca840;
+  --color-bg-btn-active-hover-shadow-darker: #1eb896e0;
+  
   /* ------ borders colors ----- */
   --color-border-btn-date-filter: #000000;
   --color-border-bottom-btn-form: #e0e0e0;
@@ -63,7 +65,10 @@
   --color-border-categories-separator: #dcdcdf;
   --color-border-transactions-separator: #dcdcdf;
   --color-border-desktop-vertical-dashboard-separator: #e7e5f2;
-
+  --color-border-btn-cancel-shadow: #4a57e246;
+  --color-border-btn-cancel-shadow-darker: #4a57e210;
+  --color-border-btn-cancel-shadow-light: #ffffff98;
+  
   /* ------ categories colors ----- */
   --color-category-main: #fed057;
   --color-category-products: #ffd8d0;
