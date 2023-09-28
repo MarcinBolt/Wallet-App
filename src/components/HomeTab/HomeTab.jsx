@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectTransactions } from '../../redux/selectors';
+import {
+  selectGlobalIsModalAddTransactionOpen,
+  selectTransactions,
+  selectUserFirstName,
+} from '../../redux/selectors';
 
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
@@ -26,50 +30,54 @@ const HomeTab = () => {
   }, [dispatch]);
 
   const transactions = useSelector(selectTransactions);
- 
+  const userName = useSelector(selectUserFirstName);
+  const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
+
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
 
   return (
     <>
-      <div className={css.homeTab}>
-        <ul className={css.tableBody}>
-          <li key={'header'} className={css.tableItem}>
-            <ul className={css.tableHeader}>
-              <li key={`date`} className={css.tableHeaderItem}>
-                <p className={css.itemType}>Date</p>
-              </li>
-              <li key={`type`} className={css.tableHeaderItem}>
-                <p className={css.itemType}>Type</p>
-              </li>
-              <li key={`category`} className={css.tableHeaderItem}>
-                <p className={css.itemType}>Category</p>
-              </li>
-              <li key={`comment`} className={css.tableHeaderItem}>
-                <p className={css.itemType}>Comment</p>
-              </li>
-              <li key={`sum`} className={css.tableHeaderItem}>
-                <p className={css.itemType}>Sum</p>
-              </li>
-              <li key={`operations`} className={css.tableHeaderItem}></li>
-            </ul>
-          </li>
-          {transactions.length > 0 &&
-            sortedToNewestTransactions.map(({ id, date, type, category, comment, sum }) => (
-              <li key={id} className={css.tableItem}>
-                {
-                  <TransactionDetails
-                    id={id}
-                    date={date}
-                    type={type}
-                    category={category}
-                    comment={comment}
-                    sum={sum}
-                  />
-                }
-              </li>
-            ))}
-        </ul>
+      <div className={css.homeTabWrapper}>
+        <div className={css.homeTab}>
+          <ul className={css.tableBody}>
+            <li key={`${userName}header`} className={css.tableItem}>
+              <ul className={css.tableHeader}>
+                <li key={`${userName}date`} className={css.tableHeaderItem}>
+                  <p className={css.itemType}>Date</p>
+                </li>
+                <li key={`${userName}type`} className={css.tableHeaderItem}>
+                  <p className={css.itemType}>Type</p>
+                </li>
+                <li key={`${userName}category`} className={css.tableHeaderItem}>
+                  <p className={css.itemType}>Category</p>
+                </li>
+                <li key={`${userName}comment`} className={css.tableHeaderItem}>
+                  <p className={css.itemType}>Comment</p>
+                </li>
+                <li key={`${userName}sum`} className={css.tableHeaderItem}>
+                  <p className={css.itemType}>Sum</p>
+                </li>
+                <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
+              </ul>
+            </li>
+            {transactions.length > 0 &&
+              sortedToNewestTransactions.map(({ id, date, type, category, comment, sum }) => (
+                <li key={id} className={css.tableItem}>
+                  {
+                    <TransactionDetails
+                      id={id}
+                      date={date}
+                      type={type}
+                      category={category}
+                      comment={comment}
+                      sum={sum}
+                    />
+                  }
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </>
   );
