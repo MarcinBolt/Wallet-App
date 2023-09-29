@@ -1,9 +1,11 @@
-const DiagramTab = () => {
-    return (
-        <>
-        <h1>DiagramTab</h1>
-        </>
-    )
-}
+import Statistics from '../Statistics/Statistics.jsx';
 
-export default DiagramTab
+const DiagramTab = () => {
+  return (
+    <>
+      <Statistics />
+    </>
+  );
+};
+
+export default DiagramTab;

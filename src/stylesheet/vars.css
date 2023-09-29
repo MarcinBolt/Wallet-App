@@ -105,6 +105,8 @@
   --radius-widget-binance: 30px;
   --radius-widget-currency: 30px;
   --radius-widget-transactions-header: 30px;
+  --radius-stats-labels-timeframe: 30px;
+  --radius-stats-table-header: 30px;
 }
 
 /* ------ example of use ------*/
