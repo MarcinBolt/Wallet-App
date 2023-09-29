@@ -30,9 +30,8 @@ const TransactionDetails = ({
     const formattedDate = (day < 10 ? '0' : '') + day + '.' + (month < 10 ? '0' : '') + month + '.' + (year < 10 ? '0' : '') + year;
     return formattedDate;
   };
-  console.log("id z propsa:", id)
 
-  return (
+    return (
     <ul className={listClassName}>
       <li key={`${id}date`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Date</p>
@@ -58,7 +57,7 @@ const TransactionDetails = ({
         <p className={textClassName}>{sum}</p>
       </li>
       <li key={`$[id]operations`} className={css.transactionDetailsItem}>
-        <button type="button" onClick={handleDelete}>
+        <button type="button" onClick={handleDelete(id)}>
           DeleteBtn
         </button>
         <EditButton id={id} onClick={handleEdit} />
