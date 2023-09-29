@@ -25,15 +25,15 @@ const CurrencyTable = () => {
     return { currency, purchase, sale };
   };
   const rows = [
-    createData('USD', currencies.USDPLN, currencies.USDPLN),
-    createData('EUR', currencies.USDEUR, currencies.USDEUR),
+    createData('USD', currencies.USD, currencies.USD),
+    createData('EUR', currencies.PLN, currencies.PLN),
   ];
 
   return (
     <div className={css.table}>
       <TableContainer
         component={Paper}
-        sx={{ width: [280, 336, 393], height: [174, 182, 331] }}
+        sx={{ width: [280, 336, 393], height: [174, 182, 331], borderRadius: '30px' }}
       >
         <Table
           sx={{
@@ -42,7 +42,12 @@ const CurrencyTable = () => {
           }}
           aria-label="currency table"
         >
-          <TableHead sx={{ backgroundColor: '#6e78e8', '& td, & th': { border: 0 } }}>
+          <TableHead
+            sx={{
+              backgroundColor: '#6e78e8',
+              '& td, & th': { border: 0 },
+            }}
+          >
             <TableRow>
               <TableCell
                 sx={{
@@ -53,10 +58,16 @@ const CurrencyTable = () => {
               >
                 Currency
               </TableCell>
-              <TableCell sx={{ color: '#FFFFFF', fontWeight: '700', fontSize: '18' }} align="right">
+              <TableCell
+                sx={{ color: '#FFFFFF', fontWeight: '700', fontSize: '18' }}
+                align="center"
+              >
                 Purchase
               </TableCell>
-              <TableCell sx={{ color: '#FFFFFF', fontWeight: '700', fontSize: '18' }} align="right">
+              <TableCell
+                sx={{ color: '#FFFFFF', fontWeight: '700', fontSize: '18' }}
+                align="center"
+              >
                 Sale
               </TableCell>
             </TableRow>
@@ -74,18 +85,19 @@ const CurrencyTable = () => {
                   component="th"
                   scope="row"
                   sx={{ color: '#FFFFFF', fontWeight: '400', fontSize: '16' }}
+                  align="center"
                 >
                   {row.currency}
                 </TableCell>
                 <TableCell
                   sx={{ color: '#FFFFFF', fontWeight: '400', fontSize: '16' }}
-                  align="right"
+                  align="center"
                 >
                   {row.purchase}
                 </TableCell>
                 <TableCell
                   sx={{ color: '#FFFFFF', fontWeight: '400', fontSize: '16' }}
-                  align="right"
+                  align="center"
                 >
                   {row.sale}
                 </TableCell>
