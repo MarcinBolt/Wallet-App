@@ -78,6 +78,7 @@ const HomeTab = () => {
                 <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
               </ul>
             </li>
+            {transactions.length === 0 && <h1>No transactions yet</h1>}
             {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
             {transactions.length > 0 &&
               sortedToNewestTransactions.map(({ _id, date, type, category, comment, sum }) => (

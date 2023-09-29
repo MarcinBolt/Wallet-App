@@ -57,10 +57,10 @@ const TransactionDetails = ({
         <p className={textClassName}>{sum}</p>
       </li>
       <li key={`$[id]operations`} className={css.transactionDetailsItem}>
-        <button type="button" onClick={handleDelete(id)}>
+        <button id={id} type="button" onClick={handleDelete}>
           DeleteBtn
         </button>
-        <EditButton id={id} onClick={handleEdit} />
+        <EditButton  onClick={handleEdit} />
       </li>
     </ul>
   );
