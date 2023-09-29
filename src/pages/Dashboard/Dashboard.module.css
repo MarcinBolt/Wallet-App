@@ -33,6 +33,7 @@
 
 /** --------- Desktop -------- **/
 .dashboardDesktopWrapper {
+  justify-content: space-between;
   display: flex;
   height: 100%;
 }
@@ -43,7 +44,7 @@
   gap: 32px;
   justify-content: flex-start;
   align-items: start;
-  padding-top: 45px;
+  padding-top: 40px;
   height: calc(100% - 80px);
   width: 37%;
 }
@@ -51,7 +52,7 @@
 .homeTabDesktopWrapper {
   display: flex;
   justify-content: end;
-  padding-top: 45px;
+  padding-top: 32px;
 }
 
 .desktopSeparator {

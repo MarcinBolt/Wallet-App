@@ -54,11 +54,11 @@ const StatsTable = () => {
       className={css.tableContainer}
       component={Paper}
       elevation={0}
-      style={{ backgroundColor: 'transparent', maxWidth: '500px' }}
+      style={{ backgroundColor: 'transparent', width: '100%' }}
     >
       <Table
         aria-label="simple table"
-        style={{ borderCollapse: 'unset', verticalAlign: 'baseline', width: '100%' }}
+        style={{ borderCollapse: 'unset', verticalAlign: 'baseline' }}
       >
         <TableHead
           sx={{
