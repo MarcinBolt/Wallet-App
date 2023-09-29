@@ -52,8 +52,7 @@ const UserPanel = () => {
       firstName: '',
     },
     validationSchema,
-    onSubmit: values => {
-      console.log(values)
+    onSubmit: values => { 
       dispatch(
         updateUser({  
           email: values.email,
