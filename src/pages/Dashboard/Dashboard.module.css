@@ -35,7 +35,7 @@
 .dashboardDesktopWrapper {
   display: flex;
   height: 100%;
-}
+  }
 
 .navBalCurrDesktopWrapper {
   display: flex;
@@ -49,8 +49,9 @@
 }
 
 .homeTabDesktopWrapper {
+  flex-grow: 1;
   display: flex;
-  justify-content: end;
+  justify-content:flex-end;
   padding-top: 45px;
   width: 62%;
 }
