@@ -1,45 +1,33 @@
+import { useDispatch } from 'react-redux';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
+import { deleteTransactionById } from '../../../redux/transactions/transactions.operations';
+import formatDate from '../../../utils/format.date';
 
-const TransactionDetails = ({ id, date, type, category, comment, sum }) => {
-  
+const TransactionDetails = ({ id, date, type, category, comment, sum, handleEdit }) => {
+  const dispatch = useDispatch();
+
   const isIncome = () => (type === 'Income' ? true : false);
-  
+
   const listClassName = `${css.transactionDetailsList} ${
     isIncome() ? css.incomeBorder : css.expanseBorder
   }`;
   const textClassName = `${css.itemValue} ${isIncome() ? css.incomeText : css.expanseText}`;
-  
+
   const typeOperator = type => {
     return type === 'Income' ? '+' : '-';
   };
-  
-  var unifiedDate = new Date(date);
 
-  // Pobieramy dzień, miesiąc i rok z daty
-  var day = unifiedDate.getDate();
-  var month = unifiedDate.getMonth() + 1; // Miesiące są indeksowane od 0, więc dodajemy 1
-  var year = unifiedDate.getFullYear() % 100; // Pobieramy tylko dwie ostatnie cyfry roku
-  
-  // Formatujemy datę w formacie "dd.mm.yy"
-  var formattedDate = (day < 10 ? '0' : '') + day + '.' + (month < 10 ? '0' : '') + month + '.' + (year < 10 ? '0' : '') + year;
-
-  const handleEdit = ev => {
-    ev.preventDefault;
-    //TODO
-  };
-  
   const handleDelete = ev => {
     ev.preventDefault;
-    //TODO
+    dispatch(deleteTransactionById(id));
   };
-  
-  return (
 
+  return (
     <ul className={listClassName}>
       <li key={`${id}date`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Date</p>
-        <p className={css.itemValue}>{formattedDate}</p>
+        <p className={css.itemValue}>{formatDate(date)}</p>
       </li>
       <li key={`${id}type`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Type</p>
@@ -61,7 +49,9 @@ const TransactionDetails = ({ id, date, type, category, comment, sum }) => {
         <p className={textClassName}>{sum}</p>
       </li>
       <li key={`$[id]operations`} className={css.transactionDetailsItem}>
-        <div>DeleteBtn</div>
+        <button type="button" onClick={handleDelete}>
+          DeleteBtn
+        </button>
         <EditButton onClick={handleEdit} />
       </li>
     </ul>

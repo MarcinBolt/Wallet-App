@@ -6,7 +6,8 @@ import {
   selectTransactions,
   selectUserFirstName,
 } from '../../redux/selectors';
-
+import { updateIsModalEditTransactionOpen } from '../../redux/global/global.slice';
+import { selectGlobalIsModalEditTransactionOpen } from '../../redux/selectors';
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
@@ -14,20 +15,12 @@ import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice
 import { mediaQueries } from '../../utils/constants';
 import TempBalance from '../temporary components/TempBalance';
 
-const formatDate = date => {
-  const dateObject = new Date(date);
 
-  const year = dateObject.getFullYear();
-  const month = dateObject.getMonth() + 1;
-  const day = dateObject.getDate();
-  const formattedDate = `${year}.${month.toString().padStart(2, '0')}.${day
-    .toString()
-    .padStart(2, '0')}`;
-  return formattedDate;
-};
 
 const HomeTab = () => {
   const dispatch = useDispatch();
+  const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
+  const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
   const { mobile } = mediaQueries;
 
   useEffect(() => {
@@ -36,7 +29,6 @@ const HomeTab = () => {
 
   const transactions = useSelector(selectTransactions);
   const userName = useSelector(selectUserFirstName);
-  const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
 
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
@@ -48,6 +40,15 @@ const HomeTab = () => {
   const handleCloseAddTransactionModal = ev => {
     ev.preventDefault;
     dispatch(updateIsModalAddTransactionOpen(false));
+  };
+
+  const handleOpenEdit = ev => {
+    ev.preventDefault;
+    dispatch(updateIsModalEditTransactionOpen(true));
+  };
+  const handleCloseEdit = ev => {
+    ev.preventDefault;
+    dispatch(updateIsModalEditTransactionOpen(false));
   };
 
   return (
@@ -87,6 +88,7 @@ const HomeTab = () => {
                       category={category}
                       comment={comment}
                       sum={sum}
+                      handleEdit={handleOpenEdit}
                     />
                   }
                 </li>
@@ -101,6 +103,14 @@ const HomeTab = () => {
             <p>Add Transaction Modal is open</p>
             <button type="button" onClick={handleCloseAddTransactionModal}>
               Close AddTransaction
+            </button>
+          </div>
+        )}
+        {isModalEditTransactionOpen && (
+          <div>
+            <p>Edit Transaction Modal is open</p>
+            <button type="button" onClick={handleCloseEdit}>
+              Close EditTransaction
             </button>
           </div>
         )}
