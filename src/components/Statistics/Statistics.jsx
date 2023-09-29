@@ -9,7 +9,7 @@ const Statistics = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.container}>
-        <TitleComponent />
+        <TitleComponent text='Statistics' />
         <div className={css.chart}>
           <Chart />
         </div>
