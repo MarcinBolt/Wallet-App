@@ -15,7 +15,10 @@ import {
 } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
-import { updateIsModalAddTransactionOpen, updateIsModalEditTransactionOpen } from '../../redux/global/global.slice';
+import {
+  updateIsModalAddTransactionOpen,
+  updateIsModalEditTransactionOpen,
+} from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
 import TempBalance from '../temporary components/TempBalance';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
@@ -23,6 +26,7 @@ import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransact
 
 const HomeTab = () => {
   const dispatch = useDispatch();
+  const transactions = useSelector(selectTransactions);
   const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
   const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
   const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
@@ -33,17 +37,16 @@ const HomeTab = () => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
-  const transactions = useSelector(selectTransactions);
   const userName = useSelector(selectUserFirstName);
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
 
-  const handleAddTransactionModal = ev => {
+  const toggleAddTransactionModal = ev => {
     ev.preventDefault;
     dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
   };
 
-  const handleEditTransactionModal = ev => {
+  const toggleEditTransactionModal = ev => {
     ev.preventDefault;
     dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
   };
@@ -51,10 +54,6 @@ const HomeTab = () => {
   const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
-
-const handleEditTransaction = (id) => {
-
-}
 
   return (
     <>
@@ -95,7 +94,7 @@ const handleEditTransaction = (id) => {
                       category={category}
                       comment={comment}
                       sum={sum}
-                      handleEditBtn={handleEditTransactionModal}
+                      toggleEditModal={toggleEditTransactionModal}
                       handleDeleteBtn={handleButtonDelete}
                     />
                   }
@@ -103,24 +102,23 @@ const handleEditTransaction = (id) => {
               ))}
           </ul>
         </div>
-
-        {isAddTransactionModalOpen && (
-          <div>
-            <p>Add Transaction Modal is open</p>
-            <button type="button" onClick={handleAddTransactionModal}>
-              Close AddTransaction
-            </button>
-          </div>
-        )}
         {isModalEditTransactionOpen && (
           <div>
             <p>Edit Transaction Modal is open</p>
-            <button type="button" onClick={handleEditTransactionModalOpen}>
+            <button type="button" onClick={toggleEditTransactionModal}>
               Close EditTransaction
             </button>
           </div>
         )}
-        <ButtonAddTransaction onClick={handleAddTransactionModal} />
+        {isAddTransactionModalOpen && (
+          <div>
+            <p>Add Transaction Modal is open</p>
+            <button type="button" onClick={toggleAddTransactionModal}>
+              Close AddTransaction
+            </button>
+          </div>
+        )}
+        <ButtonAddTransaction onClick={toggleAddTransactionModal} />
       </div>
     </>
   );
