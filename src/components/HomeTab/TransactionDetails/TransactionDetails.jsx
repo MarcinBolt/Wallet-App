@@ -1,12 +1,16 @@
-import { useDispatch } from 'react-redux';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
-import { deleteTransactionById } from '../../../redux/transactions/transactions.operations';
-import formatDate from '../../../utils/format.date';
 
-const TransactionDetails = ({ id, date, type, category, comment, sum, handleEdit }) => {
-  const dispatch = useDispatch();
-
+const TransactionDetails = ({
+  id,
+  date,
+  type,
+  category,
+  comment,
+  sum,
+  handleEdit,
+  handleDelete,
+}) => {
   const isIncome = () => (type === 'Income' ? true : false);
 
   const listClassName = `${css.transactionDetailsList} ${
@@ -18,10 +22,15 @@ const TransactionDetails = ({ id, date, type, category, comment, sum, handleEdit
     return type === 'Income' ? '+' : '-';
   };
 
-  const handleDelete = ev => {
-    ev.preventDefault;
-    dispatch(deleteTransactionById(id));
+  const formatDate = date => {
+    const dateObject = new Date(date);
+    const year = dateObject.getFullYear() % 100;
+    const month = dateObject.getMonth() + 1;
+    const day = dateObject.getDate();
+    const formattedDate = (day < 10 ? '0' : '') + day + '.' + (month < 10 ? '0' : '') + month + '.' + (year < 10 ? '0' : '') + year;
+    return formattedDate;
   };
+  console.log("id z propsa:", id)
 
   return (
     <ul className={listClassName}>
@@ -52,7 +61,7 @@ const TransactionDetails = ({ id, date, type, category, comment, sum, handleEdit
         <button type="button" onClick={handleDelete}>
           DeleteBtn
         </button>
-        <EditButton onClick={handleEdit} />
+        <EditButton id={id} onClick={handleEdit} />
       </li>
     </ul>
   );

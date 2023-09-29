@@ -8,14 +8,15 @@ import {
 } from '../../redux/selectors';
 import { updateIsModalEditTransactionOpen } from '../../redux/global/global.slice';
 import { selectGlobalIsModalEditTransactionOpen } from '../../redux/selectors';
-import { fetchTransactions } from '../../redux/transactions/transactions.operations';
+import {
+  fetchTransactions,
+  deleteTransactionById,
+} from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
 import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
 import TempBalance from '../temporary components/TempBalance';
-
-
 
 const HomeTab = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,6 @@ const HomeTab = () => {
 
   const transactions = useSelector(selectTransactions);
   const userName = useSelector(selectUserFirstName);
-
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
 
@@ -49,6 +49,12 @@ const HomeTab = () => {
   const handleCloseEdit = ev => {
     ev.preventDefault;
     dispatch(updateIsModalEditTransactionOpen(false));
+  };
+
+  const handleDelete = ev => {
+    const { id } = ev.target;
+    console.log('id z handleDelete:', id);
+    dispatch(deleteTransactionById(id));
   };
 
   return (
@@ -78,17 +84,18 @@ const HomeTab = () => {
               </ul>
             </li>
             {transactions.length > 0 &&
-              sortedToNewestTransactions.map(({ id, date, type, category, comment, sum }) => (
-                <li key={id} className={css.tableItem}>
+              sortedToNewestTransactions.map(({ _id, date, type, category, comment, sum }) => (
+                <li key={_id} className={css.tableItem}>
                   {
                     <TransactionDetails
-                      id={id}
+                      id={_id}
                       date={date}
                       type={type}
                       category={category}
                       comment={comment}
                       sum={sum}
                       handleEdit={handleOpenEdit}
+                      handleDelete={handleDelete}
                     />
                   }
                 </li>
