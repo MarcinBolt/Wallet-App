@@ -8,6 +8,7 @@
   background-image: url(../../assets/icons/add_circle_black_24dp.svg);
   background-size: cover;
   position: fixed;
+  z-index: 5;
   bottom: 20px;
   right: 20px;
   filter: drop-shadow(0px 10px 5px #24cca869);
