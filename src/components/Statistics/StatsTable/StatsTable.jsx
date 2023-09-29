@@ -62,7 +62,7 @@ const StatsTable = () => {
       >
         <TableHead
           sx={{
-            '&:first-child td, &:first-child th': {
+            '&:first-of-type td, &:first-of-type th': {
               backgroundColor: 'white',
               width: '100%',
               border: 0,
