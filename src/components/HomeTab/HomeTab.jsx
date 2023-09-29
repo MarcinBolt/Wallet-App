@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Media from 'react-media';
 import {
   selectGlobalIsModalAddTransactionOpen,
   selectTransactions,
@@ -9,6 +10,9 @@ import {
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
+import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
+import { mediaQueries } from '../../utils/constants';
+import TempBalance from '../temporary components/TempBalance';
 
 const formatDate = date => {
   const dateObject = new Date(date);
@@ -24,6 +28,7 @@ const formatDate = date => {
 
 const HomeTab = () => {
   const dispatch = useDispatch();
+  const { mobile } = mediaQueries;
 
   useEffect(() => {
     dispatch(fetchTransactions());
@@ -36,9 +41,19 @@ const HomeTab = () => {
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
 
+  const handleOpenAddTransactionModal = ev => {
+    ev.preventDefault;
+    dispatch(updateIsModalAddTransactionOpen(true));
+  };
+  const handleCloseAddTransactionModal = ev => {
+    ev.preventDefault;
+    dispatch(updateIsModalAddTransactionOpen(false));
+  };
+
   return (
     <>
       <div className={css.homeTabWrapper}>
+        <Media query={mobile} render={() => <TempBalance />} />
         <div className={css.homeTab}>
           <ul className={css.tableBody}>
             <li key={`${userName}header`} className={css.tableItem}>
@@ -78,6 +93,17 @@ const HomeTab = () => {
               ))}
           </ul>
         </div>
+        <button type="button" onClick={handleOpenAddTransactionModal}>
+          Button AddTransaction
+        </button>
+        {isAddTransactionModalOpen && (
+          <div>
+            <p>Add Transaction Modal is open</p>
+            <button type="button" onClick={handleCloseAddTransactionModal}>
+              Close AddTransaction
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
