@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container';
-import { Grid } from 'react-loader-spinner';
+import { Grid, ThreeDots } from 'react-loader-spinner';
 
-const Loader = () => {
+const ElementsLoader = () => {
   return (
     <Container
       maxWidth="sx"
@@ -10,15 +10,14 @@ const Loader = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100%',
-        padding: '50px'
+        padding: '50px',
       }}
     >
-      <Grid
+      <ThreeDots
         height="80"
         width="80"
-        color="#6e78e8"
-        ariaLabel="grid-loading"
-        radius="12.5"
+        color="#a6a6a6"
+        ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClass=""
         visible={true}
@@ -27,4 +26,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default ElementsLoader;

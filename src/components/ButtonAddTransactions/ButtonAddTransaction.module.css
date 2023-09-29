@@ -1,5 +1,5 @@
 .openModal {
-  border: none;
+   border: none;
   padding: 0;
   background: none;
   width: 44px;
@@ -7,16 +7,16 @@
   cursor: pointer;
   background-image: url(../../assets/icons/add_circle_black_24dp.svg);
   background-size: cover;
-  position: fixed;
+  position: sticky;
   z-index: 5;
-  bottom: 20px;
-  right: 20px;
+  bottom: 64px;
+  right: 64px;
   filter: drop-shadow(0px 10px 5px #24cca869);
   -webkit-filter: drop-shadow(0px 10px 5px #24cca869);
   -moz-filter: drop-shadow(0px 10px 5px #24cca869);
   @media screen and (min-width: 768px) {
-    bottom: 40px;
-    right: 40px;
+    bottom: 84px;
+    right: 84px;
   }
 }
 .openModal:hover {

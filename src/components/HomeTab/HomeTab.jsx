@@ -5,9 +5,10 @@ import {
   selectGlobalIsModalAddTransactionOpen,
   selectTransactions,
   selectUserFirstName,
+  selectTransactionsIsLoading,
+  selectTransactionsError,
+  selectGlobalIsModalEditTransactionOpen,
 } from '../../redux/selectors';
-import { updateIsModalEditTransactionOpen } from '../../redux/global/global.slice';
-import { selectGlobalIsModalEditTransactionOpen } from '../../redux/selectors';
 import {
   fetchTransactions,
   deleteTransactionById,
@@ -17,11 +18,15 @@ import TransactionDetails from './TransactionDetails/TransactionDetails';
 import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
 import TempBalance from '../temporary components/TempBalance';
+import ElementsLoader from '../ElementsLoader/ElementsLoader';
+import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
   const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
   const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
+  const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
+  const isTransactionsError = useSelector(selectTransactionsError);
   const { mobile } = mediaQueries;
 
   useEffect(() => {
@@ -33,27 +38,17 @@ const HomeTab = () => {
   const sortedToNewestTransactions =
     transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
 
-  const handleOpenAddTransactionModal = ev => {
+  const handleAddTransactionModal = ev => {
     ev.preventDefault;
-    dispatch(updateIsModalAddTransactionOpen(true));
-  };
-  const handleCloseAddTransactionModal = ev => {
-    ev.preventDefault;
-    dispatch(updateIsModalAddTransactionOpen(false));
+    dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
   };
 
-  const handleOpenEdit = ev => {
+  const handleEditModalOpen = ev => {
     ev.preventDefault;
-    dispatch(updateIsModalEditTransactionOpen(true));
-  };
-  const handleCloseEdit = ev => {
-    ev.preventDefault;
-    dispatch(updateIsModalEditTransactionOpen(false));
+    dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
   };
 
-  const handleDelete = ev => {
-    const { id } = ev.target;
-    console.log('id z handleDelete:', id);
+  const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
 
@@ -83,6 +78,7 @@ const HomeTab = () => {
                 <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
               </ul>
             </li>
+            {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
             {transactions.length > 0 &&
               sortedToNewestTransactions.map(({ _id, date, type, category, comment, sum }) => (
                 <li key={_id} className={css.tableItem}>
@@ -94,21 +90,19 @@ const HomeTab = () => {
                       category={category}
                       comment={comment}
                       sum={sum}
-                      handleEdit={handleOpenEdit}
-                      handleDelete={handleDelete}
+                      handleEdit={handleEditModalOpen}
+                      handleDelete={handleButtonDelete}
                     />
                   }
                 </li>
               ))}
           </ul>
         </div>
-        <button type="button" onClick={handleOpenAddTransactionModal}>
-          Button AddTransaction
-        </button>
+
         {isAddTransactionModalOpen && (
           <div>
             <p>Add Transaction Modal is open</p>
-            <button type="button" onClick={handleCloseAddTransactionModal}>
+            <button type="button" onClick={handleAddTransactionModal}>
               Close AddTransaction
             </button>
           </div>
@@ -116,11 +110,12 @@ const HomeTab = () => {
         {isModalEditTransactionOpen && (
           <div>
             <p>Edit Transaction Modal is open</p>
-            <button type="button" onClick={handleCloseEdit}>
+            <button type="button" onClick={handleEditModalOpen}>
               Close EditTransaction
             </button>
           </div>
         )}
+        <ButtonAddTransaction onClick={handleAddTransactionModal} />
       </div>
     </>
   );

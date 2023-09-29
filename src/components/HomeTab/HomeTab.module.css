@@ -1,4 +1,5 @@
 .homeTabWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -6,6 +7,9 @@
   gap: 32px;
   width: 100%;
   height: 100%;
+  @media screen and (min-width: 768px) {
+    gap: 0;
+  }
 }
 
 .homeTab {
@@ -13,16 +17,15 @@
   height: 60vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  @media screen and (min-width: 768px) {
-  }
   @media screen and (min-width: 1280px) {
     align-items: end;
     padding-top: 0;
     height: 75vh;
-    border-radius: var(--radius-widget-transactions-header);
+    border-top-right-radius: var(--radius-widget-transactions-header);
+    border-top-left-radius: var(--radius-widget-transactions-header);
   }
 }
-
+ 
 .homeTab::-webkit-scrollbar {
   width: 0;
 }
