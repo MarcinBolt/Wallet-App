@@ -19,7 +19,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { red } from '@mui/material/colors';
 import MoneyIcon from '@mui/icons-material/Money';
 import CloseIcon from '@mui/icons-material/Close';
-import { deleteUser } from '../../redux/auth/auth.operations';
+import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
 
  const theme = createTheme();
 
@@ -89,6 +89,15 @@ const UserPanel = () => {
     dispatch(deleteUser())
     ;
   } 
+  const onClickUpdateUser = () => { 
+    dispatch(updateUser())
+    ;
+  } 
+
+
+
+
+  
   return (
     <Box
       // maxWidth="sx"
@@ -134,7 +143,7 @@ const UserPanel = () => {
   
         <Button
             type="button"
-            onClick={onClickDeleteUser()}
+            onClick={onClickDeleteUser}
             sx={{ 
               mt: 3,
               mb: 2,
@@ -598,6 +607,7 @@ const UserPanel = () => {
         <div className={css.button_container}>
           <Button
             type="submit"
+            onClick={onClickUpdateUser}
             sx={{
               mt: 3,
               mb: 2,
