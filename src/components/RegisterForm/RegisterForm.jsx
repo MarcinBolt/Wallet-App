@@ -68,6 +68,7 @@ const RegisterForm = () => {
               variant="outlined"
               color="grey"
               className={css.email}
+              style={{ width: '315px', display: 'flex' }}
               sx={{
                 border: 'none',
                 borderColor: 'grey.400',
@@ -75,13 +76,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '20px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -94,7 +95,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -156,13 +159,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -175,7 +178,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -236,13 +241,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -255,7 +260,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -317,13 +324,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -336,7 +343,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -384,8 +393,8 @@ const RegisterForm = () => {
             sx={{
               mt: 3,
               mb: 2,
-              width: 280,
-              marginTop: '5px',
+              width: 300,
+              margin: 0,
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
@@ -401,7 +410,7 @@ const RegisterForm = () => {
             type="button"
             href="#/login"
             sx={{
-              width: 280,
+              width: 300,
               background: '#ffffff',
               border: 1,
               borderColor: '#4a56e2',

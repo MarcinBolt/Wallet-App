@@ -12,20 +12,28 @@ const initState = {
   transactions: [],
   transactionsFilteredByCategory: [],
   transactionsFilteredByYearAndMonth: [],
-  categories: [],
-  year: new Date().getFullYear(),
-  month: new Date().toLocaleString('en-us', { month: 'long' }),
-  selectedTransactionCategory: '',
-  selectedTransactionId: '',
+  categories: [
+    'Main expenses',
+    'Products',
+    'Car',
+    'Self care',
+    'Child care',
+    'Household products',
+    'Education',
+    'Leisure',
+    'Other expenses',
+    'Entertainment',
+  ],
+  selectedFilterCategory: '',
+  selectedId: '',
+  selectedFilterYear: new Date().getFullYear(),
+  selectedFilterMonth: new Date().toLocaleString('en-us', { month: 'long' }),
   incomesSum: 0,
   expansesSum: 0,
   balance: 0,
+  userCurrency: '₴',
   isLoading: false,
   error: null,
-  income: 0,
-  expanse: 0,
-  balance: 0,
-  
 };
 
 const handlePending = state => {
@@ -55,19 +63,19 @@ const transactionsSlice = createSlice({
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions = action.payload;
+        state.transactions = action.payload.transactions;
       })
 
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions.push(action.payload);
+        state.transactions.push(action.payload.transaction);
       })
       .addCase(deleteTransactionById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.transactions.findIndex(
-          transaction => transaction.id === action.payload.id,
+          transaction => transaction.id === action.payload.transaction.id,
         );
         state.transactions.splice(index, 1);
       })
@@ -75,19 +83,19 @@ const transactionsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.transactions.findIndex(
-          transaction => transaction.id === action.payload.id,
+          transaction => transaction.id === action.payload.transaction.id,
         );
-        state.transactions[index] = action.payload;
+        state.transactions[index] = action.payload.transaction;
       })
       .addCase(fetchTransactionsByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactionsFilteredByCategory = action.payload;
+        state.transactionsFilteredByCategory = action.payload.transactions;
       })
       .addCase(fetchTransactionsByYearAndMonth.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactionsFilteredByYearAndMonth = action.payload;
+        state.transactionsFilteredByYearAndMonth = action.payload.transactions;
       });
   },
 });
