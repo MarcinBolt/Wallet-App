@@ -33,7 +33,7 @@ const getOwnerTransactions = async (req, res, next) => {
   }
 };
 
-const createOwnerTransaction = async (req, res, next) => {
+const createOwnerTransaction = async (req, res, _) => {
   const owner = req.user.id;
   const { value, error } = transactionBodySchema.validate(req.body);
   const { date, year, month, type, category, comment, sum } = value;
@@ -69,7 +69,7 @@ const createOwnerTransaction = async (req, res, next) => {
   }
 };
 
-const getOwnerTransactionById = async (req, res, next) => {
+const getOwnerTransactionById = async (req, res, _) => {
   const owner = req.user.id;
   const { id } = req.params;
   try {
@@ -121,7 +121,6 @@ const updateOwnerTransactionById = async (req, res, _) => {
         status: 'error',
         code: 404,
         message: `${id} transaction not found`,
-        data: 'Not Found',
       });
     }
   } catch (err) {
@@ -134,7 +133,7 @@ const updateOwnerTransactionById = async (req, res, _) => {
   }
 };
 
-const deleteOwnerTransactionById = async (req, res, next) => {
+const deleteOwnerTransactionById = async (req, res, _) => {
   const owner = req.user.id;
   const { id } = req.params;
 
@@ -145,6 +144,7 @@ const deleteOwnerTransactionById = async (req, res, next) => {
         status: 'success',
         code: 200,
         message: `Transaction was successfully deleted.`,
+        transaction: { id: id },
       });
     }
   } catch (err) {
@@ -157,10 +157,10 @@ const deleteOwnerTransactionById = async (req, res, next) => {
   }
 };
 
-const getOwnerTransactionsByCategory = async (req, res, next) => {
+const getOwnerTransactionsByCategory = async (req, res, _) => {
   const owner = req.user.id;
   const { category } = req.params;
-  const { _, error } = transactionCategoryBodySchema.validate(category);
+  const { __, error } = transactionCategoryBodySchema.validate(category);
   if (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -184,10 +184,10 @@ const getOwnerTransactionsByCategory = async (req, res, next) => {
   }
 };
 
-const getOwnerStatisticsByDate = async (req, res, next) => {
+const getOwnerStatisticsByDate = async (req, res, _) => {
   const owner = req.user.id;
   const { year, month } = req.params;
-  const { _, error } = transactionDateBodySchema.validate({ year, month });
+  const { __, error } = transactionDateBodySchema.validate({ year, month });
   if (error) {
     return res.status(400).json({ message: error.message });
   }
