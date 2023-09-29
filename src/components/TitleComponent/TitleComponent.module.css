@@ -1,0 +1,7 @@
+.statisticsHeader {
+  font: var(--font-primary);
+  font-size: 30px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}

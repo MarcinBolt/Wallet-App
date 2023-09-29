@@ -14,39 +14,37 @@
 .headerCategory {
     border-top-left-radius: var(--radius-stats-table-header);
     border-bottom-left-radius: var(--radius-stats-table-header);
-    font-family: var(--font-secondary-bold);
-    font-size: 18px;
+
 }
 
 .headerSum {
     border-top-right-radius: var(--radius-stats-table-header);
     border-bottom-right-radius: var(--radius-stats-table-header);
-    font-family: var(--font-secondary-bold);
-    font-size: 18px;
-    text-align: right;
 }
 
-.row {
-    max-width: 280px;
-}
 
-.row span {
-    width: 24px;
-    height: 24px;
-    display: block;
-    float: left;
-    margin: 1px 10px 0px 0px;
-}
-
-.tableCategoryCell {
+.categoryParagraph {
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    line-height: 1;
+    height: 100%;
     display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-family: var(--font-secondary);
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-end;
+    padding: 0px;
+    margin: 0;
 }
-
-.tableSumCell {
-    padding-right: 16px;
-    font-size: 16px;
+.sumParagraph {
     font-family: var(--font-secondary);
+    font-size: 16px;
+    line-height: 1;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    padding: 0;
+    margin: 0;
 }
