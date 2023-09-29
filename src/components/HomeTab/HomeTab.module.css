@@ -19,6 +19,7 @@
     align-items: end;
     padding-top: 0;
     height: 75vh;
+    border-radius: var(--radius-widget-transactions-header);
   }
 }
 
@@ -62,7 +63,6 @@
     width: 100%;
     min-width: 440px;
     background-color: var(--color-bg-secondary);
-    border-radius: var(--radius-widget-mobile-transaction-details);
     border-radius: var(--radius-widget-transactions-header);
   }
 }
