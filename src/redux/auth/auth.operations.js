@@ -97,8 +97,7 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
  
 export const deleteUser = createAsyncThunk(
   'auth/delete', async (verificationToken, thunkAPI) => {
-    try {
-      console.log('works!')
+    try { 
       const response = await axios.get(`/users/delete/${verificationToken}`);
       if (response.status !== 200) {
         return notification.notifyProcessFailure(response.data.message);
@@ -112,10 +111,10 @@ export const deleteUser = createAsyncThunk(
   });
 
   export const updateUser = createAsyncThunk(
-  'transactions/editTransaction',
+  'auth/users',
   async ({ id, date, year, month, type, category, comment, sum }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/transactions/${id}`, {
+      const response = await axios.put(`/transactions/${id}`, {
         date,
         year,
         month,

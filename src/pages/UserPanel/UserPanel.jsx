@@ -39,8 +39,7 @@ import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
     .max(12, 'Maximum 12 characters long')
     .required('First Name is required!'),
 });
-  
- 
+   
 const UserPanel = () => {
  
   const dispatch = useDispatch();
@@ -54,8 +53,9 @@ const UserPanel = () => {
     },
     validationSchema,
     onSubmit: values => {
+      console.log(values)
       dispatch(
-        register({   //CORRECT THIS
+        updateUser({  
           email: values.email,
           password: values.password,
           firstName: values.firstName,
@@ -64,9 +64,7 @@ const UserPanel = () => {
       formik.resetForm();
     },
   });
-
-
-
+ 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -75,29 +73,14 @@ const UserPanel = () => {
   // const  userName = useAuth();
   // const  userEmail = useAuth();
   const userName  = 'Damian';
-    const  userEmail = 'dd@dd.net';
-  let isShown = false;
+  const  userEmail = 'dd@dd.net';
   
-
-  // const openModal = function () {
-  //   modal.classList.remove("hidden");
-  //   overlay.classList.remove("hidden");
-  // };
-   
   //for testing ONLY
   const onClickDeleteUser = () => { 
     dispatch(deleteUser())
     ;
   } 
-  const onClickUpdateUser = () => { 
-    dispatch(updateUser())
-    ;
-  } 
-
-
-
-
-  
+   
   return (
     <Box
       // maxWidth="sx"
@@ -606,8 +589,7 @@ const UserPanel = () => {
         </div>
         <div className={css.button_container}>
           <Button
-            type="submit"
-            onClick={onClickUpdateUser}
+            type="submit" 
             sx={{
               mt: 3,
               mb: 2,
@@ -625,8 +607,7 @@ const UserPanel = () => {
             }}
           >
             UPDATE INFORMATION
-          </Button>
-          
+          </Button> 
         </div>
       </form> 
 
