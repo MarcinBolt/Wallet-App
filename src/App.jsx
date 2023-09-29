@@ -1,14 +1,16 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth } from './utils/hooks/user.auth.js';
 import { refreshUser } from './redux/auth/auth.operations.js';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import Loader from './components/Loader/Loader.jsx';
-import VerifyEmail from './pages/VerifyEmail.jsx';
 import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
+import HomeTab from './components/HomeTab/HomeTab.jsx';
+import CurrencyTable from './components/CurrencyTable/CurrencyTable.jsx';
+import DiagramTab from './components/DiagramTab/DiagramTab.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 // const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));
@@ -40,7 +42,6 @@ const App = () => {
           <Route path="/dashboard" element={<PrivateRoute redirectTo={<Navigate to="/login" replace />} component={<Dashboard />} />} />
           <Route path={`/users/verify/:verificationToken`} element={<PublicRoute component={<VerifyEmail />} />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
