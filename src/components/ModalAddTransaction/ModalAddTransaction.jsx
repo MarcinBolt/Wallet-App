@@ -13,17 +13,20 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Datetime from 'react-datetime'; // bedzie potrzebne , probowalem juz, - robilem wykorzytsujac biblioteke datetime ustawienie bieżacej daty ale raz dzialalo raz nie dzialalo (nie wiem czemu) w dodatku uzycie biblioteki zakrywalo iconę kalendarza . ,
+import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
 import vectorIcon from '../../assets/icons/vector.svg';
+import SelectIcon from '../../assets/icons/select-category.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
 import CustomButton from '../CustomButton/CustomButton';
 import closeIcon from '../../assets/icons/close.svg';
+import moment from 'moment';
+import Notiflix from 'notiflix';
 
 const ModalAddTransaction = ({ closeModal }) => {
   useEffect(() => {
@@ -59,12 +62,15 @@ const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   useEffect(() => {}, [dispatch]);
 
+  //stan lokalny przechowywyania daty
+
   const [formData, setFormData] = useState({
     isChecked: false,
     dateValue: new Date(),
     selectedCategory: 'Main expenses',
     comment: '',
     amount: '',
+    dateinput: '',
   });
 
   let extraMargin = formData.isChecked ? '0' : '20px';
@@ -111,11 +117,18 @@ const ModalAddTransaction = ({ closeModal }) => {
   });
 
   //funkcja jest uzywana do aktualizacji daty na podstawie wybranej daty, [BUG] - problem : kalendarz da sie ywbrac date ale nie zapisuje sie w formularzu wybrana
-  const handleDateChange = dateString => {
-    const selectedDate = new Date(dateString);
+  const handleDateChange = date => {
     setFormData({
       ...formData,
-      dateValue: selectedDate,
+      dateValue: date.toDate(),
+    });
+  };
+
+  const handleDateInputChange = inputDate => {
+    Notiflix.Notify.info('Use the calendar to choose a date');
+    setFormData({
+      ...formData,
+      dateInput: inputDate,
     });
   };
 
@@ -137,7 +150,6 @@ const ModalAddTransaction = ({ closeModal }) => {
         >
           <img src={closeIcon} alt="Close" />
         </IconButton>
-
         <h1>Add transaction</h1>
 
         <div className={css.switch}>
@@ -192,12 +204,14 @@ const ModalAddTransaction = ({ closeModal }) => {
             <FormControl className={css.selectContainer}>
               <Select
                 sx={{
+                  borderWidth: 0,
                   boxShadow: 'none',
+                  '&:hover': { borderWidth: 0 },
                   '.MuiOutlinedInput-notchedOutline': {
                     border: 0,
                     borderBottom: 1,
                     borderRadius: 0,
-                    borderColor: 'rgb(150, 150, 150)',
+                    borderColor: 'none',
                   },
                 }}
                 id="selectedCategory"
@@ -208,6 +222,26 @@ const ModalAddTransaction = ({ closeModal }) => {
                     ...formData,
                     selectedCategory: e.target.value,
                   })
+                }
+                startAdornment={
+                  <InputAdornment>
+                    <IconButton
+                      style={{
+                        position: 'absolute',
+                        top: '28px',
+                        right: '12px',
+                        width: '16px',
+                        height: '16px',
+                        border: '0px solid #000',
+                      }}
+                    >
+                      <img
+                        src={SelectIcon}
+                        alt="Select Category"
+                        className={css.selectCategoryIcon}
+                      />{' '}
+                    </IconButton>
+                  </InputAdornment>
                 }
               >
                 {categoriesOptions.map(option => (
@@ -259,7 +293,57 @@ const ModalAddTransaction = ({ closeModal }) => {
                 </div>
                 <div className={css.inputWrapper}>
                   {/* Pole daty */}
-                  <Field
+                  <Datetime
+                    className={css.tableDatetime}
+                    inputProps={{
+                      style: {
+                        height: 36,
+                        bottom: 13,
+                        width: 181,
+                      },
+                    }}
+                    input={true}
+                    dateFormat="DD.MM.YYYY"
+                    timeFormat={false}
+                    value={formData.dateValue}
+                    onChange={date => handleDateChange(date)}
+                    renderInput={props => (
+                      <TextField
+                        {...props}
+                        variant="standard"
+                        id="dateValue"
+                        name="dateValue"
+                        fullWidth
+                        onChange={e => {
+                          const inputDate = e.target.value;
+                          setFormData({
+                            ...formData,
+                            dateInput: inputDate, // Aktualizuj pole dateInput
+                          });
+                        }}
+                        onKeyPress={e => {
+                          if (e.key === 'Enter') {
+                            handleDateInputChange(formData.dateInput);
+                          }
+                        }}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton onClick={() => {}}>
+                                <img src={vectorIcon} alt="Calendar" className={css.calendarIcon} />
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    )}
+                  />
+
+                  {/* Pole daty */}
+
+                  {/* <DateTimePicker label="Basic date time picker" /> */}
+
+                  {/* <Field
                     inputProps={{
                       style: {
                         height: 36,
@@ -272,8 +356,8 @@ const ModalAddTransaction = ({ closeModal }) => {
                     variant="standard"
                     name="dateValue"
                     fullWidth
-                    // value={formData.dateValue}//
-                    onChange={e => {
+                    // value={formData.dateValue}// 
+                    onChange={(e) => {
                       handleDateChange(e.target.value);
                     }}
                     InputProps={{
@@ -285,7 +369,7 @@ const ModalAddTransaction = ({ closeModal }) => {
                         </InputAdornment>
                       ),
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
               <ErrorMessage name="amount" component="div" />
