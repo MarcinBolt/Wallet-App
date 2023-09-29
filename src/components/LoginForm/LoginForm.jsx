@@ -63,15 +63,15 @@ const LoginForm = () => {
                 borderColor: 'grey.400',
                 paddingTop: '0px',
                 paddingBottom: '0px',
-                marginTop: '25px',
+                marginTop: '20px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -84,7 +84,9 @@ const LoginForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -146,13 +148,13 @@ const LoginForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -165,7 +167,9 @@ const LoginForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -213,8 +217,8 @@ const LoginForm = () => {
             sx={{
               mt: 3,
               mb: 2,
-              width: 280,
-              marginTop: '5px',
+              width: 300,
+              margin: 0,
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
@@ -230,7 +234,7 @@ const LoginForm = () => {
             type="button"
             href="#/register"
             sx={{
-              width: 280,
+              width: 300,
               background: '#ffffff',
               border: 1,
               borderColor: '#4a56e2',
