@@ -8,13 +8,13 @@
   padding: 8px 32px 11px;
 }
 
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 768px) {
   .BalanceContainer {
-    width: 360px;
+    width: 336px;
     padding: 8px 40px 11px;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   .BalanceContainer {
     width: 395px;
   }
