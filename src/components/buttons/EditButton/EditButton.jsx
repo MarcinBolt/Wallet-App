@@ -2,7 +2,6 @@ import SvgIcon from '@mui/material/SvgIcon';
 import css from './EditButton.module.css';
 
 const EditButton = ({ id, onClick }) => {
-  console.log("id w delete btn:", id)
   return (
     <>
       <button type="button" id={id} className={css.editBtn} onClick={onClick}>
