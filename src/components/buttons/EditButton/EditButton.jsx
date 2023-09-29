@@ -1,10 +1,10 @@
 import SvgIcon from '@mui/material/SvgIcon';
 import css from './EditButton.module.css';
 
-const EditButton = ({ id, onClick }) => {
+const EditButton = ({ onClick }) => {
   return (
     <>
-      <button type="button" id={id} className={css.editBtn} onClick={onClick}>
+      <button type="button" className={css.editBtn} onClick={onClick}>
         <SvgIcon
           viewBox="0 0 32 32"
           sx={{
