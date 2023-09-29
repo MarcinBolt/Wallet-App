@@ -15,7 +15,7 @@ import {
 } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
-import { updateIsModalAddTransactionOpen } from '../../redux/global/global.slice';
+import { updateIsModalAddTransactionOpen, updateIsModalEditTransactionOpen } from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
 import TempBalance from '../temporary components/TempBalance';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
@@ -43,7 +43,7 @@ const HomeTab = () => {
     dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
   };
 
-  const handleEditModalOpen = ev => {
+  const handleEditTransactionModal = ev => {
     ev.preventDefault;
     dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
   };
@@ -51,6 +51,10 @@ const HomeTab = () => {
   const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
+
+const handleEditTransaction = (id) => {
+
+}
 
   return (
     <>
@@ -91,8 +95,8 @@ const HomeTab = () => {
                       category={category}
                       comment={comment}
                       sum={sum}
-                      handleEdit={handleEditModalOpen}
-                      handleDelete={handleButtonDelete}
+                      handleEditBtn={handleEditTransactionModal}
+                      handleDeleteBtn={handleButtonDelete}
                     />
                   }
                 </li>
@@ -111,7 +115,7 @@ const HomeTab = () => {
         {isModalEditTransactionOpen && (
           <div>
             <p>Edit Transaction Modal is open</p>
-            <button type="button" onClick={handleEditModalOpen}>
+            <button type="button" onClick={handleEditTransactionModalOpen}>
               Close EditTransaction
             </button>
           </div>

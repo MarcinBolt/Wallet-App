@@ -1,3 +1,4 @@
+import DeleteButton from '../../buttons/DeleteButton/DeleteButton';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
 
@@ -8,8 +9,8 @@ const TransactionDetails = ({
   category,
   comment,
   sum,
-  handleEdit,
-  handleDelete,
+  handleEditBtn,
+  handleDeleteBtn,
 }) => {
   const isIncome = () => (type === 'Income' ? true : false);
 
@@ -27,11 +28,19 @@ const TransactionDetails = ({
     const year = dateObject.getFullYear() % 100;
     const month = dateObject.getMonth() + 1;
     const day = dateObject.getDate();
-    const formattedDate = (day < 10 ? '0' : '') + day + '.' + (month < 10 ? '0' : '') + month + '.' + (year < 10 ? '0' : '') + year;
+    const formattedDate =
+      (day < 10 ? '0' : '') +
+      day +
+      '.' +
+      (month < 10 ? '0' : '') +
+      month +
+      '.' +
+      (year < 10 ? '0' : '') +
+      year;
     return formattedDate;
   };
 
-    return (
+  return (
     <ul className={listClassName}>
       <li key={`${id}date`} className={css.transactionDetailsItem}>
         <p className={css.itemType}>Date</p>
@@ -57,10 +66,8 @@ const TransactionDetails = ({
         <p className={textClassName}>{sum}</p>
       </li>
       <li key={`$[id]operations`} className={css.transactionDetailsItem}>
-        <button id={id} type="button" onClick={handleDelete}>
-          DeleteBtn
-        </button>
-        <EditButton  onClick={handleEdit} />
+        <DeleteButton id={id} type="button" onClick={() => handleDeleteBtn(id)} />
+        <EditButton onClick={handleEditBtn} />
       </li>
     </ul>
   );
