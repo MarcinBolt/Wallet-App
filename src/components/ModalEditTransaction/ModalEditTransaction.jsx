@@ -1,155 +1,290 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 import Datetime from 'react-datetime';
-import CustomButton from '../CustomButton/CustomButton';
 import 'react-datetime/css/react-datetime.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  addTransaction,
+  updateTransactionById,
+} from '../../redux/transactions/transactions.operations';
+import CustomButton from '../CustomButton/CustomButton';
+import Notiflix from 'notiflix';
+import { toast } from 'react-toastify';
 import css from './ModalEditTransaction.module.css';
+//import { selectTransactionId, selectTransactions } from '../../redux/selectors';
 
-export const MainButton = ({ type, text, className }) => (
-  <button className={className} type={type}>
-    {text}
-  </button>
-);
+import {
+  Switch,
+  FormControlLabel,
+  FormControl,
+  TextField,
+  Select,
+  MenuItem,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
 
-const ModalEditTransaction = (/*{ closeModal }*/) => {
-  // Przykładowe dane
-  const initialData = {
-    isExpense: true,
-    amount: '100.00',
-    selectedCategory: 'Groceries',
-    comment: 'Example comment',
-    dateValue: new Date(),
-  };
-    const [isExpense, setIsExpense] = useState(initialData.isExpense);
-  const [amount, setAmount] = useState(initialData.amount);
-  const [category, setCategory] = useState(initialData.selectedCategory);
-  const [comment, setComment] = useState(initialData.comment);
-  const [dateValue, setDateValue] = useState(initialData.dateValue);
-  
+// import vectorIcon from '../assets/icons/vector.svg';
+// import SelectIcon from '../assets/icons/select-category.svg';
+// import closeIcon from '../assets/icons/close.svg';
+import { selectTransactionsCategories } from '../../redux/selectors';
+import TitleComponent from '../TitleComponent/Title.Component';
+
+const ModalEditTransaction = (/*{ toggleModal }*/) => {
   const dispatch = useDispatch();
-
+  // const transactions = useSelector(selectTransactions);
+  // const transactionId = useSelector(selectTransactionId);
+  const categories = useSelector(selectTransactionsCategories);
+  const modalBackdropRef = useRef(null);
+  const transactionId = '651835a97ba2b5e94db74dc8';
+  const [formData, setFormData] = useState({
+    isIncome: false,
+    date: new Date(),
+    year: '2023',
+    month: 'September',
+    category: 'Car',
+    comment: 'Ajtam ajtam',
+    sum: '2343',
+  });
+  /* tymczasowa funkcja - przyjdzie z propsów*/
   const toggleModal = () => {
-    console.log('Modal się zamyka');
+    console.log('modal do zamknięcia');
+  };
+  useEffect(() => {
+    const handleEscapeKey = ev => {
+      if (ev.key === 'Escape') {
+        toggleModal();
+      }
+    };
+    window.addEventListener('keydown', handleEscapeKey);
+    return () => {
+      window.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, []);
+
+  const handleDateChange = date => {
+    setFormData({
+      ...formData,
+      date: date.toDate(),
+    });
   };
 
-  const [formData, setFormData] = useState({
-    isChecked: false,
-    dateValue: new Date(),
-    selectedCategory: 'Main expenses',
-    comment: '',
-    amount: '',
-    dateinput: '',
-  });
+  const handleInputChange = ev => {
+    ev.preventDefault;
+    const { name, value } = ev.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
-const handleUpdateTransaction = ev => {
-  ev.prevetnDefault;
-  console.log()
-  toggleModal()
-}
+  const closeOnBackdropClick = ev => {
+    ev.preventDefault;
+    if (modalBackdropRef.current === ev.target) {
+      toggleModal();
+    }
+  };
+
+  const handleUpdateTransaction = ev => {
+    ev.preventDefault;
+    const type = formData.isChecked ? 'Income' : 'Expense';
+    const year = formData.date.getFullYear();
+    const month = formData.date.toLocaleString('en-US', { month: 'long' });
+    dispatch(
+      updateTransactionById({ id: transactionId, 
+        date: formData.date,
+        year: year.toString(),
+        month: month,
+        type: type,
+        category: formData.category,
+        comment: formData.comment,
+        sum: formData.sum,
+      }),
+    );
+    console.log(`${transactionId}, {
+      date: ${formData.date},
+      year: ${year.toString()},
+      month: ${month},
+      type: ${type},
+      category: ${formData.category},
+      comment: ${formData.comment},
+      sum: ${formData.sum},
+    }`);
+    toggleModal();
+  };
 
   return (
-    <div>
-      <div className={css.backdrop} onClick={toggleModal}>
-        <div className={css.overlay}>
-          <h1>Edit transaction</h1>
-          <div className={css.switch}>
-            <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
-            /
-            {/* <button
-            className={`${css.toggleButton} ${isExpense && css.active}`}
-            onClick={() => setIsExpense(true)}
-          >
-            Expense
-          </button> */}
-            <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>
-              Expense
-            </div>
-          </div>
-          {isExpense && (
-            <div>
-              {/* Statyczne opcje dla kategorii wydatków */}
-              <select
-                id="category"
-                name="category"
-                value={category}
-                onChange={e => {
-                  setSelectedCategory(e.target.value);
-                }}
-              >
-                <option value="Groceries">Groceries</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Entertainment">Entertainment</option>
-                {/* Dodaj inne opcje kategorii wydatków */}
-              </select>
-            </div>
-          )}
+    <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
+      <div className={css.overlay}>
+        <IconButton
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: '16px',
+            width: '16px',
+            height: '16px',
+            border: '0px solid #000',
+            transform: 'rotate(90deg)',
+          }}
+          onClick={toggleModal}
+        >
+          {/* <img src={closeIcon} alt="Close" /> */}
+        </IconButton>
+        <TitleComponent text={'Edit transaction'} />
 
-          <div className={css.form}>
-            <></>
-            <Formik initialValues={{ amount, dateValue, comment }} onSubmit={handleSubmit}>
-              <Form className={css.form}>
+        {/* Typ transakcji */}
+        <div className={css.switch}>
+          <div className={formData.isIncome ? css.text_green : css.text_defaultLeft}>Income</div>
+          <div className={css.text_defaultLeft}>/</div>
+
+          <div className={formData.isIncome ? css.text_defaultRight : css.text_pink}>Expense</div>
+        </div>
+
+        {/* Lista kategorii */}
+        {formData.isIncome ? null : (
+          <FormControl className={css.selectContainer}>
+            <Select
+              sx={{
+                borderWidth: 0,
+                boxShadow: 'none',
+                height: '32px',
+                textAlign: 'left',
+                '&:hover': { borderWidth: 0 },
+                '.MuiOutlinedInput-notchedOutline': {
+                  border: 0,
+                  borderBottom: 1,
+                  borderRadius: 0,
+                  borderColor: 'none',
+                },
+              }}
+              id="category"
+              name="category"
+              value={formData.selectedCategory}
+              onChange={handleInputChange}
+            >
+              {categories.map(option => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+
+        <Formik
+          initialValues={formData}
+          validationSchema={Yup.object({
+            sum: Yup.number().required('Required').positive('Must be a positive number'),
+            dateValue: Yup.date().required('Required'),
+            selectedCategory: Yup.string().when('isChecked', {
+              is: false,
+              then: Yup.string().required('Required'),
+              otherwise: Yup.string(),
+            }),
+            comment: Yup.string(),
+          })}
+          onSubmit={(values, { setSubmitting }) => {
+            handleAddTransaction(values, dispatch);
+            setSubmitting(false);
+          }}
+        >
+          <Form className={css.form}>
+            <div className={css.inputContainer}>
+              <div className={css.inputWrapper}>
                 <Field
-                  type="text"
+                  inputProps={{
+                    style: {
+                      paddingBottom: 0,
+                      height: 32,
+                    },
+                  }}
+                  as={TextField}
+                  type="standard-basic"
+                  variant="standard"
                   id="sum"
                   name="sum"
-                  value={sum}
+                  onChange={handleInputChange}
+                  value={formData.sum}
+                  placeholder="0.00"
                   className={css.input}
-                  onChange={e => {
-                    const input = e.target.value;
-                    const regex = /^(\d+)?(\.\d{0,2})?$/;
-
-                    if (regex.test(input)) {
-                      setAmount(input);
-                    }
-                  }}
                 />
-                <ErrorMessage name="amount" component="div" />
-                {/* <div class={css.editWrapper}>ddd</div> */}
-                <Field
-                  as={Datetime}
-                  dateFormat="DD-MM-YY"
+              </div>
+              <div className={css.inputWrapper}>
+                {/* Pole daty */}
+                <Datetime
+                  className={css.tableDatetime}
+                  inputProps={{
+                    style: {
+                      height: 36,
+                      width: 181,
+                    },
+                  }}
+                  input={true}
+                  dateFormat="DD.MM.YYYY"
                   timeFormat={false}
-                  value={date}
-                  className={css.datetime}
-                  onChange={newDate => {
-                    setDateValue(newDate);
-                  }}
+                  value={formData.date}
+                  onChange={date => handleDateChange(date)}
+                  renderInput={props => (
+                    <TextField
+                      {...props}
+                      variant="standard"
+                      id="date"
+                      name="date"
+                                          fullWidth
+                      onChange={e => {
+                        const inputDate = e.target.value;
+                        setFormData({
+                          ...formData,
+                          date: inputDate,
+                        });
+                      }}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={() => {}}>
+                              {/* <img src={vectorIcon} alt="Calendar" className={css.calendarIcon} /> */}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  )}
                 />
-                <ErrorMessage name="date" component="div" />
-
-                <label className={css.label2}>
-                  <Field
-                    as="textarea"
-                    placeholder="Comment"
-                    className={css.textarea}
-                    rows={3}
-                    name="comment"
-                    value={comment}
-                    onChange={e => {
-                      setComment(e.target.value);
-                    }}
-                  />
-                </label>
-                <CustomButton
-                  type="button"
-                  color="primary"
-                  content="Save"
-                  className={`${css.logo_btn} ${css.main_btn}`}
-                >
-                  Save
-                </CustomButton>
-              </Form>
-            </Formik>
-            <CustomButton
-              type="button"
-              color="secondary"
-              content="cancel"
-              className={css.logo_btn}
-              onClick={toggleModal}
-            ></CustomButton>
-          </div>
+              </div>
+            </div>
+            <ErrorMessage name="amount" component="div" />
+            <ErrorMessage name="dateValue" component="div" />
+            <label className="label">
+              <div className={css.textareaWrapper}>
+                <Field
+                  as="textarea"
+                  placeholder="Comment"
+                  rows={1}
+                  name="comment"
+                  value={formData.comment}
+                  className={css.textarea}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </label>{' '}
+          </Form>
+        </Formik>
+        <div className={css.paddingButton}>
+          <CustomButton
+            type="button"
+            color="primary"
+            content="ADD"
+            onClick={handleUpdateTransaction}
+          ></CustomButton>
+          <CustomButton
+            type="button"
+            color="secondary"
+            content="Cancel"
+            onClick={toggleModal}
+          ></CustomButton>
         </div>
       </div>
     </div>

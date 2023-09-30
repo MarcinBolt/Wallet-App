@@ -1,34 +1,54 @@
 @import '../../stylesheet/vars.css';
 
-.overlay {
-  opacity: 1;
-  background-color: rgba(255, 255, 255, 0.8);
-  position: fixed;
+.backdrop {
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  top: 10px;
-  left: 0px;
-  z-index: 99;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-backdrop);
+  @media screen and (min-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+    top: -80px;
+  }
 }
 
-body.modal-open {
-  overflow: hidden;
+.overlay {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  background-color: var(--color-bg-secondary);
+  width: 100%;
+  height: 100%;
+}
+
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .overlay h1 {
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin: 0;
+  padding: 0;
   font-weight: 400;
 }
 
 .form {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 10px;
+  gap: 40px;
 }
 
 .textarea {
@@ -51,28 +71,29 @@ body.modal-open {
 .inputWrapper {
   display: inline-block;
   width: 280px;
-  padding-bottom: 50px;
+  height: 32px;
+  border-bottom: 1px solid var(--color-border-bottom-btn-form);
 }
 
 .textareaWrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 15px;
+  height: 50px;
 }
 
 .tableDatetime {
   position: absolute;
   border-collapse: collapse;
   z-index: 999;
+  /* top: 298px; */
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-bg-blur);
+  backdrop-filter: blur(5px);
 }
 
 .rdtPicker table {
   width: 81%;
   margin: 0;
 }
-
 .calendarIcon {
   margin-right: 10px;
   margin-bottom: 10px;
@@ -86,28 +107,10 @@ body.modal-open {
 
 .datetime input {
   border: none;
-  background-color: var(--color-bg-primary);
-  outline: none;
-  border: none;
-}
-
-.switch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 30px;
-  margin-left: -15px;
-  margin-bottom: 40px;
 }
 
 .form .input {
   width: 280px;
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
-  font-size: 18px;
-  outline: none;
-  border: 0px;
 }
 
 .inputContainer {
@@ -115,26 +118,25 @@ body.modal-open {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 }
-
 .selectContainer {
   width: 280px;
+  border: 1px solid red;
 }
 
-select {
-  background-color: var(--color-bg-primary);
-  outline: none;
-  border: none;
+.paddingButton {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 15px;
 }
+
 @media screen and (min-width: 768px) {
   .overlay {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 540px;
-    height: 508px;
-    max-width: 700px;
-    height: auto;
+    height: fit-content;
+    padding: 40px 73px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;
   }
@@ -142,11 +144,9 @@ select {
   .main_btn {
     margin-bottom: 30px;
   }
-
   .form .input {
     width: 181px;
   }
-
   .inputContainer {
     display: flex;
     flex-direction: row;
@@ -157,14 +157,12 @@ select {
     width: 400px;
     gap: 40px;
   }
-
   .inputWrapper {
     width: 180px;
   }
 
   .datetime {
     width: 180px;
-    
   }
 
   .selectContainer {
@@ -179,8 +177,6 @@ select {
 
 @media screen and (min-width: 1200px) {
   .overlay {
-    height: 603px;
-    height: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;
   }
@@ -202,6 +198,7 @@ select {
 }
 
 .text_pink {
+  padding: 0 20px;
   color: var(--color-text-expanse-pink);
 }
 
@@ -212,16 +209,7 @@ select {
 }
 
 .text_defaultRight {
+  padding: 0 20px;
   font-size: 16px;
   color: var(--color-text-disabled-btn-gray);
-}
-
-.button {
-  margin-bottom: 15px;
-}
-
-.paddingButton {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
 }
