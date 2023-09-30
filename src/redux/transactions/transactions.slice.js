@@ -24,7 +24,7 @@ const initState = {
     'Other expenses',
     'Entertainment',
   ],
-  selectedFilterCategory: '',
+  selectedFilterCategory: 'All',
   selectedId: '',
   selectedFilterYear: new Date().getFullYear(),
   selectedFilterMonth: new Date().toLocaleString('en-us', { month: 'long' }),
@@ -47,7 +47,14 @@ const handleRejected = (state, action) => {
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: initState,
-
+  reducers: {
+    updateSelectedId: (state, action) => {
+      state.selectedId = action.payload;
+    },
+    updateSelectedCategory: (state, action) => {
+      state.selectedFilterCategory = state.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchTransactions.pending, handlePending)
@@ -101,3 +108,4 @@ const transactionsSlice = createSlice({
 });
 
 export const transactionsReducer = transactionsSlice.reducer;
+export const { updateSelectedId, updateSelectedCategory } = transactionsSlice.actions;

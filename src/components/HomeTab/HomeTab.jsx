@@ -8,6 +8,9 @@ import {
   selectTransactionsIsLoading,
   selectTransactionsError,
   selectGlobalIsModalEditTransactionOpen,
+  selectTransactionId,
+  // selectTransactionsCategories,
+  selectTransactionsFilterCategory,
 } from '../../redux/selectors';
 import {
   fetchTransactions,
@@ -23,23 +26,48 @@ import { mediaQueries } from '../../utils/constants';
 import TempBalance from '../temporary components/TempBalance';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
 import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
+// import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
-  const transactions = useSelector(selectTransactions);
+  const transactionsAll = useSelector(selectTransactions);
   const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
   const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
   const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
   const isTransactionsError = useSelector(selectTransactionsError);
+  const selectedTransactionId = useSelector(selectTransactionId);
+  // const categories = useSelector(selectTransactionsCategories);
+  const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
   const { mobile } = mediaQueries;
 
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
+  const formatDate = date => {
+    const dateObject = new Date(date);
+    const year = dateObject.getFullYear() % 100;
+    const month = dateObject.getMonth() + 1;
+    const day = dateObject.getDate();
+    const formattedDate =
+      (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
+    return formattedDate;
+  };
+  console.log('selectedFilterCategory:', selectedFilterCategory);
+
+  // const getTransactionsFilteredByCategory = (transactions, category) => {
+  //   console.log(`category:`, category);
+  //   return category === 'All' ? transactions : transactions.filter(t => t.category === category);
+  // };
+
+  // const transactions = getTransactionsFilteredByCategory(transactionsAll, selectedFilterCategory);
+  const transactions = transactionsAll;
+
   const userName = useSelector(selectUserFirstName);
   const sortedToNewestTransactions =
-    transactions.length > 0 ? [...transactions].sort((a, b) => b.date.localeCompare(a.date)) : null;
+    transactions.length > 0
+      ? [...transactions].sort((a, b) => formatDate(b.date).localeCompare(formatDate(a.date)))
+      : [];
 
   const toggleAddTransactionModal = ev => {
     ev.preventDefault;
@@ -54,6 +82,11 @@ const HomeTab = () => {
   const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
+
+  // const handleSelectChange = ev => {
+  //   ev.preventDefault;
+  //   dispatch(updateSelectedCategory(ev.target.value));
+  // };
 
   return (
     <>
@@ -71,6 +104,22 @@ const HomeTab = () => {
                 </li>
                 <li key={`${userName}category`} className={css.tableHeaderItem}>
                   <p className={css.itemType}>Category</p>
+                  {/* <div className={css.selectContainer}>
+                    <select
+                      name="category"
+                      id="category"
+                      className={css.select}
+                      value={selectedFilterCategory}
+                      onChange={handleSelectChange}
+                    >
+                      <option value="All">All</option>
+                      {categories.map((e, index) => (
+                        <option key={index} value={e}>
+                          {e}
+                        </option>
+                      ))}
+                    </select>
+                  </div> */}
                 </li>
                 <li key={`${userName}comment`} className={css.tableHeaderItem}>
                   <p className={css.itemType}>Comment</p>
@@ -105,6 +154,8 @@ const HomeTab = () => {
         {isModalEditTransactionOpen && (
           <div>
             <p>Edit Transaction Modal is open</p>
+            <p>TransactionId {selectedTransactionId}</p>
+
             <button type="button" onClick={toggleEditTransactionModal}>
               Close EditTransaction
             </button>

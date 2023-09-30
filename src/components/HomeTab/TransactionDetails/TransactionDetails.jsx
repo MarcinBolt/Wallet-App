@@ -1,7 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
 import DeleteButton from '../../buttons/DeleteButton/DeleteButton';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
-
+import { selectTransactionId } from '../../../redux/selectors';
+import { updateSelectedId } from '../../../redux/transactions/transactions.slice';
 
 const TransactionDetails = ({
   id,
@@ -14,6 +16,9 @@ const TransactionDetails = ({
   handleDeleteBtn,
 }) => {
   
+  const dispatch = useDispatch();
+  const selectedTransactionId = useSelector(selectTransactionId);
+
   const isIncome = () => (type === 'Income' ? true : false);
 
   const listClassName = `${css.transactionDetailsList} ${
@@ -40,6 +45,11 @@ const TransactionDetails = ({
       (year < 10 ? '0' : '') +
       year;
     return formattedDate;
+  };
+
+  const handleEditModalOpen = () => {
+    dispatch(updateSelectedId(id));
+    toggleEditModal();
   };
 
   return (
@@ -73,7 +83,6 @@ const TransactionDetails = ({
           <EditButton onClick={toggleEditModal} />
         </li>
       </ul>
-     
     </>
   );
 };
