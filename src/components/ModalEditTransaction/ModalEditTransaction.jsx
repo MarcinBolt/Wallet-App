@@ -4,11 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import Select from 'react-select';
-import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import css from './ModalEditTransaction.module.css';
-
-
 
 export const MainButton = ({ type, text, className }) => (
   <button className={className} type={type}>
@@ -16,54 +12,34 @@ export const MainButton = ({ type, text, className }) => (
   </button>
 );
 
-const ModalEditTransaction = ({ closeModal, transaction }) => {
-  // const [isChecked, setIsChecked] = useState(transaction.isExpense);
+const ModalEditTransaction = ({ closeModal }) => {
+  // Przykładowe dane
+  const initialData = {
+    isExpense: true,
+    amount: '100.00',
+    selectedCategory: 'Groceries',
+    comment: 'Example comment',
+    dateValue: new Date(),
+  };
+  const [isExpense, setIsExpense] = useState(initialData.isExpense);
+  const [amount, setAmount] = useState(initialData.amount);
+  const [selectedCategory, setSelectedCategory] = useState(initialData.selectedCategory);
+  const [comment, setComment] = useState(initialData.comment);
+  const [dateValue, setDateValue] = useState(initialData.dateValue);
 
-  //ustalam stan poszczegolnych komponentow - zeby przechowywac stan edytowanej transakcji 
-  const [isExpense, setIsExpense] = useState(transaction.category !== 'Income');
-  const [amount, setAmount] = useState(transaction.amount);
-  const [selectedCategory, setSelectedCategory] = useState(transaction.category);
-  const [comment, setComment] = useState(transaction.comment);
-  const [dateValue, setDateValue] = useState(new Date(transaction.date));
-
-
-  //to przewijanie storny na góre chyba nie jest potrzebne ale widzialem w jakims przykladzie 
-  useEffect(() => {
-    const scrollToTop = () => {
-      window.scrollTo(0, 0);
-    };
-    scrollToTop();
-    document.body.classList.add('modal-open');
-    return () => {
-      document.body.classList.remove('modal-open');
-    };
-  }, []);
-
-  //dostep do funkcji z Redux , wykorzystanie hooka useDispatch
+  // Dostęp do funkcji z Redux, wykorzystanie hooka useDispatch
   const dispatch = useDispatch();
 
-  // const initialValues = {
-  //   amount: transaction.amount,
-  //   date: transaction.date,
-  //   comment: transaction.comment,
-  // };
-
-  //funkcja obsluguej wysylanie zmienionych danych do redux i informuje o bledize lub sukcesie z wykorzystaniem Toast, przynajmnije powinna 
+  // Funkcja obsługuje wysyłanie zmienionych danych do redux i informuje o błędzie lub sukcesie z wykorzystaniem Toast
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      // const date = new Date(dateValue);
-      // const year = date.getFullYear();
-      // const month = date.getMonth() + 1;
-
       await dispatch(
         updateTransactionById({
-          id: transaction._id,
+          id: 'exampleTransactionId', // ID przykładowej transakcji
           date: dateValue.toISOString(),
-          // year: year,
-          // month: month,
           category: isExpense ? selectedCategory : 'Income',
           comment: comment,
-          sum: Number(amount),
+          sum: parseFloat(amount),
         }),
       );
 
@@ -75,6 +51,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
       setSubmitting(false);
     }
   };
+
   return (
     <div>
       <div className={css.backdrop} onClick={closeModal}></div>
@@ -118,20 +95,20 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
 
               {isExpense && (
                 <div>
-                  <Select
-                    options={[
-                      { value: 'Main Expense', label: 'Main Expense' },
-                      // Dodac inne opcje kategorii wydatków
-                    ]}
-                    placeholder="Main Expense"
+                  {/* Statyczne opcje dla kategorii wydatków */}
+                  <select
                     id="category"
                     name="category"
-                    onChange={option => {
-                      setSelectedCategory(option.label);
+                    value={selectedCategory}
+                    onChange={e => {
+                      setSelectedCategory(e.target.value);
                     }}
-                    isSearchable={false}
-                    value={{ value: selectedCategory, label: selectedCategory }}
-                  />
+                  >
+                    <option value="Groceries">Groceries</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Entertainment">Entertainment</option>
+                    {/* Dodaj inne opcje kategorii wydatków */}
+                  </select>
                 </div>
               )}
               <Field
