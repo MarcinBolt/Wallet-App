@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import Datetime from 'react-datetime';
+import CustomButton from '../CustomButton/CustomButton';
 import 'react-datetime/css/react-datetime.css';
 import css from './ModalEditTransaction.module.css';
 
@@ -52,27 +53,34 @@ const ModalEditTransaction = ({ closeModal }) => {
     }
   };
 
+    const [formData, setFormData] = useState({
+      isChecked: false,
+      dateValue: new Date(),
+      selectedCategory: 'Main expenses',
+      comment: '',
+      amount: '',
+      dateinput: '',
+    });
+  
   return (
     <div>
       <div className={css.backdrop} onClick={closeModal}></div>
       <div className={`${css.overlay} edit-modal`}>
         <h1>Edit transaction</h1>
-
-        <div className={css.incomeExpenseToggle}>
-          <button
-            className={`${css.toggleButton} ${!isExpense && css.active}`}
-            onClick={() => setIsExpense(false)}
-          >
-            Income
-          </button>
-          <button
+<div className={css.switch}>
+          <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
+            /
+        
+          {/* <button
             className={`${css.toggleButton} ${isExpense && css.active}`}
             onClick={() => setIsExpense(true)}
           >
             Expense
-          </button>
+          </button> */}
+           <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>Expense</div>
         </div>
-
+        
+        
         <div>
           <Formik initialValues={{ amount, dateValue, comment }} onSubmit={handleSubmit}>
             <Form className={css.form}>
@@ -136,14 +144,13 @@ const ModalEditTransaction = ({ closeModal }) => {
                   }}
                 />
               </label>
-              <button type="submit" className={`${css.logo_btn} ${css.main_btn}`}>
+              <CustomButton type="button" color="primary" content="Save" className={`${css.logo_btn} ${css.main_btn}`}>
                 Save
-              </button>
+              </CustomButton>
             </Form>
           </Formik>
-          <button type="button" className={css.logo_btn} onClick={closeModal}>
-            Cancel
-          </button>
+          <CustomButton type="button"  color="secondary" content="cancel" className={css.logo_btn} onClick={closeModal}>
+          </CustomButton>
         </div>
       </div>
     </div>
