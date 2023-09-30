@@ -86,6 +86,9 @@ body.modal-open {
 
 .datetime input {
   border: none;
+  background-color: var(--color-bg-primary);
+  outline: none;
+  border: none;
 }
 
 .switch {
@@ -100,6 +103,11 @@ body.modal-open {
 
 .form .input {
   width: 280px;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  font-size: 18px;
+  outline: none;
+  border: 0px;
 }
 
 .inputContainer {
@@ -111,9 +119,13 @@ body.modal-open {
 
 .selectContainer {
   width: 280px;
-  border: 1px solid red;
 }
 
+select {
+  background-color: var(--color-bg-primary);
+  outline: none;
+  border: none;
+}
 @media screen and (min-width: 768px) {
   .overlay {
     top: 50%;
@@ -152,6 +164,7 @@ body.modal-open {
 
   .datetime {
     width: 180px;
+    
   }
 
   .selectContainer {

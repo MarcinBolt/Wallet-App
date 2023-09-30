@@ -61,100 +61,111 @@ const ModalEditTransaction = ({ closeModal }) => {
       amount: '',
       dateinput: '',
     });
-  
-  return (
-    <div>
-      <div className={css.backdrop} onClick={closeModal}></div>
-      <div className={`${css.overlay} edit-modal`}>
-        <h1>Edit transaction</h1>
-<div className={css.switch}>
-          <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
+    
+    return (
+      <div>
+        <div className={css.backdrop} onClick={closeModal}></div>
+        <div className={`${css.overlay} edit-modal`}>
+          <h1>Edit transaction</h1>
+          <div className={css.switch}>
+            <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
             /
-        
-          {/* <button
+            {/* <button
             className={`${css.toggleButton} ${isExpense && css.active}`}
             onClick={() => setIsExpense(true)}
           >
             Expense
           </button> */}
-           <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>Expense</div>
-        </div>
-        
-        
-        <div>
-          <Formik initialValues={{ amount, dateValue, comment }} onSubmit={handleSubmit}>
-            <Form className={css.form}>
-              <Field
-                type="text"
-                id="amount"
-                name="amount"
-                value={amount}
-                className={css.input}
+            <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>
+              Expense
+            </div>
+          </div>
+          {isExpense && (
+            <div>
+              {/* Statyczne opcje dla kategorii wydatków */}
+              <select
+                id="category"
+                name="category"
+                value={selectedCategory}
                 onChange={e => {
-                  const input = e.target.value;
-                  const regex = /^(\d+)?(\.\d{0,2})?$/;
-
-                  if (regex.test(input)) {
-                    setAmount(input);
-                  }
+                  setSelectedCategory(e.target.value);
                 }}
-              />
-              <ErrorMessage name="amount" component="div" />
+              >
+                <option value="Groceries">Groceries</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Entertainment">Entertainment</option>
+                {/* Dodaj inne opcje kategorii wydatków */}
+              </select>
+            </div>
+          )}
 
-              {isExpense && (
-                <div>
-                  {/* Statyczne opcje dla kategorii wydatków */}
-                  <select
-                    id="category"
-                    name="category"
-                    value={selectedCategory}
-                    onChange={e => {
-                      setSelectedCategory(e.target.value);
-                    }}
-                  >
-                    <option value="Groceries">Groceries</option>
-                    <option value="Utilities">Utilities</option>
-                    <option value="Entertainment">Entertainment</option>
-                    {/* Dodaj inne opcje kategorii wydatków */}
-                  </select>
-                </div>
-              )}
-              <Field
-                as={Datetime}
-                dateFormat="DD-MM-YY"
-                timeFormat={false}
-                value={dateValue}
-                className={css.datetime}
-                onChange={newDate => {
-                  setDateValue(newDate);
-                }}
-              />
-              <ErrorMessage name="date" component="div" />
-
-              <label className={css.label2}>
+          <div className={css.form}>
+            <></>
+            <Formik initialValues={{ amount, dateValue, comment }} onSubmit={handleSubmit}>
+              <Form className={css.form}>
                 <Field
-                  as="textarea"
-                  placeholder="Comment"
-                  className={css.textarea}
-                  rows={3}
-                  name="comment"
-                  value={comment}
+                  type="text"
+                  id="amount"
+                  name="amount"
+                  value={amount}
+                  className={css.input}
                   onChange={e => {
-                    setComment(e.target.value);
+                    const input = e.target.value;
+                    const regex = /^(\d+)?(\.\d{0,2})?$/;
+
+                    if (regex.test(input)) {
+                      setAmount(input);
+                    }
                   }}
                 />
-              </label>
-              <CustomButton type="button" color="primary" content="Save" className={`${css.logo_btn} ${css.main_btn}`}>
-                Save
-              </CustomButton>
-            </Form>
-          </Formik>
-          <CustomButton type="button"  color="secondary" content="cancel" className={css.logo_btn} onClick={closeModal}>
-          </CustomButton>
+                <ErrorMessage name="amount" component="div" />
+                {/* <div class={css.editWrapper}>ddd</div> */}
+                <Field
+                  as={Datetime}
+                  dateFormat="DD-MM-YY"
+                  timeFormat={false}
+                  value={dateValue}
+                  className={css.datetime}
+                  onChange={newDate => {
+                    setDateValue(newDate);
+                  }}
+                />
+                <ErrorMessage name="date" component="div" />
+
+                <label className={css.label2}>
+                  <Field
+                    as="textarea"
+                    placeholder="Comment"
+                    className={css.textarea}
+                    rows={3}
+                    name="comment"
+                    value={comment}
+                    onChange={e => {
+                      setComment(e.target.value);
+                    }}
+                  />
+                </label>
+                <CustomButton
+                  type="button"
+                  color="primary"
+                  content="Save"
+                  className={`${css.logo_btn} ${css.main_btn}`}
+                >
+                  Save
+                </CustomButton>
+              </Form>
+            </Formik>
+            <CustomButton
+              type="button"
+              color="secondary"
+              content="cancel"
+              className={css.logo_btn}
+              onClick={closeModal}
+            ></CustomButton>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default ModalEditTransaction;
