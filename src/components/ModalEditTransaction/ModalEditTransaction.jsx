@@ -13,7 +13,7 @@ export const MainButton = ({ type, text, className }) => (
   </button>
 );
 
-const ModalEditTransaction = ({ closeModal }) => {
+const ModalEditTransaction = (/*{ closeModal }*/) => {
   // Przykładowe dane
   const initialData = {
     isExpense: true,
@@ -22,50 +22,37 @@ const ModalEditTransaction = ({ closeModal }) => {
     comment: 'Example comment',
     dateValue: new Date(),
   };
-  const [isExpense, setIsExpense] = useState(initialData.isExpense);
+    const [isExpense, setIsExpense] = useState(initialData.isExpense);
   const [amount, setAmount] = useState(initialData.amount);
-  const [selectedCategory, setSelectedCategory] = useState(initialData.selectedCategory);
+  const [category, setCategory] = useState(initialData.selectedCategory);
   const [comment, setComment] = useState(initialData.comment);
   const [dateValue, setDateValue] = useState(initialData.dateValue);
-
-  // Dostęp do funkcji z Redux, wykorzystanie hooka useDispatch
+  
   const dispatch = useDispatch();
 
-  // Funkcja obsługuje wysyłanie zmienionych danych do redux i informuje o błędzie lub sukcesie z wykorzystaniem Toast
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      await dispatch(
-        updateTransactionById({
-          id: 'exampleTransactionId', // ID przykładowej transakcji
-          date: dateValue.toISOString(),
-          category: isExpense ? selectedCategory : 'Income',
-          comment: comment,
-          sum: parseFloat(amount),
-        }),
-      );
-
-      toast.success('Transaction edited successfully');
-      closeModal();
-    } catch (error) {
-      toast.error('Failed to edit transaction');
-    } finally {
-      setSubmitting(false);
-    }
+  const toggleModal = () => {
+    console.log('Modal się zamyka');
   };
 
-    const [formData, setFormData] = useState({
-      isChecked: false,
-      dateValue: new Date(),
-      selectedCategory: 'Main expenses',
-      comment: '',
-      amount: '',
-      dateinput: '',
-    });
-    
-    return (
-      <div>
-        <div className={css.backdrop} onClick={closeModal}></div>
-        <div className={`${css.overlay} edit-modal`}>
+  const [formData, setFormData] = useState({
+    isChecked: false,
+    dateValue: new Date(),
+    selectedCategory: 'Main expenses',
+    comment: '',
+    amount: '',
+    dateinput: '',
+  });
+
+const handleUpdateTransaction = ev => {
+  ev.prevetnDefault;
+  console.log()
+  toggleModal()
+}
+
+  return (
+    <div>
+      <div className={css.backdrop} onClick={toggleModal}>
+        <div className={css.overlay}>
           <h1>Edit transaction</h1>
           <div className={css.switch}>
             <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
@@ -86,7 +73,7 @@ const ModalEditTransaction = ({ closeModal }) => {
               <select
                 id="category"
                 name="category"
-                value={selectedCategory}
+                value={category}
                 onChange={e => {
                   setSelectedCategory(e.target.value);
                 }}
@@ -105,9 +92,9 @@ const ModalEditTransaction = ({ closeModal }) => {
               <Form className={css.form}>
                 <Field
                   type="text"
-                  id="amount"
-                  name="amount"
-                  value={amount}
+                  id="sum"
+                  name="sum"
+                  value={sum}
                   className={css.input}
                   onChange={e => {
                     const input = e.target.value;
@@ -124,7 +111,7 @@ const ModalEditTransaction = ({ closeModal }) => {
                   as={Datetime}
                   dateFormat="DD-MM-YY"
                   timeFormat={false}
-                  value={dateValue}
+                  value={date}
                   className={css.datetime}
                   onChange={newDate => {
                     setDateValue(newDate);
@@ -160,12 +147,13 @@ const ModalEditTransaction = ({ closeModal }) => {
               color="secondary"
               content="cancel"
               className={css.logo_btn}
-              onClick={closeModal}
+              onClick={toggleModal}
             ></CustomButton>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default ModalEditTransaction;
