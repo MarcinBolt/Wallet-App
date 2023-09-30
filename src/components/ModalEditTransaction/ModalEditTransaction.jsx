@@ -122,7 +122,7 @@ const ModalEditTransaction = ({ closeModal, transaction }) => {
                   <Select
                     options={[
                       { value: 'Main Expense', label: 'Main Expense' },
-                      // Dodaj inne opcje kategorii wydatków
+                      // Dodac inne opcje kategorii wydatków
                     ]}
                     placeholder="Main Expense"
                     id="category"
