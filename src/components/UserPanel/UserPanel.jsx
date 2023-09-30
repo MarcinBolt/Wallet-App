@@ -1,25 +1,22 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+import Button from '@mui/material/Button'; 
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container'; 
+import Box from '@mui/material/Box'; 
 import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
-import { useAuth } from '../../utils/hooks/user.auth';
-// import { logIn } from '../redux/auth/auth.operations.js';
+import { useAuth } from '../../utils/hooks/user.auth'; 
 import css from './UserPanel.module.css';
-import { DialogTitle, IconButton, Modal } from '@mui/material';
+import { DialogTitle, IconButton } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import { red } from '@mui/material/colors';
+import AccountBoxIcon from '@mui/icons-material/AccountBox'; 
 import MoneyIcon from '@mui/icons-material/Money';
 import CloseIcon from '@mui/icons-material/Close';
 import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
+import { useEffect } from 'react';
 
  const theme = createTheme();
 
@@ -68,21 +65,45 @@ const UserPanel = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
  
- 
-  // const  userName = useAuth();
-  // const  userEmail = useAuth();
-  const userName  = 'Damian';
-  const  userEmail = 'dd@dd.net';
+
+  React.useEffect(() => {
+    window.addEventListener("keyup", handleKeyDown);
+    return () => {
+      window.removeEventListener("keyup", handleKeyDown);
+    };
+  });
+
+
+  const handleKeyDown = (event) => { 
+    if (event.code === "Escape") {
+      handleClose();
+    }
+  };
   
-  //for testing ONLY
+  const userName = useAuth().userName;
+  const userEmail = useAuth().userEmail; 
   const onClickDeleteUser = () => { 
     dispatch(deleteUser())
     ;
   } 
    
+  
+  const escFunction = React.useCallback((event) => {
+    if (event.key === "Escape") {
+      handleClose()
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, [escFunction]);
+ 
   return (
-    <Box
-      // maxWidth="sx"
+    <Box 
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -158,12 +179,10 @@ const UserPanel = () => {
         maxWidth: '200px', 
         background: 'transparent', 
         left: '70%', 
-      }}
-      // PaperProps={{sx: {position: 'absolute',   m: 0}}}
+      }} 
 
       className="mui-fixed" 
-        open={open}
-        // onClose={handleClose} 
+        open={open} 
       > 
 
       <DialogTitle sx={{ display: 'flex', alignItems: 'center',

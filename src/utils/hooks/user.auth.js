@@ -7,5 +7,5 @@ export const useAuth = () => {
   const userName = useSelector(selectUserFirstName);
   const userEmail = useSelector(selectUserEmail);
 
-  return { isAuthorized, isRefreshing };
+  return { isAuthorized, isRefreshing, userName, userEmail };
 };
