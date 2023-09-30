@@ -9,7 +9,7 @@ import { updateTransactionById } from '../../redux/transactions/transactions.ope
 import css from './ModalEditTransaction.module.css';
 
 
-//tym komponentem wymysliłem ze bedzie  używany do renderowania przycisków w modalu.
+
 export const MainButton = ({ type, text, className }) => (
   <button className={className} type={type}>
     {text}
