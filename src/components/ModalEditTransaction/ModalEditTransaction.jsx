@@ -14,6 +14,9 @@ import CustomButton from '../CustomButton/CustomButton';
 import Notiflix from 'notiflix';
 import { toast } from 'react-toastify';
 import css from './ModalEditTransaction.module.css';
+import closeIcon from '../../assets/icons/close.svg';
+import calendaricon from '../../assets/icons/calendaricon.svg';
+import SelectIcon from '../../assets/icons/select-category.svg';
 //import { selectTransactionId, selectTransactions } from '../../redux/selectors';
 
 import {
@@ -27,9 +30,6 @@ import {
   IconButton,
 } from '@mui/material';
 
-// import vectorIcon from '../assets/icons/vector.svg';
-// import SelectIcon from '../assets/icons/select-category.svg';
-// import closeIcon from '../assets/icons/close.svg';
 import { selectTransactionsCategories } from '../../redux/selectors';
 import TitleComponent from '../TitleComponent/Title.Component';
 
@@ -94,7 +94,8 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
     const year = formData.date.getFullYear();
     const month = formData.date.toLocaleString('en-US', { month: 'long' });
     dispatch(
-      updateTransactionById({ id: transactionId, 
+      updateTransactionById({
+        id: transactionId,
         date: formData.date,
         year: year.toString(),
         month: month,
@@ -131,7 +132,7 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
           }}
           onClick={toggleModal}
         >
-          {/* <img src={closeIcon} alt="Close" /> */}
+          <img src={closeIcon} alt="Close" />
         </IconButton>
         <TitleComponent text={'Edit transaction'} />
 
@@ -152,18 +153,30 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
                 boxShadow: 'none',
                 height: '32px',
                 textAlign: 'left',
-                '&:hover': { borderWidth: 0 },
-                '.MuiOutlinedInput-notchedOutline': {
-                  border: 0,
-                  borderBottom: 1,
-                  borderRadius: 0,
-                  borderColor: 'none',
+                borderBottom: '1px solid var(--color-border-bottom-btn-form)',
+                '&:hover': { borderBottom: '1px solid var(--color-border-bottom-btn-form)' },
+
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: 'none !important',
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  border: 'none !important',
+                },
+                '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
+                  border: 'none !important',
                 },
               }}
               id="category"
               name="category"
               value={formData.selectedCategory}
               onChange={handleInputChange}
+              IconComponent={() => (
+                <img
+                  src={SelectIcon}
+                  alt="Select Icon"
+                  className={`${css.selectCategoryIcon} ${css.iconMarginLeft}`}
+                />
+              )}
             >
               {categories.map(option => (
                 <MenuItem key={option} value={option}>
@@ -218,8 +231,9 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
                   className={css.tableDatetime}
                   inputProps={{
                     style: {
-                      height: 36,
+                      height: 32,
                       width: 181,
+      
                     },
                   }}
                   input={true}
@@ -233,7 +247,7 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
                       variant="standard"
                       id="date"
                       name="date"
-                                          fullWidth
+                      fullWidth
                       onChange={e => {
                         const inputDate = e.target.value;
                         setFormData({
@@ -245,10 +259,11 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => {}}>
-                              {/* <img src={vectorIcon} alt="Calendar" className={css.calendarIcon} /> */}
+                              <img src={calendaricon} alt="Calendar" className={css.calendarIcon} />
                             </IconButton>
                           </InputAdornment>
                         ),
+                        classes:{underline:css.Underline,}
                       }}
                     />
                   )}

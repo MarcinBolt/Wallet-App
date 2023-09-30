@@ -65,7 +65,8 @@
   resize: none;
   height: 32px;
   background-color: transparent;
-  outline: none;
+  outline: none;border-bottom: 1px solid var(--color-border-bottom-btn-form) !important; 
+  
 }
 
 .inputWrapper {
@@ -73,10 +74,13 @@
   width: 280px;
   height: 32px;
   border-bottom: 1px solid var(--color-border-bottom-btn-form);
+  
 }
 
 .textareaWrapper {
   height: 50px;
+  
+  
 }
 
 .tableDatetime {
@@ -99,30 +103,45 @@
   margin-bottom: 10px;
 }
 
+.noBorder{
+  border: none;
+}
 .selectCategoryIcon {
+  position: absolute;
   width: 18px;
   height: 9px;
+  right: 10px;
   color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.iconMarginLeft {
+  margin-left: -20px;
 }
 
 .datetime input {
   border: none;
+  
+  
 }
 
 .form .input {
   width: 280px;
 }
 
+.Underline:before {
+  border-bottom: 1px solid var(--color-border-bottom-btn-form) !important; 
+}
 .inputContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 40px;
+  
 }
 .selectContainer {
   width: 280px;
-  border: 1px solid red;
 }
 
 .paddingButton {
@@ -169,6 +188,11 @@
     width: 394px;
   }
 
+  .selectContainer select:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
   .textarea {
     width: 394px;
     height: 32px;
