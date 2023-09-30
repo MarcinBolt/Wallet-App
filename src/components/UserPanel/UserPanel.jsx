@@ -19,6 +19,7 @@ import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
 import { useEffect } from 'react';
 import PersonOffIcon from '@mui/icons-material/PersonOff'; 
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'; 
+import { selectTransactionsCurrency } from '../../redux/selectors';
 
  const theme = createTheme();
 
@@ -59,8 +60,7 @@ const UserPanel = () => {
           password: values.password,
           firstName: values.firstName,
         }),
-        // userCurrency: values.userCurrency  
-        //BRAK reducera w transactions slice dla zmiany currency ?
+        selectTransactionsCurrency(values.userCurrency) 
       );
       formik.resetForm();
     },
