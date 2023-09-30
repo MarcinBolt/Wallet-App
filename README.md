@@ -1,23 +1,22 @@
-# Wallet App by Hi5 Team
+# Wallet App by Hi5 Team ![logo](./imgReadme/hi5-logo.png)
 
-![logo](./img/Zrzut%20ekranu%202023-09-30%20o%2001.00.26.png)
+
 
 > Wallet App is a web-based application that allows users to manage their finances, monitor transactions and track account balances. The app is designed for personal use and provides tools for tracking income and expenses.
 
 
 ## Table of Contents
 * [General Info](#general-information)
-* [Site](#Site)
+* [Site](#site)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Project Status](#project-status)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 
 
-# Site 
+# Site version on Mobile/Tablet/Desktop
 ## Mobile
 ### Register Page 
 ![register-mobile](./imgReadme/register-mobile.png)
@@ -38,6 +37,40 @@
 ### Statistics
 ![statistic-mobile](./imgReadme/statistic-mobile.png)
 
+## Tablet
+### Register Page 
+
+### Login Page
+
+### Balance Page
+
+### Currency Page
+
+### Add Transaction Page Income / Expense
+
+### Edit Transaction Page Income / Expense
+
+### Add Transaction Page Expense 
+
+### Statistics
+
+## Desktop
+
+### Register Page 
+
+### Login Page
+
+### Balance Page
+
+### Currency Page
+
+### Add Transaction Page Income / Expense
+
+### Edit Transaction Page Income / Expense
+
+### Add Transaction Page Expense 
+
+### Statistics
 
 ## General Information
 - The Wallet application created is the final task to take advantage of all the areas faced during the full year of fullstack learning
