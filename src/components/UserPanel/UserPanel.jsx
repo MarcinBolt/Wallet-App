@@ -110,7 +110,7 @@ const UserPanel = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        maxWidth: '260px',
+        maxWidth: '320px',
         background: 'white',
         position: 'fixed',
         top: 0,
@@ -128,10 +128,11 @@ const UserPanel = () => {
             sx={{
               mt: 3,
               mb: 2,
-              width: 250,
+              width: 200,
+              
               marginTop: '5px',
-              marginLeft: '10px',
-              marginRight: '10px',
+              marginLeft: '40px',
+              marginRight: '40px',
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
@@ -150,10 +151,10 @@ const UserPanel = () => {
             sx={{ 
               mt: 3,
               mb: 2,
-              width: 250,
+              width: 200,
               marginTop: '5px',
-              marginLeft: '10px',
-              marginRight: '10px', 
+              marginLeft: '40px',
+              marginRight: '40px', 
               background: '#ffffff',
               border: 1,
               borderColor: '#FF0000',
@@ -611,10 +612,10 @@ const UserPanel = () => {
             sx={{
               mt: 3,
               mb: 2,
-              width: 250,
+              width: 240,
               marginTop: '5px',
-              marginLeft: '10px',
-              marginRight: '10px',
+              marginLeft: '40px',
+              marginRight: '40px', 
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
