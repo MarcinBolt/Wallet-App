@@ -17,6 +17,8 @@ import MoneyIcon from '@mui/icons-material/Money';
 import CloseIcon from '@mui/icons-material/Close';
 import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
 import { useEffect } from 'react';
+import PersonOffIcon from '@mui/icons-material/PersonOff'; 
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'; 
 
  const theme = createTheme();
 
@@ -101,6 +103,8 @@ const UserPanel = () => {
       document.removeEventListener("keydown", escFunction, false);
     };
   }, [escFunction]);
+
+ 
  
   return (
     <Box 
@@ -122,6 +126,17 @@ const UserPanel = () => {
         <h1>Hello {userName} </h1>
         <p>Your E-mail is {userEmail}</p>
  
+        <div className={css.container_input}>
+         <ManageAccountsIcon 
+          sx={{
+            position: 'absolute',
+            fill: '#24cca7',
+            top: '295px',
+            left: '8px', 
+            fontSize: '35px'
+          }}
+         />
+
         <Button
             type="button"
             onClick={handleOpen}
@@ -131,8 +146,8 @@ const UserPanel = () => {
               width: 200,
               
               marginTop: '5px',
-              marginLeft: '40px',
-              marginRight: '40px',
+              marginLeft: '50px',
+              marginRight: '30px',
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
@@ -144,7 +159,17 @@ const UserPanel = () => {
           >
             UPDATE ACCOUNT
           </Button>
-  
+          </div>
+          <div className={css.container_input}>
+         <PersonOffIcon 
+          sx={{
+            position: 'absolute',
+            fill: 'red',
+            top: '355px',
+            left: '8px', 
+            fontSize: '35px'
+          }}
+         />
         <Button
             type="button"
             onClick={onClickDeleteUser}
@@ -153,8 +178,8 @@ const UserPanel = () => {
               mb: 2,
               width: 200,
               marginTop: '5px',
-              marginLeft: '40px',
-              marginRight: '40px', 
+              marginLeft: '50px',
+              marginRight: '30px', 
               background: '#ffffff',
               border: 1,
               borderColor: '#FF0000',
@@ -169,7 +194,7 @@ const UserPanel = () => {
           >
             DELETE ACCOUNT
           </Button>
- 
+          </div>
       <Dialog 
       sx={{
         display: 'flex',
