@@ -176,9 +176,14 @@
     width: 400px;
     gap: 40px;
   }
-  .inputWrapper {
-    width: 180px;
-  }
+ .inputWrapper {
+  display: inline-block;
+  width: 280px;
+  height: 32px;
+  border-bottom: 1px solid var(--color-border-bottom-btn-form);
+  
+}
+
 
   .datetime {
     width: 180px;
