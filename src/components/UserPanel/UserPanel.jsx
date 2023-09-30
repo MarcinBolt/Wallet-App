@@ -49,6 +49,7 @@ const UserPanel = () => {
       password: '',
       confirmPassword: '',
       firstName: '',
+      userCurrency: '',
     },
     validationSchema,
     onSubmit: values => { 
@@ -58,6 +59,8 @@ const UserPanel = () => {
           password: values.password,
           firstName: values.firstName,
         }),
+        // userCurrency: values.userCurrency  
+        //BRAK reducera w transactions slice dla zmiany currency ?
       );
       formik.resetForm();
     },
@@ -550,14 +553,13 @@ const UserPanel = () => {
 
           <div className={css.container_input}>
             <TextField
-              name="currency"
+              name="userCurrency"
               type="text"
-              label="Currency"
-              // value={formik.values.firstName}
-              // onChange={formik.handleChange}
-              // onBlur={formik.handleBlur}
-              // error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-              // helperText={formik.touched.firstName && formik.errors.firstName}
+              label="userCurrency"
+              value={formik.values.userCurrency}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur} 
+              helperText={formik.touched.userCurrency && formik.errors.userCurrency}
               variant="outlined"
               color="grey"
               className={css.test}
