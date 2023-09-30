@@ -1,11 +1,17 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
+  @media screen and (min-width: 768px) {
+    height: 100%;
+    gap: 20px;
+  }
   @media screen and (min-width: 1280px) {
     flex-direction: row;
+    height: 100vh;
+    gap: 0;
   }
 }
 
@@ -47,7 +53,9 @@
     height: 100%;
     width: 57vw;
     align-items: center;
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5), 0 0 1rem 0 rgba(0, 0, 0, .1);
+    box-shadow:
+      inset 0 0 2000px rgba(255, 255, 255, 0.5),
+      0 0 1rem 0 rgba(0, 0, 0, 0.1);
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(5px);
   }
