@@ -1,6 +1,76 @@
- # Wallet-App
- 
- ---
+# Wallet App by Hi5 Team
+> Wallet App is a web-based application that allows users to manage their finances, monitor transactions and track account balances. The app is designed for personal use and provides tools for tracking income and expenses.
+
+
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Project Status](#project-status)
+* [Acknowledgements](#acknowledgements)
+* [Contact](#contact)
+
+
+## General Information
+- The Wallet application created is the final task to take advantage of all the areas faced during the full year of fullstack learning
+
+## Technologies Used
+Frontend (client side):
+- React.js: JavaScript framework for building the user interface.
+- Redux: Library for managing the state of the application.
+- React Router: For navigating between different views of the application.
+- Formik and Yup: For handling forms and validation.
+- Material-UI: For building user interfaces and components.
+- Chart.js and react-chartjs-2: For charts and data visualisation.
+- React-Loader-Spinner: For displaying the loading indicator (spinner).
+- Axios: For making HTTP requests to the server.
+
+Backend (server side):
+- Node.js: The runtime environment for the server.
+- Express.js: Framework for creating an HTTP server.
+- MongoDB: NoSQL database, perhaps using mongoose as the database interaction tool.
+- JWT (JSON Web Tokens): For user authentication.
+- Swagger UI: For generating API endpoint documentation.
+
+Other:
+- CSS: For user interface styling.
+- Redux-Persist: For storing the state of the application, including the token in localStorage.
+- React-Media: For adapting the interface to different screen resolutions.
+- React-Toastify: For displaying error notifications and other messages to the user.
+- LocalStorage: For storing certain data on the client side, such as tokens.
+
+## Features
+List the ready features here:
+- Registration and Login:
+- The application handles the registration and login process for users. It uses the Formik and Yup (or Indicative) library to validate form fields, including checking the validity of email address and password length.
+- Session Management: After a successful user login, the user's token and credentials are stored in the Redux Store, and the session.isAuth flag is set to true. In case of a login error, the error is stored in the session state and displayed to the user.
+- Routing Protection: Higher-Order Components (HOCs) such as withAuthRedirect are used, which control access to specific sites based on the user's authentication status. In this way, routing protection is provided.
+- Data Retrieval: The application retrieves transaction and balance status data. These operations are performed when the DashboardPage component is loaded and are asynchronous.
+- Displaying Data on Charts: The Chart component uses the react-chartjs-2 library to display data on charts. This data is likely to come from the user's transactions and can be presented as charts.
+- Adding Transactions: The app allows you to add new transactions using a form that appears when you click the "Add Transaction" button. Values such as date, amount, transaction type and comment are validated before being sent to the server.
+- Transaction Categories: There is an endpoint for obtaining transaction categories, which suggests that transactions can be grouped by category.
+- Transaction Statistics: There is an endpoint for obtaining detailed statistics for the month and year with user transactions. This allows you to generate reports and analyze expenses.
+- Modal Logout: When the user clicks on the "Logout" button, a modal window appears to confirm the logout. This is an extra layer of security to avoid accidental logout.
+- Loader (Spinner): A spinner is used to indicate activity during asynchronous operations, such as downloading data. This spinner is called in the center of the screen.
+- Balance Display: The Balance component subscribes to the total balance data and displays it.
+- Dynamic Navigation: Navigation between different sections of the app is handled by react-router-dom navigation. Users can navigate between pages, such as "Home" and "Diagram," via the Navigation component.
+- Filtering Transactions: The app provides the ability to filter and view transactions to help users keep track of their finances.
+- Performance Optimization: There is a suggestion about saving the response with the date of the last request in localStorage and reusing this data for a period of an hour to reduce server load.
+- Fonts and Favicon: The app manages fonts and favicon, which affects the look and style of the user interface.
+- API documentation: There is a plan to create API endpoint documentation with Swagger UI Express, making it easier to understand and test the API.
+
+## Screenshots  (TBD)
+![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2001.00.26.png)
+![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2002.34.07.png)
+![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2002.34.22.png)
+![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2002.34.40.png)
+
+
+
+
+## Setup
 ## For Developers:
 # To install all dependencies from package.json use: npm install
 
@@ -39,3 +109,16 @@ Add script in package.json:
 
 Run script to build and publish in gh-pages branch on github: 
 npm run deploy
+
+
+## Project status
+The project is:completed
+
+
+## Acknowledgements
+- This project as mentioned is the concluding phase of the training - Thanks to Team 5 and Go IT
+
+
+## Contact
+Created by Hi5 Team 
+welcome to contact us!
