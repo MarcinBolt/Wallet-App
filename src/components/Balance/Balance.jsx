@@ -1,17 +1,37 @@
-import * as React from 'react';
-
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-
 import css from './Balance.module.css';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { selectBalance, selectTransactions } from '../../redux/selectors';
+import { updateBalance } from '../../redux/transactions/transactions.slice';
 
 const Balance = () => {
-  return (
-    <Container className={css.BalanceContainer}>
-      <Box className={css.BalanceText}>Your Balance</Box>
-      <Box className={css.BalanceBox}>₴</Box>
-    </Container>
-  );
-}
+  const dispatch = useDispatch();
+  const transactions = useSelector(selectTransactions);
+  const balance = useSelector(selectBalance);
 
-export default Balance
+  useEffect(() => {
+    const incomesSum = transactions.reduce((acc, transaction) => {
+      if (transaction.type === 'Income') {
+        return acc + transaction.sum;
+      }
+      return acc;
+    }, 0);
+    const expensesSum = transactions.reduce((acc, transaction) => {
+      if (transaction.type === 'Expense') {
+        return acc + transaction.sum;
+      }
+      return acc;
+    }, 0);
+    dispatch(updateBalance(incomesSum - expensesSum));
+  }, [transactions]);
+
+  return (
+    <div className={css.balanceContainer}>
+      <Box className={css.balanceText}>Your Balance</Box>
+      <Box className={css.balanceBox}>₴ {balance}</Box>
+    </div>
+  );
+};
+
+export default Balance;

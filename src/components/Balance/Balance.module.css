@@ -1,5 +1,5 @@
-@import '../../utils/css-variables.css';
-.BalanceContainer {
+
+.balanceContainer {
   width: 280px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-widget-binance);
@@ -9,17 +9,17 @@
 }
 
 @media screen and (min-width: 768px) {
-  .BalanceContainer {
+  .balanceContainer {
     width: 336px;
     padding: 8px 40px 11px;
   }
 }
 @media screen and (min-width: 1280px) {
-  .BalanceContainer {
+  .balanceContainer {
     width: 395px;
   }
 }
-.BalanceText {
+.balanceText {
   font-size: 12px;
   font-weight: 400;
   color: var(--color-text-binance-label);
@@ -27,7 +27,7 @@
   display: flex;
   align-items: start;
 }
-.BalanceBox {
+.balanceBox {
   font-size: 30px;
   font-weight: 700;
   color: var(--color-text-primary);
