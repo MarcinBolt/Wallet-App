@@ -53,8 +53,7 @@ const HomeTab = () => {
       (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
     return formattedDate;
   };
-  console.log('selectedFilterCategory:', selectedFilterCategory);
-
+ 
   // const getTransactionsFilteredByCategory = (transactions, category) => {
   //   console.log(`category:`, category);
   //   return category === 'All' ? transactions : transactions.filter(t => t.category === category);
