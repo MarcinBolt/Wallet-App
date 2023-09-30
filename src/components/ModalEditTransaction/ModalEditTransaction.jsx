@@ -16,7 +16,6 @@ export const MainButton = ({ type, text, className }) => (
   </button>
 );
 
-//ponizszy komponent przyjmuje trzy propsy: closeModal, transaction, które są przekazywane do komponentu, aby móc zamknąć modal i edytować transakcję.
 const ModalEditTransaction = ({ closeModal, transaction }) => {
   // const [isChecked, setIsChecked] = useState(transaction.isExpense);
 
