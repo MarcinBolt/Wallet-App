@@ -1,35 +1,55 @@
 @import '../../stylesheet/vars.css';
 /* @import '../../utils/breakpoints.css'; */
 
-.overlay {
-  opacity: 1;
-  background-color: rgba(255, 255, 255, 0.8);
-  position: fixed;
+.backdrop {
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  top: 10px;
-  left: 0px;
-  z-index: 99;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-backdrop);
+  @media screen and (min-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+    top: -80px;
+  }
 }
 
-body.modal-open {
-  overflow: hidden;
+.overlay {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  background-color: var(--color-bg-secondary);
+  width: 100%;
+  height: 100%;
+}
+
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .overlay h1 {
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin: 0;
+  padding: 0;
   font-weight: 400;
 }
 
 .form {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 10px;
+  gap: 40px;
 }
 
 .textarea {
@@ -52,15 +72,12 @@ body.modal-open {
 .inputWrapper {
   display: inline-block;
   width: 280px;
-  padding-bottom: 50px;
+  height: 32px;
+  border-bottom: 1px solid var(--color-border-bottom-btn-form);
 }
 
 .textareaWrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 15px;
+  height: 50px;
 }
 
 .tableDatetime {
@@ -70,6 +87,8 @@ body.modal-open {
   /* top: 298px; */
   padding: 0;
   margin: 0;
+  background-color: var(--color-bg-blur);
+  backdrop-filter: blur(5px);
 }
 
 .rdtPicker table {
@@ -81,26 +100,14 @@ body.modal-open {
   margin-bottom: 10px;
 }
 
-.selectCategoryIcon{
-width: 18px;
-height: 9px;
-color: var(--color-text-primary);
-
+.selectCategoryIcon {
+  width: 18px;
+  height: 9px;
+  color: var(--color-text-primary);
 }
-
 
 .datetime input {
   border: none;
-}
-
-.switch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 30px;
-  margin-left: -15px;
-  margin-bottom: 40px;
 }
 
 .form .input {
@@ -112,21 +119,25 @@ color: var(--color-text-primary);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 }
 .selectContainer {
   width: 280px;
   border: 1px solid red;
 }
 
+.paddingButton {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 15px;
+}
+
 @media screen and (min-width: 768px) {
   .overlay {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 540px;
-    height: 508px;
-    max-width: 700px;
-    height: auto;
+    height: fit-content;
+    padding: 40px 73px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;
   }
@@ -167,8 +178,6 @@ color: var(--color-text-primary);
 
 @media screen and (min-width: 1200px) {
   .overlay {
-    height: 603px;
-    height: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 14px;
   }
@@ -204,12 +213,4 @@ color: var(--color-text-primary);
   font-size: 16px;
   color: var(--color-text-disabled-btn-gray);
 }
-button {
-  margin-bottom: 15px;
-}
 
-.paddingButton {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-}
