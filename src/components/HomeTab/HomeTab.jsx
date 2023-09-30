@@ -3,7 +3,7 @@ import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction"
 const HomeTab = () => {
     return (
         <>
-        <ModalEditTransaction />
+        <h1>HomeTab</h1>
         </>
     )
 }
