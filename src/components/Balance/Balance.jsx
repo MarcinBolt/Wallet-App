@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 
 import css from './Balance.module.css';
 
-export default function Balance() {
+const Balance = () => {
   return (
     <Container className={css.BalanceContainer}>
       <Box className={css.BalanceText}>Your Balance</Box>
@@ -13,3 +13,5 @@ export default function Balance() {
     </Container>
   );
 }
+
+export default Balance
