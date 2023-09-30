@@ -1,9 +1,13 @@
 # Wallet App by Hi5 Team
+
+![logo](./img/Zrzut%20ekranu%202023-09-30%20o%2001.00.26.png)
+
 > Wallet App is a web-based application that allows users to manage their finances, monitor transactions and track account balances. The app is designed for personal use and provides tools for tracking income and expenses.
 
 
 ## Table of Contents
 * [General Info](#general-information)
+* [Site](#Site)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Screenshots](#screenshots)
@@ -11,6 +15,28 @@
 * [Project Status](#project-status)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
+
+
+# Site 
+## Mobile
+### Register Page 
+![register-mobile](./imgReadme/register-mobile.png)
+### Login Page
+![login-mobile](./imgReadme/login-mobile.png)
+### Balance Page
+![balance-mobile](./imgReadme/balance-mobile.png)
+### Currency Page
+![currency-mobile](./imgReadme/currency-mobile.png)
+### Add Transaction Page Income / Expense
+![addtransaction-income](./imgReadme/addtransaction-income-mobile.png)
+![addtransaction-expense](./imgReadme/addtransaction-expense-mobile.png)
+### Edit Transaction Page Income / Expense
+![edittransaction-income](./imgReadme/edittransaction-income-mobile.png)
+![edittransaction-expanse](./imgReadme/edittransaction-expense-mobile.png)
+### Add Transaction Page Expense 
+![addtransaction-expense](./imgReadme/addtransaction-category-expense-mobile.png)
+### Statistics
+![statistic-mobile](./imgReadme/statistic-mobile.png)
 
 
 ## General Information
@@ -61,7 +87,7 @@ List the ready features here:
 - Fonts and Favicon: The app manages fonts and favicon, which affects the look and style of the user interface.
 - API documentation: There is a plan to create API endpoint documentation with Swagger UI Express, making it easier to understand and test the API.
 
-## Screenshots  (TBD)
+## Screenshots
 ![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2001.00.26.png)
 ![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2002.34.07.png)
 ![Example screenshot](./img/Zrzut%20ekranu%202023-09-30%20o%2002.34.22.png)
@@ -111,6 +137,7 @@ Run script to build and publish in gh-pages branch on github:
 npm run deploy
 
 
+
 ## Project status
 The project is:completed
 
@@ -122,3 +149,4 @@ The project is:completed
 ## Contact
 Created by Hi5 Team 
 welcome to contact us!
+
