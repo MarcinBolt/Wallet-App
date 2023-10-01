@@ -7,9 +7,6 @@
   }
 }
 /** --------- Mobile -------- **/
-.dashboardTabletWrapper {
-  padding: 15px 0;
-}
 .navMobileWrapper {
   display: flex;
   justify-content: center;
