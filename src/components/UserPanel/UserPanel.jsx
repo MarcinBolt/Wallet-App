@@ -7,7 +7,7 @@ import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../../utils/hooks/user.auth'; 
 import css from './UserPanel.module.css';
-import { DialogTitle, IconButton } from '@mui/material';
+import { DialogTitle, IconButton, } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import EmailIcon from '@mui/icons-material/Email';
@@ -19,7 +19,8 @@ import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
 import { useEffect } from 'react';
 import PersonOffIcon from '@mui/icons-material/PersonOff'; 
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'; 
-import { selectTransactionsCurrency } from '../../redux/selectors';
+import { selectGlobalIsUserPanelOpen, selectTransactionsCurrency } from '../../redux/selectors';
+import Slide from '@mui/material/Slide';
 
  const theme = createTheme();
 
@@ -42,6 +43,7 @@ import { selectTransactionsCurrency } from '../../redux/selectors';
    
 const UserPanel = () => {
  
+   
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -78,6 +80,9 @@ const UserPanel = () => {
     };
   });
 
+  function SlideTransition(props) {
+    return <Slide {...props} direction="left" />;
+  }
 
   const handleKeyDown = (event) => { 
     if (event.code === "Escape") {
@@ -87,12 +92,12 @@ const UserPanel = () => {
   
   const userName = useAuth().userName;
   const userEmail = useAuth().userEmail; 
+  const IsUserPanelOpen = useAuth().isUserPanelOpen;
   const onClickDeleteUser = () => { 
     dispatch(deleteUser())
     ;
   } 
-   
-  
+    
   const escFunction = React.useCallback((event) => {
     if (event.key === "Escape") {
       handleClose()
@@ -108,11 +113,14 @@ const UserPanel = () => {
   }, [escFunction]);
 
  
- 
-  return (
+//  if(IsUserPanelOpen) {
+  return ( 
     <Box 
+    TransitionComponent={SlideTransition}
       sx={{
-        display: 'flex',
+        // color: IsUserPanelOpen ?? 'red' : 'black' ,
+        //   display: IsUserPanelOpen ?? 'flex'  ,
+        // display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
@@ -121,10 +129,15 @@ const UserPanel = () => {
         background: 'white',
         position: 'fixed',
         top: 0,
-        right: 0,
+        // right: 0,
+        right: -300,
+        ...IsUserPanelOpen && {
+          right: 0,
+        }, 
+        transition: "color 0.2s linear"
       }}
-    >
-      
+    > 
+
       <ThemeProvider theme={theme}>
         <h1>Hello {userName} </h1>
         <p>Your E-mail is {userEmail}</p>
@@ -132,9 +145,9 @@ const UserPanel = () => {
         <div className={css.container_input}>
          <ManageAccountsIcon 
           sx={{
-            position: 'absolute',
+            position: 'relative',
             fill: '#24cca7',
-            top: '295px',
+            top: '23px',
             left: '8px', 
             fontSize: '35px'
           }}
@@ -148,8 +161,8 @@ const UserPanel = () => {
               mb: 2,
               width: 200,
               
-              marginTop: '5px',
-              marginLeft: '50px',
+              marginTop: '35px',
+              marginLeft: '30px',
               marginRight: '30px',
               background: '#24cca7',
               '&:hover': {
@@ -166,9 +179,9 @@ const UserPanel = () => {
           <div className={css.container_input}>
          <PersonOffIcon 
           sx={{
-            position: 'absolute',
+            position: 'relative',
             fill: 'red',
-            top: '355px',
+            top: '9px',
             left: '8px', 
             fontSize: '35px'
           }}
@@ -181,7 +194,7 @@ const UserPanel = () => {
               mb: 2,
               width: 200,
               marginTop: '5px',
-              marginLeft: '50px',
+              marginLeft: '30px',
               marginRight: '30px', 
               background: '#ffffff',
               border: 1,
@@ -659,8 +672,10 @@ const UserPanel = () => {
 
         </Dialog>
          
-      </ThemeProvider>
+      </ThemeProvider> 
     </Box>
   );
-};
+ }
+  
+ ;
 export default UserPanel;

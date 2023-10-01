@@ -37,7 +37,8 @@ const globalSlice = createSlice({
       state.isListMonthsOpen = action.payload;
     },
     updateIsUserPanelOpen: (state, action) => {
-      state.isUserPanelOpen = action.payload;
+      // state.isUserPanelOpen = action.payload;
+      state.isUserPanelOpen = !state.isUserPanelOpen;
     },
   },
 });

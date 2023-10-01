@@ -9,10 +9,12 @@ import Loader from '../../components/Loader/Loader';
 import PageContainer from '../../components/PageContainer/PageContainer ';
 import css from './Dashboard.module.css';
 import Navigation from '../../components/Navigation/Navigation';
+import UserPanel from '../../components/UserPanel/UserPanel';
 
 const DashboardMobile = () => {
   return (
     <PageContainer>
+      <UserPanel/>
       <div className={css.navMobileWrapper}>
         <Navigation />
       </div>
@@ -25,6 +27,7 @@ const DashboardMobile = () => {
 const DashboardTablet = () => {
   return (
     <PageContainer>
+      <UserPanel/>
       <div className={css.dashboardTablet}>
         <div className={css.dashboardTabletWrapper}>
           <div className={css.navBalTabletWrapper}>
@@ -45,6 +48,7 @@ const DashboardTablet = () => {
 const DashboardDesktop = () => {
   return (
     <PageContainer>
+      <UserPanel/>
       <div className={css.dashboardDesktopWrapper}>
         <div className={css.navBalCurrDesktopWrapper}>
           <Navigation />
@@ -68,6 +72,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
+      {/* <UserPanel/> */}
       <Media
         queries={{
           small: mobile,

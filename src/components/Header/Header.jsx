@@ -1,21 +1,31 @@
 import SvgIcon from '@mui/material/SvgIcon';
 import css from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectGlobalIsModalLogoutOpen } from '../../redux/selectors';
+import { selectGlobalIsModalLogoutOpen, selectGlobalIsUserPanelOpen } from '../../redux/selectors';
 import { openModalLogout } from '../../redux/auth/auth.slice';
 import { selectUserFirstName } from '../../redux/selectors';
 import Logo from '../Logo/Logo';
 import PageContainer from '../PageContainer/PageContainer ';
+import UserPanel from '../UserPanel/UserPanel';
+import { updateIsModalLogoutOpen, updateIsUserPanelOpen } from '../../redux/global/global.slice';
 
 const Header = () => {
-  const name = useSelector(selectUserFirstName);
+  // const name = useSelector(selectUserFirstName);
+  const name = 'Damian'
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
+  
   const dispatch = useDispatch();
 
   const handleModalLogoutOpen = ev => {
+    console.log('handleModalLogoutOpen works')
     ev.preventDefault;
     dispatch(openModalLogout());
   };
+  const handleUserPanelOpen = ev => {
+    console.log('handleUserPanelOpen works');
+    ev.preventDefault;
+    dispatch(updateIsUserPanelOpen());
+  }
 
   return (
     <div className={css.header}>
@@ -30,9 +40,9 @@ const Header = () => {
           >
             <Logo />
           </div>
-          <div className={css.userWrapper} onClick={handleModalLogoutOpen}>
-            <p className={css.text}>{name}</p>
-            <div className={css.exitWrapper}>
+          <div className={css.userWrapper}>
+            <p className={css.text}  onClick={handleUserPanelOpen}>{name}</p>
+            <div className={css.exitWrapper} onClick={handleModalLogoutOpen}>
               <SvgIcon
                 viewBox="0 0 18 18"
                 sx={{
@@ -56,8 +66,8 @@ const Header = () => {
               <p className={css.exit}>Exit</p>
             </div>
           </div>
-        </div>
-      </PageContainer>
+        </div> 
+      </PageContainer> 
     </div>
   );
 };
