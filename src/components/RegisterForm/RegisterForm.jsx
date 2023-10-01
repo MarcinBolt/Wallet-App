@@ -3,11 +3,13 @@ import { register } from '../../redux/auth/auth.operations.js';
 import css from './RegisterForm.module.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import Logo from '../Logo/Logo.jsx';
+import CustomButton from '../CustomButton/CustomButton.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -28,6 +30,8 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -69,6 +73,7 @@ const RegisterForm = () => {
               variant="outlined"
               color="grey"
               className={css.email}
+              style={{ width: '315px', display: 'flex' }}
               sx={{
                 border: 'none',
                 borderColor: 'grey.400',
@@ -76,13 +81,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '20px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -95,7 +100,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -157,13 +164,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -176,7 +183,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -237,13 +246,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -256,7 +265,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -318,13 +329,13 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                width: '100%',
                 height: '80px',
 
                 fieldset: {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
+                  width: '315px',
                 },
                 input: {
                   position: 'relative',
@@ -337,7 +348,9 @@ const RegisterForm = () => {
                   marginBottom: '10px',
                   paddingLeft: '0px',
                   paddingTop: '8px',
+                  paddingRight: '0px',
                   paddingBottom: '0px',
+                  width: '270px',
                 },
                 label: {
                   color: 'grey.400',
@@ -380,43 +393,13 @@ const RegisterForm = () => {
           </div>
         </div>
         <div className={css.button_container}>
-          <Button
-            type="submit"
-            sx={{
-              mt: 3,
-              mb: 2,
-              width: 280,
-              marginTop: '5px',
-              background: '#24cca7',
-              '&:hover': {
-                background: '#35a78e',
-              },
-              color: '#ffffff',
-              fontSize: 18,
-              borderRadius: 20,
-            }}
-          >
-            REGISTER
-          </Button>
-          <Button
+          <CustomButton type="submit" color="primary" content="REGISTER" />
+          <CustomButton
             type="button"
-            href="#/login"
-            sx={{
-              width: 280,
-              background: '#ffffff',
-              border: 1,
-              borderColor: '#4a56e2',
-              '&:hover': {
-                background: '#4a56e2',
-                color: '#ffffff',
-              },
-              color: '#4a56e2',
-              fontSize: 18,
-              borderRadius: 20,
-            }}
-          >
-            LOG IN
-          </Button>
+            color="secondary"
+            content="LOG IN"
+            onClick={() => navigate('/login', { replace: false })}
+          />
         </div>
       </form>
     </>

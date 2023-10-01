@@ -19,6 +19,9 @@ export const selectTransactionsBalance = state => state.transactions.balance;
 export const selectTransactionsIsLoading = state => state.transactions.isLoading;
 export const selectTransactionsError = state => state.transactions.error;
 export const selectTransactionsCurrency = state => state.transactions.userCurrency;
+export const selectIncomesSum = state => state.incomesSum;
+export const selectExpensesSum = state => state.expansesSum;
+export const selectBalance = state => state.balance
 
 export const selectGlobalIsLoading = state => state.global.isLoading;
 export const selectGlobalIsModalLogoutOpen = state => state.global.isModalLogoutOpen;

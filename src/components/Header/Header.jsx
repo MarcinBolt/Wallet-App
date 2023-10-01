@@ -1,11 +1,13 @@
 import SvgIcon from '@mui/material/SvgIcon';
-import css from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectGlobalIsModalLogoutOpen, selectUserFirstName } from '../../redux/selectors';
 import { openModalLogout } from '../../redux/auth/auth.slice'; 
 import Logo from '../Logo/Logo';
 import PageContainer from '../PageContainer/PageContainer '; 
 import { updateIsUserPanelOpen } from '../../redux/global/global.slice';
+import css from './Header.module.css';
+import { updateIsModalLogoutOpen } from '../../redux/global/global.slice';
+import ModalLogout from '../ModalLogout/ModalLogout';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
@@ -14,9 +16,8 @@ const Header = () => {
   
   const dispatch = useDispatch();
 
-  const handleModalLogoutOpen = ev => { 
-    ev.preventDefault;
-    dispatch(openModalLogout());
+  const handleModalLogout = () => {
+    dispatch(updateIsModalLogoutOpen(!isModalLogoutOpen));
   };
   const handleUserPanelOpen = ev => { 
     ev.preventDefault;
@@ -62,8 +63,9 @@ const Header = () => {
               <p className={css.exit}>Exit</p>
             </div>
           </div>
-        </div> 
-      </PageContainer> 
+        </div>
+      </PageContainer>
+      {isModalLogoutOpen && <ModalLogout toggleModal={handleModalLogout} />}
     </div>
   );
 };

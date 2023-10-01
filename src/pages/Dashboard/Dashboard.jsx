@@ -11,7 +11,8 @@ import css from './Dashboard.module.css';
 import Navigation from '../../components/Navigation/Navigation';
 import UserPanel from '../../components/UserPanel/UserPanel';
 import { Box } from '@mui/system'; 
- 
+ import Balance from '../../components/Balance/Balance';
+
 const DashboardMobile = () => {
   return (
     <PageContainer>
@@ -33,7 +34,7 @@ const DashboardTablet = () => {
         <div className={css.dashboardTabletWrapper}>
           <div className={css.navBalTabletWrapper}>
             <Navigation />
-            <TempBalance />
+            <Balance />
           </div>
           <div className={css.currTabletWrapper}>
             <CurrencyTable />
@@ -64,7 +65,7 @@ const DashboardDesktop = () => {
       <div className={css.dashboardDesktopWrapper}>
         <div className={css.navBalCurrDesktopWrapper}>
           <Navigation />
-          <TempBalance />
+          <Balance />
           <CurrencyTable />
         </div>
         <div className={css.desktopSeparator}></div>

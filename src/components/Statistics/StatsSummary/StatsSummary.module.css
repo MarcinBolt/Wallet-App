@@ -1,0 +1,39 @@
+.summaryContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 100%;
+  }
+}
+
+.statsSummary {
+  font-size: 16px;
+
+  font-family: var(--font-secondary-bold);
+  padding: 0;
+  margin: 0;
+}
+
+.expenses {
+  font-size: 16px;
+  font-family: var(--font-secondary-bold);
+  color: var(--color-text-expanse-pink);
+  padding: 0;
+  margin: 0;
+}
+
+.income {
+  font-size: 16px;
+  font-family: var(--font-secondary-bold);
+  color: var(--color-text-income-green);
+  padding: 0;
+  margin: 0;
+}
