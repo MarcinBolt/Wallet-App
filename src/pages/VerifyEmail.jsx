@@ -2,7 +2,9 @@ import { Container } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { verify } from '../redux/auth/auth.operations.js';
-import Button from '@mui/material/Button';
+import TitleComponent from '../components/TitleComponent/Title.Component.jsx';
+import CustomButton from '../components/CustomButton/CustomButton.jsx';
+import css from './Pages.module.css';
 
 const VerifyEmail = () => {
   const dispatch = useDispatch();
@@ -22,21 +24,14 @@ const VerifyEmail = () => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: '100%',
+        height: '100vh',
         backgroundColor: 'transparent',
       }}
     >
-      <h2>Email verification</h2>
-      // TODO - change to a stylized button component (green)
-      <Button
-        type="button"
-        onClick={handleClick}
-        fullWidth
-        variant="outlined"
-        sx={{ mt: 3, mb: 2, maxWidth: '200px' }}
-      >
-        Verify email.
-      </Button>
+      <TitleComponent text="Email verification" />
+      <div className={css.buttonContainer}>
+        <CustomButton type="button" color="primary" content="Verify email" onClick={handleClick} />
+      </div>
     </Container>
   );
 };

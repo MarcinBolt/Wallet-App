@@ -1,0 +1,36 @@
+
+.balanceContainer {
+  width: 280px;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-widget-binance);
+  height: 80;
+  text-transform: uppercase;
+  padding: 8px 32px 11px;
+}
+
+@media screen and (min-width: 768px) {
+  .balanceContainer {
+    width: 336px;
+    padding: 8px 40px 11px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .balanceContainer {
+    width: 395px;
+  }
+}
+.balanceText {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-binance-label);
+
+  display: flex;
+  align-items: start;
+}
+.balanceBox {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: start;
+}

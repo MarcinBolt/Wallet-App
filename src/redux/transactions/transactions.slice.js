@@ -54,6 +54,15 @@ const transactionsSlice = createSlice({
     updateSelectedCategory: (state, action) => {
       state.selectedFilterCategory = state.payload;
     },
+    updateIncomesSum: (state, action) => {
+      state.incomesSum = action.payload;
+    },
+    updateExpensesSum: (state, action) => {
+      state.expansesSum = action.payload;
+    },
+    updateBalance: (state, action) => {
+      state.balance = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -108,4 +117,10 @@ const transactionsSlice = createSlice({
 });
 
 export const transactionsReducer = transactionsSlice.reducer;
-export const { updateSelectedId, updateSelectedCategory } = transactionsSlice.actions;
+export const {
+  updateSelectedId,
+  updateSelectedCategory,
+  updateIncomesSum,
+  updateExpensesSum,
+  updateBalance,
+} = transactionsSlice.actions;
