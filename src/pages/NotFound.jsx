@@ -22,7 +22,6 @@ const NotFound = () => {
     >
       <TitleComponent text="Status 404" />
       <TitleComponent text="Page Not Found" />
-      <TitleComponent text="Redirecting..." />
       <div className={css.buttonContainer}>
         <CustomButton
           type="button"
