@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 import closeIcon from '../../assets/icons/close.svg';
 import CustomButton from '../CustomButton/CustomButton';
 
-
 export const ModalLogout = ({ closeModal, handleLogout }) => {
   useEffect(() => {
     const close = e => {
       if (e.key === 'Escape') {
         closeModal();
+        console.log('Modal zamknięty przez Escape');
       }
     };
     window.addEventListener('keydown', close);
@@ -20,10 +20,17 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
     try {
       await handleLogout();
       closeModal();
+       console.log('Potwierdzono wylogowanie');
     } catch (error) {
       toast.error('Błąd podczas wylogowywania.');
       closeModal();
+      console.error('Błąd podczas wylogowywania:', error);
     }
+  };
+
+  const handleCancel = () => {
+    closeModal();
+    console.log('Anulowano wylogowanie');
   };
 
   return (
@@ -31,7 +38,6 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
       <div className={css.logoutModalOverlay} onClick={closeModal}></div>
       <div className={css.logoutModalContainer}>
         <div className={css.closeIconContainer}>
-          {/* Ikona close w prawym górnym rogu modalu */}
           <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={closeModal} />
         </div>
         <div className={css.logoutModalContent}>
@@ -42,9 +48,8 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
               type="button"
               color="primary"
               content="confirm"
-              onClick={closeModal}
+              onClick={confirmLogout}
               className={`${css.logo} ${css.logout_button}`}
-             
             >
               {' '}
               Confirm{' '}
@@ -53,7 +58,7 @@ export const ModalLogout = ({ closeModal, handleLogout }) => {
               type="button"
               color="secondary"
               content="Cancel"
-              onClick={'#'}
+              onClick={handleCancel}
               className={css.main_btn}
             >
               Cancel
