@@ -12,6 +12,7 @@ import {
   Paper,
   TableContainer,
 } from '@mui/material';
+import '../../stylesheet/vars.css';
 
 const CurrencyTable = () => {
   const dispatch = useDispatch();
@@ -44,30 +45,38 @@ const CurrencyTable = () => {
         >
           <TableHead
             sx={{
-              backgroundColor: '#6e78e8',
+              backgroundColor: 'var(--color-category-childcare)',
               '& td, & th': { border: 0 },
+              height: '50px',
+             
+              '@media screen and (min-width: 1280px)': {
+                height: '60px',
+              },
             }}
           >
-            <TableRow>
+            <TableRow
+              sx={{ display: 'flex',  justifyContent: 'space-between', alignItems: 'center' }}
+            >
               <TableCell
                 sx={{
                   color: '#FFFFFF',
-                  fontWeight: '700',
+                  fontWeight: '400',
                   fontSize: '18',
+                  fontFamily: "var(--font-secondary)",
                 }}
+                align="left"
               >
                 Currency
               </TableCell>
               <TableCell
-                sx={{ color: '#FFFFFF', fontWeight: '700', fontSize: '18' }}
+                sx={{ color: '#FFFFFF', fontFamily: "var(--font-primary)",
+              fontSize: "18px", fontWeight: '400', fontSize: '18' }}
                 align="center"
               >
                 Purchase
               </TableCell>
-              <TableCell
-                sx={{ color: '#FFFFFF', fontWeight: '700', fontSize: '18' }}
-                align="center"
-              >
+              <TableCell sx={{ color: '#FFFFFF', fontFamily: "var(--font-primary)",
+              fontSize: "18px", fontWeight: '400', fontSize: '18' }} align="right">
                 Sale
               </TableCell>
             </TableRow>
@@ -80,23 +89,34 @@ const CurrencyTable = () => {
             }}
           >
             {rows.map(row => (
-              <TableRow key={row.currency} sx={{ '& td, & th': { border: 0 } }}>
+              <TableRow
+                key={row.currency}
+                sx={{
+                  '& td, & th': { border: 0 },
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ color: '#FFFFFF', fontWeight: '400', fontSize: '16' }}
+                  sx={{ color: '#FFFFFF', fontFamily: "var(--font-primary)",
+                  fontSize: "18px", fontWeight: '400', fontSize: '16' }}
                   align="center"
                 >
                   {row.currency}
                 </TableCell>
                 <TableCell
-                  sx={{ color: '#FFFFFF', fontWeight: '400', fontSize: '16' }}
+                  sx={{ color: '#FFFFFF', fontFamily: "var(--font-primary)",
+                  fontSize: "18px", fontWeight: '400', fontSize: '16' }}
                   align="center"
                 >
                   {row.purchase}
                 </TableCell>
                 <TableCell
-                  sx={{ color: '#FFFFFF', fontWeight: '400', fontSize: '16' }}
+                  sx={{ color: '#FFFFFF', fontFamily: "var(--font-primary)",
+                  fontSize: "18px", fontWeight: '400', fontSize: '16' }}
                   align="center"
                 >
                   {row.sale}
