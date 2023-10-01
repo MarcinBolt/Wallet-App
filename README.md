@@ -1,4 +1,4 @@
-# Wallet App by Hi5 Team ![logo](./imgReadme/hi5-logo.png)
+# Wallet App by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
 
 
 
@@ -36,7 +36,8 @@
 ![addtransaction-expense](./imgReadme/addtransaction-category-expense-mobile.png)
 ### Statistics
 ![statistic-mobile](./imgReadme/statistic-mobile.png)
-
+### Logout Page
+![logout-mobile](./imgReadme/hi5-logo.png)
 ---
 
 ## Tablet
@@ -221,5 +222,7 @@ The project is:completed
 
 ## Contact
 Created by Hi5 Team 
-welcome to contact us!
+welcome to contact us! 
+# 
+## ![logo](./imgReadme/hi5-logo.png)
 
