@@ -28,8 +28,6 @@
 
 ### Edit Transaction Page Income / Expense
 
-### Add Transaction Page Expense 
-
 ### Statistics
 
 ### Logout Page
@@ -42,10 +40,6 @@
 
 ---
 
-### Login Page
-
----
-
 ### Balance Page
 
 ---
@@ -54,15 +48,13 @@
 
 ---
 
-### Add Transaction Page Income / Expense
+### Add Transaction Page 
+![addTransaction-tablet-desktop](./imgReadme/addtransaction-tablet-desktop%20.jpg)
 
 ---
 
 ### Edit Transaction Page Income / Expense
-
----
-
-### Add Transaction Page Expense 
+![editTransaction-tablet-desktop](./imgReadme/editTransaction-tablet-desktop.jpg)
 
 ---
 
@@ -95,15 +87,13 @@
 
 ---
 
-### Add Transaction Page Income / Expense
+### Add Transaction Page 
+![addTransaction-tablet-desktop](./imgReadme/addtransaction-tablet-desktop%20.jpg)
 
 ---
 
 ### Edit Transaction Page Income / Expense
-
----
-
-### Add Transaction Page Expense 
+![editTransaction-tablet-desktop](./imgReadme//edittransaction-tablet-desktop.jpg)
 
 ---
 
