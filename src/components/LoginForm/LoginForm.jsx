@@ -9,8 +9,6 @@ import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../Logo/Logo.jsx';
 import CustomButton from '../CustomButton/CustomButton.jsx';
 import { useNavigate } from 'react-router-dom';
-import PasswordStrengthBar from 'react-password-strength-bar';
-
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -215,18 +213,6 @@ const LoginForm = () => {
               }}
             />
           </div>
-          <PasswordStrengthBar
-            password={formik.values.password}
-            shortScoreWord="strength password"
-            scoreWords={['Weak', 'Weak', 'Good', 'Very Good', 'Strong']}
-          style=
-          {{
-            width: '100%',
-            marginTop: '1px',
-            default:'strength password',
-           
-          }}
-          />
         </div>
         <div className={css.button_container}>
           <CustomButton type="submit" color="primary" content="LOG IN" />
