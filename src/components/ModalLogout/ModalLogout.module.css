@@ -1,19 +1,17 @@
 @import '../../stylesheet/vars.css';
 
 .logoutModalOverlay {
-  opacity: 0.4;
+  opacity: 0.8;
   position: fixed;
   width: 100%;
   height: 100%;
   text-align: center;
   top: 0;
   left: 0;
-  background-color: rgba(53, 53, 53, 0.9);
+  background-color: rgba(53, 53, 53, 0.8);
   backdrop-filter: blur(1px);
   z-index: 999;
-  
 }
-
 
 .logoutModalContainer {
   position: fixed;
@@ -52,7 +50,7 @@
   font-size: 16px;
 }
 
- .confirmButtons {
+.confirmButtons {
   text-align: center;
   justify-content: center;
   display: flex;
@@ -105,7 +103,6 @@
   background-color: #f9faff;
   cursor: pointer;
 }
-
 
 @media (min-width: 768px) {
   .logoutModalContainer {
