@@ -1,7 +1,9 @@
+import ModalLogout from "../ModalLogout/ModalLogout"
+
 const HomeTab = () => {
     return (
         <>
-        <h1>HomeTab</h1>
+       <h1>HomeTab</h1>
         </>
     )
 }
