@@ -18,30 +18,27 @@
 ---
 # Site version on Mobile/Tablet/Desktop
 ## Mobile
-### Register Page 
-![register-mobile](./imgReadme/register-mobile.png)
-### Login Page
-![login-mobile](./imgReadme/login-mobile.png)
+### Login and Register Page 
+![register-mobile](./imgReadme/login-register-mobile.jpg)
 ### Balance Page
-![balance-mobile](./imgReadme/balance-mobile.png)
+
 ### Currency Page
-![currency-mobile](./imgReadme/currency-mobile.png)
+
 ### Add Transaction Page Income / Expense
-![addtransaction-income](./imgReadme/addtransaction-income-mobile.png)
-![addtransaction-expense](./imgReadme/addtransaction-expense-mobile.png)
+
 ### Edit Transaction Page Income / Expense
-![edittransaction-income](./imgReadme/edittransaction-income-mobile.png)
-![edittransaction-expanse](./imgReadme/edittransaction-expense-mobile.png)
+
 ### Add Transaction Page Expense 
-![addtransaction-expense](./imgReadme/addtransaction-category-expense-mobile.png)
+
 ### Statistics
-![statistic-mobile](./imgReadme/statistic-mobile.png)
+
 ### Logout Page
 ![logout-mobile](./imgReadme/hi5-logo.png)
 ---
 
 ## Tablet
-### Register Page 
+### Login and Register Page 
+![login-registration-tablet](./imgReadme/login-registration-tablet.jpg)
 
 ---
 
@@ -83,11 +80,11 @@
 ---
 
 ### Register Page 
-
+![register-desktop](./imgReadme/register-desktop.jpg)
 ---
 
 ### Login Page
-
+![login-desktop](./imgReadme/login-desktop.jpg)
 ---
 
 ### Balance Page
@@ -115,7 +112,7 @@
 ---
 
 ### Logout Page
-![logout-mobile](./imgReadme/hi5-logo.png)
+
 
 ---
 
