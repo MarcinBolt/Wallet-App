@@ -9,7 +9,7 @@ import { updateIsUserPanelOpen } from '../../redux/global/global.slice';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
- // const name = 'Damian'
+  // const name = 'Damian'
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Header = () => {
             <Logo />
           </div>
           <div className={css.userWrapper}>
-            <p className={css.text}  onClick={handleUserPanelOpen}>{name}</p>
+            <p className={css.text} onClick={handleUserPanelOpen}>{name}</p>
             <div className={css.exitWrapper} onClick={handleModalLogoutOpen}>
               <SvgIcon
                 viewBox="0 0 18 18"

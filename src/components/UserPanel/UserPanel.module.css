@@ -89,3 +89,9 @@
       text-align: center;
     }
   }
+
+  .container_input {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }

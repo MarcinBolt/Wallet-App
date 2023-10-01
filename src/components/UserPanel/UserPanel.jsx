@@ -7,7 +7,7 @@ import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../../utils/hooks/user.auth'; 
 import css from './UserPanel.module.css';
-import { DialogTitle, IconButton, } from '@mui/material';
+import { Collapse, DialogTitle, IconButton } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import EmailIcon from '@mui/icons-material/Email';
@@ -15,12 +15,10 @@ import LockIcon from '@mui/icons-material/Lock';
 import AccountBoxIcon from '@mui/icons-material/AccountBox'; 
 import MoneyIcon from '@mui/icons-material/Money';
 import CloseIcon from '@mui/icons-material/Close';
-import { deleteUser, updateUser } from '../../redux/auth/auth.operations';
-import { useEffect } from 'react';
+import { deleteUser, updateUser } from '../../redux/auth/auth.operations'; 
 import PersonOffIcon from '@mui/icons-material/PersonOff'; 
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'; 
-import { selectGlobalIsUserPanelOpen, selectTransactionsCurrency } from '../../redux/selectors';
-import Slide from '@mui/material/Slide';
+import { selectGlobalIsUserPanelOpen, selectTransactionsCurrency } from '../../redux/selectors'; 
 
  const theme = createTheme();
 
@@ -39,6 +37,7 @@ import Slide from '@mui/material/Slide';
     .min(1, 'Minimum 1 character long')
     .max(12, 'Maximum 12 characters long')
     .required('First Name is required!'),
+  userCurrency: Yup.string('Please enter Your currency')
 });
    
 const UserPanel = () => {
@@ -93,65 +92,45 @@ const UserPanel = () => {
     dispatch(deleteUser())
     ;
   } 
-    
-  const escFunction = React.useCallback((event) => {
-    if (event.key === "Escape") {
-      handleClose()
-    }
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener("keydown", escFunction, false);
-
-    return () => {
-      document.removeEventListener("keydown", escFunction, false);
-    };
-  }, [escFunction]);
- 
+  
+   
   return ( 
     <Box  
       sx={{ 
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
-        maxWidth: '320px',
+        minHeight: '92vh',
+        maxWidth: '450px',
         background: 'white',
         position: 'fixed',
         top: 0, 
-        right: -300,
+        right: 0, 
         ...IsUserPanelOpen && {
-          right: 0,
-        }, 
-        transition: "color 0.5s linear", 
+          //  right: 0, 
+        },  
       }}
     > 
-
-      <ThemeProvider theme={theme}>
-        <h1>Hello {userName} </h1>
-        <p>Your E-mail is {userEmail}</p>
  
+      <Collapse orientation="horizontal" in={IsUserPanelOpen} > 
+        <h1>Hello {userName} </h1>
+        <p>Your E-mail is {userEmail}</p> 
         <div className={css.container_input}>
-         <ManageAccountsIcon 
-          sx={{
-            position: 'relative',
-            fill: '#24cca7',
-            top: '23px',
-            left: '8px', 
-            fontSize: '35px'
-          }}
-         />
+          <ManageAccountsIcon 
+            sx={{ 
+              fill: '#24cca7', 
+              fontSize: '35px',
+              marginTop: '4px',
+              marginLeft: '24px',
+            }}
+          />
 
-        <Button
+          <Button
             type="button"
             onClick={handleOpen}
-            sx={{
-              mt: 3,
-              mb: 2,
-              width: 200,
-              
-              marginTop: '35px',
-              marginLeft: '30px',
+            sx={{ 
+              width: 200, 
+              marginLeft: '10px',
               marginRight: '30px',
               background: '#24cca7',
               '&:hover': {
@@ -164,26 +143,22 @@ const UserPanel = () => {
           >
             UPDATE ACCOUNT
           </Button>
-          </div>
-          <div className={css.container_input}>
-         <PersonOffIcon 
-          sx={{
-            position: 'relative',
-            fill: 'red',
-            top: '9px',
-            left: '8px', 
-            fontSize: '35px'
-          }}
-         />
-        <Button
+        </div>
+        <div className={css.container_input}>
+          <PersonOffIcon 
+            sx={{ 
+              fill: 'red', 
+              fontSize: '35px',
+              marginTop: '4px',
+              marginLeft: '24px',
+            }}
+          />
+          <Button
             type="button"
             onClick={onClickDeleteUser}
-            sx={{ 
-              mt: 3,
-              mb: 2,
-              width: 200,
-              marginTop: '5px',
-              marginLeft: '30px',
+            sx={{  
+              width: 200, 
+              marginLeft: '10px',
               marginRight: '30px', 
               background: '#ffffff',
               border: 1,
@@ -199,29 +174,28 @@ const UserPanel = () => {
           >
             DELETE ACCOUNT
           </Button>
-          </div>
-      <Dialog 
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        maxWidth: '200px', 
-        background: 'transparent', 
-        left: '70%', 
-      }} 
+        </div>
+        <Dialog 
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '100vh',
+            maxWidth: '200px', 
+            background: 'transparent', 
+            left: '70%', 
+          }}  
+          className="mui-fixed" 
+          open={open} 
+        > 
 
-      className="mui-fixed" 
-        open={open} 
-      > 
-
-      <DialogTitle sx={{ display: 'flex', alignItems: 'center',
-       p: '20', pr: '20', pb: '0'  }}> 
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center',
+           p: '20', pr: '20', pb: '0'  }}> 
           <IconButton sx={{ ml: 'auto', pb: '0' }} onClick={handleClose}>
               <CloseIcon sx={{ ml: 'auto' }}/>
           </IconButton>
-      </DialogTitle>
+        </DialogTitle>
  
      <form onSubmit={formik.handleSubmit} className={css.form}>
         
@@ -557,7 +531,7 @@ const UserPanel = () => {
             <TextField
               name="userCurrency"
               type="text"
-              label="userCurrency"
+              label="User currency"
               value={formik.values.userCurrency}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} 
@@ -658,12 +632,10 @@ const UserPanel = () => {
             UPDATE INFORMATION
           </Button> 
         </div>
-      </form> 
-
-        </Dialog>
-         
-      </ThemeProvider> 
-    </Box>
+      </form>  
+    </Dialog> 
+  </Collapse> 
+  </Box>
   );
  }
   
