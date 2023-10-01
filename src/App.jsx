@@ -49,7 +49,7 @@ const App = () => {
           <Route exact index element={<PublicRoute component={<Login />} />} />
           <Route exact path={`/login`} element={<PublicRoute component={<Login />} />} />
           <Route exact path={`/register`} element={<PublicRoute component={<Register />} />} />
-          <Route path={`/verify`} element={<PublicRoute component={<VerifyEmail />} />} />
+          <Route path={`/users/verify`} element={<PublicRoute component={<VerifyEmail />} />} />
           <Route path="*" element={<PublicRoute component={<NotFound />} />} />
         </Route>
       </Routes>

@@ -64,7 +64,6 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
       return notification.notifyProcessFailure(response.data.message);
     }
     clearAuthHeader();
-    return notification.notifyUserProcessTSuccess(response.data.message);
   } catch (error) {
     notification.notifyLogoutFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);

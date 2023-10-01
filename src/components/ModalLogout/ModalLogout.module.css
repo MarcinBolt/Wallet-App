@@ -28,6 +28,7 @@
   gap: 40px;
   background-color: var(--color-bg-secondary);
   box-shadow: 0 2px 8px var(--color-bg-backdrop);
+
   @media screen and (min-width: 768px) {
     width: fit-content;
     height: fit-content;
@@ -39,9 +40,16 @@
   position: absolute;
   top: 16px;
   right: 16px;
+  display: none;
   width: 16px;
   height: 16px;
   cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .closeIcon {

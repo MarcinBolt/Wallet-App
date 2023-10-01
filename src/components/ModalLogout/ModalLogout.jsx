@@ -12,9 +12,7 @@ const ModalLogout = ({ toggleModal }) => {
   const userName = useSelector(selectUserFirstName);
   const modalBackdropRef = useRef(null);
 
-//const toggleModal = () => console.log(`Modal się zamyka`)
-
-useEffect(() => {
+  useEffect(() => {
     const handleEscapeKey = ev => {
       if (ev.key === 'Escape') {
         toggleModal();
@@ -34,40 +32,37 @@ useEffect(() => {
 
   const handleUserLogout = ev => {
     ev.preventDefault;
-   dispatch(logOut())
+    dispatch(logOut());
   };
 
   return (
-   
-      <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
-        <div className={css.logoutModalContainer}>
-          <div className={css.closeIconContainer}>
-            <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={toggleModal} />
-          </div>
-         
-            <TitleComponent text={`Confirm Logout`} />
-            <span className={css.logoutInfo}>Bye, {userName}! It was nice to serve you!</span>
-            <div className={css.confirmButtons}>
-              <CustomButton
-                type="button"
-                color="primary"
-                content="Logout"
-                onClick={handleUserLogout}
-                className={`${css.logo} ${css.logout_button}`}
-              />
-
-              <CustomButton
-                type="button"
-                color="secondary"
-                content="Go back to dashboard"
-                onClick={toggleModal}
-                className={css.main_btn}
-              />
-            </div>
-          </div>
+    <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
+      <div className={css.logoutModalContainer}>
+        <div className={css.closeIconContainer}>
+          <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={toggleModal} />
         </div>
-     
- 
+
+        <TitleComponent text={`Confirm Logout`} />
+        <span className={css.logoutInfo}>Bye, {userName}! It was nice to serve you!</span>
+        <div className={css.confirmButtons}>
+          <CustomButton
+            type="button"
+            color="primary"
+            content="Logout"
+            onClick={handleUserLogout}
+            className={`${css.logo} ${css.logout_button}`}
+          />
+
+          <CustomButton
+            type="button"
+            color="secondary"
+            content="Go back to dashboard"
+            onClick={toggleModal}
+            className={css.main_btn}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
