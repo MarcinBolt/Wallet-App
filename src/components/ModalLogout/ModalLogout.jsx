@@ -1,71 +1,73 @@
-import { useEffect } from 'react';
-import css from './ModalLogout.module.css';
-import { toast } from 'react-toastify';
+import { useEffect, useRef } from 'react';
 import closeIcon from '../../assets/icons/close.svg';
 import CustomButton from '../CustomButton/CustomButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserFirstName } from '../../redux/selectors';
+import TitleComponent from '../TitleComponent/Title.Component';
+import css from './ModalLogout.module.css';
 
-export const ModalLogout = ({ closeModal, handleLogout }) => {
+const ModalLogout = (/*{ toggleModal }*/) => {
+  const dispatch = useDispatch();
+  const userName = useSelector(selectUserFirstName);
+  const modalBackdropRef = useRef(null);
+
+console.log(userName)
+const toggleModal = () => console.log()
   useEffect(() => {
-    const close = e => {
-      if (e.key === 'Escape') {
-        closeModal();
-        console.log('Modal zamknięty przez Escape');
+    const handleEscapeKey = ev => {
+      if (ev.key === 'Escape') {
+        toggleModal();
       }
     };
-    window.addEventListener('keydown', close);
-    return () => window.removeEventListener('keydown', close);
-  }, [closeModal]);
+    window.addEventListener('keydown', handleEscapeKey);
+    return () => {
+      window.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, []);
 
-  const confirmLogout = async () => {
-    try {
-      await handleLogout();
-      closeModal();
-       console.log('Potwierdzono wylogowanie');
-    } catch (error) {
-      toast.error('Błąd podczas wylogowywania.');
-      closeModal();
-      console.error('Błąd podczas wylogowywania:', error);
+  const closeOnBackdropClick = ev => {
+    ev.preventDefault;
+    if (modalBackdropRef.current === ev.target) {
+      toggleModal();
     }
   };
 
-  const handleCancel = () => {
-    closeModal();
-    console.log('Anulowano wylogowanie');
+  const handleUserLogout = ev => {
+    ev.preventDefault;
   };
 
   return (
     <>
-      <div className={css.logoutModalOverlay} onClick={closeModal}></div>
-      <div className={css.logoutModalContainer}>
-        <div className={css.closeIconContainer}>
-          <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={closeModal} />
-        </div>
-        <div className={css.logoutModalContent}>
-          <h2>Confirm</h2>
-          <span className={css.logoutInfo}>return to login page</span>
-          <div className={css.confirmButtons}>
-            <CustomButton
-              type="button"
-              color="primary"
-              content="confirm"
-              onClick={confirmLogout}
-              className={`${css.logo} ${css.logout_button}`}
-            >
-              {' '}
-              Confirm{' '}
-            </CustomButton>
-            <CustomButton
-              type="button"
-              color="secondary"
-              content="Cancel"
-              onClick={handleCancel}
-              className={css.main_btn}
-            >
-              Cancel
-            </CustomButton>
+      <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
+        <div className={css.logoutModalContainer}>
+          <div className={css.closeIconContainer}>
+            <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={() => toggleModal()} />
+          </div>
+          <div className={css.logoutModalContent}>
+            <TitleComponent text={`Confirm Logout`} />
+            <span className={css.logoutInfo}>Bye, {userName}! It was nice to serve you!</span>
+            <div className={css.confirmButtons}>
+              <CustomButton
+                type="button"
+                color="primary"
+                content="Logout"
+                onClick={handleUserLogout}
+                className={`${css.logo} ${css.logout_button}`}
+              />
+
+              <CustomButton
+                type="button"
+                color="secondary"
+                content="Go back to dashboard"
+                onClick={toggleModal}
+                className={css.main_btn}
+              />
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 };
+
+export default ModalLogout;
