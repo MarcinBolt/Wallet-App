@@ -8,8 +8,8 @@ import PageContainer from '../PageContainer/PageContainer ';
 import { updateIsUserPanelOpen } from '../../redux/global/global.slice';
 
 const Header = () => {
- // const name = useSelector(selectUserFirstName);
-   const name = 'Damian'
+  const name = useSelector(selectUserFirstName);
+ // const name = 'Damian'
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   
   const dispatch = useDispatch();

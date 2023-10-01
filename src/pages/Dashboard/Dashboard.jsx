@@ -50,12 +50,13 @@ const DashboardDesktop = () => {
   return (
     <PageContainer>
       <Box
-      sx={{
-        backgroundColor: "pink",
-        width: 30,
-        height: 30,
-        animation: `${spin} 1s infinite ease`
-      }}>
+      // sx={{
+      //   backgroundColor: "pink",
+      //   width: 30,
+      //   height: 30,
+      //   animation: `${spin} 1s infinite ease`
+      // }}
+      >
   <UserPanel/>
 
       </Box>
