@@ -7,6 +7,8 @@ import {
     Legend,
     ArcElement,
 } from 'chart.js';
+import { selectTransactionsIsLoading } from '../../../redux/selectors';
+import { useSelector } from 'react-redux';
 
 ChartJS.register(
     Tooltip,
@@ -16,22 +18,40 @@ ChartJS.register(
 
 
 
-const Chart = () => {
+const Chart = (categoriesSums, balance) => {
+
+// const Chart = () => {
   const bgColor = ['#FED057', '#FFD8D0', '#FD9498', '#C5BAFF', '#6E78E8', '#4A56E2', '#81E1FF', '#24CCA7', '#00AD84'];
   const borderColor = ['#FED057', '#FFD8D0', '#FD9498', '#C5BAFF', '#6E78E8', '#4A56E2', '#81E1FF', '#24CCA7', '#00AD84'];
   
+  // console.log(categoriesSums);
+  // console.log(balance);
+  
   const data = {
-    labels: ["Main expanses", "Products", "Car", "Self care", "Child care", "Household products", "Education", "Leisure", "Other expenses"],
+    // labels: Object.keys(categoriesSums.categorySums),
+    labels: [
+      'Main expanses',
+      'Products',
+      'Car',
+      'Self care',
+      'Child care',
+      'Household products',
+      'Education',
+      'Leisure',
+      'Other expenses',
+    ],
     datasets: [
-    {
-      label: 'Expanses',
-      data: [120, 19, 35, 5, 15, 33,45, 20, 11],
-      backgroundColor: [...bgColor],
-      borderColor: [...borderColor],
+      {
+        label: 'Expanses',
+        // data: Object.values(categoriesSums.categorySums),
+        data: [120, 19, 35, 5, 15, 33, 45, 20, 11],
+        backgroundColor: [...bgColor],
+        borderColor: [...borderColor],
         borderWidth: 1,
         cutout: '70%',
-    }],  
-}
+      },
+    ],
+  };
 
   const options = {
   aspectRatio: 1,
@@ -67,25 +87,30 @@ const textCenter = {
   id: 'textCenter',
   beforeDatasetsDraw(chart, args, pluginOption) {
     const { ctx, data } = chart;
-    
+
     ctx.save();
-    ctx.fond = '40px';
+    ctx.font = '24px Arial Bold';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Balance', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y);
+    // ctx.fillText({'₴'}{balance}, chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y);
+    ctx.fillText('₴ Balance', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y);
   }}
   
+  const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
+
   return (
-      <>
-          <Doughnut
-            data={data}
-            options={options}
-            plugins={[textCenter]}
-            className={css.doughnutChart}
+    <>
+      {!isTransactionsLoading && (
+        <Doughnut
+          data={data}
+          options={options}
+          plugins={[textCenter]}
+          className={css.doughnutChart}
         />
-      </>
-    )
+      )}
+    </>
+  );
 };
 
 export default Chart;
