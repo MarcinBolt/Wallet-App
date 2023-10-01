@@ -73,6 +73,11 @@
 
 ---
 
+### Logout Page
+![logout-mobile](./imgReadme/hi5-logo.png)
+
+---
+
 ## Desktop
 
 ---
@@ -106,6 +111,11 @@
 ---
 
 ### Statistics
+
+---
+
+### Logout Page
+![logout-mobile](./imgReadme/hi5-logo.png)
 
 ---
 
