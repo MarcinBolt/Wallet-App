@@ -15,7 +15,7 @@
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 
-
+---
 # Site version on Mobile/Tablet/Desktop
 ## Mobile
 ### Register Page 
@@ -37,43 +37,81 @@
 ### Statistics
 ![statistic-mobile](./imgReadme/statistic-mobile.png)
 
+---
+
 ## Tablet
 ### Register Page 
 
+---
+
 ### Login Page
+
+---
 
 ### Balance Page
 
+---
+
 ### Currency Page
+
+---
 
 ### Add Transaction Page Income / Expense
 
+---
+
 ### Edit Transaction Page Income / Expense
+
+---
 
 ### Add Transaction Page Expense 
 
+---
+
 ### Statistics
+
+---
 
 ## Desktop
 
+---
+
 ### Register Page 
+
+---
 
 ### Login Page
 
+---
+
 ### Balance Page
+
+---
 
 ### Currency Page
 
+---
+
 ### Add Transaction Page Income / Expense
+
+---
 
 ### Edit Transaction Page Income / Expense
 
+---
+
 ### Add Transaction Page Expense 
+
+---
 
 ### Statistics
 
+---
+
 ## General Information
 - The Wallet application created is the final task to take advantage of all the areas faced during the full year of fullstack learning
+
+---
 
 ## Technologies Used
 Frontend (client side):
@@ -92,7 +130,11 @@ Backend (server side):
 - MongoDB: NoSQL database, perhaps using mongoose as the database interaction tool.
 - JWT (JSON Web Tokens): For user authentication.
 - Swagger UI: For generating API endpoint documentation.
-![API endpoints](./imgReadme/)
+![API endpoints](./imgReadme/swagger-api-endpoints-user.png)
+![API endpoints](./imgReadme/swagger-api-endpoints-transaction.png)
+![API endpoints](./imgReadme/swagger-api-schema.png)
+
+---
 
 Other:
 - CSS: For user interface styling.
@@ -100,6 +142,8 @@ Other:
 - React-Media: For adapting the interface to different screen resolutions.
 - React-Toastify: For displaying error notifications and other messages to the user.
 - LocalStorage: For storing certain data on the client side, such as tokens.
+
+---
 
 ## Features
 List the ready features here:
@@ -121,12 +165,11 @@ List the ready features here:
 - Fonts and Favicon: The app manages fonts and favicon, which affects the look and style of the user interface.
 - API documentation: There is a plan to create API endpoint documentation with Swagger UI Express, making it easier to understand and test the API.
 
-
+---
 
 ## Setup
 ## For Developers:
 # To install all dependencies from package.json use: npm install
-
 ## To run front-end App: npm run dev
 ## To run back-end server.js: npm run start:dev
 
@@ -154,8 +197,6 @@ List the ready features here:
 
 gh-pages: npm install gh-pages --save-dev
 
----
-
 Deploying Vite App to GitHub Pages using gh-pages and script deploy:
 
 Install gh-pages: npm install gh-pages --save-dev
@@ -166,14 +207,17 @@ Add script in package.json:
 Run script to build and publish in gh-pages branch on github: 
 npm run deploy
 
+---
 
 ## Project status
 The project is:completed
 
+---
 
 ## Acknowledgements
 - This project as mentioned is the concluding phase of the training - Thanks to Team 5 and Go IT
 
+---
 
 ## Contact
 Created by Hi5 Team 
