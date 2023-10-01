@@ -10,8 +10,7 @@ import PageContainer from '../../components/PageContainer/PageContainer ';
 import css from './Dashboard.module.css';
 import Navigation from '../../components/Navigation/Navigation';
 import UserPanel from '../../components/UserPanel/UserPanel';
-import { Box } from '@mui/system';
-import { keyframes } from '@mui/system';
+import { Box } from '@mui/system'; 
  
 const DashboardMobile = () => {
   return (
@@ -83,8 +82,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header />
-      {/* <UserPanel/> */}
+      <Header /> 
       <Media
         queries={{
           small: mobile,

@@ -1,28 +1,24 @@
 import SvgIcon from '@mui/material/SvgIcon';
 import css from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectGlobalIsModalLogoutOpen, selectGlobalIsUserPanelOpen } from '../../redux/selectors';
-import { openModalLogout } from '../../redux/auth/auth.slice';
-import { selectUserFirstName } from '../../redux/selectors';
+import { selectGlobalIsModalLogoutOpen, selectUserFirstName } from '../../redux/selectors';
+import { openModalLogout } from '../../redux/auth/auth.slice'; 
 import Logo from '../Logo/Logo';
-import PageContainer from '../PageContainer/PageContainer ';
-import UserPanel from '../UserPanel/UserPanel';
-import { updateIsModalLogoutOpen, updateIsUserPanelOpen } from '../../redux/global/global.slice';
+import PageContainer from '../PageContainer/PageContainer '; 
+import { updateIsUserPanelOpen } from '../../redux/global/global.slice';
 
 const Header = () => {
-  // const name = useSelector(selectUserFirstName);
-  const name = 'Damian'
+ // const name = useSelector(selectUserFirstName);
+   const name = 'Damian'
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   
   const dispatch = useDispatch();
 
-  const handleModalLogoutOpen = ev => {
-    console.log('handleModalLogoutOpen works')
+  const handleModalLogoutOpen = ev => { 
     ev.preventDefault;
     dispatch(openModalLogout());
   };
-  const handleUserPanelOpen = ev => {
-    console.log('handleUserPanelOpen works');
+  const handleUserPanelOpen = ev => { 
     ev.preventDefault;
     dispatch(updateIsUserPanelOpen());
   }

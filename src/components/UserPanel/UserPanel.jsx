@@ -79,11 +79,7 @@ const UserPanel = () => {
       window.removeEventListener("keyup", handleKeyDown);
     };
   });
-
-  function SlideTransition(props) {
-    return <Slide {...props} direction="left" />;
-  }
-
+ 
   const handleKeyDown = (event) => { 
     if (event.code === "Escape") {
       handleClose();
@@ -111,16 +107,10 @@ const UserPanel = () => {
       document.removeEventListener("keydown", escFunction, false);
     };
   }, [escFunction]);
-
  
-//  if(IsUserPanelOpen) {
   return ( 
-    <Box 
-    TransitionComponent={SlideTransition}
-      sx={{
-        // color: IsUserPanelOpen ?? 'red' : 'black' ,
-        //   display: IsUserPanelOpen ?? 'flex'  ,
-        // display: 'flex',
+    <Box  
+      sx={{ 
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
@@ -133,7 +123,7 @@ const UserPanel = () => {
         ...IsUserPanelOpen && {
           right: 0,
         }, 
-        transition: "color 0.2s linear", 
+        transition: "color 0.5s linear", 
       }}
     > 
 
@@ -655,6 +645,7 @@ const UserPanel = () => {
               marginTop: '5px',
               marginLeft: '40px',
               marginRight: '40px', 
+              marginBottom: '30px',
               background: '#24cca7',
               '&:hover': {
                 background: '#35a78e',
