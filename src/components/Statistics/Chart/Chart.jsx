@@ -18,15 +18,15 @@ ChartJS.register(
 
 
 
-const Chart = (categoriesSums, balance) => {
+const Chart = ({ categoriesSums, balance }) => {
 const categories = useSelector(selectTransactionsCategories);
 
 // const Chart = () => {
   const bgColor = ['#FED057', '#FFD8D0', '#FD9498', '#C5BAFF', '#6E78E8', '#4A56E2', '#81E1FF', '#24CCA7', '#00AD84'];
   const borderColor = ['#FED057', '#FFD8D0', '#FD9498', '#C5BAFF', '#6E78E8', '#4A56E2', '#81E1FF', '#24CCA7', '#00AD84'];
   
-  // console.log(categoriesSums);
-  // console.log(balance);
+  console.log('categoriesSums w chart:', categoriesSums);
+  console.log('balance w chart:',balance);
   
   const data = {
     // labels: Object.keys(categoriesSums.categorySums),
