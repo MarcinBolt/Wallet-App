@@ -47,7 +47,17 @@ const handleRejected = (state, action) => {
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: initState,
-
+  reducers: {
+    updateIncomesSum: (state, action) => {
+  state.incomesSum = action.payload;
+    },
+    updateExpensesSum: (state, action) => {
+  state.expansesSum = action.payload;
+    },
+    updateBalance: (state, action) => {
+  state.balance = action.payload;
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchTransactions.pending, handlePending)
@@ -101,3 +111,4 @@ const transactionsSlice = createSlice({
 });
 
 export const transactionsReducer = transactionsSlice.reducer;
+export const { updateIncomesSum, updateExpensesSum, updateBalance } = transactionsSlice.actions
