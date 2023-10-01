@@ -59,7 +59,7 @@ export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const response = await axios.post(`/users/logout`);
+    const response = await axios.get(`/users/logout`);
     if (response.data.code !== 200) {
       return notification.notifyProcessFailure(response.data.message);
     }

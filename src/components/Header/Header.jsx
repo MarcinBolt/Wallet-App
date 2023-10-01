@@ -13,11 +13,8 @@ const Header = () => {
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   const dispatch = useDispatch();
 
-  const handleModalLogout = ev => {
-    ev.preventDefault;
-    console.log(isModalLogoutOpen)
+  const handleModalLogout = () => {
     dispatch(updateIsModalLogoutOpen(!isModalLogoutOpen));
-    console.log(isModalLogoutOpen)
   };
 
   return (

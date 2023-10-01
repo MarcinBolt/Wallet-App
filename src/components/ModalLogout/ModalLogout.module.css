@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,19 +14,26 @@
   @media screen and (min-width: 768px) {
     width: 100vw;
     height: 100vh;
-    top: -80px;
   }
 }
 
 .logoutModalContainer {
-
-  transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
   background-color: var(--color-bg-secondary);
   box-shadow: 0 2px 8px var(--color-bg-backdrop);
-  z-index: 999;
-  border-radius: 14px;
+  @media screen and (min-width: 768px) {
+    width: fit-content;
+    height: fit-content;
+    padding: 32px 73px;
+    border-radius: 14px;
+  }
 }
 .closeIconContainer {
   position: absolute;
@@ -42,27 +49,13 @@
   height: 100%;
   transform: rotate(90deg);
 }
-.logoutModalContainer .logoutModalContent {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
 .logoutInfo {
   font-size: 16px;
 }
 
-@media (min-width: 768px) {
-  .logoutModalContainer {
-    width: 90%;
-    max-width: 340px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .logoutModalContainer {
-    width: 70%;
-    max-width: 400px;
-  }
+.confirmButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

@@ -1,11 +1,11 @@
-import ModalLogout from '../ModalLogout/ModalLogout';
+import ModalLogout from "../ModalLogout/ModalLogout"
 
 const HomeTab = () => {
-  return (
-    <>
-      <ModalLogout />
-    </>
-  );
-};
+    return (
+        <>
+       <h1>HomeTab</h1>
+        </>
+    )
+}
 
-export default HomeTab;
+export default HomeTab

@@ -5,15 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserFirstName } from '../../redux/selectors';
 import TitleComponent from '../TitleComponent/Title.Component';
 import css from './ModalLogout.module.css';
+import { logOut } from '../../redux/auth/auth.operations';
 
-const ModalLogout = (/*{ toggleModal }*/) => {
+const ModalLogout = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserFirstName);
   const modalBackdropRef = useRef(null);
 
-console.log(userName)
-const toggleModal = () => console.log()
-  useEffect(() => {
+//const toggleModal = () => console.log(`Modal się zamyka`)
+
+useEffect(() => {
     const handleEscapeKey = ev => {
       if (ev.key === 'Escape') {
         toggleModal();
@@ -26,7 +27,6 @@ const toggleModal = () => console.log()
   }, []);
 
   const closeOnBackdropClick = ev => {
-    ev.preventDefault;
     if (modalBackdropRef.current === ev.target) {
       toggleModal();
     }
@@ -34,16 +34,17 @@ const toggleModal = () => console.log()
 
   const handleUserLogout = ev => {
     ev.preventDefault;
+   dispatch(logOut())
   };
 
   return (
-    <>
+   
       <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
         <div className={css.logoutModalContainer}>
           <div className={css.closeIconContainer}>
-            <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={() => toggleModal()} />
+            <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={toggleModal} />
           </div>
-          <div className={css.logoutModalContent}>
+         
             <TitleComponent text={`Confirm Logout`} />
             <span className={css.logoutInfo}>Bye, {userName}! It was nice to serve you!</span>
             <div className={css.confirmButtons}>
@@ -65,8 +66,8 @@ const toggleModal = () => console.log()
             </div>
           </div>
         </div>
-      </div>
-    </>
+     
+ 
   );
 };
 
