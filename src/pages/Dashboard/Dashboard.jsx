@@ -10,7 +10,9 @@ import PageContainer from '../../components/PageContainer/PageContainer ';
 import css from './Dashboard.module.css';
 import Navigation from '../../components/Navigation/Navigation';
 import UserPanel from '../../components/UserPanel/UserPanel';
-
+import { Box } from '@mui/system';
+import { keyframes } from '@mui/system';
+ 
 const DashboardMobile = () => {
   return (
     <PageContainer>
@@ -48,7 +50,17 @@ const DashboardTablet = () => {
 const DashboardDesktop = () => {
   return (
     <PageContainer>
-      <UserPanel/>
+      <Box
+      sx={{
+        backgroundColor: "pink",
+        width: 30,
+        height: 30,
+        animation: `${spin} 1s infinite ease`
+      }}>
+  <UserPanel/>
+
+      </Box>
+    
       <div className={css.dashboardDesktopWrapper}>
         <div className={css.navBalCurrDesktopWrapper}>
           <Navigation />

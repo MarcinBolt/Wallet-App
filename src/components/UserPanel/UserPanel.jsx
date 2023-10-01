@@ -128,13 +128,12 @@ const UserPanel = () => {
         maxWidth: '320px',
         background: 'white',
         position: 'fixed',
-        top: 0,
-        // right: 0,
+        top: 0, 
         right: -300,
         ...IsUserPanelOpen && {
           right: 0,
         }, 
-        transition: "color 0.2s linear"
+        transition: "color 0.2s linear", 
       }}
     > 
 
