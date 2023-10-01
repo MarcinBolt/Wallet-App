@@ -10,6 +10,8 @@ import {
   selectTransactions,
   selectTransactionsIsLoading,
   selectTransactionsError,
+  selectTransactionsFilterYear,
+  selectTransactionsFilterMonth,
 } from '../../redux/selectors.js';
 import { fetchTransactions } from '../../redux/transactions/transactions.operations.js';
 
@@ -17,55 +19,111 @@ const Statistics = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchTransactionsBeforeComponentMount = async () => {
-      try {
-        const response = await dispatch(fetchTransactions());
-        const transactionsAll = response.payload.transactions;
-        console.log(transactionsAll);
-        getUserFinancesStatsFromTransactions(
-          filterTransactionsByYearAndMonth(transactionsAll, selectedYear, selectedMonth),
-        );
-      } catch (e) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchTransactionsBeforeComponentMount();
+    dispatch(fetchTransactions());
   }, []);
+  // useEffect(() => {
+  //   const fetchTransactionsBeforeComponentMount = async () => {
+  //     try {
+  //       const response = await dispatch(fetchTransactions());
+  //       const transactionsAll = response.payload.transactions;
+  //       console.log(transactionsAll);
+  //       getUserFinancesStatsFromTransactions(
+  //         filterTransactionsByYearAndMonth(transactionsAll, selectedYear, selectedMonth),
+  //       );
+  //     } catch (e) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+
+  //   fetchTransactionsBeforeComponentMount();
+  // }, []);
+
+  //**** tymaczas, dopóki nie ma HomeTab */
 
   const transactions = useSelector(selectTransactions);
-  // const transactionsAll = transactions;
-  const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
-  const isTransactionsError = useSelector(selectTransactionsError);
+
+  // const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
+  // const isTransactionsError = useSelector(selectTransactionsError);
   // const balance = useSelector(selectTransactionsBalance);
   // const incomesSum = useSelector(selectTransactionsIncomesSum);
   // const expansesSum = useSelector(selectTransactionsExpanseSum);
   // const actualYear = useSelector(selectTransactionsFilterYear);
   // const actualMonth = useSelector(selectTransactionsFilterMonth);
+  // console.log(transactions);
+  // console.log(actualYear);
+  // console.log(actualMonth);
 
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [selectedMonth, setSelectedMonth] = useState(
-    new Date().toLocaleString('en-us', { month: 'long' }),
-  );
+  // /******* obsługa filtra **/
+  // const [selectedFilter, setSelectedFilter] = useState({
+  //   month: actualMonth,
+  //   year: actualYear,
+  // });
 
-  const [filteredTransactions, setFilteredTransactions] = useState([]);
-  const [incomesSum, setIncomesSum] = useState(0);
-  const [expansesSum, setExpanseSum] = useState(0);
-  const [balance, setBalance] = useState(0);
-  const [categoriesIncomesSums, setCategoriesIncomesSums] = useState({});
+  // const [filterChoice, setFilterChoice] = useState({
+  //   months: [],
+  //   years: [],
+  // });
 
-  const filterTransactionsByYearAndMonth = (transactions, year, month) => {
-    // console.log(`year: ${year}`);
-    // console.log(`month: ${month}`);
-    // console.log(`transactionsAll: ${transactionsAll}`);
+  // console.log(filterChoice);
+  // console.log(selectedFilter);
 
-    const filteredTransactions = transactions.filter(t => t.year === year && t.month === month);
-    console.log(filteredTransactions);
-    return filteredTransactions;
-    // setFilteredTransactions(
-    //   transactionsAll.filter(t => t.year === year && t.month === month),
-    //   );
-  };
+  // const setFilterChoiceYears = transactions => {
+  //   setFilterChoice({
+  //     ...filterChoice,
+  //     years: [
+  //       ...transactions
+  //         .map(t => t.year)
+  //         .filter((year, index, array) => array.indexOf(year) === index),
+  //     ],
+  //   });
+  // };
+
+  // const setFilterChoiceMonths = (transactions, year) => {
+  //   setFilterChoice({
+  //     ...filterChoice,
+  //     months: [
+  //       ...transactions
+  //         .filter(t => t.year === year)
+  //         .map(t => t.month)
+  //         .filter((month, index, array) => array.indexOf(month) === index),
+  //     ],
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   setFilterChoiceMonths(transactions, actualYear);
+  // }, [transactions, actualYear]);
+  // useEffect(() => {
+  //   setFilterChoiceYears(transactions);
+  // }, [transactions]);
+
+  // const handleFilterChange = ev => {
+  //   ev.preventValue;
+  //   const { name, value } = ev.target;
+  //   setFilter({ ...selectedFilter, [name]: value });
+  //   if (name === 'year') {
+  //     setFilterChoiceMonths(transactions, value);
+  //   }
+  // };
+
+  // const [filteredTransactions, setFilteredTransactions] = useState([]);
+  // const [incomesSum, setIncomesSum] = useState(0);
+  // const [expansesSum, setExpanseSum] = useState(0);
+  // const [balance, setBalance] = useState(0);
+  // const [categoriesIncomesSums, setCategoriesIncomesSums] = useState({});
+
+  // const filterTransactionsByYearAndMonth = (transactions, year, month) => {
+  // console.log(`year: ${year}`);
+  // console.log(`month: ${month}`);
+  // console.log(`transactionsAll: ${transactionsAll}`);
+
+  // const filteredTransactions = transactions.filter(t => t.year === year && t.month === month);
+  // console.log(filteredTransactions);
+  // return filteredTransactions;
+  // setFilteredTransactions(
+  //   transactionsAll.filter(t => t.year === year && t.month === month),
+  //   );
+  // };
 
   // let categoriesSums = {
   //   'Main expanses': 0,
@@ -78,44 +136,44 @@ const Statistics = () => {
   //   Leisure: 0,
   //   'Other expenses': 0,
   // };
-  const getUserFinancesStatsFromTransactions = async transactions => {
-    let actualBalance = 0;
-    let totalIncome = 0;
-    let totalExpanse = 0;
-    let categoriesSums = {};
-    transactions.forEach(t => {
-      const category = t.category;
-      const sum = parseFloat(t.sum);
-      if (t.type === 'Income') {
-        if (!categoriesSums[category]) {
-          categoriesSums[category] = sum;
-          totalIncome += sum;
-        } else {
-          categoriesSums[category] += sum;
-          totalIncome += sum;
-        }
-      } else {
-        totalExpanse += sum;
-      }
+  // const getUserFinancesStatsFromTransactions = async transactions => {
+  //   let actualBalance = 0;
+  //   let totalIncome = 0;
+  //   let totalExpanse = 0;
+  //   let categoriesSums = {};
+  //   transactions.forEach(t => {
+  //     const category = t.category;
+  //     const sum = parseFloat(t.sum);
+  //     if (t.type === 'Income') {
+  //       if (!categoriesSums[category]) {
+  //         categoriesSums[category] = sum;
+  //         totalIncome += sum;
+  //       } else {
+  //         categoriesSums[category] += sum;
+  //         totalIncome += sum;
+  //       }
+  //     } else {
+  //       totalExpanse += sum;
+  //     }
 
-      actualBalance = totalIncome - totalExpanse;
+  //     actualBalance = totalIncome - totalExpanse;
 
-      setBalance(actualBalance.toFixed(2));
+  //     setBalance(actualBalance.toFixed(2));
 
-      setIncomesSum(totalIncome.toFixed(2));
-      setExpanseSum(totalExpanse.toFixed(2));
-      setCategoriesIncomesSums({ ...categoriesSums });
-      // ! Nie ustawia stanów, zanim elementy się załadją w DOM...
-    });
+  //     setIncomesSum(totalIncome.toFixed(2));
+  //     setExpanseSum(totalExpanse.toFixed(2));
+  //     setCategoriesIncomesSums({ ...categoriesSums });
+  // ! Nie ustawia stanów, zanim elementy się załadją w DOM...
+  //   });
 
-    console.log(`categoriesSums, actualBalance, totalIncome:`);
-    console.log(categoriesSums);
-    console.log(actualBalance);
-    console.log(totalIncome);
+  //   console.log(`categoriesSums, actualBalance, totalIncome:`);
+  //   console.log(categoriesSums);
+  //   console.log(actualBalance);
+  //   console.log(totalIncome);
 
-    console.log(`after set categoriesIncomesSums:`);
-    console.log({ categoriesIncomesSums }); // tu na początu jest undefined, a potem pokazuje się tablica w stanie...
-  };
+  //   console.log(`after set categoriesIncomesSums:`);
+  //   console.log({ categoriesIncomesSums }); // tu na początu jest undefined, a potem pokazuje się tablica w stanie...
+  // };
 
   // useEffect(() => {
   //   // dispatch(fetchTransactions());
@@ -123,26 +181,27 @@ const Statistics = () => {
   //   getUserFinancesStatsFromTransactions(filteredTransactions);
   // }, [selectedYear, selectedMonth]);
 
-  const handleDateChange = async (month, year) => {
-    setSelectedMonth(month);
-    setSelectedYear(year);
-  };
-
   return (
     <>
       {/* {isTransactionsLoading && isTransactionsError && ( */}
-      {!isTransactionsLoading && (
+      {/* {!isTransactionsLoading && ( */}
         <div className={css.wrapper}>
           <div className={css.container}>
             <TitleComponent text="Statistics" />
             <div className={css.chart}>
-              <Chart categorySums={{ ...categoriesIncomesSums }} balance={balance} />
+              <Chart /*categorySums={{ ...categoriesIncomesSums }} balance={balance}*/ />
             </div>
           </div>
           <div className={css.statisticsContainer}>
-            <StatsSelectList onChange={handleDateChange} />
+            {/* <StatsSelectList
+              yearFilter={selectedFilter.year}
+              monthFilter={selectedFilter.month}
+              months={filterChoice.months}
+              years={filterChoice.years}
+              handleFilter={handleFilterChange}
+            /> */}
             {/* <StatsSelectList /> */}
-            <StatsTable categoriesSums={categoriesIncomesSums} />
+            <StatsTable /*categoriesSums={categoriesIncomesSums}*/ />
             {/* <StatsTable /> */}
             <div className={css.statisticsSummary}>
               <StatsSummary
@@ -152,7 +211,7 @@ const Statistics = () => {
             </div>
           </div>
         </div>
-      )}
+      {/* )} */}
     </>
   );
 };

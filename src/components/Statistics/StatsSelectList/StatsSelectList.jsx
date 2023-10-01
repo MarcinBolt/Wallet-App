@@ -1,26 +1,6 @@
-import { useState } from 'react';
-import {
-  selectTransactionsFilterMonth,
-  selectTransactionsFilterYear,
-} from '../../../redux/selectors';
 import css from './StatsSelectList.module.css';
 
-const StatsSelectList = ({ onChange }) => {
-  const [selectedYear, setSelectedYear] = useState(2023);
-  const [selectedMonth, setSelectedMonth] = useState('September');
-
-  const handleMonthChange = e => {
-    const selectedMonth = e.target.value;
-    setSelectedMonth(selectedMonth);
-    onChange(selectedMonth, selectedYear);
-  };
-
-  const handleYearChange = e => {
-    const selectedYear = e.target.value;
-    setSelectedYear(selectedYear);
-    onChange(selectedMonth, selectedYear);
-  };
-
+const StatsSelectList = ({ yearFilter, monthFilter, months, years, handleFilter }) => {
   return (
     <div className={css.selectContainer}>
       <label htmlFor="month"></label>
@@ -28,21 +8,14 @@ const StatsSelectList = ({ onChange }) => {
         name="month"
         id="monthSelect"
         className={css.select}
-        onChange={handleMonthChange}
-        value={selectedMonth}
+        onChange={handleFilter}
+        value={monthFilter}
       >
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
+        {months.map(m => (
+          <option key={m} value={m}>
+            {m}
+          </option>
+        ))}
       </select>
 
       <label htmlFor="year"></label>
@@ -50,14 +23,14 @@ const StatsSelectList = ({ onChange }) => {
         name="year"
         id="yearSelect"
         className={css.select}
-        onChange={handleYearChange}
-        value={selectedYear}
+        onChange={() => handleFilter()}
+        value={yearFilter}
       >
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
+        {years.map(y => (
+          <option key={y} value={y}>
+            {y}
+          </option>
+        ))}
       </select>
     </div>
   );

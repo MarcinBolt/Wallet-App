@@ -7,7 +7,7 @@ import {
     Legend,
     ArcElement,
 } from 'chart.js';
-import { selectTransactionsIsLoading } from '../../../redux/selectors';
+import { selectTransactionsCategories, selectTransactionsIsLoading } from '../../../redux/selectors';
 import { useSelector } from 'react-redux';
 
 ChartJS.register(
@@ -19,6 +19,7 @@ ChartJS.register(
 
 
 const Chart = (categoriesSums, balance) => {
+const categories = useSelector(selectTransactionsCategories);
 
 // const Chart = () => {
   const bgColor = ['#FED057', '#FFD8D0', '#FD9498', '#C5BAFF', '#6E78E8', '#4A56E2', '#81E1FF', '#24CCA7', '#00AD84'];
@@ -42,7 +43,7 @@ const Chart = (categoriesSums, balance) => {
     ],
     datasets: [
       {
-        label: 'Expanses',
+        label: 'Expenses',
         // data: Object.values(categoriesSums.categorySums),
         data: [120, 19, 35, 5, 15, 33, 45, 20, 11],
         backgroundColor: [...bgColor],
