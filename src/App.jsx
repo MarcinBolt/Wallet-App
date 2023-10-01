@@ -13,8 +13,7 @@ import CurrencyTable from './components/CurrencyTable/CurrencyTable.jsx';
 import DiagramTab from './components/DiagramTab/DiagramTab.jsx';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
-// const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx')); 
-const Register = lazy(() => import('./pages/Dashboard/Dashboard.jsx')); 
+const Register = lazy(() => import('./pages/RegisterPage/RegisterPage.jsx'));  
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 const VerifyEmail = lazy(() => import('./pages/VerifyEmail.jsx'));
