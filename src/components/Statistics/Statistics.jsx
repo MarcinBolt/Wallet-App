@@ -20,7 +20,7 @@ const Statistics = () => {
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  }, []);
+  }, [dispatch]);
   // useEffect(() => {
   //   const fetchTransactionsBeforeComponentMount = async () => {
   //     try {
@@ -41,7 +41,7 @@ const Statistics = () => {
   //**** tymaczas, dopóki nie ma HomeTab */
 
   const transactions = useSelector(selectTransactions);
-
+console.log(transactions)
   // const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
   // const isTransactionsError = useSelector(selectTransactionsError);
   // const balance = useSelector(selectTransactionsBalance);
