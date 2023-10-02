@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -110,7 +110,7 @@ const CurrencyTable = () => {
                 }}
               >
                 <TableRow
-                  key={currency1}
+                  key={'currency1'}
                   sx={{
                     '& td, & th': { border: 0 },
                     display: 'flex',
@@ -159,7 +159,7 @@ const CurrencyTable = () => {
                 </TableRow>
 
                 <TableRow
-                  key={currency2}
+                  key={'currency2'}
                   sx={{
                     '& td, & th': { border: 0 },
                     display: 'flex',
