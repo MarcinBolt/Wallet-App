@@ -99,6 +99,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
   const handleUpdateTransaction = ev => {
     ev.preventDefault;
     const type = formData.isChecked ? 'Income' : 'Expense';
+    const category = formData.isChecked ? 'Income' : formData.selectedCategory;
     const year = formData.date.getFullYear();
     const month = formData.date.toLocaleString('en-US', { month: 'long' });
     toggleModal();
@@ -109,7 +110,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
         year: year.toString(),
         month: month,
         type: type,
-        category: formData.category,
+        category: category,
         comment: formData.comment,
         sum: formData.sum,
       }),
