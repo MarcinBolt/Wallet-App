@@ -11,12 +11,17 @@ const Balance = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const balance = useSelector(selectBalance);
+
   
     useEffect(() => {
       dispatch(fetchTransactions());
       console.log(transactions)
       dispatch(updateBalance(countBalance(transactions)))
     }, []);
+
+    useEffect(() => {
+      dispatch(fetchTransactions());
+        }, []);
 
   const countBalance = transactions => {
     const incomesSum = [...transactions].reduce((acc, transaction) => {
@@ -38,6 +43,7 @@ const Balance = () => {
     console.log('balance from func:', newBalance);
     return newBalance;
   };
+
 
   useEffect(() => {
     const actualBalance = countBalance(transactions);
