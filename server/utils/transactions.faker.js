@@ -9,28 +9,30 @@ mongoose.connect(process.env.DATABASE_URI, {
 });
 
 const categories = [
-  'Main expenses',
-  'Products',
-  'Car',
-  'Self care',
-  'Child care',
-  'Household products',
-  'Education',
-  'Leisure',
-  'Other expenses',
-  'Entertainment',
+  // 'Main expenses',
+  // 'Products',
+  // 'Car',
+  // 'Self care',
+  // 'Child care',
+  // 'Household products',
+  // 'Education',
+  // 'Leisure',
+  // 'Other expenses',
+  // 'Entertainment',
+  'Income',
 ];
 
-const types = ['Expense'];
+// const types = ['Expense'];
 // const types = ['Income', 'Expense'];
+const types = ['Income'];
 
 const owners = ['']; // here add strings from mongoDB (objectId) as owners
 
 const generateTransactions = async () => {
   const transactions = [];
 
-  for (let i = 0; i < 10; i++) {
-    const iterableDate = faker.date.between({ from: '2021-04-10', to: '2023-10-02' });
+  for (let i = 0; i < 100; i++) {
+    const iterableDate = faker.date.between({ from: '2023-02-10', to: '2023-10-02' });
 
     const date = iterableDate;
     const year = iterableDate.getFullYear();
