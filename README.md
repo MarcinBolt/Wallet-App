@@ -45,7 +45,7 @@
 
 ---
 
-### Balance, Currency and Statistic Pages
+### Balance, Currency and Statistic
 ![balance-currency-statistic](./imgReadme/balance-currency-statistic-%20tablet.jpg)
 
 ---
@@ -77,7 +77,7 @@
 ![login-desktop](./imgReadme/login-desktop.jpg)
 ---
 
-### Balance, Curency and Statistic Pages
+### Balance, Curency and Statistic 
 ![balance-currency-desktop](./imgReadme/currency-balance-desktop.jpg)
 ---
 
@@ -228,7 +228,6 @@ The project has been completed, but there is always space to improve it .
 - [Axios](https://axios-http.com/): HTTP client for making requests.
 - [Squoosh](https://squoosh.app/): Image optimization and compression tool.
 - [IcoMoon.io](https://icomoon.io/): Custom icon font generator.
-
 
 ---
 
