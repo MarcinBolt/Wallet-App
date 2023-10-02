@@ -40,9 +40,9 @@ const HomeTab = () => {
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
   const { mobile } = mediaQueries;
 
-  useEffect(() => {
-    dispatch(fetchTransactions());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchTransactions());
+  // }, []);
 
   const formatDate = date => {
     const dateObject = new Date(date);
