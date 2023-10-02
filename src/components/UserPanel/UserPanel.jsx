@@ -1,23 +1,12 @@
 import * as React from 'react';
-import Dialog from '@mui/material/Dialog';
-import Button from '@mui/material/Button'; 
-import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog'; 
 import Box from '@mui/material/Box'; 
 import { createTheme,  ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../../utils/hooks/user.auth'; 
 import css from './UserPanel.module.css';
-import { Collapse, DialogTitle, IconButton } from '@mui/material';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
-import AccountBoxIcon from '@mui/icons-material/AccountBox'; 
-import MoneyIcon from '@mui/icons-material/Money';
-import CloseIcon from '@mui/icons-material/Close';
-import { deleteUser, updateUser } from '../../redux/auth/auth.operations'; 
-import PersonOffIcon from '@mui/icons-material/PersonOff'; 
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'; 
+import { Collapse, DialogTitle, IconButton } from '@mui/material'; 
+import CloseIcon from '@mui/icons-material/Close'; 
 import { selectGlobalIsModalDeleteUserOpen, selectGlobalIsUserPanelOpen, selectTransactionsCurrency } from '../../redux/selectors'; 
 import CustomButton from '../CustomButton/CustomButton';
 import UserPanelModal from './UserPanelModal';
@@ -58,11 +47,7 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
   const userName = useAuth().userName;
   const userEmail = useAuth().userEmail; 
   const IsUserPanelOpen = useAuth().isUserPanelOpen;
-  // const onClickDeleteUser = () => { 
-  //   dispatch(deleteUser())
-  //   ;
-  // } 
-   
+    
   return ( 
     <>
     <Box  
@@ -82,8 +67,8 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
         },  
       }}
     > 
- 
-      {/* <Collapse orientation="horizontal" in={IsUserPanelOpen} >  */}
+      {/* COLLAPSE the entire User Panel to the left, click User Name in Header to OPEN */}
+      <Collapse orientation="horizontal" in={IsUserPanelOpen} > 
         <h1>Hello {userName} </h1>
         <p>Your E-mail is {userEmail}</p> 
         <div className={css.container_input}> 
@@ -120,12 +105,8 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
           </DialogTitle>
           <UserPanelModal></UserPanelModal> 
         </Dialog> 
-  {/* </Collapse>  */}
-
-
-
-
-  {/* {isModalDeleteUserOpen && <ModalDeleteUser toggleModal={handleModalDeleteUser} />} */}
+  </Collapse> 
+  
   </Box>
 
       <Dialog 

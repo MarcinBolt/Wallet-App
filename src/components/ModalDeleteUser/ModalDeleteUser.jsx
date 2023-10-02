@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserFirstName } from '../../redux/selectors'; 
 import css from './ModalDeleteUser.module.css';
 import { deleteUser, logOut } from '../../redux/auth/auth.operations';
-import { updateIsModalDeleteUserOpen, updateIsModalLogoutOpen } from '../../redux/global/global.slice';
+import { updateIsModalLogoutOpen } from '../../redux/global/global.slice';
 import { useNavigate } from 'react-router';
 
 const ModalDeleteUser = ({ toggleModal }) => {
@@ -23,18 +23,9 @@ const ModalDeleteUser = ({ toggleModal }) => {
   } 
 
   return (
-    <div className={css.backdrop} ref={modalBackdropRef} 
-    // onClick={closeOnBackdropClick}
+    <div className={css.backdrop} ref={modalBackdropRef}  
     >
-      <div className={css.logoutModalContainer}>
-         
-        {/* <TitleComponent text={`Confirm Account Deletion`} 
-        sx={{ 
-        padding: 10,
-        color: 'red',
-        fontFamily: 'var(--font-primary)',
-        }}
-        /> */}
+      <div className={css.logoutModalContainer}> 
         <span className={css.logoutTitle}>Confirm Account Deletion</span> 
         <span className={css.logoutInfo}>Are you sure, {userName}? We'll miss you!</span>
         <div className={css.confirmButtons}>
