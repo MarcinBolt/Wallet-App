@@ -24,7 +24,7 @@ const initState = {
     'Entertainment',
     'Other expenses',
   ],
-  selectedFilterCategory: '',
+  selectedFilterCategory: 'All',
   selectedId: '',
   selectedFilterYear: new Date().getFullYear(),
   selectedFilterMonth: new Date().toLocaleString('en-us', { month: 'long' }),
@@ -48,15 +48,21 @@ const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: initState,
   reducers: {
+    updateSelectedId: (state, action) => {
+      state.selectedId = action.payload;
+    },
+    updateSelectedCategory: (state, action) => {
+      state.selectedFilterCategory = state.payload;
+    },
     updateIncomesSum: (state, action) => {
-  state.incomesSum = action.payload;
+      state.incomesSum = action.payload;
     },
     updateExpensesSum: (state, action) => {
-  state.expansesSum = action.payload;
+      state.expansesSum = action.payload;
     },
     updateBalance: (state, action) => {
-  state.balance = action.payload;
-    }
+      state.balance = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -111,4 +117,10 @@ const transactionsSlice = createSlice({
 });
 
 export const transactionsReducer = transactionsSlice.reducer;
-export const { updateIncomesSum, updateExpensesSum, updateBalance } = transactionsSlice.actions
+export const {
+  updateSelectedId,
+  updateSelectedCategory,
+  updateIncomesSum,
+  updateExpensesSum,
+  updateBalance,
+} = transactionsSlice.actions;
