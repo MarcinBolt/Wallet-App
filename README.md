@@ -167,9 +167,9 @@ List the ready features here:
 
 ## Setup
 ## For Developers:
-# To install all dependencies from package.json use: npm install
-## To run front-end App: npm run dev
-## To run back-end server.js: npm run start:dev
+### To install all dependencies from package.json use: npm install
+### To run front-end App: <font color="orange">npm run dev</font>
+### To run back-end server.js: <font color="orange">npm run start:dev</font>
 
 **Node.js and npm Versions:**
 - Node.js Version: v18.17.1
