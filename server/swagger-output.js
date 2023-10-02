@@ -239,7 +239,7 @@ const swaggerOutput = {
       },
     },
     '/users': {
-      put: {
+      patch: {
         summary: 'Updates user',
         tags: ['User'],
         parameters: [
@@ -382,7 +382,7 @@ const swaggerOutput = {
           },
         },
       },
-      put: {
+      patch: {
         summary: 'Update an existing transaction',
         tags: ['Transaction'],
         parameters: [
