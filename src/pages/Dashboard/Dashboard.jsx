@@ -4,7 +4,6 @@ import { mediaQueries } from '../../utils/constants';
 import Header from '../../components/Header/Header';
 import { Outlet } from 'react-router-dom';
 import CurrencyTable from '../../components/CurrencyTable/CurrencyTable';
-import TempBalance from '../../components/temporary components/TempBalance';
 import Loader from '../../components/Loader/Loader';
 import PageContainer from '../../components/PageContainer/PageContainer ';
 import css from './Dashboard.module.css';
