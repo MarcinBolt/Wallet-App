@@ -33,6 +33,12 @@
 ### Statistics
 ![statistic-mbile](./imgReadme/statistic-mobile.jpg)
 
+---
+
+### User Panel
+
+---
+
 ### Logout Page
 
 ---
@@ -63,6 +69,11 @@
 
 ### Statistics
 ![statstic-tablet](./imgReadme/statistick-tablet.jpg)
+
+---
+
+### User Panel
+
 ---
 
 ### Logout Page
@@ -104,8 +115,11 @@
 
 ---
 
-### Logout Page
+### User Panel
 
+---
+
+### Logout Page
 
 ---
 
