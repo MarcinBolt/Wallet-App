@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import css from './StatsTable.module.css';
+import formatMoney from '../../../utils/formatMoney';
 
 const StatsTable = ({ categoriesSums }) => {
-
- const positiveSums = [...categoriesSums].filter(c => c.sum >0)
+  const positiveSums = [...categoriesSums].filter(c => c.sum > 0);
 
   return (
     <TableContainer
@@ -46,7 +46,7 @@ const StatsTable = ({ categoriesSums }) => {
               Category
             </TableCell>
             <TableCell align="right" className={css.headerSum}>
-              Sum
+              Expenses
             </TableCell>
           </TableRow>
         </TableHead>
@@ -89,7 +89,7 @@ const StatsTable = ({ categoriesSums }) => {
                   padding: '2px 20px 0 0',
                 }}
               >
-                {row.sum}
+                {formatMoney(row.sum)}
               </TableCell>
             </TableRow>
           ))}
