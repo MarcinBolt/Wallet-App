@@ -26,6 +26,7 @@ import { mediaQueries } from '../../utils/constants';
 import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
 import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
+import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 const HomeTab = () => {
@@ -53,7 +54,7 @@ const HomeTab = () => {
       (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
     return formattedDate;
   };
- 
+
   // const getTransactionsFilteredByCategory = (transactions, category) => {
   //   console.log(`category:`, category);
   //   return category === 'All' ? transactions : transactions.filter(t => t.category === category);
@@ -68,13 +69,11 @@ const HomeTab = () => {
       ? [...transactions].sort((a, b) => formatDate(b.date).localeCompare(formatDate(a.date)))
       : [];
 
-  const toggleAddTransactionModal = ev => {
-    ev.preventDefault;
+  const toggleAddTransactionModal = () => {
     dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
   };
 
-  const toggleEditTransactionModal = ev => {
-    ev.preventDefault;
+  const toggleEditTransactionModal = () => {
     dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
   };
 
@@ -150,7 +149,10 @@ const HomeTab = () => {
               ))}
           </ul>
         </div>
-          <ButtonAddTransaction onClick={toggleAddTransactionModal} className={css.buttonAddTransaction} />
+        <ButtonAddTransaction
+          onClick={toggleAddTransactionModal}
+          className={css.buttonAddTransaction}
+        />
       </div>
       {isModalEditTransactionOpen && (
         <div>
@@ -162,14 +164,7 @@ const HomeTab = () => {
           </button>
         </div>
       )}
-      {isAddTransactionModalOpen && (
-        <div>
-          <p>Add Transaction Modal is open</p>
-          <button type="button" onClick={toggleAddTransactionModal}>
-            Close AddTransaction
-          </button>
-        </div>
-      )}
+      {isAddTransactionModalOpen && <ModalAddTransaction toggleModal={toggleAddTransactionModal} />}
     </>
   );
 };

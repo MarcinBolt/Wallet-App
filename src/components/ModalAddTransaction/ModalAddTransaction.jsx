@@ -26,7 +26,7 @@ import closeIcon from '../../assets/icons/close.svg';
 import Notiflix from 'notiflix';
 import { selectTransactionsCategories } from '../../redux/selectors';
 
-const ModalAddTransaction = (/*{ toggleModal }*/) => {
+const ModalAddTransaction = ({ toggleModal }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const modalBackdropRef = useRef(null);
   const dispatch = useDispatch();
@@ -54,9 +54,9 @@ const ModalAddTransaction = (/*{ toggleModal }*/) => {
   }, []);
 
   /* tymczasowa funkcja - przyjdzie z propsów*/
-  const toggleModal = () => {
-    console.log('modal do zamknięcia');
-  };
+  // const toggleModal = () => {
+  //   console.log('modal do zamknięcia');
+  // };
 
   let extraMargin = formData.isChecked ? '0' : '20px';
 
@@ -115,8 +115,8 @@ const ModalAddTransaction = (/*{ toggleModal }*/) => {
     }
   };
 
-  const handleAddTransaction = ev => {
-    ev.preventDefault;
+  const handleAddTransaction = () => {
+    toggleModal();
     const type = formData.isChecked ? 'Income' : 'Expense';
     const year = selectedDate.getFullYear();
     const month = selectedDate.toLocaleString('en-US', { month: 'long' });
@@ -131,7 +131,6 @@ const ModalAddTransaction = (/*{ toggleModal }*/) => {
         sum: formData.sum,
       }),
     );
-    toggleModal();
   };
 
   return (
@@ -285,7 +284,6 @@ const ModalAddTransaction = (/*{ toggleModal }*/) => {
                     style: {
                       height: 36,
                       width: 181,
-                     
                     },
                   }}
                   input={true}
