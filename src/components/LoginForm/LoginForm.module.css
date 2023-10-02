@@ -55,3 +55,10 @@
     width: 300px;
   }
 }
+
+.verifyLink {
+  border: 0;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}

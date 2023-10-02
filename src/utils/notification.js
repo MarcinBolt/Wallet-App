@@ -4,6 +4,10 @@ const notifyUserEmailSenTSuccess = email => {
   Notiflix.Report.success('Verification email sent!', `Check: ${email} Inbox.`, 'OK!');
 };
 
+const notifyUserEmailResenTSuccess = email => {
+  Notiflix.Report.success('Verification email sent agin!', `Check: ${email} Inbox.`, 'OK!');
+};
+
 const notifyUserEmailSenTFailure = message => {
   Notiflix.Report.failure(
     'Sending the verification email failed.',
@@ -38,6 +42,7 @@ const notifyProcessFailure = message => {
 
 const notification = {
   notifyUserEmailSenTSuccess,
+  notifyUserEmailResenTSuccess,
   notifyUserEmailSenTFailure,
   notifyUserEmailVerifiedSuccess,
   notifyUserProcessTSuccess,

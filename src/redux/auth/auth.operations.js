@@ -43,6 +43,21 @@ export const verify = createAsyncThunk('auth/verify', async (verificationToken, 
   }
 });
 
+export const sendVerificationEmailAgain = createAsyncThunk('auth/verifyAgain', async (email, thunkAPI) => {
+  try {
+    const response = await axios.post(`/users/verify`, email);
+    if (response.status !== 200) {
+      return notification.notifyProcessFailure(response.data.message);
+    }
+    notification.notifyUserEmailResenTSuccess(response.data.user.firstName);
+    return response.data;
+  } catch (error) {
+    notification.notifyProcessFailure(error.response.data.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+
+})
+
 export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const response = await axios.post(`/users/login`, credentials);
