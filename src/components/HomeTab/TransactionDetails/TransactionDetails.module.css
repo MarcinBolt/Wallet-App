@@ -3,17 +3,17 @@
   flex-direction: column;
   list-style-type: none;
   padding: 0;
-  margin: 10px;
-  width: 80%;
-  min-width: 440px;
+  margin: 0;
+  width: 100%;
+  min-width: 280px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-widget-mobile-transaction-details);
+
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 15% 15% 20% 25% 10% 15%;
+    grid-template-columns: 14% 8% 22% 25% 13% 18%;
     background-color: transparent;
     border-radius: 0;
-    max-width: 700px;
   }
 }
 
@@ -37,15 +37,20 @@
   align-items: center;
   padding: 0 20px;
   height: 47px;
+
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
-    gap: 8px;
+    gap: 20px;
     justify-content: left;
+    height: 54px;
   }
 }
 
 .transactionDetailsItem:not(:first-child) {
   border-top: 1px solid var(--color-border-details-separator);
+  @media screen and (min-width: 768px) {
+    border-top: 0;
+  }
 }
 
 .transactionDetailsItem:nth-child(2) {
@@ -63,6 +68,47 @@
 .transactionDetailsItem:last-child {
   @media screen and (min-width: 768px) {
     justify-content: center;
+  }
+}
+
+.transactionDetailsItem:nth-child(3) {
+  @media screen and (min-width: 768px) {
+    overflow: hidden;
+    text-wrap: wrap;
+    text-align: left;
+  }
+}
+
+.transactionDetailsItem:nth-child(4) {
+  @media screen and (min-width: 768px) {
+    overflow: hidden;
+    text-wrap: nowrap;
+    transition: all 250ms ease-in-out;
+  }
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 5px;
+  height: fit-content;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  transition: all 200ms ease-in-out;
+}
+
+.transactionDetailsItem:nth-child(4):hover {
+  @media screen and (min-width: 768px) {
+    z-index: 2;
+    overflow: visible;
+    text-wrap: wrap;
+    text-align: left;
+    border: 1px black;
+    padding: 10px;
+    hight: 100%;
+    width: 180%;
+    background-color: var(--color-bg-primary);
   }
 }
 
@@ -101,8 +147,10 @@
 
 .incomeText {
   color: var(--color-border-details-income);
+  font-weight: 700;
 }
 
 .expanseText {
   color: var(--color-border-details-expanse);
+  font-weight: 700;
 }
