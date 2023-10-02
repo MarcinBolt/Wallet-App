@@ -22,9 +22,8 @@
 ## Mobile
 ### Login and Register Page 
 ![register-mobile](./imgReadme/login-register-mobile.jpg)
-### Balance Page
-
-### Currency Page
+### Balance and Currency Page
+![balance-carrency-mobile](./imgReadme/currency-balance-tablet.jpg)
 
 ### Add Transaction Page 
 
@@ -40,6 +39,7 @@
 ---
 
 ### Logout Page
+![logout-mobile](./imgReadme/logout-mobile.png)
 
 ---
 
@@ -49,11 +49,8 @@
 
 ---
 
-### Balance Page
-
----
-
-### Currency Page
+### Balance, Currency and Statistic Page
+![balance-currency-statistic](./imgReadme/balance-currency-statistic-%20tablet.jpg)
 
 ---
 
@@ -67,17 +64,7 @@
 
 ---
 
-### Statistics
-![statstic-tablet](./imgReadme/statistick-tablet.jpg)
-
----
-
 ### User Panel
-
----
-
-### Logout Page
-
 
 ---
 
@@ -93,12 +80,8 @@
 ![login-desktop](./imgReadme/login-desktop.jpg)
 ---
 
-### Balance Page
-
----
-
-### Currency Page
-
+### Balance, Curency and Statistic Page
+![balance-currency-desktop](./imgReadme/currency-balance-desktop.jpg)
 ---
 
 ### Add Transaction Page 
@@ -111,16 +94,12 @@
 
 ---
 
-### Statistics
-
----
-
 ### User Panel
 
 ---
 
 ### Logout Page
-
+![logout-desktop](./imgReadme/logout-desktop.jpg)
 ---
 
 ## General Information
