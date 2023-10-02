@@ -7,9 +7,10 @@ const EditButton = ({ onClick }) => {
       <button type="button" className={css.editBtn} onClick={onClick}>
         <SvgIcon
           viewBox="0 0 32 32"
+          className={css.svg}
           sx={{
-            width: '12px',
-            height: '12px',
+            width: '20px',
+            height: '20px',
             padding: '0px',
           }}
         >

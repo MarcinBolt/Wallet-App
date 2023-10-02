@@ -1,16 +1,23 @@
+import { useDispatch, useSelector } from 'react-redux';
+import DeleteButton from '../../buttons/DeleteButton/DeleteButton';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
+import { selectTransactionId } from '../../../redux/selectors';
+import { updateSelectedId } from '../../../redux/transactions/transactions.slice';
 
-const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
-  const props = {
-    id: 212,
-    date: '22.07.2023',
-    type: 'Income',
-    category: 'asdfg',
-    comment: 'so many expences',
-    sum: 12345,
-  };
-  const { id, date, type, category, comment, sum } = props;
+const TransactionDetails = ({
+  id,
+  date,
+  type,
+  category,
+  comment,
+  sum,
+  toggleEditModal,
+  handleDeleteBtn,
+}) => {
+  
+  const dispatch = useDispatch();
+  const selectedTransactionId = useSelector(selectTransactionId);
 
   const isIncome = () => (type === 'Income' ? true : false);
 
@@ -23,46 +30,60 @@ const TransactionDetails = (/*{ id, date, type, category, comment, sum }*/) => {
     return type === 'Income' ? '+' : '-';
   };
 
-  const handleEdit = ev => {
-    ev.preventDefault;
-    //TODO
+  const formatDate = date => {
+    const dateObject = new Date(date);
+    const year = dateObject.getFullYear() % 100;
+    const month = dateObject.getMonth() + 1;
+    const day = dateObject.getDate();
+    const formattedDate =
+      (day < 10 ? '0' : '') +
+      day +
+      '.' +
+      (month < 10 ? '0' : '') +
+      month +
+      '.' +
+      (year < 10 ? '0' : '') +
+      year;
+    return formattedDate;
   };
 
-  const handleDelete = ev => {
-    ev.preventDefault;
-    //TODO
+  const handleEditModalOpen = () => {
+    dispatch(updateSelectedId(id));
+    toggleEditModal();
   };
 
   return (
-    <ul className={listClassName}>
-      <li key={`${id}date`} className={css.transactionDetailsItem}>
-        <p className={css.itemType}>Date</p>
-        <p className={css.itemValue}>{date}</p>
-      </li>
-      <li key={`${id}type`} className={css.transactionDetailsItem}>
-        <p className={css.itemType}>Type</p>
-        <div>
-          <p className={css.typeString}>{type}</p>
-          <p className={css.typeOperator}>{typeOperator(type)}</p>
-        </div>
-      </li>
-      <li key={`${id}category`} className={css.transactionDetailsItem}>
-        <p className={css.itemType}>Category</p>
-        <p className={css.itemValue}>{category}</p>
-      </li>
-      <li key={`${id}comment`} className={css.transactionDetailsItem}>
-        <p className={css.itemType}>Comment</p>
-        <p className={css.itemValue}>{comment}</p>
-      </li>
-      <li key={`${id}sum`} className={css.transactionDetailsItem}>
-        <p className={css.itemType}>Sum</p>
-        <p className={textClassName}>{sum}</p>
-      </li>
-      <li key={`$[id]operations`} className={css.transactionDetailsItem}>
-        <div>DeleteBtn</div>
-        <EditButton onClick={handleEdit} />
-      </li>
-    </ul>
+    <>
+      <ul className={listClassName}>
+        <li key={`${id}date`} className={css.transactionDetailsItem}>
+          <p className={css.itemType}>Date</p>
+          <p className={css.itemValue}>{formatDate(date)}</p>
+        </li>
+        <li key={`${id}type`} className={css.transactionDetailsItem}>
+          <p className={css.itemType}>Type</p>
+          <div>
+            <p className={css.typeString}>{type}</p>
+            <p className={css.typeOperator}>{typeOperator(type)}</p>
+          </div>
+        </li>
+        <li key={`${id}category`} className={css.transactionDetailsItem}>
+          <p className={css.itemType}>Category</p>
+          <p className={css.itemValue}>{category}</p>
+        </li>
+        <li key={`${id}comment`} className={css.transactionDetailsItem}>
+          <p className={css.itemType}>Comment</p>
+          <p className={`${css.itemValue} ${css.comment}`}>{comment}</p>
+        </li>
+        <li key={`${id}sum`} className={css.transactionDetailsItem}>
+          <p className={css.itemType}>Sum</p>
+          <p className={textClassName}>{sum}</p>
+        </li>
+        <li key={`$[id]operations`} className={css.transactionDetailsItem}>
+          <DeleteButton id={id} type="button" onClick={() => handleDeleteBtn(id)} />
+          <EditButton onClick={toggleEditModal} />
+        </li>
+      </ul>
+    </>
   );
 };
 

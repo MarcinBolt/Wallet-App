@@ -52,6 +52,8 @@
   --color-bg-btn-expanse: #ff6596;
   --color-bg-btn-active-hover-shadow: #24cca840;
   --color-bg-btn-active-hover-shadow-darker: #1eb896e0;
+  --color-bg-hometab-dissolve-tabletanddesktop: #f1f2f7;
+  --color-bg-btn-delete-hover: #e9000075;
   
   /* ------ borders colors ----- */
   --color-border-btn-date-filter: #000000;
@@ -86,6 +88,8 @@
   --color-icon-logout: #bdbdbd;
   --color-icon-arrow-up: #000000;
   --color-icon-arrow-down: #000000;
+  --color-icon-navi: #6E78E8;
+  --color-icon-navi-hover: #4A56E2;
 
   /* ------ password strength colors ----- */
   --color-pass-strength-green: #24cca7;

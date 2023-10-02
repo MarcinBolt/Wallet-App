@@ -3,10 +3,12 @@ import { logIn } from '../../redux/auth/auth.operations.js';
 import css from './LoginForm.module.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../Logo/Logo.jsx';
+import CustomButton from '../CustomButton/CustomButton.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -20,6 +22,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -212,43 +215,13 @@ const LoginForm = () => {
           </div>
         </div>
         <div className={css.button_container}>
-          <Button
-            type="submit"
-            sx={{
-              mt: 3,
-              mb: 2,
-              width: 300,
-              margin: 0,
-              background: '#24cca7',
-              '&:hover': {
-                background: '#35a78e',
-              },
-              color: '#ffffff',
-              fontSize: 18,
-              borderRadius: 20,
-            }}
-          >
-            LOG IN
-          </Button>
-          <Button
+          <CustomButton type="submit" color="primary" content="LOG IN" />
+          <CustomButton
             type="button"
-            href="#/register"
-            sx={{
-              width: 300,
-              background: '#ffffff',
-              border: 1,
-              borderColor: '#4a56e2',
-              '&:hover': {
-                background: '#4a56e2',
-                color: '#ffffff',
-              },
-              color: '#4a56e2',
-              fontSize: 18,
-              borderRadius: 20,
-            }}
-          >
-            REGISTER
-          </Button>
+            color="secondary"
+            content="REGISTER"
+            onClick={() => navigate('/register', { replace: false })}
+          />
         </div>
       </form>
     </>

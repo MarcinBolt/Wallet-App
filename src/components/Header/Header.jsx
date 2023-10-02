@@ -1,20 +1,20 @@
 import SvgIcon from '@mui/material/SvgIcon';
-import css from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectGlobalIsModalLogoutOpen } from '../../redux/selectors';
-import { openModalLogout } from '../../redux/auth/auth.slice';
 import { selectUserFirstName } from '../../redux/selectors';
 import Logo from '../Logo/Logo';
 import PageContainer from '../PageContainer/PageContainer ';
+import css from './Header.module.css';
+import { updateIsModalLogoutOpen } from '../../redux/global/global.slice';
+import ModalLogout from '../ModalLogout/ModalLogout';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   const dispatch = useDispatch();
 
-  const handleModalLogoutOpen = ev => {
-    ev.preventDefault;
-    dispatch(openModalLogout());
+  const handleModalLogout = () => {
+    dispatch(updateIsModalLogoutOpen(!isModalLogoutOpen));
   };
 
   return (
@@ -30,9 +30,9 @@ const Header = () => {
           >
             <Logo />
           </div>
-          <div className={css.userWrapper} onClick={handleModalLogoutOpen}>
+          <div className={css.userWrapper}>
             <p className={css.text}>{name}</p>
-            <div className={css.exitWrapper}>
+            <div className={css.exitWrapper} onClick={handleModalLogout}>
               <SvgIcon
                 viewBox="0 0 18 18"
                 sx={{
@@ -58,6 +58,7 @@ const Header = () => {
           </div>
         </div>
       </PageContainer>
+      {isModalLogoutOpen && <ModalLogout toggleModal={handleModalLogout} />}
     </div>
   );
 };
