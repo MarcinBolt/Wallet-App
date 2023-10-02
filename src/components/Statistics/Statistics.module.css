@@ -6,6 +6,7 @@
   align-items: center;
   margin: 0 auto;
   gap: 20px;
+  padding-bottom: 30px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -20,6 +21,7 @@
     justify-content: flex-start;
     width: 100%;
     max-width: 715px;
+    padding-bottom: 20px;
   }
 }
 

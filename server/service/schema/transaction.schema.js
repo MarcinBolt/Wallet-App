@@ -47,6 +47,7 @@ const transaction = new Schema(
         'Leisure',
         'Other expenses',
         'Entertainment',
+        'Income',
       ],
       required: [true, 'Category is required'],
     },
