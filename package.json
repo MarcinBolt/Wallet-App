@@ -43,6 +43,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "react": "^18.2.0",
+    "react-datetime": "^3.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.4.5",
@@ -50,11 +51,12 @@
     "react-password-strength-bar": "^0.4.1",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.16.0",
+    "react-toastify": "^9.1.3",
     "redux-persist": "^6.0.0",
     "swagger-autogen": "^2.23.6",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
-    "yup": "^1.2.0"
+    "yup": "^1.3.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.1.0",
