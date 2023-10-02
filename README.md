@@ -122,6 +122,9 @@ Frontend (client side):
 - Chart.js and react-chartjs-2: For charts and data visualisation.
 - React-Loader-Spinner: For displaying the loading indicator (spinner).
 - Axios: For making HTTP requests to the server.
+- react-password-strength-bar: Library for password strength indication.
+- Datetime: Library for date and time input.
+
 
 Backend (server side):
 - Node.js: The runtime environment for the server.
@@ -187,6 +190,7 @@ List the ready features here:
 - React-Redux: `npm install @reduxjs/toolkit react-redux`
 - redux-persist: `npm install redux-persist`
 - react-router-dom: `npm install react-router-dom`
+- react-password-strange-bar: `npm install react-password-strange-bar`
 - Firebase: `npm install -g firebase-tools`
 - dotenv: `npm install dotenv --save`
 - Axios: `npm install axios`
