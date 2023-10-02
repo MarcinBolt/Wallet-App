@@ -1,0 +1,72 @@
+@import '../../stylesheet/vars.css';
+
+.backdrop {
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-backdrop);
+  overflow: hidden;
+position: fixed;
+  
+@media screen and (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.logoutModalContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background-color: var(--color-bg-secondary);
+  box-shadow: 0 2px 8px var(--color-bg-backdrop);
+
+  @media screen and (min-width: 768px) {
+    width: fit-content;
+    height: fit-content;
+    padding: 32px 73px;
+    border-radius: 14px;
+  }
+}
+.closeIconContainer {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: none;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.closeIcon {
+  width: 100%;
+  height: 100%;
+  transform: rotate(90deg);
+}
+
+.logoutInfo {
+  font-size: 16px;
+}
+
+.confirmButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
