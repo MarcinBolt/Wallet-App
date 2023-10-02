@@ -118,6 +118,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
   const handleAddTransaction = () => {
     toggleModal();
     const type = formData.isChecked ? 'Income' : 'Expense';
+    const category = formData.isChecked ? 'Income' : formData.selectedCategory;
     const year = selectedDate.getFullYear();
     const month = selectedDate.toLocaleString('en-US', { month: 'long' });
     dispatch(
@@ -126,7 +127,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
         year: year.toString(),
         month: month,
         type: type,
-        category: formData.selectedCategory,
+        category: category,
         comment: formData.comment,
         sum: formData.sum,
       }),
