@@ -158,7 +158,7 @@ const HomeTab = () => {
                         category={category}
                         comment={comment}
                         sum={sum}
-                        toggleEditModal={toggleEditTransactionModal}
+                        handleEditBtn={handleEditButton}
                         handleDeleteBtn={handleButtonDelete}
                       />
                     }
