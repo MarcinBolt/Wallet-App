@@ -32,6 +32,7 @@ const ModalLogout = ({ toggleModal }) => {
 
   const handleUserLogout = ev => {
     ev.preventDefault;
+    toggleModal();
     dispatch(logOut());
   };
 

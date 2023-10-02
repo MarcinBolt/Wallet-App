@@ -10,6 +10,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import Logo from '../Logo/Logo.jsx';
 import CustomButton from '../CustomButton/CustomButton.jsx';
 import { useNavigate } from 'react-router-dom';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -164,7 +165,7 @@ const RegisterForm = () => {
                 paddingBottom: '0px',
                 marginTop: '0px',
                 marginBottom: '0px',
-                height: '80px',
+                height: '50px',
 
                 fieldset: {
                   borderRadius: 0,
@@ -217,6 +218,16 @@ const RegisterForm = () => {
                 span: { color: 'grey.400', fontFamily: 'var(--font-primary)', lineHeight: 1 },
               }}
             />
+
+            <PasswordStrengthBar
+              password={formik.values.password}
+              shortScoreWord="Password strength"
+              scoreWords={['Weak', 'Weak', 'Good', 'Very Good', 'Strong']}
+              style={{
+                width: '100%',
+              }}
+            />
+
             <LockIcon
               sx={{
                 position: 'absolute',
