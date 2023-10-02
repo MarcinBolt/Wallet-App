@@ -3,13 +3,13 @@
   max-width: 1280px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 0 20px;
 
   @media screen and (min-width: 768px) {
-    padding: 0 32px;
+    padding: 0 32px 0 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 0 16px;
+    padding: 0 16px 0 16px;
   }
 }
