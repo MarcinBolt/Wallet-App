@@ -1,0 +1,13 @@
+.container_input {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+  }
+
+  .form {
+    border-radius: 20px; 
+  }  
+
+  .container_form {
+    border-radius: 20px;
+  }
