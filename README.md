@@ -1,4 +1,4 @@
-# Wallet App by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
+# Wallet App 1.0 by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
 
 
 
@@ -53,7 +53,7 @@
 
 ---
 
-### Edit Transaction Page Income / Expense
+### Edit Transaction Page
 ![editTransaction-tablet-desktop](./imgReadme/editTransaction-tablet-desktop.jpg)
 
 ---
@@ -87,14 +87,11 @@
 ### Edit Transaction Page 
 ![editTransaction-tablet-desktop](./imgReadme//edittransaction-tablet-desktop.jpg)
 
----
-
-### User Panel
-
----
+--- 
 
 ### Logout Page
 ![logout-desktop](./imgReadme/logout-desktop.jpg)
+
 ---
 
 ## General Information
@@ -136,6 +133,7 @@ Other:
 - LocalStorage: For storing certain data on the client side, such as tokens.
 - Squoosh: For image optimization and compression.
 - IcoMoon.io: For creating and managing custom icon fonts.
+- ESBuild: Used for JavaScript bundling.
 
 ---
 
@@ -162,16 +160,17 @@ List the ready features here:
 ---
 
 ## Setup
-## For Developers:
-### To install all dependencies from package.json use: npm install
-### To run front-end App: <font color="orange">npm run dev</font>
-### To run back-end server.js: <font color="orange">npm run start:dev</font>
+1. Clone the repository: `git clone https://github.com/<your-username>/wallet-app.git`
+2. Navigate to the project folder: `cd wallet-app`
+3. Install the dependencies for both the server and client:
+   - Server: `cd server && npm install`
+   - Client: `cd client && npm install`
+4. Create a `.env` file in the server folder and configure your environment variables (e.g., MongoDB connection URI, JWT secret).
+5. Start the server and client:
+   - Server: `npm start` or `node server.js`
+   - Client: `npm start`
+6. Access the application in your web browser at `http://localhost:3000`.
 
-**Node.js and npm Versions:**
-- Node.js Version: v18.17.1
-- npm Version: 9.8.0
-
-## Install all packages included in package.json: npm install
 
 **Installed Packages:**
 
@@ -205,17 +204,33 @@ npm run deploy
 ---
 
 ## Project status
-The project is:completed
+The project has been completed, but there is always space to improve it .
 
 ---
 
 ## Acknowledgements
 - This project as mentioned is the concluding phase of the training - Thanks to Team 5 and Go IT
 
+- [React](https://reactjs.org/): JavaScript library for building user interfaces.
+- [Node.js](https://nodejs.org/): JavaScript runtime environment for server-side development.
+- [MongoDB](https://www.mongodb.com/): NoSQL database for storing data.
+- [Express.js](https://expressjs.com/): Web framework for Node.js.
+- [JWT](https://jwt.io/): JSON Web Tokens for user authentication.
+- [Material-UI](https://material-ui.com/): UI framework for React applications.
+- [Chart.js](https://www.chartjs.org/): JavaScript library for creating charts.
+- [Formik](https://formik.org/): Form library for React applications.
+- [Yup](https://github.com/jquense/yup): JavaScript schema validation library.
+- [React Router](https://reactrouter.com/): Routing library for React applications.
+- [Swagger UI](https://swagger.io/tools/swagger-ui/): Tool for generating API documentation.
+- [React-Toastify](https://fkhadra.github.io/react-toastify/): Library for displaying notifications.
+- [Axios](https://axios-http.com/): HTTP client for making requests.
+- [Squoosh](https://squoosh.app/): Image optimization and compression tool.
+- [IcoMoon.io](https://icomoon.io/): Custom icon font generator.
+
+
 ---
 
 ## Contact
-Created by Hi5 Team 
-welcome to contact us! 
+Created by Hi5 Team -feel free to contact us! 
 # 
  <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
