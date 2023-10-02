@@ -29,6 +29,7 @@
 ### Edit Transaction Page Income / Expense
 
 ### Statistics
+![statistic-mbile](./imgReadme/statistic-mobile.jpg)
 
 ### Logout Page
 ![logout-mobile](./imgReadme/hi5-logo.png)
@@ -59,7 +60,7 @@
 ---
 
 ### Statistics
-
+![statstic-tablet](./imgReadme/statistick-tablet.jpg)
 ---
 
 ### Logout Page
