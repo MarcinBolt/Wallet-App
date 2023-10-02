@@ -220,7 +220,7 @@ const RegisterForm = () => {
 
             <PasswordStrengthBar
               password={formik.values.password}
-              shortScoreWord="Strength password"
+              shortScoreWord="Password strength"
               scoreWords={['Weak', 'Weak', 'Good', 'Very Good', 'Strong']}
               style={{
                 width: '100%',
