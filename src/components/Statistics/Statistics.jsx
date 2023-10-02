@@ -49,15 +49,16 @@ const Statistics = () => {
   });
 
   const [categoriesSums, setCategoriesSums] = useState([
-    { name: 'Main expanses', sum: 0 },
-    { name: `Products`, sum: 0 },
-    { name: `Car`, sum: 0 },
-    { name: 'Self care', sum: 0 },
-    { name: 'Child care', sum: 0 },
-    { name: 'Household products', sum: 0 },
-    { name: `Education`, sum: 0 },
-    { name: `Leisure`, sum: 0 },
-    { name: 'Other expenses', sum: 0 },
+    { color: '#FED057', name: 'Main expanses', sum: 0 },
+      { color: '#FFD8D0', name: `Products`, sum: 0 },
+      { color: '#FD9498', name: `Car`, sum: 0 },
+      { color: '#C5BAFF', name: 'Self care', sum: 0 },
+      { color: '#6E78E8', name: 'Child care', sum: 0 },
+      { color: '#4A56E2', name: 'Household products', sum: 0 },
+      { color: '#81E1FF', name: `Education`, sum: 0 },
+      { color: '#24CCA7', name: `Leisure`, sum: 0 },
+      { color: '#00AD84', name: 'Entertainment', sum: 0 },
+      { color: '#008263', name: 'Other expenses', sum: 0 },
   ]);
 
   const [incomesSum, setIncomesSum] = useState(0);
