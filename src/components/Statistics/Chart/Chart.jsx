@@ -11,7 +11,6 @@ import formatMoney from '../../../utils/formatMoney';
 ChartJS.register(Tooltip, Legend, ArcElement);
 
 const Chart = ({ categoriesSums, balance }) => {
- 
   const positiveSums = [...categoriesSums].filter(s => s.sum > 0);
   const actualLabels = positiveSums.map(c => c.category);
   const actualSums = positiveSums.map(c => c.sum);
@@ -72,7 +71,7 @@ const Chart = ({ categoriesSums, balance }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(
-        `₴ ${formatMoney(balance)}`,
+        `₴ ${formatMoney(balance / 100)}`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       );

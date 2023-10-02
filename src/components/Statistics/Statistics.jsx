@@ -102,14 +102,14 @@ const Statistics = () => {
 
     const incomes = [...transactions]
       .filter(t => t.type === 'Income')
-      .reduce((acc, e) => acc + e.sum, 0);
+      .reduce((acc, e) => acc + e.sum * 100, 0);
 
     setIncomesSum(prev => (prev = incomes));
     if ([...transactions].filter(t => t.type !== 'Income').length > 0) {
       const expenses = [...transactions].filter(t => t.type !== 'Income');
 
-      const expeSum = [...expenses].reduce((acc, e) => acc + e.sum, 0);
-      const newBalance = incomes - expeSum;
+      const expeSum = [...expenses].reduce((acc, e) => acc + e.sum * 100, 0);
+      const newBalance = (incomes - expeSum);
       setBalance(prev => (prev = newBalance));
       const expByCategories = [...expenses].forEach(t => {
         const categoryName = t.category;
@@ -120,7 +120,7 @@ const Statistics = () => {
         );
         if (categoryIndex !== -1) {
           setCategoriesSums(
-            prev => (prev = [...categoriesSums, (categoriesSums[categoryIndex].sum += amount)]),
+            prev => (prev = [...categoriesSums, (categoriesSums[categoryIndex].sum += amount*100)]),
           );
         }
       });

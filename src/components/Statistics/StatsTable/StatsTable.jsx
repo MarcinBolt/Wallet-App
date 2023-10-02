@@ -92,7 +92,7 @@ const StatsTable = ({ categoriesSums }) => {
                   padding: '2px 20px 0 0',
                 }}
               >
-                {formatMoney(row.sum)}
+                {formatMoney(row.sum / 100)}
               </TableCell>
             </TableRow>
           ))}
