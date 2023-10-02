@@ -23,7 +23,7 @@ const StatsSelectList = ({ yearFilter, monthFilter, months, years, handleFilter 
         name="year"
         id="yearSelect"
         className={css.select}
-        onChange={() => handleFilter()}
+        onChange={handleFilter}
         value={yearFilter}
       >
         {years.map(y => (

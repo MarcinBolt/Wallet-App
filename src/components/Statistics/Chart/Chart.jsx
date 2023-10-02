@@ -10,9 +10,7 @@ import Loader from '../../Loader/Loader';
 ChartJS.register(Tooltip, Legend, ArcElement);
 
 const Chart = ({ categoriesSums, incomes, expenses }) => {
-  console.log('categoriesSums w chart:', categoriesSums);
-  console.log('incomes w chart:', incomes);
-  console.log('expenses w chart:', expenses);
+ 
   const positiveSums = [...categoriesSums].filter(s => s.sum > 0);
   const actualLabels = positiveSums.map(c => c.category);
   const actualSums = positiveSums.map(c => c.sum);
@@ -73,8 +71,7 @@ const Chart = ({ categoriesSums, incomes, expenses }) => {
       ctx.fillStyle = 'black';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      // ctx.fillTex`t({'₴'}{balance}, chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y);
-      ctx.fillText(
+        ctx.fillText(
         `₴ ${actualBalance}`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,

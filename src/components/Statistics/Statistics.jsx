@@ -5,55 +5,24 @@ import StatsTable from './StatsTable/StatsTable';
 import css from './Statistics.module.css';
 import TitleComponent from '../TitleComponent/Title.Component.jsx';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   selectTransactions,
   selectTransactionsIsLoading,
-  selectTransactionsError,
   selectTransactionsFilterYear,
   selectTransactionsFilterMonth,
 } from '../../redux/selectors.js';
-import { fetchTransactions } from '../../redux/transactions/transactions.operations.js';
-import transactions from './StatsTable/transactions';
-import transactionsAll from './StatsTable/transactions';
 
 const Statistics = () => {
   // const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchTransactions());
-  // }, [dispatch]);
-  // useEffect(() => {
-  //   const fetchTransactionsBeforeComponentMount = async () => {
-  //     try {
-  //       const response = await dispatch(fetchTransactions());
-  //       const transactionsAll = response.payload.transactions;
-  //       console.log(transactionsAll);
-  //       getUserFinancesStatsFromTransactions(
-  //         filterTransactionsByYearAndMonth(transactionsAll, selectedYear, selectedMonth),
-  //       );
-  //     } catch (e) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-
-  //   fetchTransactionsBeforeComponentMount();
-  // }, []);
-  const transactions = transactionsAll;
+  const transactions = useSelector(selectTransactions);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
-  //**** tymaczas, dopóki nie ma HomeTab */
-  // const transactions = useSelector(selectTransactions);
-  //console.log(transactions);
-  // const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
-  // const isTransactionsError = useSelector(selectTransactionsError);
-  // const balance = useSelector(selectTransactionsBalance);
-  // const incomesSum = useSelector(selectTransactionsIncomesSum);
-  // const expansesSum = useSelector(selectTransactionsExpanseSum);
+
+  const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
+
   const actualYear = useSelector(selectTransactionsFilterYear);
   const actualMonth = useSelector(selectTransactionsFilterMonth);
-  // console.log(transactions);
-  // console.log(actualYear);
-  // console.log(actualMonth);
 
   /******* obsługa filtra **/
   const [selectedFilter, setSelectedFilter] = useState({
@@ -108,7 +77,7 @@ const Statistics = () => {
     );
   };
   const refreshTransactions = (transactions, year, month) =>
-    [...transactions].filter(t => t.year === year && t.month === month);
+    [...transactions].filter(t => t.year == year && t.month == month);
 
   const refreshSums = transactions => {
     setExpensesSum(0);
@@ -125,11 +94,11 @@ const Statistics = () => {
       { color: '#00AD84', name: 'Entertainment', sum: 0 },
       { color: '#008263', name: 'Other expenses', sum: 0 },
     ]);
-    console.log(transactions);
+
     const incomes = [...transactions]
       .filter(t => t.type === 'Income')
       .reduce((acc, e) => acc + e.sum, 0);
-    console.log('incomes:', incomes);
+
     setIncomesSum(incomes);
     if ([...transactions].filter(t => t.type !== 'Income').length > 0) {
       const expenses = [...transactions].filter(t => t.type !== 'Income');
@@ -146,12 +115,9 @@ const Statistics = () => {
           setCategoriesSums([...categoriesSums, (categoriesSums[categoryIndex].sum += amount)]);
         }
       });
-      console.log('expByCategories:', expByCategories);
+
       return setExpensesSum(expeSum);
     }
-
-    console.log(`categoriesSums:`, categoriesSums);
-    console.log(`expenseeSum:`, expensesSum);
   };
 
   // const setFilterChoiceMonths = (transactions, year) => {
@@ -180,51 +146,40 @@ const Statistics = () => {
       selectedFilter.year,
       selectedFilter.month,
     );
-    console.log(`newFilterTransactions:`, newFilterTransactions);
     setFilteredTransactions(newFilterTransactions);
-    console.log('categoriesSums before update:', categoriesSums);
-    refreshSums(newFilterTransactions);
-    console.log('useEffect:');
-    console.log(`categoriesSums:`, categoriesSums);
-    console.log(`expensesSum:`, expensesSum);
-    console.log('categoriesSums after update:', categoriesSums);
+    refreshSums(filteredTransactions);
   }, [transactions, selectedFilter.year, selectedFilter.month]);
 
   const handleFilterChange = ev => {
-    ev.preventValue;
-    console.log('selctedfiler przed wyborem:', selectedFilter);
-    console.log('transactions:', transactions);
     const { name, value } = ev.target;
     setSelectedFilter({ ...selectedFilter, [name]: value });
-    console.log('selctedfiler po wyborze:', selectedFilter);
   };
 
   return (
     <>
-      {/* {isTransactionsLoading && isTransactionsError && ( */}
-      {/* {!isTransactionsLoading && ( */}
-      <div className={css.wrapper}>
-        <div className={css.container}>
-          <TitleComponent text="Statistics" />
-          <div className={css.chart}>
-            <Chart categoriesSums={categoriesSums} incomes={incomesSum} expenses={expensesSum} />
+      {!isTransactionsLoading && (
+        <div className={css.wrapper}>
+          <div className={css.container}>
+            <TitleComponent text="Statistics" />
+            <div className={css.chart}>
+              <Chart categoriesSums={categoriesSums} incomes={incomesSum} expenses={expensesSum} />
+            </div>
+          </div>
+          <div className={css.statisticsContainer}>
+            <StatsSelectList
+              yearFilter={selectedFilter.year}
+              monthFilter={selectedFilter.month}
+              months={filterChoice.months}
+              years={filterChoice.years}
+              handleFilter={handleFilterChange}
+            />
+            <StatsTable categoriesSums={categoriesSums} />
+            <div className={css.statisticsSummary}>
+              <StatsSummary incomes={incomesSum} expenses={expensesSum} />
+            </div>
           </div>
         </div>
-        <div className={css.statisticsContainer}>
-          <StatsSelectList
-            yearFilter={selectedFilter.year}
-            monthFilter={selectedFilter.month}
-            months={filterChoice.months}
-            years={filterChoice.years}
-            handleFilter={handleFilterChange}
-          />
-          <StatsTable categoriesSums={categoriesSums} />
-          <div className={css.statisticsSummary}>
-            <StatsSummary incomes={incomesSum} expenses={expensesSum} />
-          </div>
-        </div>
-      </div>
-      {/* )} */}
+      )}
     </>
   );
 };

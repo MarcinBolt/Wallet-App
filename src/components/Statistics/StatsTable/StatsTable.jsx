@@ -100,7 +100,3 @@ const StatsTable = ({ categoriesSums }) => {
 };
 
 export default StatsTable;
-
-{
-  /* <span style={{backgroundColor: row.color}} className={css.span}></span> */
-}
