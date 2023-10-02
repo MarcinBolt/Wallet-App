@@ -16,7 +16,9 @@
 * [Contact](#contact)
 
 ---
-# Site version on Mobile/Tablet/Desktop
+# Site 
+## Version for Mobile/Tablet/Desktop
+#
 ## Mobile
 ### Login and Register Page 
 ![register-mobile](./imgReadme/login-register-mobile.jpg)
@@ -32,7 +34,7 @@
 ![statistic-mbile](./imgReadme/statistic-mobile.jpg)
 
 ### Logout Page
-![logout-mobile](./imgReadme/hi5-logo.png)
+
 ---
 
 ## Tablet
@@ -64,7 +66,7 @@
 ---
 
 ### Logout Page
-![logout-mobile](./imgReadme/hi5-logo.png)
+
 
 ---
 
@@ -93,7 +95,7 @@
 
 ---
 
-### Edit Transaction Page Income / Expense
+### Edit Transaction Page 
 ![editTransaction-tablet-desktop](./imgReadme//edittransaction-tablet-desktop.jpg)
 
 ---
@@ -226,5 +228,4 @@ The project is:completed
 Created by Hi5 Team 
 welcome to contact us! 
 # 
-## ![logo](./imgReadme/hi5-logo.png)
-
+ <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
