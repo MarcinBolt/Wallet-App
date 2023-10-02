@@ -1,5 +1,6 @@
 .nav {
   height: fit-content;
+  padding-block: 10px;
 }
 
 .link {
@@ -32,9 +33,6 @@
   opacity: 100%;
 }
 
-
-
-
 .list {
   width: 280px;
   display: flex;
@@ -44,18 +42,19 @@
   list-style-position: outside;
   margin: 0;
   padding: 0;
-  padding-inline-start: 0;
+  
   @media screen and (min-width: 768px) {
     width: 100%;
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
-    gap: 21px;
+    gap: 15px;
   }
 }
 
 .span {
   display: none;
+  
   @media screen and (min-width: 768px) {
     display: inline-flex;
   }

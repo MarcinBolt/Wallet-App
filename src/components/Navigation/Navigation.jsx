@@ -9,7 +9,7 @@ const Navigation = () => {
   const { mobile } = mediaQueries;
 
   return (
-    <nav>
+    <nav className={css.nav}>
       <ul className={css.list}>
         <li className={css.listItem}>
           <NavLink className={css.link} to="/dashboard" end>
