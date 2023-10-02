@@ -20,14 +20,16 @@
 ## Version for Mobile/Tablet/Desktop
 #
 ## Mobile
-### Login and Register Page 
+### Login and Register Pages 
 ![register-mobile](./imgReadme/login-register-mobile.jpg)
-### Balance and Currency Page
+### Balance and Currency Pages
 ![balance-carrency-mobile](./imgReadme/currency-balance-tablet.jpg)
 
-### Add Transaction Page 
+### Add Transaction Pages 
+![add-transaction](./imgReadme/add-transaction-mobile.jpg)
 
 ### Edit Transaction Page 
+![edit-transaction](./imgReadme/edit-transaction-mobile.jpg)
 
 ### Statistics
 ![statistic-mbile](./imgReadme/statistic-mobile.jpg)
@@ -38,12 +40,12 @@
 ---
 
 ## Tablet
-### Login and Register Page 
+### Login and Register Pages
 ![login-registration-tablet](./imgReadme/login-registration-tablet.jpg)
 
 ---
 
-### Balance, Currency and Statistic Page
+### Balance, Currency and Statistic Pages
 ![balance-currency-statistic](./imgReadme/balance-currency-statistic-%20tablet.jpg)
 
 ---
@@ -75,7 +77,7 @@
 ![login-desktop](./imgReadme/login-desktop.jpg)
 ---
 
-### Balance, Curency and Statistic Page
+### Balance, Curency and Statistic Pages
 ![balance-currency-desktop](./imgReadme/currency-balance-desktop.jpg)
 ---
 
