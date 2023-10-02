@@ -90,10 +90,10 @@ const transactionsSlice = createSlice({
       .addCase(deleteTransactionById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.transactions.findIndex(
-          transaction => transaction.id === action.payload.transaction.id,
+        const filteredTransactions = [...state.transactions].filter(
+          transaction => transaction._id !== action.payload.transaction.id,
         );
-        state.transactions.splice(index, 1);
+        state.transactions = filteredTransactions;
       })
       .addCase(updateTransactionById.fulfilled, (state, action) => {
         state.isLoading = false;
