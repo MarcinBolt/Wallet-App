@@ -1,23 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {
-  addTransaction,
-  updateTransactionById,
-} from '../../redux/transactions/transactions.operations';
+import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
 import Notiflix from 'notiflix';
 import { toast } from 'react-toastify';
-import css from './ModalEditTransaction.module.css';
 import closeIcon from '../../assets/icons/close.svg';
 import calendaricon from '../../assets/icons/calendaricon.svg';
 import SelectIcon from '../../assets/icons/select-category.svg';
-//import { selectTransactionId, selectTransactions } from '../../redux/selectors';
+import { selectTransactionId, selectTransactions } from '../../redux/selectors';
+import css from './ModalEditTransaction.module.css';
 
 import {
   Switch,
@@ -33,26 +28,39 @@ import {
 import { selectTransactionsCategories } from '../../redux/selectors';
 import TitleComponent from '../TitleComponent/Title.Component';
 
-const ModalEditTransaction = (/*{ toggleModal }*/) => {
+const ModalEditTransaction = ({ toggleModal }) => {
   const dispatch = useDispatch();
-  // const transactions = useSelector(selectTransactions);
-  // const transactionId = useSelector(selectTransactionId);
+  const transactions = useSelector(selectTransactions);
+  const transactionId = useSelector(selectTransactionId);
+  const transactionDetailsTab = [...transactions].filter(t => t._id === transactionId);
+  const transactionDetails = transactionDetailsTab[0];
   const categories = useSelector(selectTransactionsCategories);
   const modalBackdropRef = useRef(null);
-  const transactionId = '651835a97ba2b5e94db74dc8';
   const [formData, setFormData] = useState({
     isIncome: false,
-    date: new Date(),
-    year: '2023',
-    month: 'September',
-    category: 'Car',
-    comment: 'Ajtam ajtam',
-    sum: '2343',
+    date: '',
+    year: '',
+    month: '',
+    category: '',
+    comment: '',
+    sum: '',
   });
-  /* tymczasowa funkcja - przyjdzie z propsów*/
-  const toggleModal = () => {
-    console.log('modal do zamknięcia');
-  };
+
+  useEffect(() => {
+    setFormData(
+      prev =>
+        (prev = {
+          isIncome: transactionDetails.type === 'Income' ? true : false,
+          date: transactionDetails.date,
+          year: '',
+          month: '',
+          category: transactionDetails.category,
+          comment: transactionDetails.comment,
+          sum: transactionDetails.sum,
+        }),
+    );
+  }, []);
+
   useEffect(() => {
     const handleEscapeKey = ev => {
       if (ev.key === 'Escape') {
@@ -93,6 +101,7 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
     const type = formData.isChecked ? 'Income' : 'Expense';
     const year = formData.date.getFullYear();
     const month = formData.date.toLocaleString('en-US', { month: 'long' });
+    toggleModal();
     dispatch(
       updateTransactionById({
         id: transactionId,
@@ -105,16 +114,6 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
         sum: formData.sum,
       }),
     );
-    console.log(`${transactionId}, {
-      date: ${formData.date},
-      year: ${year.toString()},
-      month: ${month},
-      type: ${type},
-      category: ${formData.category},
-      comment: ${formData.comment},
-      sum: ${formData.sum},
-    }`);
-    toggleModal();
   };
 
   return (
@@ -125,6 +124,7 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
             position: 'absolute',
             top: '16px',
             right: '16px',
+            display: 'flex',
             width: '16px',
             height: '16px',
             border: '0px solid #000',
@@ -168,7 +168,7 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
               }}
               id="category"
               name="category"
-              value={formData.selectedCategory}
+              value={formData.category}
               onChange={handleInputChange}
               IconComponent={() => (
                 <img
@@ -233,7 +233,6 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
                     style: {
                       height: 32,
                       width: 181,
-      
                     },
                   }}
                   input={true}
@@ -263,15 +262,15 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
                             </IconButton>
                           </InputAdornment>
                         ),
-                        classes:{underline:css.Underline,}
+                        classes: { underline: css.Underline },
                       }}
                     />
                   )}
                 />
               </div>
             </div>
-            <ErrorMessage name="amount" component="div" />
-            <ErrorMessage name="dateValue" component="div" />
+            <ErrorMessage name="sum" component="div" />
+            <ErrorMessage name="date" component="div" />
             <label className="label">
               <div className={css.textareaWrapper}>
                 <Field
@@ -291,7 +290,7 @@ const ModalEditTransaction = (/*{ toggleModal }*/) => {
           <CustomButton
             type="button"
             color="primary"
-            content="ADD"
+            content="confirm"
             onClick={handleUpdateTransaction}
           ></CustomButton>
           <CustomButton

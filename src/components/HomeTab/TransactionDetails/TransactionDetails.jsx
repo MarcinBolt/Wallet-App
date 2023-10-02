@@ -12,10 +12,9 @@ const TransactionDetails = ({
   category,
   comment,
   sum,
-  toggleEditModal,
+  handleEditBtn,
   handleDeleteBtn,
 }) => {
-  
   const dispatch = useDispatch();
   const selectedTransactionId = useSelector(selectTransactionId);
 
@@ -80,7 +79,7 @@ const TransactionDetails = ({
         </li>
         <li key={`$[id]operations`} className={css.transactionDetailsItem}>
           <DeleteButton id={id} type="button" onClick={() => handleDeleteBtn(id)} />
-          <EditButton onClick={toggleEditModal} />
+          <EditButton id={id} onClick={() => handleEditBtn(id)} />
         </li>
       </ul>
     </>
