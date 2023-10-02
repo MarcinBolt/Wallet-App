@@ -30,9 +30,9 @@ const Header = () => {
           >
             <Logo />
           </div>
-          <div className={css.userWrapper} onClick={handleModalLogout}>
+          <div className={css.userWrapper}>
             <p className={css.text}>{name}</p>
-            <div className={css.exitWrapper}>
+            <div className={css.exitWrapper} onClick={handleModalLogout}>
               <SvgIcon
                 viewBox="0 0 18 18"
                 sx={{

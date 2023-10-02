@@ -23,7 +23,7 @@ import {
   updateIsModalEditTransactionOpen,
 } from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
-import TempBalance from '../temporary components/TempBalance';
+import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
 import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
@@ -42,7 +42,7 @@ const HomeTab = () => {
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  }, [dispatch]);
+  }, []);
 
   const formatDate = date => {
     const dateObject = new Date(date);
@@ -82,15 +82,15 @@ const HomeTab = () => {
     dispatch(deleteTransactionById(id));
   };
 
-  // const handleSelectChange = ev => {
-  //   ev.preventDefault;
-  //   dispatch(updateSelectedCategory(ev.target.value));
-  // };
+  const handleSelectChange = ev => {
+    ev.preventDefault;
+    dispatch(updateSelectedCategory(ev.target.value));
+  };
 
   return (
     <>
       <div className={css.homeTabWrapper}>
-        <Media query={mobile} render={() => <TempBalance />} />
+        <Media query={mobile} render={() => <Balance />} />
         <div className={css.homeTab}>
           <ul className={css.tableBody}>
             <li key={`${userName}header`} className={css.tableItem}>
@@ -129,7 +129,7 @@ const HomeTab = () => {
                 <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
               </ul>
             </li>
-            {transactions.length === 0 && <h1>No transactions yet</h1>}
+            {transactions.length === 0 && <h3>No transactions yet</h3>}
             {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
             {transactions.length > 0 &&
               sortedToNewestTransactions.map(({ _id, date, type, category, comment, sum }) => (
@@ -150,26 +150,26 @@ const HomeTab = () => {
               ))}
           </ul>
         </div>
-        {isModalEditTransactionOpen && (
-          <div>
-            <p>Edit Transaction Modal is open</p>
-            <p>TransactionId {selectedTransactionId}</p>
-
-            <button type="button" onClick={toggleEditTransactionModal}>
-              Close EditTransaction
-            </button>
-          </div>
-        )}
-        {isAddTransactionModalOpen && (
-          <div>
-            <p>Add Transaction Modal is open</p>
-            <button type="button" onClick={toggleAddTransactionModal}>
-              Close AddTransaction
-            </button>
-          </div>
-        )}
-        <ButtonAddTransaction onClick={toggleAddTransactionModal} />
+          <ButtonAddTransaction onClick={toggleAddTransactionModal} className={css.buttonAddTransaction} />
       </div>
+      {isModalEditTransactionOpen && (
+        <div>
+          <p>Edit Transaction Modal is open</p>
+          <p>TransactionId {selectedTransactionId}</p>
+
+          <button type="button" onClick={toggleEditTransactionModal}>
+            Close EditTransaction
+          </button>
+        </div>
+      )}
+      {isAddTransactionModalOpen && (
+        <div>
+          <p>Add Transaction Modal is open</p>
+          <button type="button" onClick={toggleAddTransactionModal}>
+            Close AddTransaction
+          </button>
+        </div>
+      )}
     </>
   );
 };

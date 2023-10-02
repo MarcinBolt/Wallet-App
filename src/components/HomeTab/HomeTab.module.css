@@ -4,11 +4,12 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 32px;
+  gap: 20px;
   width: 100%;
   height: 100%;
+
   @media screen and (min-width: 768px) {
-    gap: 0;
+    gap: 10px;
   }
   @media screen and (min-width: 1280px) {
     align-items: end;
@@ -20,12 +21,14 @@
   height: 60vh;
   overflow-y: scroll;
   overflow-x: hidden;
+
   @media screen and (min-width: 768px) {
     align-items: end;
-    padding-top: 0;
-    height: 75vh;
     border-top-right-radius: var(--radius-widget-transactions-header);
     border-top-left-radius: var(--radius-widget-transactions-header);
+  }
+  @media screen and (min-width: 1280px) {
+    height: 75vh;
   }
 }
 
@@ -148,4 +151,20 @@
 .select option:checked,
 .select option:hover {
   cursor: pointer;
+}
+
+.buttonAddTransaction {
+  /* position: absolute; */
+  /* position: sticky; */
+  /* display: flex;
+  justify-content: flex-end; */
+  /* right: 20px;
+  bottom: 20px; */
+  z-index: 5;
+  /* padding-bottom: 20px; */
+
+  @media screen and (min-width: 768px) {
+    right: 40px;
+    bottom: 40px;
+  }
 }

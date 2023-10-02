@@ -17,7 +17,7 @@
 .dashboardTabletWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 32px 0 20px;
+  padding: 20px 0 20px;
 }
 
 .navBalTabletWrapper {
@@ -25,7 +25,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
-  gap: 32px;
 }
 
 .currTabletWrapper {
@@ -44,10 +43,10 @@
 .navBalCurrDesktopWrapper {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 10px;
   justify-content: flex-start;
   align-items: start;
-  padding-top: 40px;
+  padding-top: 20px;
   height: calc(100% - 80px);
   width: 37%;
 }
@@ -56,7 +55,7 @@
   flex-grow: 1;
   display: flex;
   justify-content: end;
-  padding-top: 32px;
+  padding-top: 20px;
 }
 
 .desktopSeparator {

@@ -8,6 +8,7 @@
   min-width: 280px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-widget-mobile-transaction-details);
+
   @media screen and (min-width: 768px) {
     display: grid;
     grid-template-columns: 14% 8% 22% 25% 13% 18%;
@@ -36,9 +37,10 @@
   align-items: center;
   padding: 0 20px;
   height: 47px;
+
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
-    gap: 8px;
+    gap: 20px;
     justify-content: left;
     height: 54px;
   }
@@ -85,25 +87,28 @@
   }
 }
 
+.comment {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 5px;
+  height: fit-content;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  transition: all 200ms ease-in-out;
+}
+
 .transactionDetailsItem:nth-child(4):hover {
   @media screen and (min-width: 768px) {
     z-index: 2;
     overflow: visible;
+    text-wrap: wrap;
     text-align: left;
-  }
-}
-
-.comment {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: fit-content;
-transition: all 250ms ease-in-out;
-}
-
-.comment:hover {
-  @media screen and (min-width: 768px) {
-       background-color: var(--color-bg-primary);
+    border: 1px black;
+    padding: 10px;
+    hight: 100%;
+    width: 180%;
+    background-color: var(--color-bg-primary);
   }
 }
 
