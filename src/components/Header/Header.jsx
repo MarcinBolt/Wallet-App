@@ -1,7 +1,6 @@
 import SvgIcon from '@mui/material/SvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectGlobalIsModalLogoutOpen, selectUserFirstName } from '../../redux/selectors';
-import { openModalLogout } from '../../redux/auth/auth.slice'; 
+import { selectGlobalIsModalLogoutOpen, selectUserFirstName } from '../../redux/selectors'; 
 import Logo from '../Logo/Logo';
 import PageContainer from '../PageContainer/PageContainer '; 
 import { updateIsUserPanelOpen } from '../../redux/global/global.slice';
@@ -11,7 +10,7 @@ import ModalLogout from '../ModalLogout/ModalLogout';
 
 const Header = () => {
   const name = useSelector(selectUserFirstName);
-  // const name = 'Damian'
+   //   const name = 'Damian'
   const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ const Header = () => {
           </div>
           <div className={css.userWrapper}>
             <p className={css.text} onClick={handleUserPanelOpen}>{name}</p>
-            <div className={css.exitWrapper} onClick={handleModalLogoutOpen}>
+            <div className={css.exitWrapper} onClick={handleModalLogout}>
               <SvgIcon
                 viewBox="0 0 18 18"
                 sx={{

@@ -43,7 +43,9 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
       handleClose();
     }
   };
-  
+  //const userName = 'Damian';
+  //const userEmail = 'dd@dd.net';
+
   const userName = useAuth().userName;
   const userEmail = useAuth().userEmail; 
   const IsUserPanelOpen = useAuth().isUserPanelOpen;
@@ -51,6 +53,7 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
   return ( 
     <>
     <Box  
+      boxShadow={10}
       sx={{ 
         borderRadius: 5,
         flexDirection: 'column',
@@ -62,6 +65,7 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
         position: 'fixed',
         top: 0, 
         right: 0, 
+        
         ...IsUserPanelOpen && {
           //  right: 0, 
         },  
@@ -105,9 +109,9 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
           </DialogTitle>
           <UserPanelModal></UserPanelModal> 
         </Dialog> 
-  </Collapse> 
+      </Collapse> 
   
-  </Box>
+    </Box>
 
       <Dialog 
           sx={{
