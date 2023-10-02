@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import css from './Chart.module.css';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from 'chart.js';
@@ -6,16 +6,16 @@ import { selectTransactionsIsLoading } from '../../../redux/selectors';
 import { useSelector } from 'react-redux';
 import TitleComponent from '../../TitleComponent/Title.Component';
 import Loader from '../../Loader/Loader';
+import formatMoney from '../../../utils/formatMoney';
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
-const Chart = ({ categoriesSums, incomes, expenses }) => {
+const Chart = ({ categoriesSums, balance }) => {
  
   const positiveSums = [...categoriesSums].filter(s => s.sum > 0);
   const actualLabels = positiveSums.map(c => c.category);
   const actualSums = positiveSums.map(c => c.sum);
   const actualColors = positiveSums.map(c => c.color);
-  const actualBalance = incomes - expenses;
 
   const data = {
     labels: actualLabels,
@@ -71,8 +71,8 @@ const Chart = ({ categoriesSums, incomes, expenses }) => {
       ctx.fillStyle = 'black';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-        ctx.fillText(
-        `₴ ${actualBalance}`,
+      ctx.fillText(
+        `₴ ${formatMoney(balance)}`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       );

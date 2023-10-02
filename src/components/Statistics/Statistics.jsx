@@ -50,19 +50,20 @@ const Statistics = () => {
 
   const [categoriesSums, setCategoriesSums] = useState([
     { color: '#FED057', name: 'Main expanses', sum: 0 },
-      { color: '#FFD8D0', name: `Products`, sum: 0 },
-      { color: '#FD9498', name: `Car`, sum: 0 },
-      { color: '#C5BAFF', name: 'Self care', sum: 0 },
-      { color: '#6E78E8', name: 'Child care', sum: 0 },
-      { color: '#4A56E2', name: 'Household products', sum: 0 },
-      { color: '#81E1FF', name: `Education`, sum: 0 },
-      { color: '#24CCA7', name: `Leisure`, sum: 0 },
-      { color: '#00AD84', name: 'Entertainment', sum: 0 },
-      { color: '#008263', name: 'Other expenses', sum: 0 },
+    { color: '#FFD8D0', name: `Products`, sum: 0 },
+    { color: '#FD9498', name: `Car`, sum: 0 },
+    { color: '#C5BAFF', name: 'Self care', sum: 0 },
+    { color: '#6E78E8', name: 'Child care', sum: 0 },
+    { color: '#4A56E2', name: 'Household products', sum: 0 },
+    { color: '#81E1FF', name: `Education`, sum: 0 },
+    { color: '#24CCA7', name: `Leisure`, sum: 0 },
+    { color: '#00AD84', name: 'Entertainment', sum: 0 },
+    { color: '#008263', name: 'Other expenses', sum: 0 },
   ]);
 
   const [incomesSum, setIncomesSum] = useState(0);
   const [expensesSum, setExpensesSum] = useState(0);
+  const [balance, setBalance] = useState(0);
 
   const setFilterChoiceYears = transactions => {
     setFilterChoice(
@@ -81,30 +82,35 @@ const Statistics = () => {
     [...transactions].filter(t => t.year == year && t.month == month);
 
   const refreshSums = transactions => {
-    setExpensesSum(0);
-    setIncomesSum(0);
-    setCategoriesSums([
-      { color: '#FED057', name: 'Main expanses', sum: 0 },
-      { color: '#FFD8D0', name: `Products`, sum: 0 },
-      { color: '#FD9498', name: `Car`, sum: 0 },
-      { color: '#C5BAFF', name: 'Self care', sum: 0 },
-      { color: '#6E78E8', name: 'Child care', sum: 0 },
-      { color: '#4A56E2', name: 'Household products', sum: 0 },
-      { color: '#81E1FF', name: `Education`, sum: 0 },
-      { color: '#24CCA7', name: `Leisure`, sum: 0 },
-      { color: '#00AD84', name: 'Entertainment', sum: 0 },
-      { color: '#008263', name: 'Other expenses', sum: 0 },
-    ]);
+    setExpensesSum(prev => (prev = 0));
+    setIncomesSum(prev => (prev = 0));
+    setCategoriesSums(
+      prev =>
+        (prev = [
+          { color: '#FED057', name: 'Main expanses', sum: 0 },
+          { color: '#FFD8D0', name: `Products`, sum: 0 },
+          { color: '#FD9498', name: `Car`, sum: 0 },
+          { color: '#C5BAFF', name: 'Self care', sum: 0 },
+          { color: '#6E78E8', name: 'Child care', sum: 0 },
+          { color: '#4A56E2', name: 'Household products', sum: 0 },
+          { color: '#81E1FF', name: `Education`, sum: 0 },
+          { color: '#24CCA7', name: `Leisure`, sum: 0 },
+          { color: '#00AD84', name: 'Entertainment', sum: 0 },
+          { color: '#008263', name: 'Other expenses', sum: 0 },
+        ]),
+    );
 
     const incomes = [...transactions]
       .filter(t => t.type === 'Income')
       .reduce((acc, e) => acc + e.sum, 0);
 
-    setIncomesSum(incomes);
+    setIncomesSum(prev => (prev = incomes));
     if ([...transactions].filter(t => t.type !== 'Income').length > 0) {
       const expenses = [...transactions].filter(t => t.type !== 'Income');
 
       const expeSum = [...expenses].reduce((acc, e) => acc + e.sum, 0);
+      const newBalance = incomes - expeSum;
+      setBalance(prev => (prev = newBalance));
       const expByCategories = [...expenses].forEach(t => {
         const categoryName = t.category;
         const amount = t.sum;
@@ -113,11 +119,13 @@ const Statistics = () => {
           category => category.name === categoryName,
         );
         if (categoryIndex !== -1) {
-          setCategoriesSums([...categoriesSums, (categoriesSums[categoryIndex].sum += amount)]);
+          setCategoriesSums(
+            prev => (prev = [...categoriesSums, (categoriesSums[categoryIndex].sum += amount)]),
+          );
         }
       });
 
-      return setExpensesSum(expeSum);
+      setExpensesSum(prev => (prev = expeSum));
     }
   };
 
@@ -147,13 +155,13 @@ const Statistics = () => {
       selectedFilter.year,
       selectedFilter.month,
     );
-    setFilteredTransactions(newFilterTransactions);
-    refreshSums(filteredTransactions);
+    setFilteredTransactions(prev => (prev = newFilterTransactions));
+    refreshSums(newFilterTransactions);
   }, [transactions, selectedFilter.year, selectedFilter.month]);
 
   const handleFilterChange = ev => {
     const { name, value } = ev.target;
-    setSelectedFilter({ ...selectedFilter, [name]: value });
+    setSelectedFilter(prev => (prev = { ...selectedFilter, [name]: value }));
   };
 
   return (
@@ -163,7 +171,7 @@ const Statistics = () => {
           <div className={css.container}>
             <TitleComponent text="Statistics" />
             <div className={css.chart}>
-              <Chart categoriesSums={categoriesSums} incomes={incomesSum} expenses={expensesSum} />
+              <Chart categoriesSums={categoriesSums} balance={balance} />
             </div>
           </div>
           <div className={css.statisticsContainer}>
