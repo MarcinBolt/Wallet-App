@@ -1,4 +1,4 @@
-export function formatMoney(num) {
+const formatMoney = (num) => {
   const arr = Number(num)
     .toLocaleString('en', {
       useGrouping: true,
@@ -21,3 +21,5 @@ export function formatMoney(num) {
   arr[arr.length - 1] = arr[arr.length - 1] + '.00';
   return arr.join(' ');
 }
+
+export default formatMoney

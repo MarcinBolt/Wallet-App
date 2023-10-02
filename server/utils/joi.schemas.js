@@ -47,6 +47,7 @@ export const transactionBodySchema = Joi.object({
       'Leisure',
       'Other expenses',
       'Entertainment',
+      'Income',
     )
     .required(),
   comment: Joi.string(),
