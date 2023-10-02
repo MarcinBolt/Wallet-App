@@ -6,7 +6,7 @@ const StatsSummary = ({ expenses, incomes }) => {
   return (
     <>
       <div className={css.summaryContainer}>
-        <p className={css.statsSummary}>Sum:</p>
+        <p className={css.statsSummary}>Expanses:</p>
         {/* <p className={css.expenses}>{expansesSum}</p> */}
         <p className={css.expenses}>{formatMoney(expenses)}</p>
       </div>

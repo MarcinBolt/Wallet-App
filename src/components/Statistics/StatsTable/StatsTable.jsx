@@ -33,6 +33,9 @@ const StatsTable = ({ categoriesSums }) => {
               fontFamily: 'var(--font-secondary-bold)',
               padding: '16px 20px 15px 20px',
             },
+            '&:first-of-type td': {
+              padding: '16px 0px 15px 0px',
+            },
           }}
         >
           <TableRow
@@ -46,7 +49,7 @@ const StatsTable = ({ categoriesSums }) => {
               Category
             </TableCell>
             <TableCell align="right" className={css.headerSum}>
-              Expenses
+              Subtotals
             </TableCell>
           </TableRow>
         </TableHead>
