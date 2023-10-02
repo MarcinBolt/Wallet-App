@@ -146,6 +146,8 @@ Other:
 - React-Media: For adapting the interface to different screen resolutions.
 - React-Toastify: For displaying error notifications and other messages to the user.
 - LocalStorage: For storing certain data on the client side, such as tokens.
+- Squoosh: For image optimization and compression.
+- IcoMoon.io: For creating and managing custom icon fonts.
 
 ---
 
