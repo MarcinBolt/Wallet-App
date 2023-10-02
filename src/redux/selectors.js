@@ -5,8 +5,6 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectAuthError = state => state.auth.error;
 
-export const selectCurrency = state => state.currency.currencies;
-
 export const selectTransactions = state => state.transactions.transactions;
 export const selectTransactionsFilteredByCategory = state => state.transactions.transactionsFilteredByCategory;
 export const selectTransactionsFilteredByYearAndMonth = state => state.transactions.transactionsFilteredByYearAndMonth;

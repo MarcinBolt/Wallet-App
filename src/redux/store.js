@@ -6,7 +6,6 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist
 import { transactionsReducer } from './transactions/transactions.slice.js';
 import { authReducer } from './auth/auth.slice.js';
 import { globalReducer } from './global/global.slice.js';
-import { currencyReducer } from './currency/currency.slice.js';
 
 const authPersistConfig = {
   key: 'auth',
@@ -18,7 +17,6 @@ export const store = configureStore({
   reducer: {
     global: globalReducer,
     transactions: transactionsReducer,
-    currency: currencyReducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware: getDefaultMiddleware =>
