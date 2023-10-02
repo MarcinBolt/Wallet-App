@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Media from 'react-media';
 import {
-  selectGlobalIsModalAddTransactionOpen,
   selectTransactions,
   selectUserFirstName,
   selectTransactionsIsLoading,
   selectTransactionsError,
-  selectGlobalIsModalEditTransactionOpen,
   selectTransactionId,
   // selectTransactionsCategories,
   selectTransactionsFilterCategory,
@@ -26,18 +24,21 @@ import { mediaQueries } from '../../utils/constants';
 import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
 import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
+import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
   const transactionsAll = useSelector(selectTransactions);
-  const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
-  const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
   const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
   const isTransactionsError = useSelector(selectTransactionsError);
   const selectedTransactionId = useSelector(selectTransactionId);
   // const categories = useSelector(selectTransactionsCategories);
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
+
+  const [isModalEditTransactionOpen, setIsModalEditTransactionOpen] = useState();
+  const [isAddTransactionModalOpen, setIsAddTransactionModalOpen] = useState();
+
   const { mobile } = mediaQueries;
 
   // useEffect(() => {
@@ -77,24 +78,22 @@ const HomeTab = () => {
     sortedToNewestTransactions(transactions);
   }, [transactions]);
 
-  const toggleAddTransactionModal = ev => {
-    ev.preventDefault;
-    dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
+  const toggleAddTransactionModal = () => {
+    setIsAddTransactionModalOpen(!isAddTransactionModalOpen);
   };
 
-  const toggleEditTransactionModal = ev => {
-    ev.preventDefault;
-    dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
+  const toggleEditTransactionModal = () => {
+    setIsModalEditTransactionOpen(!isModalEditTransactionOpen);
   };
 
   const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
 
-  const handleSelectChange = ev => {
-    ev.preventDefault;
-    dispatch(updateSelectedCategory(ev.target.value));
-  };
+  // const handleSelectChange = ev => {
+  //   ev.preventDefault;
+  //   dispatch(updateSelectedCategory(ev.target.value));
+  // };
 
   return (
     <>
@@ -176,14 +175,7 @@ const HomeTab = () => {
           </button>
         </div>
       )}
-      {isAddTransactionModalOpen && (
-        <div>
-          <p>Add Transaction Modal is open</p>
-          <button type="button" onClick={toggleAddTransactionModal}>
-            Close AddTransaction
-          </button>
-        </div>
-      )}
+      {isAddTransactionModalOpen && <ModalAddTransaction toggleModal={toggleAddTransactionModal} />}
     </>
   );
 };
