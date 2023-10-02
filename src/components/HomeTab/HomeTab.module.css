@@ -23,12 +23,14 @@
   overflow-x: hidden;
 
   @media screen and (min-width: 768px) {
+    min-height: 50vh;
+    height: 100%;
     align-items: end;
     border-top-right-radius: var(--radius-widget-transactions-header);
     border-top-left-radius: var(--radius-widget-transactions-header);
   }
   @media screen and (min-width: 1280px) {
-    height: 75vh;
+    height: 60vh;
   }
 }
 

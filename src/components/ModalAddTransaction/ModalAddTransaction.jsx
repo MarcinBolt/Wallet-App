@@ -200,44 +200,44 @@ const ModalAddTransaction = ({ toggleModal }) => {
           </ThemeProvider>
           <div className={formData.isChecked ? css.text_defaultRight : css.text_pink}>Expense</div>
         </div>
-        {formData.isChecked ? null : (
-          <FormControl className={css.selectContainer}>
-            <Select
-              sx={{
-                borderWidth: 0,
-                boxShadow: 'none',
-                height: '32px',
-                textAlign: 'left',
-                borderBottom: '1px solid var(--color-border-bottom-btn-form)',
-                '&:hover': { borderBottom: '1px solid var(--color-border-bottom-btn-form)' },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  border: 'none !important',
-                },
-                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  border: 'none !important',
-                },
-                '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
-                  border: 'none !important',
-                },
-              }}
-              id="selectedCategory"
-              name="selectedCategory"
-              value={formData.selectedCategory}
-              onChange={e =>
-                setFormData({
-                  ...formData,
-                  selectedCategory: e.target.value,
-                })
-              }
-            >
-              {categories.map(option => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
+
+        <FormControl className={css.selectContainer}>
+          <Select
+            sx={{
+              borderWidth: 0,
+              boxShadow: 'none',
+              height: '32px',
+              textAlign: 'left',
+              borderBottom: '1px solid var(--color-border-bottom-btn-form)',
+              '&:hover': { borderBottom: '1px solid var(--color-border-bottom-btn-form)' },
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: 'none !important',
+              },
+              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: 'none !important',
+              },
+              '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
+                border: 'none !important',
+              },
+            }}
+            id="selectedCategory"
+            name="selectedCategory"
+            value={formData.selectedCategory}
+            disabled={formData.isChecked ? true : false}
+            onChange={e =>
+              setFormData({
+                ...formData,
+                selectedCategory: e.target.value,
+              })
+            }
+          >
+            {categories.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Formik
           initialValues={formData}
@@ -264,6 +264,9 @@ const ModalAddTransaction = ({ toggleModal }) => {
                     style: {
                       paddingBottom: 0,
                       height: 32,
+                      paddingLeft: '5px',
+                      paddingTop: '0px',
+                      textAlign: 'center',
                     },
                   }}
                   as={TextField}
@@ -278,13 +281,12 @@ const ModalAddTransaction = ({ toggleModal }) => {
                 />
               </div>
               <div className={css.inputWrapper}>
-                {/* Pole daty */}
                 <Datetime
                   className={css.tableDatetime}
                   inputProps={{
                     style: {
                       height: 36,
-                      width: 181,
+                      width: '175px',              
                     },
                   }}
                   input={true}
@@ -298,7 +300,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                       variant="standard"
                       id="dateValue"
                       name="dateValue"
-                      fullWidth
+                      // fullWidth
                       onChange={e => {
                         const inputDate = e.target.value;
                         setFormData({

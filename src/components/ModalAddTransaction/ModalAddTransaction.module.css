@@ -13,6 +13,8 @@
   align-items: center;
   background-color: var(--color-bg-backdrop);
   backdrop-filter: blur(1px);
+    overflow: hidden;
+position: fixed;
   @media screen and (min-width: 768px) {
     width: 100vw;
     height: 100vh;
@@ -60,8 +62,7 @@
   padding-left: 15px;
   width: 280px;
   height: 32px;
-  font-family: 'Circe';
-  font-weight: 400;
+  font-family: var(--font-secondary);
   font-size: 18px;
   line-height: 27px;
   resize: none;
@@ -85,7 +86,7 @@
 .tableDatetime {
   position: absolute;
   border-collapse: collapse;
-  z-index: 999;
+  z-index: 5;
   /* top: 298px; */
   padding: 0;
   margin: 0;
@@ -98,8 +99,12 @@
   margin: 0;
 }
 .calendarIcon {
-  margin-right: 10px;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding-bottom: 5px;
+  /* margin-bottom: 10px; */
 }
 
 .selectCategoryIcon {
