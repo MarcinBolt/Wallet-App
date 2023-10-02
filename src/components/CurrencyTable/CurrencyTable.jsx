@@ -42,12 +42,29 @@ const CurrencyTable = () => {
         <div className={css.table}>
           <TableContainer
             component={Paper}
-            sx={{ width: [280, 336, 393], height: [174, 182, 331], borderRadius: '30px' }}
+            sx={{
+              width: [280, 336, 393],
+              height: '174px',
+              borderRadius: '30px',
+              marginTop: '20px',
+              '@media screen and (min-width: 1280px)': {
+                height: '182px',
+              },
+              '@media screen and (min-width: 1280px)': {
+                height: '300px',
+              },
+            }}
           >
             <Table
               sx={{
                 width: [280, 336, 393],
-                height: [174, 182, 331],
+                height: '174px',
+                '@media screen and (min-width: 1280px)': {
+                  height: '182px',
+                },
+                '@media screen and (min-width: 1280px)': {
+                  height: '300px',
+                },
               }}
               aria-label="currency table"
             >
