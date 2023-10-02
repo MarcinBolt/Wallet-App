@@ -29,7 +29,9 @@ const Balance = () => {
   return (
     <div className={css.balanceContainer}>
       <Box className={css.balanceText}>Your Balance</Box>
-      <Box className={css.balanceBox}>₴ <span className={css.balanceSum}>{formatMoney(balance)}</span></Box>
+      <Box className={css.balanceBox}>
+        PLN<span className={css.balanceSum}>{formatMoney(balance)}</span>
+      </Box>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 .balanceContainer {
   width: 280px;
   background-color: var(--color-bg-secondary);
@@ -29,15 +28,14 @@
 }
 .balanceBox {
   font-size: 30px;
-  font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--font-primary-bold);
   display: flex;
   align-items: start;
 }
 
 .balanceSum {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary-bold);
   font-size: 30px;
-  font-weight: 700;
   padding-left: 12px;
-  }
+  letter-spacing: 2px;
+}
