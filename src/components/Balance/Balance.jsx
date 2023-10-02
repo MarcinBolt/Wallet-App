@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBalance, selectTransactions } from '../../redux/selectors';
 import { updateBalance } from '../../redux/transactions/transactions.slice';
-import { formatMoney } from '../../utils/formatMoney';
+import formatMoney from '../../utils/formatMoney';
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
 import css from './Balance.module.css';
 
