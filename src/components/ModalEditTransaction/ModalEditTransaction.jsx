@@ -98,8 +98,8 @@ const ModalEditTransaction = ({ toggleModal }) => {
 
   const handleUpdateTransaction = ev => {
     ev.preventDefault;
-    const type = formData.isChecked ? 'Income' : 'Expense';
-    const category = formData.isChecked ? 'Income' : formData.selectedCategory;
+    const type = formData.isIncome ? 'Income' : 'Expense';
+    const category = formData.isIncome ? 'Income' : formData.selectedCategory;
     const year = formData.date.getFullYear();
     const month = formData.date.toLocaleString('en-US', { month: 'long' });
     toggleModal();
@@ -193,7 +193,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
           validationSchema={Yup.object({
             sum: Yup.number().required('Required').positive('Must be a positive number'),
             dateValue: Yup.date().required('Required'),
-            selectedCategory: Yup.string().when('isChecked', {
+            selectedCategory: Yup.string().when('isIncome', {
               is: false,
               then: Yup.string().required('Required'),
               otherwise: Yup.string(),
@@ -213,6 +213,8 @@ const ModalEditTransaction = ({ toggleModal }) => {
                     style: {
                       paddingBottom: 0,
                       height: 32,
+                      textAlign: "center",
+                      paddingTop: 0,
                     },
                   }}
                   as={TextField}
