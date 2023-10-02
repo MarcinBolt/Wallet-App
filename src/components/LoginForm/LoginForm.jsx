@@ -9,7 +9,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../Logo/Logo.jsx';
 import CustomButton from '../CustomButton/CustomButton.jsx';
 import { useNavigate } from 'react-router-dom';
-import ModalVerifyAgain from '../ModalVerifyAgain/ModalVerifyAgain.jsx';
+// import ModalVerifyAgain from '../ModalVerifyAgain/ModalVerifyAgain.jsx';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -24,7 +24,8 @@ const validationSchema = Yup.object().shape({
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
+  // const [isModalVerifyAgainOpen, setIsModalVerifyAgainOpen] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -41,6 +42,10 @@ const LoginForm = () => {
       formik.resetForm();
     },
   });
+
+  // handleModalVerifyAgain = () => {
+  //   setIsModalVerifyAgainOpen(!isModalVerifyAgainOpen);
+  // };
 
   return (
     <>
@@ -223,12 +228,12 @@ const LoginForm = () => {
             content="REGISTER"
             onClick={() => navigate('/register', { replace: false })}
           />
-          <button type="button" className={css.verifyLink} onClick={toggleVerifyAgain}>
-            <h3>I want to verify my account</h3>
-          </button>
         </div>
       </form>
-      {isVerificationModalOpen && <ModalVerifyAgain toggleModal={toggleVerifyAgain} />}
+      {/* <button type="button" className={css.verifyLink} onClick={toggleVerifyAgain}>
+        <h3>I want to verify my account</h3>
+      </button> */}
+      {/* {isModalVerifyAgainOpen && <ModalVerifyAgain toggleModal={handleModalVerifyAgain} />} */}
     </>
   );
 };
