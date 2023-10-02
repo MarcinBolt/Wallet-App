@@ -41,7 +41,7 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className={css.link} to="statistics" activeClassName="linkActive">
+          <NavLink className={css.link} to="statistics">
             <SvgIcon
               viewBox="0 0 38 38"
               color="inherit"
