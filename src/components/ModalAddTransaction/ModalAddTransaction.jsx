@@ -208,12 +208,16 @@ const ModalAddTransaction = (/*{ toggleModal }*/) => {
                 boxShadow: 'none',
                 height: '32px',
                 textAlign: 'left',
-                '&:hover': { borderWidth: 0 },
-                '.MuiOutlinedInput-notchedOutline': {
-                  border: 0,
-                  borderBottom: 1,
-                  borderRadius: 0,
-                  borderColor: 'none',
+                borderBottom: '1px solid var(--color-border-bottom-btn-form)',
+                '&:hover': { borderBottom: '1px solid var(--color-border-bottom-btn-form)' },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: 'none !important',
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  border: 'none !important',
+                },
+                '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
+                  border: 'none !important',
                 },
               }}
               id="selectedCategory"
@@ -281,6 +285,7 @@ const ModalAddTransaction = (/*{ toggleModal }*/) => {
                     style: {
                       height: 36,
                       width: 181,
+                     
                     },
                   }}
                   input={true}

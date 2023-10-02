@@ -67,6 +67,7 @@
   height: 32px;
   background-color: transparent;
   outline: none;
+  border-bottom: 1px solid var(--color-border-bottom-btn-form);
 }
 
 .inputWrapper {
@@ -123,7 +124,6 @@
 }
 .selectContainer {
   width: 280px;
-  border: 1px solid red;
 }
 
 .paddingButton {
@@ -213,4 +213,3 @@
   font-size: 16px;
   color: var(--color-text-disabled-btn-gray);
 }
-
