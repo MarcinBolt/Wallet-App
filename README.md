@@ -161,37 +161,36 @@ List the ready features here:
 
 ---
 
-## Setup
-1. Clone the repository: `git clone https://github.com/<your-username>/wallet-app.git`
-2. Navigate to the project folder: `cd wallet-app`
-3. Install the dependencies for both the server and client:
-   - Server: `cd server && npm install`
-   - Client: `cd client && npm install`
-4. Create a `.env` file in the server folder and configure your environment variables (e.g., MongoDB connection URI, JWT secret).
-5. Start the server and client:
-   - Server: `npm start` or `node server.js`
-   - Client: `npm start`
-6. Access the application in your web browser at `http://localhost:3000`.
+# Setup
+## For Developers:
+---
+## To install all dependencies from package.json use: npm install
 
+### To run front-end App: npm run dev
+### To run back-end server.js: npm run start:dev
+---
+### Node version: v18.17.1
+### npm version: 9.8.0
 
-**Installed Packages:**
+## Install all packages included in package.json: npm install
 
-- Vite: `npm create vite@latest // Use React + Vite / JavaScript + SWC (Speedy Web Compiler)`
-- modern-normalize: `npm install modern-normalize`
-- Prettier: `npm install --save-dev --save-exact prettier`
-- Redux Toolkit: `npm install @reduxjs/toolkit`
-- React-Redux: `npm install @reduxjs/toolkit react-redux`
-- redux-persist: `npm install redux-persist`
-- react-router-dom: `npm install react-router-dom`
-- react-password-strange-bar: `npm install react-password-strange-bar`
-- Firebase: `npm install -g firebase-tools`
-- dotenv: `npm install dotenv --save`
-- Axios: `npm install axios`
-- Mui/material: `npm install @mui/material @emotion/react @emotion/styled`
-- Notiflix: `npm i notiflix`
-
+Installed packages:
+Vite: npm create vite@latest // Use React + Vite / JavaScript + SWC (Speedy Web Compiler)
+modern-normalize: npm install modern-normalize
+Prettier: npm install --save-dev --save-exact prettier
+Redux Toolkit: npm install @reduxjs/toolkit
+React-Redux: npm install @reduxjs/toolkit react-redux
+redux-persist: npm install redux-persist
+react-router-dom: npm install react-router-dom
+Firebase: npm install -g firebase-tools
+dotenv: npm install dotenv --save
+Axios: npm install axios
+Mui/material: npm install @mui/material @emotion/react @emotion/styled
+Notiflix: npm i notiflix
 
 gh-pages: npm install gh-pages --save-dev
+
+---
 
 Deploying Vite App to GitHub Pages using gh-pages and script deploy:
 
@@ -200,7 +199,7 @@ Install gh-pages: npm install gh-pages --save-dev
 Add script in package.json:
 "scripts": { "deploy": "npm run build && gh-pages -d dist" },
 
-Run script to build and publish in gh-pages branch on github: 
+Run script to build and publish in gh-pages branch on GitHub: 
 npm run deploy
 
 ---
