@@ -26,9 +26,9 @@
 
 ### Currency Page
 
-### Add Transaction Page Income / Expense
+### Add Transaction Page 
 
-### Edit Transaction Page Income / Expense
+### Edit Transaction Page 
 
 ### Statistics
 ![statistic-mbile](./imgReadme/statistic-mobile.jpg)
