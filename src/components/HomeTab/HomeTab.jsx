@@ -40,9 +40,9 @@ const HomeTab = () => {
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
   const { mobile } = mediaQueries;
 
-  useEffect(() => {
-    dispatch(fetchTransactions());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchTransactions());
+  // }, []);
 
   const formatDate = date => {
     const dateObject = new Date(date);
@@ -53,7 +53,7 @@ const HomeTab = () => {
       (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
     return formattedDate;
   };
- 
+
   // const getTransactionsFilteredByCategory = (transactions, category) => {
   //   console.log(`category:`, category);
   //   return category === 'All' ? transactions : transactions.filter(t => t.category === category);
@@ -63,10 +63,19 @@ const HomeTab = () => {
   const transactions = transactionsAll;
 
   const userName = useSelector(selectUserFirstName);
-  const sortedToNewestTransactions =
-    transactions.length > 0
+  const sortedToNewestTransactions = transactions => {
+    return transactions.length > 0
       ? [...transactions].sort((a, b) => formatDate(b.date).localeCompare(formatDate(a.date)))
       : [];
+  };
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
+
+  useEffect(() => {
+    sortedToNewestTransactions(transactions);
+  }, [transactions]);
 
   const toggleAddTransactionModal = ev => {
     ev.preventDefault;
@@ -132,25 +141,30 @@ const HomeTab = () => {
             {transactions.length === 0 && <h3>No transactions yet</h3>}
             {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
             {transactions.length > 0 &&
-              sortedToNewestTransactions.map(({ _id, date, type, category, comment, sum }) => (
-                <li key={_id} className={css.tableItem}>
-                  {
-                    <TransactionDetails
-                      id={_id}
-                      date={date}
-                      type={type}
-                      category={category}
-                      comment={comment}
-                      sum={sum}
-                      toggleEditModal={toggleEditTransactionModal}
-                      handleDeleteBtn={handleButtonDelete}
-                    />
-                  }
-                </li>
-              ))}
+              sortedToNewestTransactions(transactions).map(
+                ({ _id, date, type, category, comment, sum }) => (
+                  <li key={_id} className={css.tableItem}>
+                    {
+                      <TransactionDetails
+                        id={_id}
+                        date={date}
+                        type={type}
+                        category={category}
+                        comment={comment}
+                        sum={sum}
+                        toggleEditModal={toggleEditTransactionModal}
+                        handleDeleteBtn={handleButtonDelete}
+                      />
+                    }
+                  </li>
+                ),
+              )}
           </ul>
         </div>
-          <ButtonAddTransaction onClick={toggleAddTransactionModal} className={css.buttonAddTransaction} />
+        <ButtonAddTransaction
+          onClick={toggleAddTransactionModal}
+          className={css.buttonAddTransaction}
+        />
       </div>
       {isModalEditTransactionOpen && (
         <div>
