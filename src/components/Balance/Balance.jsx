@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import css from './Balance.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBalance, selectTransactions } from '../../redux/selectors';
 import { updateBalance } from '../../redux/transactions/transactions.slice';
@@ -8,22 +8,19 @@ import { formatMoney } from '../../utils/formatMoney';
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
 
 const Balance = () => {
-  const dispatch = useDispatch();
-  const transactions = useSelector(selectTransactions);
-  const balance = useSelector(selectBalance);
+   const transactions = useSelector(selectTransactions);
+  const [balance, setBalance] = useState();
 
-  
-    useEffect(() => {
-      dispatch(fetchTransactions());
-      console.log(transactions)
-      dispatch(updateBalance(countBalance(transactions)))
-    }, []);
+  useEffect(() => {
+    countBalance(transactions);
+  }, []);
 
-    useEffect(() => {
-      dispatch(fetchTransactions());
-        }, []);
+  useEffect(() => {
+    countBalance(transactions);
+  }, [transactions]);
 
   const countBalance = transactions => {
+    console.log(transactions)
     const incomesSum = [...transactions].reduce((acc, transaction) => {
       if (transaction.type === 'Income') {
         acc + transaction.sum;
@@ -41,15 +38,8 @@ const Balance = () => {
     const newBalance = incomesSum - expensesSum;
     console.log('typeof balance from func:', typeof newBalance);
     console.log('balance from func:', newBalance);
-    return newBalance;
+    setBalance(prev => (prev = newBalance));
   };
-
-
-  useEffect(() => {
-    const actualBalance = countBalance(transactions);
-    console.log('typeof actualBalance:', typeof actualBalance);
-    dispatch(updateBalance(actualBalance));
-  }, [transactions]);
 
   console.log('typeof balance:', typeof balance);
 

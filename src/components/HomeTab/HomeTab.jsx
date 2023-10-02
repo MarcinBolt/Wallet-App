@@ -53,7 +53,7 @@ const HomeTab = () => {
       (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
     return formattedDate;
   };
- 
+
   // const getTransactionsFilteredByCategory = (transactions, category) => {
   //   console.log(`category:`, category);
   //   return category === 'All' ? transactions : transactions.filter(t => t.category === category);
@@ -68,6 +68,10 @@ const HomeTab = () => {
       ? [...transactions].sort((a, b) => formatDate(b.date).localeCompare(formatDate(a.date)))
       : [];
   };
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
 
   useEffect(() => {
     sortedToNewestTransactions(transactions);
@@ -157,7 +161,10 @@ const HomeTab = () => {
               )}
           </ul>
         </div>
-          <ButtonAddTransaction onClick={toggleAddTransactionModal} className={css.buttonAddTransaction} />
+        <ButtonAddTransaction
+          onClick={toggleAddTransactionModal}
+          className={css.buttonAddTransaction}
+        />
       </div>
       {isModalEditTransactionOpen && (
         <div>
