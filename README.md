@@ -32,12 +32,6 @@
 ### Statistics
 ![statistic-mbile](./imgReadme/statistic-mobile.jpg)
 
----
-
-### User Panel
-
----
-
 ### Logout Page
 ![logout-mobile](./imgReadme/logout-mobile.png)
 
@@ -65,7 +59,8 @@
 ---
 
 ### User Panel
-
+![userPanel1](./imgReadme/user-panel.jpg)
+![userPanel1](./imgReadme/update-delete-account.jpg)
 ---
 
 ## Desktop
