@@ -25,6 +25,7 @@ export const selectBalance = state => state.balance
 
 export const selectGlobalIsLoading = state => state.global.isLoading;
 export const selectGlobalIsModalLogoutOpen = state => state.global.isModalLogoutOpen;
+export const selectGlobalIsModalDeleteUserOpen = state => state.global.isModalDeleteUserOpen;
 export const selectGlobalIsModalAddTransactionOpen = state => state.global.isModalAddTransactionOpen;
 export const selectGlobalIsModalEditTransactionOpen = state => state.global.isModalEditTransactionOpen;
 export const selectGlobalIsListCategoriesOpen = state => state.global.isListCategoriesOpen;
