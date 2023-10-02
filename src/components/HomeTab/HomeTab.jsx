@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Media from 'react-media';
 import {
-  selectGlobalIsModalAddTransactionOpen,
   selectTransactions,
   selectUserFirstName,
   selectTransactionsIsLoading,
   selectTransactionsError,
-  selectGlobalIsModalEditTransactionOpen,
   selectTransactionId,
   // selectTransactionsCategories,
   selectTransactionsFilterCategory,
@@ -32,13 +30,15 @@ import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
 const HomeTab = () => {
   const dispatch = useDispatch();
   const transactionsAll = useSelector(selectTransactions);
-  const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
-  const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
   const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
   const isTransactionsError = useSelector(selectTransactionsError);
   const selectedTransactionId = useSelector(selectTransactionId);
   // const categories = useSelector(selectTransactionsCategories);
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
+
+  const [isModalEditTransactionOpen, setIsModalEditTransactionOpen] = useState();
+  const [isAddTransactionModalOpen, setIsAddTransactionModalOpen] = useState();
+
   const { mobile } = mediaQueries;
 
   useEffect(() => {
@@ -70,21 +70,21 @@ const HomeTab = () => {
       : [];
 
   const toggleAddTransactionModal = () => {
-    dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
+    setIsAddTransactionModalOpen(!isAddTransactionModalOpen);
   };
 
   const toggleEditTransactionModal = () => {
-    dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
+    setIsModalEditTransactionOpen(!isModalEditTransactionOpen);
   };
 
   const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
 
-  const handleSelectChange = ev => {
-    ev.preventDefault;
-    dispatch(updateSelectedCategory(ev.target.value));
-  };
+  // const handleSelectChange = ev => {
+  //   ev.preventDefault;
+  //   dispatch(updateSelectedCategory(ev.target.value));
+  // };
 
   return (
     <>
