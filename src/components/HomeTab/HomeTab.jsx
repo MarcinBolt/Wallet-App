@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Media from 'react-media';
 import {
-  selectGlobalIsModalAddTransactionOpen,
   selectTransactions,
   selectUserFirstName,
   selectTransactionsIsLoading,
   selectTransactionsError,
-  selectGlobalIsModalEditTransactionOpen,
   selectTransactionId,
   // selectTransactionsCategories,
   selectTransactionsFilterCategory,
@@ -26,23 +24,28 @@ import { mediaQueries } from '../../utils/constants';
 import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
 import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
+import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
+import { updateSelectedId } from '../../redux/transactions/transactions.slice';
+import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
   const transactionsAll = useSelector(selectTransactions);
-  const isModalEditTransactionOpen = useSelector(selectGlobalIsModalEditTransactionOpen);
-  const isAddTransactionModalOpen = useSelector(selectGlobalIsModalAddTransactionOpen);
   const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
   const isTransactionsError = useSelector(selectTransactionsError);
   const selectedTransactionId = useSelector(selectTransactionId);
   // const categories = useSelector(selectTransactionsCategories);
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
+
+  const [isModalEditTransactionOpen, setIsModalEditTransactionOpen] = useState();
+  const [isAddTransactionModalOpen, setIsAddTransactionModalOpen] = useState();
+
   const { mobile } = mediaQueries;
 
-  useEffect(() => {
-    dispatch(fetchTransactions());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchTransactions());
+  // }, []);
 
   const formatDate = date => {
     const dateObject = new Date(date);
@@ -53,7 +56,7 @@ const HomeTab = () => {
       (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
     return formattedDate;
   };
- 
+
   // const getTransactionsFilteredByCategory = (transactions, category) => {
   //   console.log(`category:`, category);
   //   return category === 'All' ? transactions : transactions.filter(t => t.category === category);
@@ -63,29 +66,41 @@ const HomeTab = () => {
   const transactions = transactionsAll;
 
   const userName = useSelector(selectUserFirstName);
-  const sortedToNewestTransactions =
-    transactions.length > 0
+  const sortedToNewestTransactions = transactions => {
+    return transactions.length > 0
       ? [...transactions].sort((a, b) => formatDate(b.date).localeCompare(formatDate(a.date)))
       : [];
-
-  const toggleAddTransactionModal = ev => {
-    ev.preventDefault;
-    dispatch(updateIsModalAddTransactionOpen(!isAddTransactionModalOpen));
   };
 
-  const toggleEditTransactionModal = ev => {
-    ev.preventDefault;
-    dispatch(updateIsModalEditTransactionOpen(!isModalEditTransactionOpen));
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
+
+  useEffect(() => {
+    sortedToNewestTransactions(transactions);
+  }, [transactions]);
+
+  const toggleAddTransactionModal = () => {
+    setIsAddTransactionModalOpen(!isAddTransactionModalOpen);
+  };
+
+  const toggleEditTransactionModal = () => {
+    setIsModalEditTransactionOpen(!isModalEditTransactionOpen);
+  };
+
+  const handleEditButton = id => {
+    dispatch(updateSelectedId(id));
+    toggleEditTransactionModal();
   };
 
   const handleButtonDelete = id => {
     dispatch(deleteTransactionById(id));
   };
 
-  const handleSelectChange = ev => {
-    ev.preventDefault;
-    dispatch(updateSelectedCategory(ev.target.value));
-  };
+  // const handleSelectChange = ev => {
+  //   ev.preventDefault;
+  //   dispatch(updateSelectedCategory(ev.target.value));
+  // };
 
   return (
     <>
@@ -132,44 +147,35 @@ const HomeTab = () => {
             {transactions.length === 0 && <h3>No transactions yet</h3>}
             {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
             {transactions.length > 0 &&
-              sortedToNewestTransactions.map(({ _id, date, type, category, comment, sum }) => (
-                <li key={_id} className={css.tableItem}>
-                  {
-                    <TransactionDetails
-                      id={_id}
-                      date={date}
-                      type={type}
-                      category={category}
-                      comment={comment}
-                      sum={sum}
-                      toggleEditModal={toggleEditTransactionModal}
-                      handleDeleteBtn={handleButtonDelete}
-                    />
-                  }
-                </li>
-              ))}
+              sortedToNewestTransactions(transactions).map(
+                ({ _id, date, type, category, comment, sum }) => (
+                  <li key={_id} className={css.tableItem}>
+                    {
+                      <TransactionDetails
+                        id={_id}
+                        date={date}
+                        type={type}
+                        category={category}
+                        comment={comment}
+                        sum={sum}
+                        handleEditBtn={handleEditButton}
+                        handleDeleteBtn={handleButtonDelete}
+                      />
+                    }
+                  </li>
+                ),
+              )}
           </ul>
         </div>
-          <ButtonAddTransaction onClick={toggleAddTransactionModal} className={css.buttonAddTransaction} />
+        <ButtonAddTransaction
+          onClick={toggleAddTransactionModal}
+          className={css.buttonAddTransaction}
+        />
       </div>
       {isModalEditTransactionOpen && (
-        <div>
-          <p>Edit Transaction Modal is open</p>
-          <p>TransactionId {selectedTransactionId}</p>
-
-          <button type="button" onClick={toggleEditTransactionModal}>
-            Close EditTransaction
-          </button>
-        </div>
+        <ModalEditTransaction toggleModal={toggleEditTransactionModal} />
       )}
-      {isAddTransactionModalOpen && (
-        <div>
-          <p>Add Transaction Modal is open</p>
-          <button type="button" onClick={toggleAddTransactionModal}>
-            Close AddTransaction
-          </button>
-        </div>
-      )}
+      {isAddTransactionModalOpen && <ModalAddTransaction toggleModal={toggleAddTransactionModal} />}
     </>
   );
 };

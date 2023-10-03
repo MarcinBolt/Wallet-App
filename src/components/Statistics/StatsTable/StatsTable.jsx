@@ -7,48 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import css from './StatsTable.module.css';
+import formatMoney from '../../../utils/formatMoney';
 
-function createData(color, category, sum) {
-  return { color, category, sum };
-}
+const StatsTable = ({ categoriesSums }) => {
+  const positiveSums = [...categoriesSums].filter(c => c.sum > 0);
 
-const bgColor = [
-  '#FED057',
-  '#FFD8D0',
-  '#FD9498',
-  '#C5BAFF',
-  '#6E78E8',
-  '#4A56E2',
-  '#81E1FF',
-  '#24CCA7',
-  '#00AD84',
-];
-const labels = [
-  'Main expanses',
-  'Products',
-  'Car',
-  'Self care',
-  'Child care',
-  'Household products',
-  'Education',
-  'Leisure',
-  'Other expenses',
-];
-const data = [120, 19, 35, 5, 15, 33, 45, 20, 11];
-
-const rows = [
-  createData('var(--color-category-main)', 'Main expenses', 120),
-  createData('var(--color-category-products)', 'Products', 19),
-  createData('var(--color-category-car)', 'Car', 35),
-  createData('var(--color-category-selfcare)', 'Self care', 5),
-  createData('var(--color-category-childcare)', 'Child care', 15),
-  createData('var(--color-category-household)', 'Household products', 67890),
-  createData('var(--color-category-education)', 'Education', 45),
-  createData('var(--color-category-Leisure)', 'Leisure', 20),
-  createData('var(--color-category-other)', 'Other expenses', 11000),
-];
-
-const StatsTable = () => {
   return (
     <TableContainer
       className={css.tableContainer}
@@ -70,6 +33,9 @@ const StatsTable = () => {
               fontFamily: 'var(--font-secondary-bold)',
               padding: '16px 20px 15px 20px',
             },
+            '&:first-of-type td': {
+              padding: '16px 0px 15px 0px',
+            },
           }}
         >
           <TableRow
@@ -83,12 +49,12 @@ const StatsTable = () => {
               Category
             </TableCell>
             <TableCell align="right" className={css.headerSum}>
-              Sum
+              Subtotals
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {positiveSums.map(row => (
             <TableRow key={row.category}>
               <TableCell
                 component="th"
@@ -116,7 +82,7 @@ const StatsTable = () => {
                   }}
                   className={css.span}
                 ></span>
-                {row.category}
+                {row.name}
               </TableCell>
               <TableCell
                 align="right"
@@ -126,7 +92,7 @@ const StatsTable = () => {
                   padding: '2px 20px 0 0',
                 }}
               >
-                {row.sum}
+                {formatMoney(row.sum)}
               </TableCell>
             </TableRow>
           ))}
@@ -137,7 +103,3 @@ const StatsTable = () => {
 };
 
 export default StatsTable;
-
-{
-  /* <span style={{backgroundColor: row.color}} className={css.span}></span> */
-}
