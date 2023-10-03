@@ -8,12 +8,12 @@ const StatsSummary = ({ expenses, incomes }) => {
       <div className={css.summaryContainer}>
         <p className={css.statsSummary}>Expanses:</p>
         {/* <p className={css.expenses}>{expansesSum}</p> */}
-        <p className={css.expenses}>{formatMoney(expenses / 100)}</p>
+        <p className={css.expenses}>{formatMoney(expenses)}</p>
       </div>
       <div className={css.summaryContainer}>
         <p className={css.statsSummary}>Income:</p>
         {/* <p className={css.income}>{incomesSum}</p> */}
-        <p className={css.income}>{formatMoney(incomes / 100)}</p>
+        <p className={css.income}>{formatMoney(incomes)}</p>
       </div>
     </>
   );

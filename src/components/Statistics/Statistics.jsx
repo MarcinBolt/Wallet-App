@@ -49,7 +49,7 @@ const Statistics = () => {
   });
 
   const [categoriesSums, setCategoriesSums] = useState([
-    { color: '#FED057', name: 'Main expanses', sum: 0 },
+    { color: '#FED057', name: 'Main expenses', sum: 0 },
     { color: '#FFD8D0', name: `Products`, sum: 0 },
     { color: '#FD9498', name: `Car`, sum: 0 },
     { color: '#C5BAFF', name: 'Self care', sum: 0 },
@@ -78,56 +78,56 @@ const Statistics = () => {
         }),
     );
   };
+
   const refreshTransactions = (transactions, year, month) =>
     [...transactions].filter(t => t.year == year && t.month == month);
 
-  const refreshSums = transactions => {
-    setExpensesSum(prev => (prev = 0));
-    setIncomesSum(prev => (prev = 0));
-    setBalance(prev => (prev = 0));
-    setCategoriesSums(
-      prev =>
-        (prev = [
-          { color: '#FED057', name: 'Main expanses', sum: 0 },
-          { color: '#FFD8D0', name: `Products`, sum: 0 },
-          { color: '#FD9498', name: `Car`, sum: 0 },
-          { color: '#C5BAFF', name: 'Self care', sum: 0 },
-          { color: '#6E78E8', name: 'Child care', sum: 0 },
-          { color: '#4A56E2', name: 'Household products', sum: 0 },
-          { color: '#81E1FF', name: `Education`, sum: 0 },
-          { color: '#24CCA7', name: `Leisure`, sum: 0 },
-          { color: '#00AD84', name: 'Entertainment', sum: 0 },
-          { color: '#008263', name: 'Other expenses', sum: 0 },
-        ]),
-    );
-
-    const incomes = [...transactions]
+  const refreshBalance = transactions => {
+    const inc = [...transactions]
       .filter(t => t.type === 'Income')
-      .reduce((acc, e) => acc + e.sum * 100, 0);
+      .reduce((acc, t) => {
+        return (acc * 100 + t.sum * 100) / 100;
+      }, 0);
+    const exp = [...transactions]
+      .filter(t => t.type === 'Expense')
+      .reduce((acc, e) => {
+        return (acc * 100 + e.sum * 100) / 100;
+      }, 0);
+    const bal = (inc * 100 - exp * 100) / 100;
+    setIncomesSum(prev => (prev = inc));
+    console.log('incomesSUm:', incomesSum);
+    setExpensesSum(prev => (prev = exp));
+    console.log('expensesSums:', expensesSum);
+    setBalance(prev => (prev = bal));
+    console.log('balance:', balance);
+  };
 
-    setIncomesSum(prev => (prev = incomes));
-    if ([...transactions].filter(t => t.type !== 'Income').length > 0) {
-      const expenses = [...transactions].filter(t => t.type !== 'Income');
-      const expeSum = [...expenses].reduce((acc, e) => acc + e.sum * 100, 0);
-      const newBalance = incomes - expeSum;
-      const expByCategories = [...expenses].forEach(t => {
-        const categoryName = t.category;
-        const amount = t.sum;
-        const updatedCategories = [...categoriesSums];
-        const categoryIndex = updatedCategories.findIndex(
-          category => category.name === categoryName,
-        );
-        if (categoryIndex !== -1) {
-          setCategoriesSums(
-            prev =>
-              (prev = [...categoriesSums, (categoriesSums[categoryIndex].sum += amount * 100)]),
-          );
-        }
-      });
+  const transactionsReducer = (transactions, category) => {
+    return [...transactions]
+      .filter(t => t.category === category)
+      .reduce((acc, t) => {
+        return (acc * 100 + t.sum * 100) / 100;
+      }, 0);
+  };
 
-      setBalance(prev => (prev = newBalance));
-      setExpensesSum(prev => (prev = expeSum));
-    }
+  const refreshCategoriesSum = transactions => {
+    const newCategoriesSums = [
+      { color: '#FED057', name: 'Main expenses', sum: 0 },
+      { color: '#FFD8D0', name: `Products`, sum: 0 },
+      { color: '#FD9498', name: `Car`, sum: 0 },
+      { color: '#C5BAFF', name: 'Self care', sum: 0 },
+      { color: '#6E78E8', name: 'Child care', sum: 0 },
+      { color: '#4A56E2', name: 'Household products', sum: 0 },
+      { color: '#81E1FF', name: `Education`, sum: 0 },
+      { color: '#24CCA7', name: `Leisure`, sum: 0 },
+      { color: '#00AD84', name: 'Entertainment', sum: 0 },
+      { color: '#008263', name: 'Other expenses', sum: 0 },
+    ];
+    const refreshedCategoriesSums = newCategoriesSums.map(cS => ({
+      ...cS,
+      sum: transactionsReducer(transactions, cS.name),
+    }));
+    setCategoriesSums(prev => (prev = refreshedCategoriesSums));
   };
 
   // const setFilterChoiceMonths = (transactions, year) => {
@@ -151,14 +151,21 @@ const Statistics = () => {
   }, [transactions]);
 
   useEffect(() => {
-    const newFilterTransactions = refreshTransactions(
-      transactions,
-      selectedFilter.year,
-      selectedFilter.month,
+    setFilteredTransactions(
+      prev => (prev = refreshTransactions(transactions, selectedFilter.year, selectedFilter.month)),
     );
-    setFilteredTransactions(prev => (prev = newFilterTransactions));
-    refreshSums(newFilterTransactions);
-  }, [transactions, selectedFilter.year, selectedFilter.month]);
+    console.log('filtered transactions:', filteredTransactions);
+  }, [selectedFilter.year, selectedFilter.month]);
+
+  useEffect(() => {
+    refreshCategoriesSum(filteredTransactions);
+    console.log('filtered transactions:', filteredTransactions);
+    console.log('categoriesSums:', categoriesSums);
+  }, [filteredTransactions]);
+
+  useEffect(() => {
+    refreshBalance(filteredTransactions);
+  }, [categoriesSums]);
 
   const handleFilterChange = ev => {
     const { name, value } = ev.target;

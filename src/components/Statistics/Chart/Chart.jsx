@@ -4,7 +4,6 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from 'chart.js';
 import { selectTransactionsIsLoading } from '../../../redux/selectors';
 import { useSelector } from 'react-redux';
-import TitleComponent from '../../TitleComponent/Title.Component';
 import Loader from '../../Loader/Loader';
 import formatMoney from '../../../utils/formatMoney';
 
@@ -71,7 +70,7 @@ const Chart = ({ categoriesSums, balance }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(
-        `PLN ${formatMoney(balance / 100)}`,
+        `PLN ${formatMoney(balance)}`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       );
