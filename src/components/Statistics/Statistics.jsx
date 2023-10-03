@@ -95,11 +95,10 @@ const Statistics = () => {
       }, 0);
     const bal = (inc * 100 - exp * 100) / 100;
     setIncomesSum(prev => (prev = inc));
-    console.log('incomesSUm:', incomesSum);
+
     setExpensesSum(prev => (prev = exp));
-    console.log('expensesSums:', expensesSum);
+
     setBalance(prev => (prev = bal));
-    console.log('balance:', balance);
   };
 
   const transactionsReducer = (transactions, category) => {
@@ -154,13 +153,10 @@ const Statistics = () => {
     setFilteredTransactions(
       prev => (prev = refreshTransactions(transactions, selectedFilter.year, selectedFilter.month)),
     );
-    console.log('filtered transactions:', filteredTransactions);
   }, [selectedFilter.year, selectedFilter.month]);
 
   useEffect(() => {
     refreshCategoriesSum(filteredTransactions);
-    console.log('filtered transactions:', filteredTransactions);
-    console.log('categoriesSums:', categoriesSums);
   }, [filteredTransactions]);
 
   useEffect(() => {
