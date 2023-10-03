@@ -49,7 +49,7 @@ const Statistics = () => {
   });
 
   const [categoriesSums, setCategoriesSums] = useState([
-    { color: '#FED057', name: 'Main expanses', sum: 0 },
+    { color: '#FED057', name: 'Main expenses', sum: 0 },
     { color: '#FFD8D0', name: `Products`, sum: 0 },
     { color: '#FD9498', name: `Car`, sum: 0 },
     { color: '#C5BAFF', name: 'Self care', sum: 0 },
@@ -87,7 +87,7 @@ const Statistics = () => {
     setCategoriesSums(
       prev =>
         (prev = [
-          { color: '#FED057', name: 'Main expanses', sum: 0 },
+          { color: '#FED057', name: 'Main expenses', sum: 0 },
           { color: '#FFD8D0', name: `Products`, sum: 0 },
           { color: '#FD9498', name: `Car`, sum: 0 },
           { color: '#C5BAFF', name: 'Self care', sum: 0 },
