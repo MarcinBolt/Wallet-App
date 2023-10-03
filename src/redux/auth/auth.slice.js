@@ -4,7 +4,7 @@ import {
   logOut,
   refreshUser,
   register,
-  sendVerificationEmailAgain,
+
   verify,
 } from './auth.operations.js';
 

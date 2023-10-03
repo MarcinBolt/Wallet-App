@@ -40,8 +40,7 @@ const LoginForm = () => {
           password: values.password,
         }),
       );
-      formik.resetForm();
-    },
+      },
   });
 
   const handleModalVerifyAgain = () => {
@@ -230,7 +229,7 @@ const LoginForm = () => {
             onClick={() => navigate('/register', { replace: false })}
           />
           <button type="button" className={css.verifyLink} onClick={handleModalVerifyAgain}>
-            <h5 className={css.verifyLinkText}>I want to verify my account</h5>
+            <h5 className={css.verifyLinkText}>Resend verification email</h5>
           </button>
         </div>
       </form>

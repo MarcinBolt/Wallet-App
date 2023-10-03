@@ -16,10 +16,10 @@ import {
 } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
-import {
-  updateIsModalAddTransactionOpen,
-  updateIsModalEditTransactionOpen,
-} from '../../redux/global/global.slice';
+// import {
+//   updateIsModalAddTransactionOpen,
+//   updateIsModalEditTransactionOpen,
+// } from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
 import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
@@ -64,7 +64,7 @@ const HomeTab = () => {
 
   // const transactions = getTransactionsFilteredByCategory(transactionsAll, selectedFilterCategory);
   const transactions = transactionsAll;
-
+  console.log(transactions)
   const userName = useSelector(selectUserFirstName);
   const sortedToNewestTransactions = transactions => {
     return transactions.length > 0

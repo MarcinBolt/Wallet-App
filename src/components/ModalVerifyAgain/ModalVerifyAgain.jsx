@@ -7,9 +7,8 @@ import { TextField } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
 import css from './ModalVerifyAgain.module.css';
-import { sendVerificationEmailAgain } from '../../redux/auth/auth.operations';
+import { resendVerificationEmail } from '../../redux/auth/auth.operations';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -29,11 +28,11 @@ const ModalVerifyAgain = ({ toggleModal }) => {
     validationSchema,
     onSubmit: values => {
       dispatch(
-        resendEmailWithVerificationToken({
+        resendVerificationEmail({
           email: values.email,
         }),
       );
-      formik.resetForm();
+
     },
   });
 
@@ -55,11 +54,11 @@ const ModalVerifyAgain = ({ toggleModal }) => {
     }
   };
 
-  const handleUserResendEmail = ev => {
-    ev.preventDefault;
-    toggleModal();
-    dispatch(sendVerificationEmailAgain({ email }));
-  };
+  // const handleUserResendEmail = ev => {
+  //   ev.preventDefault;
+  //   toggleModal();
+  //   dispatch(resendVerificationEmail({ email }));
+  // };
 
   return (
     <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
@@ -68,11 +67,8 @@ const ModalVerifyAgain = ({ toggleModal }) => {
           <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={toggleModal} />
         </div>
 
-        <TitleComponent text={`Verify your email`} />
-        <div className={css.textWrapper}>
-          <span className={css.logoutInfo}>Missed out verification?</span>
-          <span className={css.logoutInfo}>Enter your email address</span>
-        </div>
+        <TitleComponent text={`Resending verification email`} />
+
         <TextField
           name="email"
           type="email"
@@ -146,12 +142,12 @@ const ModalVerifyAgain = ({ toggleModal }) => {
           }}
         />
 
-             <div className={css.confirmButtons}>
+        <div className={css.confirmButtons}>
           <CustomButton
-            type="button"
+            type="submit"
             color="primary"
-            content="Resend email"
-            onClick={handleUserResendEmail}
+            content="Resend"
+            // onClick={handleUserResendEmail}
             className={`${css.logo} ${css.logout_button}`}
           />
 

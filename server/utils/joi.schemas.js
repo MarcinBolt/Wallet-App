@@ -50,8 +50,8 @@ export const transactionBodySchema = Joi.object({
       'Income',
     )
     .required(),
-  comment: Joi.string(),
   sum: Joi.number().required(),
+  comment: Joi.string(),
 });
 
 export const transactionDateBodySchema = Joi.object({
