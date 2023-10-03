@@ -86,8 +86,8 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontWeight: '400',
-                      fontSize: '18',
+                      fontWeight: '700',
+                      fontSize: '18px',
                       fontFamily: 'var(--font-secondary)',
                     }}
                     align="left"
@@ -97,10 +97,9 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
+                      fontFamily: 'var(--font-secondary)',
                       fontSize: '18px',
-                      fontWeight: '400',
-                      fontSize: '18',
+                      fontWeight: '700',
                     }}
                     align="center"
                   >
@@ -109,10 +108,9 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
+                      fontFamily: 'var(--font-secondary)',
                       fontSize: '18px',
-                      fontWeight: '400',
-                      fontSize: '18',
+                      fontWeight: '700',
                     }}
                     align="right"
                   >
@@ -141,10 +139,9 @@ const CurrencyTable = () => {
                     scope="row"
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: '18px',
+                      fontFamily: 'var(--font-secondary)',
+                      fontSize: '16px',
                       fontWeight: '400',
-                      fontSize: '16',
                     }}
                     align="center"
                   >
@@ -153,10 +150,9 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: '18px',
+                      fontFamily: 'var(--font-secondary)',
+                      fontSize: '16px',
                       fontWeight: '400',
-                      fontSize: '16',
                     }}
                     align="center"
                   >
@@ -165,10 +161,9 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: '18px',
+                      fontFamily: 'var(--font-secondary)',
+                      fontSize: '16px',
                       fontWeight: '400',
-                      fontSize: '16',
                     }}
                     align="center"
                   >
@@ -190,10 +185,9 @@ const CurrencyTable = () => {
                     scope="row"
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: '18px',
+                      fontFamily: 'var(--font-secondary)',
+                      fontSize: '16px',
                       fontWeight: '400',
-                      fontSize: '16',
                     }}
                     align="center"
                   >
@@ -202,10 +196,9 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: '18px',
+                      fontFamily: 'var(--font-secondary)',
+                      fontSize: '16px',
                       fontWeight: '400',
-                      fontSize: '16',
                     }}
                     align="center"
                   >
@@ -214,10 +207,9 @@ const CurrencyTable = () => {
                   <TableCell
                     sx={{
                       color: '#FFFFFF',
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: '18px',
+                      fontFamily: 'var(--font-secondary)',
+                      fontSize: '16px',
                       fontWeight: '400',
-                      fontSize: '16',
                     }}
                     align="center"
                   >
