@@ -86,5 +86,6 @@ export const transactionCategoryBodySchema = Joi.string()
     'Leisure',
     'Other expenses',
     'Entertainment',
+    'Income',
   )
   .required();

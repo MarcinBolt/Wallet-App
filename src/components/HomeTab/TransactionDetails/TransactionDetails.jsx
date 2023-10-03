@@ -78,8 +78,8 @@ const TransactionDetails = ({
           <p className={textClassName}>{sum}</p>
         </li>
         <li key={`$[id]operations`} className={css.transactionDetailsItem}>
-          <DeleteButton id={id} type="button" onClick={() => handleDeleteBtn(id)} />
-          <EditButton id={id} onClick={() => handleEditBtn(id)} />
+          <DeleteButton id={{id}.del} type="button" onClick={() => handleDeleteBtn(id)} />
+          <EditButton id={{id}.edit} onClick={() => handleEditBtn(id)} />
         </li>
       </ul>
     </>

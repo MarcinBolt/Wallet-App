@@ -149,7 +149,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
           }}
           onClick={toggleModal}
         >
-          <img src={closeIcon} alt="Close" />
+          <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
         </IconButton>
         <h1>Add transaction</h1>
 
@@ -192,8 +192,12 @@ const ModalAddTransaction = ({ toggleModal }) => {
                     })
                   }
                   name="transaction-type"
-                  icon={<img src={plusbtn} alt="plus Icon" style={iconStyles} />}
-                  checkedIcon={<img src={minusbtn} alt="minus Icon" style={iconStyles} />}
+                  icon={
+                    <img src={plusbtn} alt="plus Icon" viewBox="0 0 100% 4" style={iconStyles} />
+                  }
+                  checkedIcon={
+                    <img src={minusbtn} alt="minus Icon" viewBox="0 0 100% 4" style={iconStyles} />
+                  }
                 />
               }
             />
@@ -232,7 +236,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
             }
           >
             {categories.map(option => (
-              <MenuItem key={option} value={option}>
+              <MenuItem key={`${option}.option`} value={option}>
                 {option}
               </MenuItem>
             ))}
@@ -286,7 +290,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                   inputProps={{
                     style: {
                       height: 36,
-                      width: '175px',              
+                      width: '175px',
                     },
                   }}
                   input={true}
@@ -312,7 +316,12 @@ const ModalAddTransaction = ({ toggleModal }) => {
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => {}}>
-                              <img src={vectorIcon} alt="Calendar" className={css.calendarIcon} />
+                              <img
+                                src={vectorIcon}
+                                alt="Calendar"
+                                viewBox="0 0 100% 4"
+                                className={css.calendarIcon}
+                              />
                             </IconButton>
                           </InputAdornment>
                         ),

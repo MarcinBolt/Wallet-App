@@ -224,6 +224,7 @@ const RegisterForm = () => {
               scoreWords={['Weak', 'Weak', 'Good', 'Very Good', 'Strong']}
               style={{
                 width: '100%',
+                marginTop: '-9px',
               }}
             />
 

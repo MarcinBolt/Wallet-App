@@ -72,7 +72,7 @@ const Chart = ({ categoriesSums, balance }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(
-        `₴ ${formatMoney(balance)}`,
+        `PLN ${formatMoney(balance)}`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       );

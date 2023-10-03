@@ -6,8 +6,8 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
-import Notiflix from 'notiflix';
-import { toast } from 'react-toastify';
+// import Notiflix from 'notiflix';
+// import { toast } from 'react-toastify';
 import closeIcon from '../../assets/icons/close.svg';
 import calendaricon from '../../assets/icons/calendaricon.svg';
 import SelectIcon from '../../assets/icons/select-category.svg';
@@ -51,7 +51,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
       prev =>
         (prev = {
           isIncome: transactionDetails.type === 'Income' ? true : false,
-          date: transactionDetails.date,
+          date: new Date(transactionDetails.date),
           year: '',
           month: '',
           category: transactionDetails.category,
@@ -99,7 +99,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
   const handleUpdateTransaction = ev => {
     ev.preventDefault;
     const type = formData.isIncome ? 'Income' : 'Expense';
-    const category = formData.isIncome ? 'Income' : formData.selectedCategory;
+    const category = formData.isIncome ? 'Income' : formData.category;
     const year = formData.date.getFullYear();
     const month = formData.date.toLocaleString('en-US', { month: 'long' });
     toggleModal();
@@ -133,7 +133,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
           }}
           onClick={toggleModal}
         >
-          <img src={closeIcon} alt="Close" />
+          <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
         </IconButton>
         <TitleComponent text={'Edit transaction'} />
 
@@ -175,6 +175,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                 <img
                   src={SelectIcon}
                   alt="Select Icon"
+                  viewBox="0 0 100% 4"
                   className={`${css.selectCategoryIcon} ${css.iconMarginLeft}`}
                 />
               )}
@@ -193,7 +194,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
           validationSchema={Yup.object({
             sum: Yup.number().required('Required').positive('Must be a positive number'),
             dateValue: Yup.date().required('Required'),
-            selectedCategory: Yup.string().when('isIncome', {
+            category: Yup.string().when('isIncome', {
               is: false,
               then: Yup.string().required('Required'),
               otherwise: Yup.string(),
@@ -213,7 +214,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                     style: {
                       paddingBottom: 0,
                       height: 32,
-                      textAlign: "center",
+                      textAlign: 'center',
                       paddingTop: 0,
                     },
                   }}
@@ -235,7 +236,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                   inputProps={{
                     style: {
                       height: 32,
-                      width: 181,
+                      width: '175px',
                     },
                   }}
                   input={true}
@@ -249,7 +250,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                       variant="standard"
                       id="date"
                       name="date"
-                      fullWidth
+                      // fullWidth
                       onChange={e => {
                         const inputDate = e.target.value;
                         setFormData({
@@ -261,7 +262,12 @@ const ModalEditTransaction = ({ toggleModal }) => {
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => {}}>
-                              <img src={calendaricon} alt="Calendar" className={css.calendarIcon} />
+                              <img
+                                src={calendaricon}
+                                alt="Calendar"
+                                viewBox="0 0 100% 4"
+                                className={css.calendarIcon}
+                              />
                             </IconButton>
                           </InputAdornment>
                         ),
