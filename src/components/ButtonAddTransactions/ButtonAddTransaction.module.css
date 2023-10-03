@@ -1,0 +1,17 @@
+.button {
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+
+  filter: drop-shadow(0px 10px 5px #24cca869);
+  -webkit-filter: drop-shadow(0px 10px 5px #24cca869);
+  -moz-filter: drop-shadow(0px 10px 5px #24cca869);
+  transition: filter 200ms ease-in-out;
+}
+.button:hover {
+  transition: filter 200ms ease-in-out;
+  filter: drop-shadow(0px 3px 3% #24cca8a4);
+  -webkit-filter: drop-shadow(0px 3px 3px #24cca8a4);
+  -moz-filter: drop-shadow(0px 3x 3px #24cca8a4);
+}

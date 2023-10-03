@@ -1,0 +1,26 @@
+.doughnutChart {
+  display: flex;
+  width: 280px;
+  height: 280px;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+    height: 288px;
+  }
+}
+
+.noTransactionsInfo {
+  width: 280px;
+  height: 280px;
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  color: var(--color-text-binance-label);
+  font-weight: 400;
+  padding: 20px 0;
+  text-shadow: 1px 1px 3px var(--color-border-btn-cancel-shadow-darker);
+}

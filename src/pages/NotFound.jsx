@@ -1,14 +1,12 @@
 import { Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import TitleComponent from '../components/TitleComponent/Title.Component';
+import CustomButton from '../components/CustomButton/CustomButton';
+import css from './Pages.module.css';
 
 const NotFound = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const timerId = setTimeout(() => navigate(-1, { replace: true }), 3000);
-    return () => clearTimeout(timerId);
-  }, [navigate]);
 
   return (
     <Container
@@ -22,8 +20,22 @@ const NotFound = () => {
         backgroundColor: 'transparent',
       }}
     >
-      <h2>404 Page Not Found</h2>
-      <h3>Redirecting...</h3>
+      <TitleComponent text="Status 404" />
+      <TitleComponent text="Page Not Found" />
+      <div className={css.buttonContainer}>
+        <CustomButton
+          type="button"
+          color="primary"
+          content="homepage"
+          onClick={() => navigate('/', { replace: false })}
+        />
+        <CustomButton
+          type="button"
+          color="secondary"
+          content="<<< go back"
+          onClick={() => navigate(-1, { replace: false })}
+        />
+      </div>
     </Container>
   );
 };
