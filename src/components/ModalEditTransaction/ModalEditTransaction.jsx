@@ -284,7 +284,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                   value={formData.comment}
                   className={css.textarea}
                   onChange={handleInputChange}
-                  style={{ height: '35px' }}
+                  style={{ height: '40px' }}
                 />
               </div>
             </label>{' '}

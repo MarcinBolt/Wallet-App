@@ -2,9 +2,10 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import notification from '../../utils/notification.js';
 
-const backendBaseUrl = (import.meta.env.VITE_NODE_ENV = 'development'
-  ? `http://127.0.0.1:3000`
-  : `${import.meta.env.VITE_BACKEND_SERVER_URL}/#`);
+const backendBaseUrl = `${import.meta.env.VITE_BACKEND_SERVER_URL}`;
+// const backendBaseUrl = (import.meta.env.VITE_NODE_ENV = 'development'
+//   ? `http://127.0.0.1:3000`
+//   : `${import.meta.env.VITE_BACKEND_SERVER_URL}/#`);
 
 axios.defaults.baseURL = backendBaseUrl;
 
