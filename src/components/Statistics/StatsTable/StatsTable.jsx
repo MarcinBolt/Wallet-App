@@ -54,8 +54,8 @@ const StatsTable = ({ categoriesSums }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {positiveSums.map(row => (
-            <TableRow key={row.category}>
+          {positiveSums.map((row, i) => (
+            <TableRow key={i}>
               <TableCell
                 component="th"
                 scope="row"

@@ -12,7 +12,7 @@ ChartJS.register(Tooltip, Legend, ArcElement);
 
 const Chart = ({ categoriesSums, balance }) => {
   const positiveSums = [...categoriesSums].filter(s => s.sum > 0);
-  const actualLabels = positiveSums.map(c => c.category);
+  const actualLabels = positiveSums.map(c => c.name);
   const actualSums = positiveSums.map(c => c.sum);
   const actualColors = positiveSums.map(c => c.color);
 
@@ -20,7 +20,7 @@ const Chart = ({ categoriesSums, balance }) => {
     labels: actualLabels,
     datasets: [
       {
-        label: 'Expenses',
+        labels: actualLabels,
         data: actualSums,
         backgroundColor: actualColors,
         borderColor: actualColors,
@@ -71,7 +71,7 @@ const Chart = ({ categoriesSums, balance }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(
-        `₴ ${formatMoney(balance / 100)}`,
+        `PLN ${formatMoney(balance / 100)}`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       );
@@ -92,7 +92,11 @@ const Chart = ({ categoriesSums, balance }) => {
           className={css.doughnutChart}
         />
       ) : (
-        <TitleComponent text={'You have no expenses'} />
+        <h4 className={css.noTransactionsInfo}>
+          You don't have any expenses <br />
+          in this period of time. <br />
+          Choose another month.
+        </h4>
       )}
     </>
   );
