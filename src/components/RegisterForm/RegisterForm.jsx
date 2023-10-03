@@ -49,7 +49,6 @@ const RegisterForm = () => {
           firstName: values.firstName,
         }),
       );
-      formik.resetForm();
     },
   });
 
