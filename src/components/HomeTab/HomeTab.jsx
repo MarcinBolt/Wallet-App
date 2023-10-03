@@ -24,6 +24,8 @@ import { mediaQueries } from '../../utils/constants';
 import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
 import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransaction';
+import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
+import { updateSelectedId } from '../../redux/transactions/transactions.slice';
 import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
@@ -84,6 +86,11 @@ const HomeTab = () => {
 
   const toggleEditTransactionModal = () => {
     setIsModalEditTransactionOpen(!isModalEditTransactionOpen);
+  };
+
+  const handleEditButton = id => {
+    dispatch(updateSelectedId(id));
+    toggleEditTransactionModal();
   };
 
   const handleButtonDelete = id => {
@@ -151,7 +158,7 @@ const HomeTab = () => {
                         category={category}
                         comment={comment}
                         sum={sum}
-                        toggleEditModal={toggleEditTransactionModal}
+                        handleEditBtn={handleEditButton}
                         handleDeleteBtn={handleButtonDelete}
                       />
                     }
@@ -166,14 +173,7 @@ const HomeTab = () => {
         />
       </div>
       {isModalEditTransactionOpen && (
-        <div>
-          <p>Edit Transaction Modal is open</p>
-          <p>TransactionId {selectedTransactionId}</p>
-
-          <button type="button" onClick={toggleEditTransactionModal}>
-            Close EditTransaction
-          </button>
-        </div>
+        <ModalEditTransaction toggleModal={toggleEditTransactionModal} />
       )}
       {isAddTransactionModalOpen && <ModalAddTransaction toggleModal={toggleAddTransactionModal} />}
     </>

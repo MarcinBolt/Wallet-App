@@ -46,6 +46,7 @@ const CurrencyTable = () => {
               width: [280, 336, 393],
               height: '174px',
               borderRadius: '30px',
+              overflow: 'hidden',
               marginTop: '20px',
               '@media screen and (min-width: 1280px)': {
                 height: '182px',

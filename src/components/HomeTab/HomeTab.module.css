@@ -29,7 +29,7 @@
     border-top-left-radius: var(--radius-widget-transactions-header);
   }
   @media screen and (min-width: 1280px) {
-    height: 60vh;
+    height: 75vh;
   }
 }
 
