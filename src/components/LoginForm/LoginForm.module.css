@@ -59,8 +59,19 @@
 .verifyLink {
   border: 0;
   background-color: transparent;
-  color: var(--color-text-primary);
   cursor: pointer;
   margin: 0;
   padding: 0;
+}
+
+.verifyLinkText {
+  color: var(--color-text-verify-again-link);
+  font-family: var(--font-secondary);
+  margin: 0;
+  padding: 0;
+}
+
+.verifyLinkText:hover {
+  color: var(--color-text-income-green);
+  text-shadow: 0 2px 2px var(--color-bg-blur);
 }
