@@ -65,6 +65,7 @@ const handleCloseDeleteModal = () => setOpenDeleteModal(false);
         position: 'fixed',
         top: 0, 
         right: 0, 
+        zIndex: 200,
         
         ...IsUserPanelOpen && {
           //  right: 0, 
