@@ -1,6 +1,6 @@
 .balanceContainer {
   width: 100%;
-  max-width: 320px;
+  max-width: 350px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-widget-binance);
   height: 80;
@@ -8,8 +8,8 @@
   padding: 8px 32px 11px;
 
   @media screen and (min-width: 768px) {
-    width: 100%;
-    max-width: 350px;
+    width: 350px;
+    max-width: 330px;
     padding: 8px 40px 11px;
   }
 
@@ -26,19 +26,28 @@
   align-items: start;
 }
 .balanceBox {
-  font-size: 30px;
+  font-size: 24px;
   color: var(--font-primary-bold);
   display: flex;
   align-items: start;
   align-content: flex-end;
+
+  @media screen and (min-width: 340px) {
+    font-size: 30px;
+  }
 }
 
 .balanceSum {
   font-family: var(--font-primary-bold);
-  font-size: 30px;
+  font-size: 24px;
   padding-left: 7px;
   letter-spacing: 1px;
 
+  @media screen and (min-width: 340px) {
+    font-size: 30px;
+    padding-left: 7px;
+    letter-spacing: 1px;
+  }
   @media screen and (min-width: 768px) {
     padding-left: 12px;
     letter-spacing: 2px;
