@@ -16,10 +16,11 @@ const config = {
   },
 };
 
-const baseUrl =
-  process.env.NODE_ENV === 'development'
-    ? `http://localhost:5173/Wallet-App/#/users/verify/`
-    : 'https://marcinbolt.github.io/Wallet-App/#/users/verify/';
+// const baseUrl =
+//   process.env.NODE_ENV === 'development'
+//     ? `http://localhost:5173/Wallet-App/#/users/verify/`
+//     : 'https://marcinbolt.github.io/Wallet-App/#/users/verify/';
+const baseUrl = 'https://marcinbolt.github.io/Wallet-App/#/users/verify/';
 
 const send = async ({ to, firstName, verificationToken }) => {
   const capitalizedFirstName = capitalize(firstName);
