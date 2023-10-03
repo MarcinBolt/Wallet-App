@@ -23,7 +23,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
 import closeIcon from '../../assets/icons/close.svg';
-import Notiflix from 'notiflix';
 import { selectTransactionsCategories } from '../../redux/selectors';
 
 const ModalAddTransaction = ({ toggleModal }) => {
@@ -123,13 +122,13 @@ const ModalAddTransaction = ({ toggleModal }) => {
     const month = selectedDate.toLocaleString('en-US', { month: 'long' });
     dispatch(
       addTransaction({
-        date: selectedDate,
+        date: new Date(selectedDate),
         year: year.toString(),
         month: month,
         type: type,
         category: category,
-        comment: formData.comment,
-        sum: formData.sum,
+        comment: formData.comment ? formData.comment : '-',
+        sum: Number(formData.sum) ? formData.sum : '-',
       }),
     );
   };
@@ -246,13 +245,9 @@ const ModalAddTransaction = ({ toggleModal }) => {
         <Formik
           initialValues={formData}
           validationSchema={Yup.object({
-            sum: Yup.number().required('Required').positive('Must be a positive number'),
-            dateValue: Yup.date().required('Required'),
-            selectedCategory: Yup.string().when('isChecked', {
-              is: false,
-              then: Yup.string().required('Required'),
-              otherwise: Yup.string(),
-            }),
+            sum: Yup.number().min(0.009).required('Dot is the separator / max two decimal places'),
+            dateValue: Yup.date().required('Date required'),
+            selectedCategory: Yup.string(),
             comment: Yup.string(),
           })}
           onSubmit={(values, { setSubmitting }) => {
@@ -343,6 +338,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                   value={formData.comment}
                   className={css.textarea}
                   onChange={handleInputChange}
+                  style={{ height: '35px' }}
                 />
               </div>
             </label>{' '}

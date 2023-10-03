@@ -104,20 +104,26 @@ const HomeTab = () => {
 
   return (
     <>
-      <div className={css.homeTabWrapper}>
+      <div key={`${userName}homeWrapper`} className={css.homeTabWrapper}>
         <Media query={mobile} render={() => <Balance />} />
-        <div className={css.homeTab}>
-          <ul className={css.tableBody}>
+        <div key={`${userName}divHome`} className={css.homeTab}>
+          <ul key={`${userName}ul`} className={css.tableBody}>
             <li key={`${userName}header`} className={css.tableItem}>
               <ul className={css.tableHeader}>
                 <li key={`${userName}date`} className={css.tableHeaderItem}>
-                  <p className={css.itemType}>Date</p>
+                  <p key={`${userName}p`} className={css.itemType}>
+                    Date
+                  </p>
                 </li>
                 <li key={`${userName}type`} className={css.tableHeaderItem}>
-                  <p className={css.itemType}>Type</p>
+                  <p key={`${userName}p2`} className={css.itemType}>
+                    Type
+                  </p>
                 </li>
                 <li key={`${userName}category`} className={css.tableHeaderItem}>
-                  <p className={css.itemType}>Category</p>
+                  <p key={`${userName}p3`} className={css.itemType}>
+                    Category
+                  </p>
                   {/* <div className={css.selectContainer}>
                     <select
                       name="category"
@@ -136,10 +142,14 @@ const HomeTab = () => {
                   </div> */}
                 </li>
                 <li key={`${userName}comment`} className={css.tableHeaderItem}>
-                  <p className={css.itemType}>Comment</p>
+                  <p key={`${userName}p4`} className={css.itemType}>
+                    Comment
+                  </p>
                 </li>
                 <li key={`${userName}sum`} className={css.tableHeaderItem}>
-                  <p className={css.itemType}>Sum</p>
+                  <p key={`${userName}p5`} className={css.itemType}>
+                    Sum
+                  </p>
                 </li>
                 <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
               </ul>
@@ -149,9 +159,10 @@ const HomeTab = () => {
             {transactions.length > 0 &&
               sortedToNewestTransactions(transactions).map(
                 ({ _id, date, type, category, comment, sum }) => (
-                  <li key={_id} className={css.tableItem}>
+                  <li key={`${_id}${sum}${comment}.transaction`} className={css.tableItem}>
                     {
                       <TransactionDetails
+                        key={`${_id}.details`}
                         id={_id}
                         date={date}
                         type={type}
@@ -168,14 +179,23 @@ const HomeTab = () => {
           </ul>
         </div>
         <ButtonAddTransaction
+          key={`${userName}.addButtonEditTrans`}
           onClick={toggleAddTransactionModal}
           className={css.buttonAddTransaction}
         />
       </div>
       {isModalEditTransactionOpen && (
-        <ModalEditTransaction toggleModal={toggleEditTransactionModal} />
+        <ModalEditTransaction
+          key={`${userName}.detailsModalEditTrans`}
+          toggleModal={toggleEditTransactionModal}
+        />
       )}
-      {isAddTransactionModalOpen && <ModalAddTransaction toggleModal={toggleAddTransactionModal} />}
+      {isAddTransactionModalOpen && (
+        <ModalAddTransaction
+          key={`${userName}.addTransModal`}
+          toggleModal={toggleAddTransactionModal}
+        />
+      )}
     </>
   );
 };
