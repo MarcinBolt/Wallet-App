@@ -7,8 +7,8 @@ import { TextField } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import css from './ModalVerifyAgain.module.css';
 import { resendVerificationEmail } from '../../redux/auth/auth.operations';
+import css from './ModalVerifyAgain.module.css';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -67,7 +67,7 @@ const ModalVerifyAgain = ({ toggleModal }) => {
           <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={toggleModal} />
         </div>
 
-        <TitleComponent text={`Resending verification email`} />
+        <TitleComponent className={css.title} text={`Resending verification email`} />
 
         <TextField
           name="email"
