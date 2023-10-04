@@ -149,7 +149,7 @@ Backend (server side):
 - Express.js: Framework for creating an HTTP server.
 - MongoDB: NoSQL database, perhaps using mongoose as the database interaction tool.
 - Mongoose
-- CORS, CORS-env
+- CORS,
 - Morgan
 - JWT (JSON Web Tokens): For user authentication.
 - joi - validation
