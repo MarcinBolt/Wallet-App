@@ -1,5 +1,6 @@
-# Wallet App 1.0 by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
-
+# Wallet App <img alt="logo" src="apple-touch-icon.png" width="40"/>
+Made by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="25" height="19"/>
+[![GitHub Pages](https://img.shields.io/badge/GitHub%2520Pages-gray)](https://marcinbolt.github.io/Wallet-App/) [![Render](https://img.shields.io/badge/Backend%20Hosted%20on-Render.com-blue)](https://render.com/) [![Swagger](https://img.shields.io/badge/API%20Documentation-Swagger-green)](https://wallet-lpqy.onrender.com/api-doc/#/)
 
 
 > Wallet App is a web-based application that allows users to manage their finances, monitor transactions and track account balances. The app is designed for personal use and provides tools for tracking income and expenses.
@@ -17,7 +18,7 @@
 
 ---
 # Site 
-## Version for Mobile/Tablet/Desktop
+## Version for Mobile / Tablet / Desktop - Responsive Web Design (RWD)
 #
 ## Mobile
 ### Login and Register Pages 
@@ -102,52 +103,75 @@
 ---
 
 ## Technologies Used
-Frontend (client side):
+### Overall:
+- VSCode (with bash terminal)
+- JavaScript ES6
+- Vite (JavaScript + SWC)
+- GitHub
+- GIT
+- prettier
+- Slack
+- Trello
+- Figma
+- Squoosh: For image optimization and compression.
+- IcoMoon.io: For creating and managing custom icon fonts.
+- .env / dotenv
+- npm (9.8.0)
+- faker - generate mock transactions
+
+### Frontend (client side):
+- Deployed on GitHub Pages
+- HTML5, CSS3
+- Modern-normalize
 - React.js: JavaScript framework for building the user interface.
+- React Hooks
+- React-Media: For adapting the interface to different screen resolutions.
 - Redux: Library for managing the state of the application.
+- React-password-strength-bar - shows password strength.
+- Redux-Persist: For storing the state of the application, including the token in localStorage.
+- LocalStorage: For storing certain data on the client side, such as tokens.
 - React Router: For navigating between different views of the application.
-- Formik and Yup: For handling forms and validation.
 - Material-UI: For building user interfaces and components.
-- Chart.js and react-chartjs-2: For charts and data visualisation.
+- Formik and Yup: For handling forms and validation.
+- Notiflix: For displaying error notifications and other messages to the user.
+- Chart.js and react-chartjs-2: For charts and data visualization.
 - React-Loader-Spinner: For displaying the loading indicator (spinner).
 - Axios: For making HTTP requests to the server.
 - react-password-strength-bar: Library for password strength indication.
 - Datetime: Library for date and time input.
+- api.nbp.pl - getting currency data
 
 
 Backend (server side):
-- Node.js: The runtime environment for the server.
+- Deployed on https://render.com
+- Node.js (v18.17.1): The runtime environment for the server.
+- Nodemon
 - Express.js: Framework for creating an HTTP server.
 - MongoDB: NoSQL database, perhaps using mongoose as the database interaction tool.
+- Mongoose
+- CORS, CORS-env
+- Morgan
 - JWT (JSON Web Tokens): For user authentication.
+- joi - validation
+- Bcript - encrypting
+- Passport, passport-jwt
+- SendGrid - email delivery API
 - Swagger UI: For generating API endpoint documentation.
+- colors
 ![API endpoints](./imgReadme/swagger-api-endpoints-user.png)
 ![API endpoints](./imgReadme/swagger-api-endpoints-transaction.png)
 ![API endpoints](./imgReadme/swagger-api-schema.png)
 
 ---
-
-Other:
-- CSS: For user interface styling.
-- Redux-Persist: For storing the state of the application, including the token in localStorage.
-- React-Media: For adapting the interface to different screen resolutions.
-- React-Toastify: For displaying error notifications and other messages to the user.
-- LocalStorage: For storing certain data on the client side, such as tokens.
-- Squoosh: For image optimization and compression.
-- IcoMoon.io: For creating and managing custom icon fonts.
-- ESBuild: Used for JavaScript bundling.
-
----
-
 ## Features
 List the ready features here:
-- Registration and Login:
-- The application handles the registration and login process for users. It uses the Formik and Yup (or Indicative) library to validate form fields, including checking the validity of email address and password length.
-- Session Management: After a successful user login, the user's token and credentials are stored in the Redux Store, and the session.isAuth flag is set to true. In case of a login error, the error is stored in the session state and displayed to the user.
+- Users registration, email verification and login:
+- The application handles the registration, sending email with verification link and login process for users. - It uses the Formik and Yup (or Indicative) library to validate form fields, including checking the validity of email address and password length.
+- User auth Management: After a successful user login, the user's token and credentials are stored in the Redux Store, and the isAuth flag is set to true. In case of a login error, the error is stored in the session state and displayed to the user.
 - Routing Protection: Higher-Order Components (HOCs) such as withAuthRedirect are used, which control access to specific sites based on the user's authentication status. In this way, routing protection is provided.
 - Data Retrieval: The application retrieves transaction and balance status data. These operations are performed when the DashboardPage component is loaded and are asynchronous.
 - Displaying Data on Charts: The Chart component uses the react-chartjs-2 library to display data on charts. This data is likely to come from the user's transactions and can be presented as charts.
-- Adding Transactions: The app allows you to add new transactions using a form that appears when you click the "Add Transaction" button. Values such as date, amount, transaction type and comment are validated before being sent to the server.
+- Adding Transactions: The app allows you to add new transactions using a form that appears when you click the "Add Transaction" button. Values such as date, sum, transaction type and comment are validated before being sent to the server.
 - Transaction Categories: There is an endpoint for obtaining transaction categories, which suggests that transactions can be grouped by category.
 - Transaction Statistics: There is an endpoint for obtaining detailed statistics for the month and year with user transactions. This allows you to generate reports and analyze expenses.
 - Modal Logout: When the user clicks on the "Logout" button, a modal window appears to confirm the logout. This is an extra layer of security to avoid accidental logout.
@@ -164,7 +188,7 @@ List the ready features here:
 # Setup
 ## For Developers:
 ---
-## To install all dependencies from package.json use: npm install
+## Install all packages included in package.json: npm install
 
 ### To run front-end App: npm run dev
 ### To run back-end server.js: npm run start:dev
@@ -172,32 +196,14 @@ List the ready features here:
 ### Node version: v18.17.1
 ### npm version: 9.8.0
 
-## Install all packages included in package.json: npm install
-
-Installed packages:
-Vite: npm create vite@latest // Use React + Vite / JavaScript + SWC (Speedy Web Compiler)
-modern-normalize: npm install modern-normalize
-Prettier: npm install --save-dev --save-exact prettier
-Redux Toolkit: npm install @reduxjs/toolkit
-React-Redux: npm install @reduxjs/toolkit react-redux
-redux-persist: npm install redux-persist
-react-router-dom: npm install react-router-dom
-Firebase: npm install -g firebase-tools
-dotenv: npm install dotenv --save
-Axios: npm install axios
-Mui/material: npm install @mui/material @emotion/react @emotion/styled
-Notiflix: npm i notiflix
-
-gh-pages: npm install gh-pages --save-dev
-
 ---
 
 Deploying Vite App to GitHub Pages using gh-pages and script deploy:
 
 Install gh-pages: npm install gh-pages --save-dev
 
-Add script in package.json:
-"scripts": { "deploy": "npm run build && gh-pages -d dist" },
+Use script in package.json:
+( "deploy": "npm run build && gh-pages -d dist" )
 
 Run script to build and publish in gh-pages branch on GitHub: 
 npm run deploy
@@ -205,7 +211,8 @@ npm run deploy
 ---
 
 ## Project status
-The project has been completed, but there is always space to improve it .
+The project has been completed, but there is always space to improve it.
+Give as the feedback on: wallet.app.hi5@gmail.com
 
 ---
 
@@ -231,6 +238,7 @@ The project has been completed, but there is always space to improve it .
 ---
 
 ## Contact
-Created by Hi5 Team -feel free to contact us! 
+Created by Hi5 Team - feel free to contact us!
+e-mail: wallet.app.hi5@gmail.com
 # 
  <img src="./imgReadme/hi5-logo.png" width="44" height="44"/>
