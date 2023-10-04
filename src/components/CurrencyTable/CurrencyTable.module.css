@@ -3,4 +3,5 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-secondary);
+  border-radius: var(--radius-widget-currency);
 }

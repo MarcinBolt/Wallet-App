@@ -23,7 +23,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
 import closeIcon from '../../assets/icons/close.svg';
-import Notiflix from 'notiflix';
 import { selectTransactionsCategories } from '../../redux/selectors';
 
 const ModalAddTransaction = ({ toggleModal }) => {
@@ -123,13 +122,13 @@ const ModalAddTransaction = ({ toggleModal }) => {
     const month = selectedDate.toLocaleString('en-US', { month: 'long' });
     dispatch(
       addTransaction({
-        date: selectedDate,
+        date: new Date(selectedDate),
         year: year.toString(),
         month: month,
         type: type,
         category: category,
-        comment: formData.comment,
-        sum: formData.sum,
+        comment: formData.comment ? formData.comment : '-',
+        sum: Number(formData.sum) ? formData.sum : '-',
       }),
     );
   };
@@ -149,7 +148,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
           }}
           onClick={toggleModal}
         >
-          <img src={closeIcon} alt="Close" />
+          <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
         </IconButton>
         <h1>Add transaction</h1>
 
@@ -192,8 +191,12 @@ const ModalAddTransaction = ({ toggleModal }) => {
                     })
                   }
                   name="transaction-type"
-                  icon={<img src={plusbtn} alt="plus Icon" style={iconStyles} />}
-                  checkedIcon={<img src={minusbtn} alt="minus Icon" style={iconStyles} />}
+                  icon={
+                    <img src={plusbtn} alt="plus Icon" viewBox="0 0 100% 4" style={iconStyles} />
+                  }
+                  checkedIcon={
+                    <img src={minusbtn} alt="minus Icon" viewBox="0 0 100% 4" style={iconStyles} />
+                  }
                 />
               }
             />
@@ -232,7 +235,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
             }
           >
             {categories.map(option => (
-              <MenuItem key={option} value={option}>
+              <MenuItem key={`${option}.option`} value={option}>
                 {option}
               </MenuItem>
             ))}
@@ -242,13 +245,9 @@ const ModalAddTransaction = ({ toggleModal }) => {
         <Formik
           initialValues={formData}
           validationSchema={Yup.object({
-            sum: Yup.number().required('Required').positive('Must be a positive number'),
-            dateValue: Yup.date().required('Required'),
-            selectedCategory: Yup.string().when('isChecked', {
-              is: false,
-              then: Yup.string().required('Required'),
-              otherwise: Yup.string(),
-            }),
+            sum: Yup.number().min(0.009).required('Dot is the separator / max two decimal places'),
+            dateValue: Yup.date().required('Date required'),
+            selectedCategory: Yup.string(),
             comment: Yup.string(),
           })}
           onSubmit={(values, { setSubmitting }) => {
@@ -286,7 +285,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                   inputProps={{
                     style: {
                       height: 36,
-                      width: '175px',              
+                      width: '175px',
                     },
                   }}
                   input={true}
@@ -312,7 +311,12 @@ const ModalAddTransaction = ({ toggleModal }) => {
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => {}}>
-                              <img src={vectorIcon} alt="Calendar" className={css.calendarIcon} />
+                              <img
+                                src={vectorIcon}
+                                alt="Calendar"
+                                viewBox="0 0 100% 4"
+                                className={css.calendarIcon}
+                              />
                             </IconButton>
                           </InputAdornment>
                         ),
@@ -334,6 +338,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                   value={formData.comment}
                   className={css.textarea}
                   onChange={handleInputChange}
+                  style={{ height: '35px' }}
                 />
               </div>
             </label>{' '}

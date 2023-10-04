@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBalance, selectTransactions } from '../../redux/selectors';
 import { updateBalance } from '../../redux/transactions/transactions.slice';
-import { formatMoney } from '../../utils/formatMoney';
+import formatMoney from '../../utils/formatMoney';
 import { fetchTransactions } from '../../redux/transactions/transactions.operations';
 import css from './Balance.module.css';
 
@@ -27,9 +27,11 @@ const Balance = () => {
   }, [transactions]);
 
   return (
-    <div className={css.balanceContainer}>
-      <Box className={css.balanceText}>Your Balance</Box>
-      <Box className={css.balanceBox}>
+    <div key="balance.container" className={css.balanceContainer}>
+      <Box key="balance.box1" className={css.balanceText}>
+        Your Balance
+      </Box>
+      <Box key="balance.box2" className={css.balanceBox}>
         PLN<span className={css.balanceSum}>{formatMoney(balance)}</span>
       </Box>
     </div>
