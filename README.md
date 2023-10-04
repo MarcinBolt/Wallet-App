@@ -116,7 +116,8 @@ Made by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="25" height="19"/>
 - Squoosh: For image optimization and compression.
 - IcoMoon.io: For creating and managing custom icon fonts.
 - .env / dotenv
-- npm (9.8.0)
+- Node.js (v18.17.1):
+- npm (9.8.0) - package manager
 - faker - generate mock transactions
 
 ### Frontend (client side):
@@ -157,7 +158,7 @@ Backend (server side):
 - Passport, passport-jwt
 - SendGrid - email delivery API
 - Swagger UI: For generating API endpoint documentation.
-- colors
+- colors - add colors in terminal
 ![API endpoints](./imgReadme/swagger-api-endpoints-user.png)
 ![API endpoints](./imgReadme/swagger-api-endpoints-transaction.png)
 ![API endpoints](./imgReadme/swagger-api-schema.png)
@@ -217,8 +218,9 @@ Give as the feedback on: wallet.app.hi5@gmail.com
 ---
 
 ## Acknowledgements
-- This project as mentioned is the concluding phase of the training - Thanks to Team 5 and Go IT
+- This project as mentioned is the concluding phase of the training - Thanks to Team 5 and GoIT
 
+- [npm](https://www.npmjs.com/package/zod#introduction): Package manager.
 - [React](https://reactjs.org/): JavaScript library for building user interfaces.
 - [Node.js](https://nodejs.org/): JavaScript runtime environment for server-side development.
 - [MongoDB](https://www.mongodb.com/): NoSQL database for storing data.
@@ -230,7 +232,7 @@ Give as the feedback on: wallet.app.hi5@gmail.com
 - [Yup](https://github.com/jquense/yup): JavaScript schema validation library.
 - [React Router](https://reactrouter.com/): Routing library for React applications.
 - [Swagger UI](https://swagger.io/tools/swagger-ui/): Tool for generating API documentation.
-- [React-Toastify](https://fkhadra.github.io/react-toastify/): Library for displaying notifications.
+- [Notiflix](https://github.com/notiflix/Notiflix): Library for displaying notifications.
 - [Axios](https://axios-http.com/): HTTP client for making requests.
 - [Squoosh](https://squoosh.app/): Image optimization and compression tool.
 - [IcoMoon.io](https://icomoon.io/): Custom icon font generator.
