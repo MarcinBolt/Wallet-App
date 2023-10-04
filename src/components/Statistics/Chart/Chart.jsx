@@ -4,7 +4,6 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from 'chart.js';
 import { selectTransactionsIsLoading } from '../../../redux/selectors';
 import { useSelector } from 'react-redux';
-import TitleComponent from '../../TitleComponent/Title.Component';
 import Loader from '../../Loader/Loader';
 import formatMoney from '../../../utils/formatMoney';
 
