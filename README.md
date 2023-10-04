@@ -1,6 +1,5 @@
-# Wallet App <img alt="logo" src="apple-touch-icon.png" width="40"/>
-Made by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="25" height="19"/>
-[![GitHub Pages](https://img.shields.io/badge/GitHub%2520Pages-gray)](https://marcinbolt.github.io/Wallet-App/) [![Render](https://img.shields.io/badge/Backend%20Hosted%20on-Render.com-blue)](https://render.com/) [![Swagger](https://img.shields.io/badge/API%20Documentation-Swagger-green)](https://wallet-lpqy.onrender.com/api-doc/#/)
+# Wallet App <img alt="logo" src="./public/apple-touch-icon.png" width="40"/> [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-gray)](https://marcinbolt.github.io/Wallet-App/) [![Render](https://img.shields.io/badge/Backend%20Hosted%20on-Render.com-blue)](https://render.com/) [![Swagger](https://img.shields.io/badge/API%20Documentation-Swagger-green)](https://wallet-lpqy.onrender.com/api-doc/#/)
+## Made by Hi5 Team <img src="./imgReadme/hi5-logo.png" width="50" height="38"/>
 
 
 > Wallet App is a web-based application that allows users to manage their finances, monitor transactions and track account balances. The app is designed for personal use and provides tools for tracking income and expenses.
