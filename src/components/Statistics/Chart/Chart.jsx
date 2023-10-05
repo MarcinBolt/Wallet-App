@@ -65,15 +65,15 @@ const Chart = ({ categoriesSums, balance }) => {
       const { ctx, data } = chart;
 
       ctx.save();
-      ctx.font = '24px Arial Bold';
-      ctx.fillStyle = 'black';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(
-        `PLN ${formatMoney(balance)}`,
-        chart.getDatasetMeta(0).data[0].x,
-        chart.getDatasetMeta(0).data[0].y,
-      );
+      // ctx.font = '24px Arial Bold';
+      // ctx.fillStyle = 'black';
+      // ctx.textAlign = 'center';
+      // ctx.textBaseline = 'middle';
+      // ctx.fillText(
+      //   `PLN ${formatMoney(balance)}`,
+      //   chart.getDatasetMeta(0).data[0].x,
+      //   chart.getDatasetMeta(0).data[0].y,
+      // );
     },
   };
 
@@ -84,12 +84,15 @@ const Chart = ({ categoriesSums, balance }) => {
       {isTransactionsLoading ? (
         <Loader />
       ) : actualLabels.length > 0 ? (
-        <Doughnut
-          data={data}
-          options={options}
-          plugins={[textCenter]}
-          className={css.doughnutChart}
-        />
+        <div className={css.chartWrapper}>
+          <p className={css.balance}>PLN {formatMoney(balance)}</p>
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[textCenter]}
+            className={css.doughnutChart}
+          />
+        </div>
       ) : (
         <h4 className={css.noTransactionsInfo}>
           You don't have any expenses <br />
