@@ -82,6 +82,7 @@
 .transactionDetailsItem:last-child {
   @media screen and (min-width: 768px) {
     justify-content: center;
+    padding: 0 5px 0 0;
   }
 }
 
