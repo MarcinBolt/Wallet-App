@@ -5,6 +5,7 @@
   width: 20px;
   height: 20px;
   padding: 2px;
+  margin-right: 20px;
 
   cursor: pointer;
   background-color: transparent;
@@ -18,35 +19,38 @@
 }
 
 .editBtn:hover *,
-.editBtn:focus  *,
-.editBtn:active *{
+.editBtn:focus *,
+.editBtn:active * {
   transform: scale(1.1);
   transition-timing-function: cubic-bezier(1, 0.8, 0.5, 1);
   transition-delay: 0;
   color: var(--color-border-btn-active-hover);
   transition: all 0.25s;
 }
-  
-.editBtn:hover > .svg,
-    .editBtn:focus > .svg,
-    .editBtn:active > .svg{
-      transform: rotate(-50deg);
-      transition-timing-function: cubic-bezier(1, 0.8, 0.5, 1);
-      transition-delay: 0;
-      stroke: var(--color-border-btn-active-hover);
-      transition: all 0.25s;
-    }
 
-  @media screen and (min-width: 768px) {
-    .editBtn:hover,
-    .editBtn:focus,
-    .editBtn:active {
-      transform: rotate(-5deg);
-      transition-timing-function: cubic-bezier(1, 0.8, 0.5, 1);
-      transition-delay: 0;
-      stroke: var(--color-border-btn-active-hover);
-      transition: all 0.25s;
-    }
+.editBtn:hover > .svg,
+.editBtn:focus > .svg,
+.editBtn:active > .svg {
+  transform: rotate(-50deg);
+  transition-timing-function: cubic-bezier(1, 0.8, 0.5, 1);
+  transition-delay: 0;
+  stroke: var(--color-border-btn-active-hover);
+  transition: all 0.25s;
+}
+
+@media screen and (min-width: 768px) {
+  .editBtn {
+    margin: 0;
+  }
+  .editBtn:hover,
+  .editBtn:focus,
+  .editBtn:active {
+    transform: rotate(-5deg);
+    transition-timing-function: cubic-bezier(1, 0.8, 0.5, 1);
+    transition-delay: 0;
+    stroke: var(--color-border-btn-active-hover);
+    transition: all 0.25s;
+  }
 }
 
 .text {
