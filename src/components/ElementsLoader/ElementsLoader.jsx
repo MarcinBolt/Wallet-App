@@ -16,7 +16,7 @@ const ElementsLoader = () => {
       <ThreeDots
         height="80"
         width="80"
-        color="#a6a6a6"
+        color="#6e78e8"
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClass=""

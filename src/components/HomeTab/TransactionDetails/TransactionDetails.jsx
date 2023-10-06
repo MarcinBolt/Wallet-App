@@ -4,6 +4,7 @@ import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
 import { selectTransactionId } from '../../../redux/selectors';
 import { updateSelectedId } from '../../../redux/transactions/transactions.slice';
+import formatMoney from '../../../utils/formatMoney';
 
 const TransactionDetails = ({
   id,
@@ -75,7 +76,7 @@ const TransactionDetails = ({
         </li>
         <li key={`${id}sum`} className={css.transactionDetailsItem}>
           <p className={css.itemType}>Sum</p>
-          <p className={textClassName}>{sum}</p>
+          <p className={textClassName}>{formatMoney(sum)}</p>
         </li>
         <li key={`$[id]operations`} className={css.transactionDetailsItem}>
           <DeleteButton id={{id}.del} type="button" onClick={() => handleDeleteBtn(id)} />
