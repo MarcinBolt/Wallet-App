@@ -9,6 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { resendVerificationEmail } from '../../redux/auth/auth.operations';
 import css from './ModalVerifyAgain.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -18,6 +19,7 @@ const validationSchema = Yup.object().shape({
 
 const ModalVerifyAgain = ({ toggleModal }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const modalBackdropRef = useRef(null);
 
@@ -32,7 +34,6 @@ const ModalVerifyAgain = ({ toggleModal }) => {
           email: values.email,
         }),
       );
-
     },
   });
 
@@ -62,7 +63,7 @@ const ModalVerifyAgain = ({ toggleModal }) => {
 
   return (
     <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
-      <div className={css.modalContainer}>
+      <form onSubmit={formik.handleSubmit} className={css.modalContainer}>
         <div className={css.closeIconContainer}>
           <img src={closeIcon} alt="Close" className={css.closeIcon} onClick={toggleModal} />
         </div>
@@ -147,7 +148,7 @@ const ModalVerifyAgain = ({ toggleModal }) => {
             type="submit"
             color="primary"
             content="Resend"
-            // onClick={handleUserResendEmail}
+            onClick={() => navigate('/login', { replace: false })}
             className={`${css.logo} ${css.logout_button}`}
           />
 
@@ -159,7 +160,7 @@ const ModalVerifyAgain = ({ toggleModal }) => {
             className={css.main_btn}
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 };

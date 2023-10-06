@@ -305,6 +305,7 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
   try {
     const { value, error } = userEmailReqBodySchema.validate(req.body);
     const { email } = value;
+    console.log(email)
 
     if (error) {
       return res
@@ -339,7 +340,8 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
       return res.status(500).json({
         status: 'error',
         code: 500,
-        message: 'Server error',
+        // message: 'Server error',
+        message: 'Cośtam',
       });
     }
 
