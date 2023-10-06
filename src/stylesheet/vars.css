@@ -70,6 +70,7 @@
   --color-border-btn-cancel-shadow: #4a57e246;
   --color-border-btn-cancel-shadow-darker: #4a57e210;
   --color-border-btn-cancel-shadow-light: #ffffff98;
+  --color-border-transaction-shadow: rgba(93, 93, 93, 0.233);
   
   /* ------ categories colors ----- */
   --color-category-main: #fed057;
@@ -90,7 +91,6 @@
   --color-icon-arrow-down: #000000;
   --color-icon-navi: #6E78E8;
   --color-icon-navi-hover: #4A56E2;
-
   /* ------ password strength colors ----- */
   --color-pass-strength-green: #24cca7;
   --color-pass-strength-gray: #e5f1ef;

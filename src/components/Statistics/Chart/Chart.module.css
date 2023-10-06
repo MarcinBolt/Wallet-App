@@ -1,15 +1,53 @@
 .doughnutChart {
-    display: flex;
-    width: 280px;
-    height: 280px;
+  display: flex;
+  width: 280px;
+  height: 280px;
 
-    @media screen and (min-width: 768px) {
-        width: 336px;
-        height: 336px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 336px;
+  }
 
-    @media screen and (min-width: 1280px) {
-        width: 288px;
-        height: 288px;
-    }
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+    height: 288px;
+  }
+}
+
+.noTransactionsInfo {
+  width: 280px;
+  height: 280px;
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  color: var(--color-text-binance-label);
+  font-weight: 400;
+  padding: 20px 0;
+  text-shadow: 1px 1px 3px var(--color-border-btn-cancel-shadow-darker);
+}
+
+.chartWrapper {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.balance {
+  position: absolute;
+  top: calc(50% - 15px);
+  left: 40px;
+  width: 200px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-primary);
+  font-size: 24px;
+  padding: 0;
+  margin: 0;
+  @media screen and (min-width: 768px) {
+    left: 68px;
+  }
+  @media screen and (min-width: 768px) {
+    left: 44px;
+  }
 }

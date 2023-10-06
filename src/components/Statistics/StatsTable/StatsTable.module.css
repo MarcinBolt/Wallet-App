@@ -14,7 +14,6 @@
 .headerCategory {
     border-top-left-radius: var(--radius-stats-table-header);
     border-bottom-left-radius: var(--radius-stats-table-header);
-
 }
 
 .headerSum {
