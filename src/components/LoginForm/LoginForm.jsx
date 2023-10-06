@@ -37,7 +37,6 @@ const LoginForm = () => {
           password: values.password,
         }),
       );
-      formik.resetForm();
     },
   });
 

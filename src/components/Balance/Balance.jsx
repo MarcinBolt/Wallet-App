@@ -27,9 +27,11 @@ const Balance = () => {
   }, [transactions]);
 
   return (
-    <div className={css.balanceContainer}>
-      <Box className={css.balanceText}>Your Balance</Box>
-      <Box className={css.balanceBox}>
+    <div key="balance.container" className={css.balanceContainer}>
+      <Box key="balance.box1" className={css.balanceText}>
+        Your Balance
+      </Box>
+      <Box key="balance.box2" className={css.balanceBox}>
         PLN<span className={css.balanceSum}>{formatMoney(balance)}</span>
       </Box>
     </div>

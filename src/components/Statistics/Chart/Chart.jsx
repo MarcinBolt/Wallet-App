@@ -4,16 +4,14 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from 'chart.js';
 import { selectTransactionsIsLoading } from '../../../redux/selectors';
 import { useSelector } from 'react-redux';
-import TitleComponent from '../../TitleComponent/Title.Component';
 import Loader from '../../Loader/Loader';
 import formatMoney from '../../../utils/formatMoney';
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
 const Chart = ({ categoriesSums, balance }) => {
- 
   const positiveSums = [...categoriesSums].filter(s => s.sum > 0);
-  const actualLabels = positiveSums.map(c => c.category);
+  const actualLabels = positiveSums.map(c => c.name);
   const actualSums = positiveSums.map(c => c.sum);
   const actualColors = positiveSums.map(c => c.color);
 
@@ -21,7 +19,7 @@ const Chart = ({ categoriesSums, balance }) => {
     labels: actualLabels,
     datasets: [
       {
-        label: 'Expenses',
+        labels: actualLabels,
         data: actualSums,
         backgroundColor: actualColors,
         borderColor: actualColors,
@@ -67,15 +65,15 @@ const Chart = ({ categoriesSums, balance }) => {
       const { ctx, data } = chart;
 
       ctx.save();
-      ctx.font = '24px Arial Bold';
-      ctx.fillStyle = 'black';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(
-        `PLN ${formatMoney(balance)}`,
-        chart.getDatasetMeta(0).data[0].x,
-        chart.getDatasetMeta(0).data[0].y,
-      );
+      // ctx.font = '24px Arial Bold';
+      // ctx.fillStyle = 'black';
+      // ctx.textAlign = 'center';
+      // ctx.textBaseline = 'middle';
+      // ctx.fillText(
+      //   `PLN ${formatMoney(balance)}`,
+      //   chart.getDatasetMeta(0).data[0].x,
+      //   chart.getDatasetMeta(0).data[0].y,
+      // );
     },
   };
 
@@ -86,14 +84,21 @@ const Chart = ({ categoriesSums, balance }) => {
       {isTransactionsLoading ? (
         <Loader />
       ) : actualLabels.length > 0 ? (
-        <Doughnut
-          data={data}
-          options={options}
-          plugins={[textCenter]}
-          className={css.doughnutChart}
-        />
+        <div className={css.chartWrapper}>
+          <p className={css.balance}>PLN {formatMoney(balance)}</p>
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[textCenter]}
+            className={css.doughnutChart}
+          />
+        </div>
       ) : (
-        <TitleComponent text={'You have no expenses'} />
+        <h4 className={css.noTransactionsInfo}>
+          You don't have any expenses <br />
+          in this period of time. <br />
+          Choose another month.
+        </h4>
       )}
     </>
   );

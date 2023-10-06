@@ -10,24 +10,23 @@
   border-radius: var(--radius-widget-mobile-transaction-details);
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 14% 8% 22% 25% 13% 18%;
+    grid-template-columns: 14% 8% 22% 25% 16% 13%;
     background-color: transparent;
     border-radius: 0;
     transform: scale(1);
-    transition:  all 250ms ease-in-out;
+    transition: all 150ms ease-in-out;
   }
 }
+
 .transactionDetailsList:hover {
   @media screen and (min-width: 768px) {
     z-index: 3;
     transform: scale(1.01);
     height: 105%;
-    box-shadow: 0px 0px 8px 1px rgba(168,166,166,0.5);
-    -webkit-box-shadow: 0px 0px 8px 1px rgba(168,166,166,0.5);
+    box-shadow: 0px 0px 8px 1px rgba(168, 166, 166, 0.5);
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(168, 166, 166, 0.5);
     -moz-box-shadow: 0px 0px 8px 1px rgba(168, 166, 166, 0.5);
-    background: linear-gradient(to right, transparent 8%, var(--color-bg-blur) 92%, transparent );
-    /* background-color: var(--color-bg-blur); */
-    border-block: none;
+    background: linear-gradient(to right, transparent 8%, var(--color-bg-blur) 92%, transparent);
   }
 }
 .incomeBorder {
@@ -50,7 +49,7 @@
   height: 47px;
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
-    gap: 20px;
+    gap: 7px;
     justify-content: left;
     height: 54px;
   }
@@ -74,6 +73,7 @@
 .transactionDetailsItem:last-child {
   @media screen and (min-width: 768px) {
     justify-content: center;
+    padding: 0 5px;
   }
 }
 .transactionDetailsItem:nth-child(3) {
@@ -113,7 +113,7 @@
     border: 1px black;
     padding: 10px;
     hight: 100%;
-    width: 180%;
+    width: 165%;
     background-color: var(--color-bg-primary);
   }
 }

@@ -6,8 +6,6 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
-// import Notiflix from 'notiflix';
-// import { toast } from 'react-toastify';
 import closeIcon from '../../assets/icons/close.svg';
 import calendaricon from '../../assets/icons/calendaricon.svg';
 import SelectIcon from '../../assets/icons/select-category.svg';
@@ -42,7 +40,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
     year: '',
     month: '',
     category: '',
-    comment: '',
+    comment: '-',
     sum: '',
   });
 
@@ -55,8 +53,8 @@ const ModalEditTransaction = ({ toggleModal }) => {
           year: '',
           month: '',
           category: transactionDetails.category,
-          comment: transactionDetails.comment,
-          sum: transactionDetails.sum,
+          comment: transactionDetails.comment ? transactionDetails.comment : '-',
+          sum: parseFloat(transactionDetails.sum).toFixed(2),
         }),
     );
   }, []);
@@ -100,19 +98,19 @@ const ModalEditTransaction = ({ toggleModal }) => {
     ev.preventDefault;
     const type = formData.isIncome ? 'Income' : 'Expense';
     const category = formData.isIncome ? 'Income' : formData.category;
-    const year = formData.date.getFullYear();
-    const month = formData.date.toLocaleString('en-US', { month: 'long' });
+    const year = new Date(formData.date).getFullYear();
+    const month = new Date(formData.date).toLocaleString('en-US', { month: 'long' });
     toggleModal();
     dispatch(
       updateTransactionById({
         id: transactionId,
-        date: formData.date,
+        date: new Date(formData.date),
         year: year.toString(),
         month: month,
         type: type,
         category: category,
-        comment: formData.comment,
-        sum: formData.sum,
+        comment: formData.comment ? formData.comment : '-',
+        sum: Number(formData.sum) ? formData.sum : '-',
       }),
     );
   };
@@ -181,7 +179,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
               )}
             >
               {categories.map(option => (
-                <MenuItem key={option} value={option}>
+                <MenuItem key={`${option}.cat`} value={option}>
                   {option}
                 </MenuItem>
               ))}
@@ -192,17 +190,13 @@ const ModalEditTransaction = ({ toggleModal }) => {
         <Formik
           initialValues={formData}
           validationSchema={Yup.object({
-            sum: Yup.number().required('Required').positive('Must be a positive number'),
-            dateValue: Yup.date().required('Required'),
-            category: Yup.string().when('isIncome', {
-              is: false,
-              then: Yup.string().required('Required'),
-              otherwise: Yup.string(),
-            }),
+            sum: Yup.number().min(0.009).required('Dot is the separator / max two decimal places'),
+            date: Yup.date().required('Date required'),
+            category: Yup.string(),
             comment: Yup.string(),
           })}
           onSubmit={(values, { setSubmitting }) => {
-            handleAddTransaction(values, dispatch);
+            handleUpdateTransaction(values, dispatch);
             setSubmitting(false);
           }}
         >
@@ -290,6 +284,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                   value={formData.comment}
                   className={css.textarea}
                   onChange={handleInputChange}
+                  style={{ height: '35px' }}
                 />
               </div>
             </label>{' '}
