@@ -27,6 +27,7 @@ import { ButtonAddTransaction } from '../ButtonAddTransactions/ButtonAddTransact
 import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
 import { updateSelectedId } from '../../redux/transactions/transactions.slice';
 import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
+import formatDate from '../../utils/format.date';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 const HomeTab = () => {
@@ -46,16 +47,6 @@ const HomeTab = () => {
   // useEffect(() => {
   //   dispatch(fetchTransactions());
   // }, []);
-
-  const formatDate = date => {
-    const dateObject = new Date(date);
-    const year = dateObject.getFullYear() % 100;
-    const month = dateObject.getMonth() + 1;
-    const day = dateObject.getDate();
-    const formattedDate =
-      (year < 10 ? '0' : '') + year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
-    return formattedDate;
-  };
 
   // const getTransactionsFilteredByCategory = (transactions, category) => {
   //   console.log(`category:`, category);
