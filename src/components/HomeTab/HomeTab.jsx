@@ -82,16 +82,11 @@ const HomeTab = () => {
     const sortedTransactions = sortedToNewestTransactions(transactions);
     const slicedData = sortedTransactions.slice(startIndex, endIndex);
     setCurrentData(prevData => (prevData = slicedData));
-    console.log('sliced data:', slicedData.length);
-    console.log('sorted data:', sortedTransactions.length);
     
     if (slicedData.length >= sortedTransactions.length) {
       setHasMore(prev => (prev = false)); // Nie ma więcej stron do załadowania
-      console.log('has more: ', hasMore);
     }
-    
-    console.log('currentPage:', currentPage);
-    console.log('current data:', currentData);
+
   }, [transactions, currentPage]);
 
   const toggleAddTransactionModal = () => {
