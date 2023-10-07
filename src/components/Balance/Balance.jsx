@@ -8,8 +8,13 @@ import { fetchTransactions } from '../../redux/transactions/transactions.operati
 import css from './Balance.module.css';
 
 const Balance = () => {
+  const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
 
   useEffect(() => {
     const incomesSum = [...transactions]

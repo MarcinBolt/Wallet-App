@@ -9,6 +9,7 @@ import {
   selectTransactionId,
   // selectTransactionsCategories,
   selectTransactionsFilterCategory,
+  selectTransactionsCategories,
 } from '../../redux/selectors';
 import {
   fetchTransactions,
@@ -39,7 +40,7 @@ const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
   const isTransactionsLoading = useSelector(selectTransactionsIsLoading);
   const isTransactionsError = useSelector(selectTransactionsError);
-  // const categories = useSelector(selectTransactionsCategories);
+  const categories = useSelector(selectTransactionsCategories);
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
 
   const [isModalEditTransactionOpen, setIsModalEditTransactionOpen] = useState();
@@ -70,30 +71,27 @@ const HomeTab = () => {
   // const transactions = getTransactionsFilteredByCategory(transactionsAll, selectedFilterCategory);
 
   useEffect(() => {
-    dispatch(fetchTransactions());
-  }, []);
-
-  useEffect(() => {
     sortedToNewestTransactions(transactions);
   }, [transactions]);
 
   useEffect(() => {
-    console.log('has more at the beggining: ',hasMore)
+    console.log('has more at the beggining: ', hasMore);
     // Oblicz indeks początkowy i końcowy dla aktualnej strony
     const startIndex = 0;
-    const endIndex = startIndex + itemsPerPage;
+    const endIndex = startIndex + itemsPerPage * currentPage;
     const sortedTransactions = sortedToNewestTransactions(transactions);
     const slicedData = sortedTransactions.slice(startIndex, endIndex);
-    setCurrentData(prevData => prevData = slicedData);
-    console.log('sliced data:',slicedData.length)
-    console.log('sorted data:',sortedTransactions.length)
-
+    setCurrentData(prevData => (prevData = slicedData));
+    console.log('sliced data:', slicedData.length);
+    console.log('sorted data:', sortedTransactions.length);
+    
     if (slicedData.length >= sortedTransactions.length) {
-      setHasMore(false); // Nie ma więcej stron do załadowania
-      console.log('has more: ',hasMore)
+      setHasMore(prev => (prev = false)); // Nie ma więcej stron do załadowania
+      console.log('has more: ', hasMore);
     }
-
-    console.log('current data:',currentData)
+    
+    console.log('currentPage:', currentPage);
+    console.log('current data:', currentData);
   }, [transactions, currentPage]);
 
   const toggleAddTransactionModal = () => {
@@ -114,13 +112,15 @@ const HomeTab = () => {
   };
 
   const handleLoadMore = () => {
-    setCurrentPage(currentPage + 1);
+    console.log('wywołanie load more');
+    setCurrentPage(prev => (prev = currentPage + 1));
+    console.log('currentPage in LoadMore:', currentPage);
   };
 
-  // const handleSelectChange = ev => {
-  //   ev.preventDefault;
-  //   dispatch(updateSelectedCategory(ev.target.value));
-  // };
+  const handleSelectChange = ev => {
+    ev.preventDefault;
+    dispatch(updateSelectedCategory(ev.target.value));
+  };
 
   return (
     <>
@@ -145,57 +145,54 @@ const HomeTab = () => {
                   </li>
                   <li key={`${userName}category`} className={css.tableHeaderItem}>
                     <p className={css.itemType}>Category</p>
-                    {/* <div className={css.selectContainer}>
-                    <select
-                      name="category"
-                      id="category"
-                      className={css.select}
-                      value={selectedFilterCategory}
-                      onChange={handleSelectChange}
-                    >
-                      <option value="All">All</option>
-                      {categories.map((e, index) => (
-                        <option key={index} value={e}>
-                          {e}
-                        </option>
-                      ))}
-                    </select>
-                  </div> */}
-                </li>
-                <li key={`${userName}comment`} className={css.tableHeaderItem}>
-                  <p key={`${userName}p4`} className={css.itemType}>
-                    Comment
-                  </p>
-                </li>
-                <li key={`${userName}sum`} className={css.tableHeaderItem}>
-                  <p key={`${userName}p5`} className={css.itemType}>
-                    Sum
-                  </p>
-                </li>
-                <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
-              </ul>
-            </li>
-            {transactions.length === 0 && <h3>No transactions yet</h3>}
-            {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
-            {transactions.length > 0 &&
-              sortedToNewestTransactions(transactions).map(
-                ({ _id, date, type, category, comment, sum }) => (
-                  <li key={`${_id}${sum}${comment}.transaction`} className={css.tableItem}>
-                    
-                      <TransactionDetails
-                        key={`${_id}.details`}
-                        id={_id}
-                        date={date}
-                        type={type}
-                        category={category}
-                        comment={comment}
-                        sum={sum}
-                        handleEditBtn={handleEditButton}
-                        handleDeleteBtn={handleButtonDelete}
-                      />
-                    
-                  </li>))}
-             </ul>
+                    <div className={css.selectContainer}>
+                      <select
+                        name="category"
+                        id="category"
+                        className={css.select}
+                        value={selectedFilterCategory}
+                        onChange={handleSelectChange}
+                      >
+                        <option value="All">All</option>
+                        {categories.map((e, index) => (
+                          <option key={index} value={e}>
+                            {e}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </li>
+                  <li key={`${userName}comment`} className={css.tableHeaderItem}>
+                    <p className={css.itemType}>Comment</p>
+                  </li>
+                  <li key={`${userName}sum`} className={css.tableHeaderItem}>
+                    <p className={css.itemType}>Sum</p>
+                  </li>
+                  <li key={`${userName}operations`} className={css.tableHeaderItem}></li>
+                </ul>
+              </li>
+              {transactions.length === 0 && <h3>No transactions yet</h3>}
+              {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
+              {transactions.length > 0 &&
+                sortedToNewestTransactions(transactions).map(
+                  ({ _id, date, type, category, comment, sum }) => (
+                    <li key={_id} className={css.tableItem}>
+                      {
+                        <TransactionDetails
+                          id={_id}
+                          date={date}
+                          type={type}
+                          category={category}
+                          comment={comment}
+                          sum={sum}
+                          handleEditBtn={handleEditButton}
+                          handleDeleteBtn={handleButtonDelete}
+                        />
+                      }
+                    </li>
+                  ),
+                )}
+            </ul>
           </InfiniteScroll>
         </div>
         <ButtonAddTransaction
