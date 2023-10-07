@@ -34,6 +34,7 @@
   --color-text-income-green: #24cca7;
   --color-text-expanse-pink: #ff6596;
   --color-text-disabled-btn-gray: #e0e0e0;
+  --color-text-delete-red: #fa0707;
 
   /* ------ background colors ----- */
   --color-bg-primary: #e7eaf2;
@@ -50,11 +51,12 @@
   --color-bg-btn-cancel: #ede9e8;
   --color-bg-btn-income: #24cca7;
   --color-bg-btn-expanse: #ff6596;
+  --color-bg-btn-delete-user: #eb00004b;
   --color-bg-btn-active-hover-shadow: #24cca840;
   --color-bg-btn-active-hover-shadow-darker: #1eb896e0;
   --color-bg-hometab-dissolve-tabletanddesktop: #f1f2f7;
-  --color-bg-btn-delete-hover: #e9000075;
-  
+  --color-bg-btn-delete-hover: #ee03037a;
+
   /* ------ borders colors ----- */
   --color-border-btn-date-filter: #000000;
   --color-border-bottom-btn-form: #e0e0e0;
@@ -71,7 +73,8 @@
   --color-border-btn-cancel-shadow-darker: #4a57e210;
   --color-border-btn-cancel-shadow-light: #ffffff98;
   --color-border-transaction-shadow: rgba(93, 93, 93, 0.233);
-  
+  --color-border-delete-red: #fa0707;
+
   /* ------ categories colors ----- */
   --color-category-main: #fed057;
   --color-category-products: #ffd8d0;
@@ -89,8 +92,8 @@
   --color-icon-logout: #bdbdbd;
   --color-icon-arrow-up: #000000;
   --color-icon-arrow-down: #000000;
-  --color-icon-navi: #6E78E8;
-  --color-icon-navi-hover: #4A56E2;
+  --color-icon-navi: #6e78e8;
+  --color-icon-navi-hover: #4a56e2;
   /* ------ password strength colors ----- */
   --color-pass-strength-green: #24cca7;
   --color-pass-strength-gray: #e5f1ef;

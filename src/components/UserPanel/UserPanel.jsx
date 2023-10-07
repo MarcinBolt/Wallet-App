@@ -11,17 +11,22 @@ import {
   selectGlobalIsModalDeleteUserOpen,
   selectGlobalIsUserPanelOpen,
   selectTransactionsCurrency,
+  selectUserEmail,
+  selectUserFirstName,
 } from '../../redux/selectors';
-import CustomButton from '../CustomButton/CustomButton';
-import UserPanelModal from './UserPanelModal';
-import ModalDeleteUser from '../ModalDeleteUser/ModalDeleteUser';
-import { updateIsModalLogoutOpen } from '../../redux/global/global.slice';
+import CustomButton from '../CustomButton/CustomButton.jsx';
+import UpdateUserModal from './UpdateUserModal/UpdateUserModal.jsx';
+import ModalDeleteUser from '../ModalDeleteUser/ModalDeleteUser.jsx';
+import { updateIsModalLogoutOpen } from '../../redux/global/global.slice.js';
 
-// const theme = createTheme();
+const theme = createTheme();
 
 const UserPanel = () => {
   const dispatch = useDispatch();
 
+  const userFirstName = useSelector(selectUserFirstName);
+  const userEmail = useSelector(selectUserEmail);
+  const isUserPanelOpen = useSelector(selectGlobalIsUserPanelOpen);
   const isModalDeleteUserOpen = useSelector(selectGlobalIsModalDeleteUserOpen);
   const handleModalDeleteUser = () => {
     dispatch(updateIsModalLogoutOpen(!isModalDeleteUserOpen));
@@ -35,37 +40,6 @@ const UserPanel = () => {
   const handleOpenDeleteModal = () => setOpenDeleteModal(true);
   const handleCloseDeleteModal = () => setOpenDeleteModal(false);
 
-  // useEffect(() => {
-  //   window.addEventListener('keyup', handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener('keyup', handleKeyDown);
-  //   };
-  // });
-
-  // useEffect(() => {
-  //   const handleEscapeKey = ev => {
-  //     if (ev.key === 'Escape') {
-  //       toggleUserPanel();
-  //     }
-  //   };
-  //   window.addEventListener('keydown', handleEscapeKey);
-  //   return () => {
-  //     window.removeEventListener('keydown', handleEscapeKey);
-  //   };
-  // }, []);
-
-  // const handleKeyDown = event => {
-  //   if (event.code === 'Escape') {
-  //     setOpenPanelModal(false);
-  //   }
-  // };
-  //const userName = 'Damian';
-  //const userEmail = 'dd@dd.net';
-
-  const userName = useAuth().userName;
-  const userEmail = useAuth().userEmail;
-  const IsUserPanelOpen = useAuth().isUserPanelOpen;
-
   return (
     <>
       <Box
@@ -75,38 +49,38 @@ const UserPanel = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          // minHeight: '92vh',
-          maxWidth: '320px',
+          maxWidth: '315px',
           background: 'white',
           position: 'fixed',
-          top: '5px',
-          right: 0,
+          top: '70px',
+          right: '10px',
           zIndex: 100,
-
-          // ...(IsUserPanelOpen &&
-          //   {
-          //      right: '10px',
-          //   }),
+          '@media (min-width: 768px)': {
+            top: '10px',
+            right: '10px',
+          },
         }}
       >
         {/* COLLAPSE the entire User Panel to the left, click User Name in Header to OPEN */}
-        <Collapse orientation="horizontal" in={IsUserPanelOpen}>
-          <h1 className={css.header}>Hello {userName} </h1>
-          <p className={css.paragraph}>Your E-mail is {userEmail}</p>
+        <Collapse orientation="vertical" in={isUserPanelOpen}>
+          <h1 className={css.header}>Hello {userFirstName} </h1>
+          <p className={css.paragraph}>Your E-mail address:</p>
+          <p className={css.paragraph}>{userEmail}</p>
           <div className={css.container_input}>
             <CustomButton
               type="submit"
               color="primary"
-              content="UPDATE ACCOUNT"
+              content="ACCOUNT SETTINGS"
               onClick={handleOpenPanelModal}
             ></CustomButton>
           </div>
           <div className={css.container_input}>
             <CustomButton
               type="submit"
-              color="secondary"
+              color="red"
               // onClick={handleModalDeleteUser}
               content="DELETE ACCOUNT"
+              style={{ background: 'red' }}
               onClick={handleOpenDeleteModal}
             ></CustomButton>
           </div>
@@ -125,12 +99,12 @@ const UserPanel = () => {
             className="mui-fixed"
             open={openPanelModal}
           >
-            <DialogTitle sx={{ display: 'flex', alignItems: 'center', p: '0', pr: '0', pb: '0' }}>
-              <IconButton sx={{ ml: 'auto', pb: '0' }} onClick={handleClosePanelModal}>
+            {/* <DialogTitle sx={{ display: 'flex', alignItems: 'center', p: '0', pr: '0', pb: '0' }}>
+              <IconButton sx={{ ml: 'auto', pb: '0' }}>
                 <CloseIcon sx={{ ml: 'auto' }} />
               </IconButton>
-            </DialogTitle>
-            <UserPanelModal></UserPanelModal>
+            </DialogTitle> */}
+            <UpdateUserModal closeUpdateUserModal={handleClosePanelModal}></UpdateUserModal>
           </Dialog>
         </Collapse>
       </Box>

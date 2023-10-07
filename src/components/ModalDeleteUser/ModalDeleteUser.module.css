@@ -2,17 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center; 
-    color: var(--color-text-nav-menu-gray);
     width: 350px;
 }
 .logoutTitle{
-    color: var(--color-text-nav-menu-gray);
+    color: var(--color-text-expanse-pink);
     padding:20px 0px 20px;
     font-size: 20px;  
     text-transform: uppercase;
 }
 .logoutInfo {
-    color: var(--color-text-nav-menu-gray);
+    color: var(--color-text-primary);
     padding-bottom:20px;  
 }
 

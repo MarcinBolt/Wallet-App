@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router';
 
 const ModalDeleteUser = ({ toggleModal }) => {
   const dispatch = useDispatch();
-  const userName = useSelector(selectUserFirstName);
+  const userFirstName = useSelector(selectUserFirstName);
   const modalBackdropRef = useRef(null);
 
   const handleModalDeleteUser = () => { 
@@ -27,11 +27,12 @@ const ModalDeleteUser = ({ toggleModal }) => {
     >
       <div className={css.logoutModalContainer}> 
         <span className={css.logoutTitle}>Confirm Account Deletion</span> 
-        <span className={css.logoutInfo}>Are you sure, {userName}? We'll miss you!</span>
+        <span className={css.logoutInfo}>All Your data will delete!</span>
+        <span className={css.logoutInfo}>Are you sure {userFirstName}?</span>
         <div className={css.confirmButtons}>
           <CustomButton
             type="button"
-            color="primary"
+            color="red"
             content="Delete User"
             onClick={onClickDeleteUser}
             sx = {{
@@ -44,7 +45,7 @@ const ModalDeleteUser = ({ toggleModal }) => {
           <CustomButton
             type="button"
             color="secondary"
-            content="Go back to dashboard"
+            content="CANCEL"
             onClick={() => navigate('/dashboard', { replace: false })}
             className={css.delete_button}
             sx = {{
