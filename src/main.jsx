@@ -7,12 +7,13 @@ import { store, persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Experimental_CssVarsProvider as CssVarProvider } from '@mui/material/styles';
 import './index.css';
+import Loader from './components/Loader/Loader.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HashRouter>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate loading={<Loader />} persistor={persistor}>
           <CssVarProvider>
             <App />
           </CssVarProvider>

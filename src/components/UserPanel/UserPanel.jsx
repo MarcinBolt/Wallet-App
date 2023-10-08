@@ -28,6 +28,7 @@ const UserPanel = () => {
   const userEmail = useSelector(selectUserEmail);
   const isUserPanelOpen = useSelector(selectGlobalIsUserPanelOpen);
   const isModalDeleteUserOpen = useSelector(selectGlobalIsModalDeleteUserOpen);
+  
   const handleModalDeleteUser = () => {
     dispatch(updateIsModalLogoutOpen(!isModalDeleteUserOpen));
   };
@@ -43,7 +44,7 @@ const UserPanel = () => {
   return (
     <>
       <Box
-        boxShadow={10}
+        boxShadow={isUserPanelOpen ? 10 : 0} 
         sx={{
           borderRadius: '20px',
           flexDirection: 'column',
@@ -61,7 +62,6 @@ const UserPanel = () => {
           },
         }}
       >
-        {/* COLLAPSE the entire User Panel to the left, click User Name in Header to OPEN */}
         <Collapse orientation="vertical" in={isUserPanelOpen}>
           <h1 className={css.header}>Hello {userFirstName} </h1>
           <p className={css.paragraph}>Your E-mail address:</p>
@@ -72,7 +72,7 @@ const UserPanel = () => {
               color="primary"
               content="ACCOUNT SETTINGS"
               onClick={handleOpenPanelModal}
-            ></CustomButton>
+            />
           </div>
           <div className={css.container_input}>
             <CustomButton
@@ -82,7 +82,7 @@ const UserPanel = () => {
               content="DELETE ACCOUNT"
               style={{ background: 'red' }}
               onClick={handleOpenDeleteModal}
-            ></CustomButton>
+            />
           </div>
           <Dialog
             sx={{

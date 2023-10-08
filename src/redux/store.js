@@ -13,11 +13,26 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const userPersistConfig = {
+  key: 'user',
+  storage,
+  email: ['email'],
+  // firstName: ['firstName'],
+};
+
+// const userTransactionsPersistConfig = {
+//   key: 'transactions',
+//   storage,
+//   transactions: 'transactions',
+// };
+
 export const store = configureStore({
   reducer: {
     global: globalReducer,
     transactions: transactionsReducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    user: persistReducer(userPersistConfig, authReducer),
+    // transactions: persistReducer(userTransactionsPersistConfig, transactionsReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

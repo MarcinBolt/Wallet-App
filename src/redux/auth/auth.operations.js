@@ -94,26 +94,25 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
   }
 });
  
-export const deleteUser = createAsyncThunk(
-  'auth/delete', async (verificationToken, thunkAPI) => {
-    try { 
-      const response = await axios.delete(`/users/delete/${verificationToken}`);
-      if (response.status !== 200) {
-        return notification.notifyProcessFailure(response.data.message);
-      }
-      notification.notifyUserProcessTSuccess(response.data.user.firstName);
-      return response.data;
-    } catch (error) {
-      notification.notifyProcessFailure(error.response.data.message);
-      return thunkAPI.rejectWithValue(error.message);
+export const deleteUser = createAsyncThunk('auth/delete', async (credentials, thunkAPI) => {
+  try {
+    const response = await axios.delete(`/users/delete`, credentials, thunkAPI);
+    if (response.status !== 200) {
+      return notification.notifyProcessFailure(response.data.message);
     }
-  });
+    notification.notifyUserProcessTSuccess(response.data.user.firstName);
+    return response.data;
+  } catch (error) {
+    notification.notifyProcessFailure(error.response.data.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
   export const updateUser = createAsyncThunk(
-  'auth/users',
-  async (verificationToken, credentials, thunkAPI) => {
+  'auth/update',
+    async (credentials, thunkAPI) => {
     try {
-      const response = await axios.put(verificationToken, credentials, thunkAPI);
+      const response = await axios.patch(`/users`, credentials, thunkAPI);
       if (response.status !== 200) {
         return notification.notifyProcessFailure(response.data.message);
       }

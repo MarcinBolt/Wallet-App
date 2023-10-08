@@ -121,13 +121,12 @@ const ModalEditTransaction = ({ toggleModal }) => {
         <IconButton
           style={{
             position: 'absolute',
+            padding: '15px',
             top: '16px',
             right: '16px',
             display: 'flex',
             width: '16px',
             height: '16px',
-            border: '0px solid #000',
-            transform: 'rotate(90deg)',
           }}
           onClick={toggleModal}
         >

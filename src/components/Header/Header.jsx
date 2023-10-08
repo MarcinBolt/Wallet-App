@@ -40,10 +40,10 @@ const Header = () => {
             <Logo />
           </div>
           <div className={css.userWrapper}>
-            {/* <p className={css.text}>{userName ? userName : 'User'}</p> */}
             <div className={isUserPanelOpen ? css.btn1open : css.btn1} onClick={toggleUserPanel}>
               <div className={css.icon}></div>
             </div>
+            <div className={css.separator}></div>
             <div className={css.exitWrapper} onClick={handleModalLogout}>
               <SvgIcon
                 viewBox="0 0 18 18"
