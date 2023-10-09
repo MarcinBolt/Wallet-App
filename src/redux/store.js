@@ -16,8 +16,7 @@ const authPersistConfig = {
 const userPersistConfig = {
   key: 'user',
   storage,
-  email: ['email'],
-  // firstName: ['firstName'],
+  whitelist: ['user'],
 };
 
 // const userTransactionsPersistConfig = {
