@@ -2,6 +2,8 @@ import Transaction from './schema/transaction.schema.js';
 
 export const getOwnerTransactionsFromDB = async owner => await Transaction.find({ owner });
 
+export const countOwnerTransactionsInDB = async owner => await Transaction.find({ owner }).countDocuments();;
+
 export const createOwnerTransactionInDB = async (
   date,
   year,

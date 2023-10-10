@@ -18,6 +18,7 @@ import CustomButton from '../CustomButton/CustomButton.jsx';
 import UpdateUserModal from './UpdateUserModal/UpdateUserModal.jsx';
 import ModalDeleteUser from '../ModalDeleteUser/ModalDeleteUser.jsx';
 import { updateIsModalLogoutOpen } from '../../redux/global/global.slice.js';
+import localState from '../../utils/localState';
 
 const theme = createTheme();
 
@@ -28,7 +29,7 @@ const UserPanel = () => {
   const userEmail = useSelector(selectUserEmail);
   const isUserPanelOpen = useSelector(selectGlobalIsUserPanelOpen);
   const isModalDeleteUserOpen = useSelector(selectGlobalIsModalDeleteUserOpen);
-  
+
   const handleModalDeleteUser = () => {
     dispatch(updateIsModalLogoutOpen(!isModalDeleteUserOpen));
   };
@@ -44,7 +45,7 @@ const UserPanel = () => {
   return (
     <>
       <Box
-        boxShadow={isUserPanelOpen ? 10 : 0} 
+        boxShadow={isUserPanelOpen ? 10 : 0}
         sx={{
           borderRadius: '20px',
           flexDirection: 'column',
@@ -63,8 +64,8 @@ const UserPanel = () => {
         }}
       >
         <Collapse orientation="vertical" in={isUserPanelOpen}>
-          <h1 className={css.header}>Hello {userFirstName} </h1>
-          <p className={css.paragraph}>Your E-mail address:</p>
+          <h2 className={css.header}>Hi, {userFirstName} </h2>
+          <p className={css.paragraph}>Your e-mail address:</p>
           <p className={css.paragraph}>{userEmail}</p>
           <div className={css.container_input}>
             <CustomButton

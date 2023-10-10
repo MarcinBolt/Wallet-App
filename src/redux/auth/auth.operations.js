@@ -87,7 +87,7 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     if (response.data.code !== 200) {
       return notification.notifyProcessFailure(response.data.message);
     }
-    return response.data;
+    return response.data.user;
   } catch (error) {
     notification.notifyLoginFailure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
@@ -111,6 +111,7 @@ export const deleteUser = createAsyncThunk('auth/delete', async (credentials, th
   export const updateUser = createAsyncThunk(
   'auth/update',
     async (credentials, thunkAPI) => {
+      console.log(credentials);
     try {
       const response = await axios.patch(`/users`, credentials, thunkAPI);
       if (response.status !== 200) {

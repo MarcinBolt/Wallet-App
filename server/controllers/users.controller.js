@@ -244,17 +244,34 @@ const updateUserData = async (req, res, _) => {
     }
 
     const id = req.user.id;
-    const hashedPassword = await hashPassword(password);
     const capitalizedFirstName = capitalizeEachWord(firstName);
+
+    if (password === 'samePass') {
+      await updateUserDataByIdInDB(id, {
+        firstName: capitalizedFirstName,
+      });
+
+      return res.json({
+        status: 'success',
+        code: 200,
+        message: `User's name successfully updated.`,
+        user: {
+          email,
+          firstName: capitalizedFirstName,
+        },
+      });
+    }
+
+    const hashedPassword = await hashPassword(password);
     await updateUserDataByIdInDB(id, {
-      email,
       password: hashedPassword,
       firstName: capitalizedFirstName,
     });
+
     return res.json({
       status: 'success',
       code: 200,
-      message: `User's data successfully updated.`,
+      message: `User's password / name successfully updated.`,
       user: {
         email,
         firstName: capitalizedFirstName,

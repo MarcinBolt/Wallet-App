@@ -6,6 +6,7 @@ import {
   getOwnerTransactionsByCategoryFromDB,
   getOwnerTransactionsFromDB,
   updateOwnerTransactionByIdInDB,
+  countOwnerTransactionsInDB,
 } from '../service/transactions.service.js';
 
 import {
@@ -18,9 +19,12 @@ const getOwnerTransactions = async (req, res, next) => {
   const owner = req.user.id;
   try {
     const results = await getOwnerTransactionsFromDB(owner);
+    const totalHits = await countOwnerTransactionsInDB(owner);
+
     res.json({
       status: 'success',
       code: 200,
+      totalHits,
       transactions: results,
     });
   } catch (err) {
