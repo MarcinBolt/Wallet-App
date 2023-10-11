@@ -6,6 +6,7 @@ import {
   updateTransactionById,
   fetchTransactionsByCategory,
   fetchTransactionsByYearAndMonth,
+  fetchTransactionsByYear,
 } from './transactions.operations.js';
 
 const initState = {
@@ -31,7 +32,6 @@ const initState = {
   incomesSum: 0,
   expansesSum: 0,
   balance: 0,
-  userCurrency: '₴',
   isLoading: false,
   error: null,
 };
@@ -67,16 +67,23 @@ const transactionsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchTransactions.pending, handlePending)
+      .addCase(fetchTransactionsByYear.pending, handlePending)
       .addCase(addTransaction.pending, handlePending)
       .addCase(deleteTransactionById.pending, handlePending)
       .addCase(updateTransactionById.pending, handlePending)
       .addCase(fetchTransactions.rejected, handleRejected)
+      .addCase(fetchTransactionsByYear.rejected, handleRejected)
       .addCase(addTransaction.rejected, handleRejected)
       .addCase(deleteTransactionById.rejected, handleRejected)
       .addCase(updateTransactionById.rejected, handleRejected)
       .addCase(fetchTransactionsByCategory.rejected, handleRejected)
       .addCase(fetchTransactionsByYearAndMonth.rejected, handleRejected)
       .addCase(fetchTransactions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.transactions = action.payload.transactions;
+      })
+      .addCase(fetchTransactionsByYear.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.transactions = action.payload.transactions;

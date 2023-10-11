@@ -15,6 +15,7 @@ import hashPassword from '../utils/password.hasher.js';
 import validatePassword from '../utils/password.validator.js';
 import {
   userRegisterReqBodySchema,
+  userUpdateReqBodySchema,
   userLoginReqBodySchema,
   userEmailReqBodySchema,
 } from '../utils/joi.schemas.js';
@@ -82,6 +83,7 @@ const createNewUser = async (req, res, _) => {
 };
 
 const deleteUser = async (req, res, _) => {
+  console.log(req.body);
   try {
     const { value, error } = userLoginReqBodySchema.validate(req.body);
     const { email, password } = value;
@@ -236,8 +238,8 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
 
 const updateUserData = async (req, res, _) => {
   try {
-    const { value, error } = userRegisterReqBodySchema.validate(req.body);
-    const { email, password, firstName } = value;
+    const { value, error } = userUpdateReqBodySchema.validate(req.body);
+    const { email, password, firstName, userCurrency } = value;
 
     if (error) {
       return res.status(400).json({ status: 'error', code: 400, message: error.message });
@@ -249,15 +251,17 @@ const updateUserData = async (req, res, _) => {
     if (password === 'samePass') {
       await updateUserDataByIdInDB(id, {
         firstName: capitalizedFirstName,
+        userCurrency,
       });
 
       return res.json({
         status: 'success',
         code: 200,
-        message: `User's name successfully updated.`,
+        message: `User's data successfully updated.`,
         user: {
           email,
           firstName: capitalizedFirstName,
+          userCurrency,
         },
       });
     }
@@ -266,15 +270,17 @@ const updateUserData = async (req, res, _) => {
     await updateUserDataByIdInDB(id, {
       password: hashedPassword,
       firstName: capitalizedFirstName,
+      userCurrency,
     });
 
     return res.json({
       status: 'success',
       code: 200,
-      message: `User's password / name successfully updated.`,
+      message: `User's data successfully updated.`,
       user: {
         email,
         firstName: capitalizedFirstName,
+        userCurrency,
       },
     });
   } catch (err) {

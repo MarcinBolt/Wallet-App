@@ -10,7 +10,7 @@ import {
 } from './auth.operations.js';
 
 const initialState = {
-  user: { firstName: null, email: null },
+  user: { firstName: null, email: null, userCurrency: 'PLN' },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
@@ -76,7 +76,6 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.error = action.message;
-        console.log(action.message);
       });
   },
 });

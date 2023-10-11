@@ -1,18 +1,62 @@
-.logoutModalContainer {
+.backdrop {
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-backdrop);
+  
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+    top: -80px;
+  }
+}
+
+.overlay {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  background-color: var(--color-bg-secondary);
+  width: 100%;
+  height: 100%;
+  padding: 30px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 30px 50px;
+  }
+}
+
+.form-field {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.container_input {
+  position: relative;
+}
+
+.deleteUserModalContainer {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    width: 350px;
+    width: 100%;
 }
-.logoutTitle{
+.deleteUserTitle{
     color: var(--color-text-expanse-pink);
-    padding:20px 0px 20px;
-    font-size: 20px;  
+    padding: 20px 0px 20px;
+    font-size: 22px;  
+    text-align: center;
     text-transform: uppercase;
 }
-.logoutInfo {
+.deleteUserInfo {
     color: var(--color-text-primary);
-    padding-bottom:20px;  
+    text-align: center;
+    padding-bottom: 8px;  
 }
 
 .delete_button {

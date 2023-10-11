@@ -2,23 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useAuth } from '../../utils/hooks/user.auth';
+import { createTheme } from '@mui/material/styles';
 import css from './UserPanel.module.css';
 import { Collapse, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   selectGlobalIsModalDeleteUserOpen,
   selectGlobalIsUserPanelOpen,
-  selectTransactionsCurrency,
   selectUserEmail,
   selectUserFirstName,
-} from '../../redux/selectors';
+} from '../../redux/selectors.js';
 import CustomButton from '../CustomButton/CustomButton.jsx';
 import UpdateUserModal from './UpdateUserModal/UpdateUserModal.jsx';
 import ModalDeleteUser from '../ModalDeleteUser/ModalDeleteUser.jsx';
 import { updateIsModalLogoutOpen } from '../../redux/global/global.slice.js';
-import localState from '../../utils/localState';
 
 const theme = createTheme();
 
@@ -94,6 +91,7 @@ const UserPanel = () => {
               // minHeight: '100vh',
               // maxWidth: '100%',
               background: 'transparent',
+
               // left: '70%',
             }}
             PaperProps={{ sx: { borderRadius: '20px' } }}
@@ -105,33 +103,33 @@ const UserPanel = () => {
                 <CloseIcon sx={{ ml: 'auto' }} />
               </IconButton>
             </DialogTitle> */}
-            <UpdateUserModal closeUpdateUserModal={handleClosePanelModal}></UpdateUserModal>
+            <UpdateUserModal closeUpdateUserModal={handleClosePanelModal} />
+          </Dialog>
+          <Dialog
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              // minHeight: '100vh',
+              // maxWidth: '100%',
+              background: 'transparent',
+
+              // left: '70%',
+            }}
+            PaperProps={{ sx: { borderRadius: '20px' } }}
+            className="mui-fixed"
+            open={openDeleteModal}
+          >
+            {/* <DialogTitle sx={{ display: 'flex', alignItems: 'center', p: '20', pr: '20', pb: '0' }}> */}
+            {/* <IconButton sx={{ ml: 'auto', pb: '0' }} onClick={handleCloseDeleteModal}>
+              <CloseIcon sx={{ ml: 'auto' }} />
+            </IconButton> */}
+            {/* </DialogTitle> */}
+            <ModalDeleteUser closeDeleteUserModal={handleCloseDeleteModal} />
           </Dialog>
         </Collapse>
       </Box>
-
-      <Dialog
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '100vh',
-          maxWidth: '200px',
-          background: 'transparent',
-          left: '70%',
-        }}
-        PaperProps={{ sx: { borderRadius: '20px' } }}
-        className="mui-fixed"
-        open={openDeleteModal}
-      >
-        <DialogTitle sx={{ display: 'flex', alignItems: 'center', p: '20', pr: '20', pb: '0' }}>
-          <IconButton sx={{ ml: 'auto', pb: '0' }} onClick={handleCloseDeleteModal}>
-            <CloseIcon sx={{ ml: 'auto' }} />
-          </IconButton>
-        </DialogTitle>
-        <ModalDeleteUser></ModalDeleteUser>
-      </Dialog>
     </>
   );
 };

@@ -6,6 +6,7 @@ import {
   getOwnerTransactionById,
   getOwnerTransactions,
   getOwnerTransactionsByCategory,
+  getOwnerTransactionsByYear,
   updateOwnerTransactionById,
 } from '../controllers/transactions.controller.js';
 import auth from '../utils/user.auth.js';
@@ -13,6 +14,8 @@ import auth from '../utils/user.auth.js';
 const transactionsRouter = Router();
 
 transactionsRouter.get('/', auth, getOwnerTransactions);
+
+transactionsRouter.get('/:year', auth, getOwnerTransactionsByYear);
 
 transactionsRouter.post('/', auth, createOwnerTransaction);
 

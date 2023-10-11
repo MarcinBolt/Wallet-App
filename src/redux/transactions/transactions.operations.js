@@ -21,6 +21,19 @@ const fetchTransactions = createAsyncThunk('transactions/fetchAll', async (_, th
   }
 });
 
+const fetchTransactionsByYear = createAsyncThunk('transactions/fetchByYear', async ({year}, thunkAPI) => {
+  try {
+    const response = await axios.get(`/transactions/${year}`);
+    if (response.status !== 200) {
+      return notification.notifyProcessFailure(response.data.message);
+    }
+    return response.data;
+  } catch (e) {
+    notification.notifyProcessFailure(e.response.data.message);
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
+
 const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async ({ date, year, month, type, category, comment, sum }, thunkAPI) => {
@@ -119,9 +132,10 @@ const fetchTransactionsByYearAndMonth = createAsyncThunk(
 
 export {
   fetchTransactions,
+  fetchTransactionsByYear,
   addTransaction,
   deleteTransactionById,
   updateTransactionById,
   fetchTransactionsByCategory,
-  fetchTransactionsByYearAndMonth
+  fetchTransactionsByYearAndMonth,
 };

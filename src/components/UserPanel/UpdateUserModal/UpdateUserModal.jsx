@@ -1,22 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
-import { IconButton } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MoneyIcon from '@mui/icons-material/Money';
-import { deleteUser, updateUser } from '../../../redux/auth/auth.operations.js';
+import { updateUser } from '../../../redux/auth/auth.operations.js';
 import {
-  selectTransactionsCurrency,
+  selectUserCurrency,
   selectUserEmail,
   selectUserFirstName,
 } from '../../../redux/selectors.js';
-import CustomButton from '../../CustomButton/CustomButton';
-import closeIcon from '../../../assets/icons/close.svg';
+import CustomButton from '../../CustomButton/CustomButton.jsx';
 import css from './UpdateUserModal.module.css';
 
 const validationSchema = Yup.object().shape({
@@ -38,7 +35,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
   const dispatch = useDispatch();
   const userEmail = useSelector(selectUserEmail);
   const userFirstName = useSelector(selectUserFirstName);
-  const userTransactionsCurrency = useSelector(selectTransactionsCurrency);
+  const userCurrencyFromState = useSelector(selectUserCurrency);
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +43,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
       password: '',
       confirmPassword: '',
       firstName: userFirstName,
-      userCurrency: userTransactionsCurrency,
+      userCurrency: userCurrencyFromState !== "" ? userCurrencyFromState : 'PLN',
     },
     validationSchema,
     onSubmit: values => {
@@ -55,10 +52,8 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
           email: values.email,
           password: values.password.length === 0 ? 'samePass' : values.password,
           firstName: values.firstName.length === 0 ? userFirstName : values.firstName,
-          userCurrency:
-            values.userCurrency.length === 0 ? userTransactionsCurrency : values.userCurrency,
+          userCurrency: values.userCurrency.length === 0 ? 'PLN' : values.userCurrency,
         }),
-        // selectTransactionsCurrency(values.userCurrency),
       );
     },
   });
@@ -66,19 +61,6 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
   return (
     <>
       <form onSubmit={formik.handleSubmit} className={css.form}>
-        <IconButton
-          style={{
-            position: 'absolute',
-            padding: '15px',
-            top: '16px',
-            right: '16px',
-            width: '16px',
-            height: '16px',
-          }}
-          onClick={closeUpdateUserModal}
-        >
-          <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
-        </IconButton>
         <div className={css.container_form}>
           <div className={css.container_input}>
             <TextField
@@ -449,7 +431,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
                   borderRadius: 0,
                   border: 'none',
                   borderBottom: 1,
-                  width: '315px',
+                  width: '175px',
                 },
                 input: {
                   position: 'relative',
@@ -464,7 +446,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
                   paddingTop: '8px',
                   paddingRight: '0px',
                   paddingBottom: '0px',
-                  width: '270px',
+                  width: '120px',
                 },
                 label: {
                   color: 'grey.400',

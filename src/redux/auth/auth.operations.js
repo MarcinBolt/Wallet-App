@@ -95,8 +95,9 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
 });
  
 export const deleteUser = createAsyncThunk('auth/delete', async (credentials, thunkAPI) => {
+  console.log(credentials);
   try {
-    const response = await axios.delete(`/users/delete`, credentials, thunkAPI);
+    const response = await axios.delete('/users/delete', credentials);
     if (response.status !== 200) {
       return notification.notifyProcessFailure(response.data.message);
     }
@@ -111,13 +112,12 @@ export const deleteUser = createAsyncThunk('auth/delete', async (credentials, th
   export const updateUser = createAsyncThunk(
   'auth/update',
     async (credentials, thunkAPI) => {
-      console.log(credentials);
     try {
       const response = await axios.patch(`/users`, credentials, thunkAPI);
       if (response.status !== 200) {
         return notification.notifyProcessFailure(response.data.message);
       }
-      notification.notifyUserProcessTSuccess(response.data.user.firstName);
+      notification.notifyUserProcessTSuccess(response.data.message);
       return response.data;
     } catch (e) {
       notification.notifyProcessFailure(e.response.data.message);

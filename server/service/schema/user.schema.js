@@ -29,6 +29,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    userCurrency: {
+      type: String,
+      default: 'PLN',
+    },
   },
   { versionKey: false, timestamps: true },
 );

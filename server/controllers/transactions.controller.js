@@ -1,12 +1,14 @@
 import {
   createOwnerTransactionInDB,
   deleteOwnerTransactionByIdInDB,
-  getOwnerStatisticsFromBD,
+  getOwnerStatisticsFromDB,
   getOwnerTransactionByIdFromDB,
   getOwnerTransactionsByCategoryFromDB,
   getOwnerTransactionsFromDB,
+  getOwnerTransactionsByYearFromDB,
   updateOwnerTransactionByIdInDB,
   countOwnerTransactionsInDB,
+  countOwnerTransactionsPerYearInDB,
 } from '../service/transactions.service.js';
 
 import {
@@ -20,6 +22,29 @@ const getOwnerTransactions = async (req, res, next) => {
   try {
     const results = await getOwnerTransactionsFromDB(owner);
     const totalHits = await countOwnerTransactionsInDB(owner);
+
+    res.json({
+      status: 'success',
+      code: 200,
+      totalHits,
+      transactions: results,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      status: 'error',
+      code: 500,
+      message: 'Server error',
+    });
+  }
+};
+
+const getOwnerTransactionsByYear = async (req, res, _) => {
+  const owner = req.user.id;
+  const { year } = req.params;
+  try {
+    const results = await getOwnerTransactionsByYearFromDB(owner, year);
+    const totalHits = await countOwnerTransactionsPerYearInDB(owner, year);
 
     res.json({
       status: 'success',
@@ -196,7 +221,7 @@ const getOwnerStatisticsByDate = async (req, res, _) => {
     return res.status(400).json({ message: error.message });
   }
   try {
-    const statisticsByDate = await getOwnerStatisticsFromBD(owner, year, month);
+    const statisticsByDate = await getOwnerStatisticsFromDB(owner, year, month);
     return res.json({
       status: 'success',
       code: 200,
@@ -214,6 +239,7 @@ const getOwnerStatisticsByDate = async (req, res, _) => {
 
 export {
   getOwnerTransactions,
+  getOwnerTransactionsByYear,
   createOwnerTransaction,
   getOwnerTransactionById,
   updateOwnerTransactionById,
