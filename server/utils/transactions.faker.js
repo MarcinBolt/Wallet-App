@@ -49,30 +49,30 @@ const generateTransactions = async () => {
       sum,
       owner,
     });
+  }
 
-    for (let i = 0; i < 30; i++) {
-      const iterableDate = faker.date.between({ from: '2023-06-10', to: '2023-10-02' });
+  for (let i = 0; i < 30; i++) {
+    const iterableDate = faker.date.between({ from: '2023-06-10', to: '2023-10-02' });
 
-      const date = iterableDate;
-      const year = iterableDate.getFullYear();
-      const month = iterableDate.toLocaleString('en-us', { month: 'long' });
-      const type = 'Income';
-      const category = 'Income';
-      const comment = faker.lorem.sentence({ min: 1, max: 7 });
-      const sum = faker.number.float({ min: 5, max: 2000 }).toFixed(2);
-      const owner = faker.helpers.arrayElement(owners);
+    const date = iterableDate;
+    const year = iterableDate.getFullYear();
+    const month = iterableDate.toLocaleString('en-us', { month: 'long' });
+    const type = 'Income';
+    const category = 'Income';
+    const comment = faker.lorem.sentence({ min: 1, max: 7 });
+    const sum = faker.number.float({ min: 5, max: 2000 }).toFixed(2);
+    const owner = faker.helpers.arrayElement(owners);
 
-      transactions.push({
-        date,
-        year,
-        month,
-        type,
-        category,
-        comment,
-        sum,
-        owner,
-      });
-    }
+    transactions.push({
+      date,
+      year,
+      month,
+      type,
+      category,
+      comment,
+      sum,
+      owner,
+    });
   }
 
   try {
