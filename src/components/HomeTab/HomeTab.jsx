@@ -33,7 +33,7 @@ import css from './HomeTab.module.css';
 // import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 /** Dane do paginacji (pod infinity scroll tablicy transakcji) **/
-const itemsPerPage = 40;
+const itemsPerPage = 100;
 
 const HomeTab = () => {
   const dispatch = useDispatch();
@@ -72,20 +72,21 @@ const HomeTab = () => {
 
   useEffect(() => {
     sortedToNewestTransactions(transactions);
-  }, [transactions]);
+      }, [transactions]);
 
   useEffect(() => {
     console.log('has more at the beggining: ', hasMore);
     // Oblicz indeks początkowy i końcowy dla aktualnej strony
-    const startIndex = 0;
-    const endIndex = startIndex + itemsPerPage * currentPage;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
     const sortedTransactions = sortedToNewestTransactions(transactions);
     const slicedData = sortedTransactions.slice(startIndex, endIndex);
     setCurrentData(prevData => (prevData = slicedData));
-    
+    console.log(slicedData)
+    console.log("current page: ",currentPage)
     if (slicedData.length >= sortedTransactions.length) {
       setHasMore(prev => (prev = false)); // Nie ma więcej stron do załadowania
-    }
+``    }
 
   }, [transactions, currentPage]);
 
@@ -169,7 +170,7 @@ const HomeTab = () => {
               {transactions.length === 0 && <h3>No transactions yet</h3>}
               {isTransactionsLoading && !isTransactionsError && <ElementsLoader />}
               {transactions.length > 0 &&
-                sortedToNewestTransactions(transactions).map(
+                currentData.map(
                   ({ _id, date, type, category, comment, sum }) => (
                     <li key={_id} className={css.tableItem}>
                       {
