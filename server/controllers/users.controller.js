@@ -83,7 +83,6 @@ const createNewUser = async (req, res, _) => {
 };
 
 const deleteUser = async (req, res, _) => {
-  console.log(req.body);
   try {
     const { value, error } = userLoginReqBodySchema.validate(req.body);
     const { email, password } = value;
@@ -110,9 +109,7 @@ const deleteUser = async (req, res, _) => {
     res.status(200).json({
       status: 'deleted',
       code: 200,
-      user: {
-        email: normalizedEmail,
-      },
+      message: 'User successfully deleted.',
     });
   } catch (err) {
     console.error(err);
@@ -176,6 +173,7 @@ const loginUser = async (req, res, _) => {
       user: {
         email: user.email,
         firstName: capitalizedFirstName,
+        userCurrency: user.userCurrency,
       },
     });
   } catch (err) {
@@ -312,8 +310,6 @@ const verifyUserByVerificationToken = async (req, res, _) => {
 
     await updateUserDataByIdInDB(id, { verificationToken, isVerified: true });
 
-    console.log(`user.email: ${user.email}`);
-    console.log(`user.firstName: ${user.firstName}`);
     return res.json({
       status: 'success',
       code: 200,

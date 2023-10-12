@@ -76,12 +76,10 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
   const persistedToken = state?.auth?.token;
 
   if (persistedToken === null) {
-    // If there is no token, exit without performing any request
     return thunkAPI.rejectWithValue('Unable to authenticate user');
   }
 
   try {
-    // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
     const response = await axios.get('/users/current');
     if (response.data.code !== 200) {
@@ -93,15 +91,14 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
- 
+
 export const deleteUser = createAsyncThunk('auth/delete', async (credentials, thunkAPI) => {
-  console.log(credentials);
   try {
-    const response = await axios.delete('/users/delete', credentials);
+    const response = await axios.delete('/users/delete', { data: credentials });
     if (response.status !== 200) {
       return notification.notifyProcessFailure(response.data.message);
     }
-    notification.notifyUserProcessTSuccess(response.data.user.firstName);
+    notification.notifyUserProcessTSuccess(response.data.message);
     return response.data;
   } catch (error) {
     notification.notifyProcessFailure(error.response.data.message);
@@ -109,19 +106,16 @@ export const deleteUser = createAsyncThunk('auth/delete', async (credentials, th
   }
 });
 
-  export const updateUser = createAsyncThunk(
-  'auth/update',
-    async (credentials, thunkAPI) => {
-    try {
-      const response = await axios.patch(`/users`, credentials, thunkAPI);
-      if (response.status !== 200) {
-        return notification.notifyProcessFailure(response.data.message);
-      }
-      notification.notifyUserProcessTSuccess(response.data.message);
-      return response.data;
-    } catch (e) {
-      notification.notifyProcessFailure(e.response.data.message);
-      return thunkAPI.rejectWithValue(e.message);
+export const updateUser = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
+  try {
+    const response = await axios.patch(`/users`, credentials, thunkAPI);
+    if (response.status !== 200) {
+      return notification.notifyProcessFailure(response.data.message);
     }
-  },
-);
+    notification.notifyUserProcessTSuccess(response.data.message);
+    return response.data;
+  } catch (e) {
+    notification.notifyProcessFailure(e.response.data.message);
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});

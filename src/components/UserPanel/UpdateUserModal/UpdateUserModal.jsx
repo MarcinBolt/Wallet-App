@@ -43,7 +43,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
       password: '',
       confirmPassword: '',
       firstName: userFirstName,
-      userCurrency: userCurrencyFromState !== "" ? userCurrencyFromState : 'PLN',
+      userCurrency: userCurrencyFromState === '' ? 'PLN' : userCurrencyFromState,
     },
     validationSchema,
     onSubmit: values => {
@@ -150,7 +150,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
             <TextField
               name="password"
               type="password"
-              label="New password"
+              label="Could change password"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -243,7 +243,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
             <TextField
               name="confirmPassword"
               type="password"
-              label="Confirm new password"
+              label="Confirm if new password"
               value={formik.values.confirmPassword}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
