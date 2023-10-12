@@ -150,7 +150,7 @@ const UpdateUserModal = ({ closeUpdateUserModal }) => {
             <TextField
               name="password"
               type="password"
-              label="Change your password"
+              label="New password (optional)"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
