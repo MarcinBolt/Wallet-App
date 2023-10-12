@@ -1,5 +1,6 @@
 export const selectUserFirstName = state => state.auth.user.firstName;
 export const selectUserEmail = state => state.auth.user.email;
+export const selectUserCurrency = state => state.auth.user.userCurrency;
 export const selectUserToken = state => state.auth.user.token;
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
@@ -24,6 +25,7 @@ export const selectBalance = state => state.balance
 
 export const selectGlobalIsLoading = state => state.global.isLoading;
 export const selectGlobalIsModalLogoutOpen = state => state.global.isModalLogoutOpen;
+export const selectGlobalIsModalDeleteUserOpen = state => state.global.isModalDeleteUserOpen;
 export const selectGlobalIsModalAddTransactionOpen = state => state.global.isModalAddTransactionOpen;
 export const selectGlobalIsModalEditTransactionOpen = state => state.global.isModalEditTransactionOpen;
 export const selectGlobalIsListCategoriesOpen = state => state.global.isListCategoriesOpen;

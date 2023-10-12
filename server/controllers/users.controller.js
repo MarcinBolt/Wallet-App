@@ -15,6 +15,7 @@ import hashPassword from '../utils/password.hasher.js';
 import validatePassword from '../utils/password.validator.js';
 import {
   userRegisterReqBodySchema,
+  userUpdateReqBodySchema,
   userLoginReqBodySchema,
   userEmailReqBodySchema,
 } from '../utils/joi.schemas.js';
@@ -108,9 +109,7 @@ const deleteUser = async (req, res, _) => {
     res.status(200).json({
       status: 'deleted',
       code: 200,
-      user: {
-        email: normalizedEmail,
-      },
+      message: 'User successfully deleted.',
     });
   } catch (err) {
     console.error(err);
@@ -174,6 +173,7 @@ const loginUser = async (req, res, _) => {
       user: {
         email: user.email,
         firstName: capitalizedFirstName,
+        userCurrency: user.userCurrency,
       },
     });
   } catch (err) {
@@ -236,8 +236,8 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
 
 const updateUserData = async (req, res, _) => {
   try {
-    const { value, error } = userRegisterReqBodySchema.validate(req.body);
-    const { email, password, firstName } = value;
+    const { value, error } = userUpdateReqBodySchema.validate(req.body);
+    const { email, password, firstName, userCurrency } = value;
 
     if (error) {
       return res.status(400).json({ status: 'error', code: 400, message: error.message });
@@ -245,11 +245,41 @@ const updateUserData = async (req, res, _) => {
 
     const id = req.user.id;
     const capitalizedFirstName = capitalizeEachWord(firstName);
-    await updateUserDataByIdInDB(id, { email, password, firstName: capitalizedFirstName });
+
+    if (password === 'samePass') {
+      await updateUserDataByIdInDB(id, {
+        firstName: capitalizedFirstName,
+        userCurrency,
+      });
+
+      return res.json({
+        status: 'success',
+        code: 200,
+        message: `User's data successfully updated.`,
+        user: {
+          email,
+          firstName: capitalizedFirstName,
+          userCurrency,
+        },
+      });
+    }
+
+    const hashedPassword = await hashPassword(password);
+    await updateUserDataByIdInDB(id, {
+      password: hashedPassword,
+      firstName: capitalizedFirstName,
+      userCurrency,
+    });
+
     return res.json({
       status: 'success',
       code: 200,
       message: `User's data successfully updated.`,
+      user: {
+        email,
+        firstName: capitalizedFirstName,
+        userCurrency,
+      },
     });
   } catch (err) {
     console.error(err);
@@ -280,8 +310,6 @@ const verifyUserByVerificationToken = async (req, res, _) => {
 
     await updateUserDataByIdInDB(id, { verificationToken, isVerified: true });
 
-    console.log(`user.email: ${user.email}`);
-    console.log(`user.firstName: ${user.firstName}`);
     return res.json({
       status: 'success',
       code: 200,

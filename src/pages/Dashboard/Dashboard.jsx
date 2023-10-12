@@ -8,11 +8,14 @@ import Loader from '../../components/Loader/Loader';
 import PageContainer from '../../components/PageContainer/PageContainer ';
 import css from './Dashboard.module.css';
 import Navigation from '../../components/Navigation/Navigation';
-import Balance from '../../components/Balance/Balance';
+import UserPanel from '../../components/UserPanel/UserPanel';
+import { Box } from '@mui/system'; 
+ import Balance from '../../components/Balance/Balance';
 
 const DashboardMobile = () => {
   return (
     <PageContainer>
+      <UserPanel/>
       <div className={css.navMobileWrapper}>
         <Navigation />
       </div>
@@ -25,6 +28,7 @@ const DashboardMobile = () => {
 const DashboardTablet = () => {
   return (
     <PageContainer>
+      <UserPanel/>
       <div className={css.dashboardTablet}>
         <div className={css.dashboardTabletWrapper}>
           <div className={css.navBalTabletWrapper}>
@@ -45,6 +49,18 @@ const DashboardTablet = () => {
 const DashboardDesktop = () => {
   return (
     <PageContainer>
+      <Box
+      // sx={{
+      //   backgroundColor: "pink",
+      //   width: 30,
+      //   height: 30,
+      //   animation: `${spin} 1s infinite ease`
+      // }}
+      >
+  <UserPanel/>
+
+      </Box>
+    
       <div className={css.dashboardDesktopWrapper}>
         <div className={css.navBalCurrDesktopWrapper}>
           <Navigation />
@@ -67,7 +83,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header />
+      <Header /> 
       <Media
         queries={{
           small: mobile,

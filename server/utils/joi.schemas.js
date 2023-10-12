@@ -5,6 +5,12 @@ export const userRegisterReqBodySchema = Joi.object({
   password: Joi.string().min(6).max(12).required(),
   firstName: Joi.string().min(1).max(12).required(),
 });
+export const userUpdateReqBodySchema = Joi.object({
+  email: Joi.string().email({ minDomainSegments: 2 }).required(),
+  password: Joi.string().min(6).max(12).required(),
+  firstName: Joi.string().min(1).max(12).required(),
+  userCurrency: Joi.string().min(1),
+});
 
 export const userLoginReqBodySchema = Joi.object({
   email: Joi.string().email({ minDomainSegments: 2 }).required(),

@@ -2,6 +2,15 @@ import Transaction from './schema/transaction.schema.js';
 
 export const getOwnerTransactionsFromDB = async owner => await Transaction.find({ owner });
 
+export const countOwnerTransactionsInDB = async owner =>
+  await Transaction.find({ owner }).countDocuments();
+
+export const getOwnerTransactionsByYearFromDB = async (owner, year) =>
+  await Transaction.find({ owner, year });
+
+export const countOwnerTransactionsPerYearInDB = async (owner, year) =>
+  await Transaction.find({ owner, year }).countDocuments();
+
 export const createOwnerTransactionInDB = async (
   date,
   year,
@@ -25,7 +34,7 @@ export const deleteOwnerTransactionByIdInDB = async (id, owner) =>
 export const getOwnerTransactionsByCategoryFromDB = async (owner, category) =>
   await await Transaction.find({ owner, category });
 
-export const getOwnerStatisticsFromBD = async (owner, year, month) =>
+export const getOwnerStatisticsFromDB = async (owner, year, month) =>
   await Transaction.find({ owner, year, month });
 
 export const deleteOwnerAllTransactionsIdInDB = async owner =>

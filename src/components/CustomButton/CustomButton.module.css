@@ -48,3 +48,30 @@
     inset 0 2px 8px var(--color-border-btn-cancel-shadow);
   background-color: var(--color-border-btn-cancel-shadow-darker);
 }
+
+.buttonRed {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  color: var(--color-text-delete-red);
+  cursor: pointer;
+  border: 0;
+  text-transform: uppercase;
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  background-color: var(--color-bg-btn-delete-user);
+  box-shadow:
+    0 2px 2px var(--color-bg-btn-cancel),
+    inset 0 2px 35px var(--color-border-btn-cancel-shadow-light);
+  border: 1px solid var(--color-border-delete-red);
+  transition: all 250ms ease-in-out;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
+}
+.buttonRed:hover {
+  box-shadow:
+    0 2px 2px var(--color-border-btn-cancel-shadow),
+    inset 0 2px 8px var(--color-border-btn-cancel-shadow);
+  background-color: var(--color-bg-btn-delete-hover);
+}

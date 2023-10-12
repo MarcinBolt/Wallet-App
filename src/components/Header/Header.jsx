@@ -1,20 +1,28 @@
 import SvgIcon from '@mui/material/SvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectGlobalIsModalLogoutOpen } from '../../redux/selectors';
-import { selectUserFirstName } from '../../redux/selectors';
+import {
+  selectGlobalIsModalLogoutOpen,
+  selectGlobalIsUserPanelOpen,
+  selectUserFirstName,
+} from '../../redux/selectors';
 import Logo from '../Logo/Logo';
 import PageContainer from '../PageContainer/PageContainer ';
+import { updateIsUserPanelOpen } from '../../redux/global/global.slice';
 import css from './Header.module.css';
 import { updateIsModalLogoutOpen } from '../../redux/global/global.slice';
 import ModalLogout from '../ModalLogout/ModalLogout';
 
 const Header = () => {
-  const name = useSelector(selectUserFirstName);
-  const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
   const dispatch = useDispatch();
+  const userName = useSelector(selectUserFirstName);
+  const isModalLogoutOpen = useSelector(selectGlobalIsModalLogoutOpen);
+  const isUserPanelOpen = useSelector(selectGlobalIsUserPanelOpen);
 
   const handleModalLogout = () => {
     dispatch(updateIsModalLogoutOpen(!isModalLogoutOpen));
+  };
+  const toggleUserPanel = () => {
+    dispatch(updateIsUserPanelOpen(!isUserPanelOpen));
   };
 
   return (
@@ -31,7 +39,10 @@ const Header = () => {
             <Logo />
           </div>
           <div className={css.userWrapper}>
-            <p className={css.text}>{name}</p>
+            <div className={isUserPanelOpen ? css.btn1open : css.btn1} onClick={toggleUserPanel}>
+              <div className={css.icon}></div>
+            </div>
+            <div className={css.separator}></div>
             <div className={css.exitWrapper} onClick={handleModalLogout}>
               <SvgIcon
                 viewBox="0 0 18 18"
@@ -58,11 +69,11 @@ const Header = () => {
           </div>
         </div>
       </PageContainer>
-      {isModalLogoutOpen && <ModalLogout toggleModal={handleModalLogout} />}
+      {isModalLogoutOpen && (
+        <ModalLogout key={`${userName}.modalLogout`} toggleModal={handleModalLogout} />
+      )}
     </div>
   );
 };
 
 export default Header;
-
-// logika dodawania modala logout
