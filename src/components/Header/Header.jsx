@@ -22,7 +22,6 @@ const Header = () => {
     dispatch(updateIsModalLogoutOpen(!isModalLogoutOpen));
   };
   const toggleUserPanel = () => {
-    // ev.preventDefault;
     dispatch(updateIsUserPanelOpen(!isUserPanelOpen));
   };
 

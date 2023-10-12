@@ -44,7 +44,7 @@ const ModalDeleteUser = ({ closeDeleteUserModal }) => {
       <div className={css.overlay}>
         <div className={css.deleteUserModalContainer}>
           <span className={css.deleteUserTitle}>Confirm Account Deletion</span>
-          <span className={css.deleteUserInfo}>All Your data will delete!</span>
+          <span className={css.deleteUserInfo}>All of your data will be deleted!</span>
           <span className={css.deleteUserInfo}>Are you sure, {userFirstName}?</span>
           <form onSubmit={formik.handleSubmit} className={css.form}>
             <div className={css.container_form}>

@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
 import css from './UserPanel.module.css';
-import { Collapse, DialogTitle, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Collapse } from '@mui/material';
 import {
   selectGlobalIsModalDeleteUserOpen,
   selectGlobalIsUserPanelOpen,
@@ -16,8 +15,6 @@ import CustomButton from '../CustomButton/CustomButton.jsx';
 import UpdateUserModal from './UpdateUserModal/UpdateUserModal.jsx';
 import ModalDeleteUser from '../ModalDeleteUser/ModalDeleteUser.jsx';
 import { updateIsModalLogoutOpen } from '../../redux/global/global.slice.js';
-
-const theme = createTheme();
 
 const UserPanel = () => {
   const dispatch = useDispatch();
