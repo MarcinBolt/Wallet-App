@@ -1,28 +1,20 @@
 main {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-bg-primary);
+  background: linear-gradient(-45deg, var(--color-bg-gradient-one), var(--color-bg-gradient-two), var(--color-bg-gradient-three), var(--color-bg-gradient-four));
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 
-  @media screen and (min-width: 768px) {
-    background-image: url('../../assets/images/bg-tablet/ellipse-down.png'),
-      url('../../assets/images/bg-tablet/ellipse-up.png');
-    background-position:
-      bottom left,
-      top right;
-    background-repeat: no-repeat, no-repeat;
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  @media only screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
-    (min-device-pixel-ratio: 2) {
-    background-image: url('../../assets/images/bg-tablet/ellipse-down@2x.png'),
-      url('../../assets/images/bg-tablet/ellipse-up@2x.png');
+  50% {
+    background-position: 100% 50%;
   }
-  @media screen and (min-width: 1280px) {
-    background-image: url('../../assets/images/bg-desktop/ellipse.png'),
-      url('../../assets/images/bg-desktop/ellipse-up-desktop.png');
-  }
-  @media only screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
-    (min-device-pixel-ratio: 2) {
-    background-image: url('../../assets/images/bg-desktop/ellipse@2x.png'),
-      url('../../assets/images/bg-desktop/ellipse-up-desktop@2x.png');
+  100% {
+    background-position: 0% 50%;
   }
 }

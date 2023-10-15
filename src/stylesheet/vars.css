@@ -37,6 +37,10 @@
   --color-text-delete-red: #fa0707;
 
   /* ------ background colors ----- */
+  --color-bg-gradient-one: #f5c9ca;
+  --color-bg-gradient-two: #e7eaf2;
+  --color-bg-gradient-three: #b0b4db;
+  --color-bg-gradient-four: #99c3ba;
   --color-bg-primary: #e7eaf2;
   --color-bg-secondary: #ffffff;
   --color-bg-blur: #ffffff66;
