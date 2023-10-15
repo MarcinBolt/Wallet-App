@@ -74,6 +74,9 @@
     min-width: 440px;
     background-color: var(--color-bg-secondary);
     border-radius: var(--radius-widget-transactions-header);
+    box-shadow:
+      inset 0 0 20px var(--color-bg-secondary),
+      0 0 1rem 0 rgba(0, 0, 0, 0.1);
   }
 }
 
