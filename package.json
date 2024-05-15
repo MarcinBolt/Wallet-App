@@ -35,16 +35,16 @@
     "mongoose": "^7.5.2",
     "morgan": "^1.10.0",
     "mui": "^0.0.1",
-    "node": "^18.17.1",
+    "node": "^20.12.1",
     "nodemailer": "^6.9.5",
     "nodemon": "^3.0.1",
     "notiflix": "^3.2.6",
-    "npm": "^9.8.0",
+    "npm": "^10.5.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "react": "^18.2.0",
-    "react-datetime": "^3.2.0",
     "react-chartjs-2": "^5.2.0",
+    "react-datetime": "^3.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.4.5",
     "react-media": "^1.10.0",
@@ -68,7 +68,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "gh-pages": "^6.0.0",
-    "prettier": "3.0.3",
+    "prettier": "^3.2.5",
     "vite": "^4.4.9"
   }
 }
