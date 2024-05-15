@@ -70,3 +70,5 @@ connection
     process.exit();
   }),
 );
+
+module.exports = app;
