@@ -1,6 +1,6 @@
 import { createTransport } from 'nodemailer';
 import 'dotenv/config';
-import { capitalize } from '@mui/material';
+import capitalizeEachWord from '../utils/capitalizer.js';
 
 const config = {
   pool: true,
@@ -22,7 +22,7 @@ const baseUrl =
     : 'https://marcinbolt.github.io/Wallet-App/#/users/verify/';
 
 const send = async ({ to, firstName, verificationToken }) => {
-  const capitalizedFirstName = capitalize(firstName);
+  const capitalizedFirstName = capitalizeEachWord(firstName);
   let body = `<h2>Dear ${capitalizedFirstName},</h2>
       <p>Thank You for registration in our Wallet App.</p>
       <p>To confirm your email address, please click on the link below:</p>
