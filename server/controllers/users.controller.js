@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import passport from 'passport';
 import {
   createUserInDB,
   findUserByIdInDB,
