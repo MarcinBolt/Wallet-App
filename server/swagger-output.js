@@ -2,15 +2,17 @@ const swaggerOutput = {
   openapi: '3.0.0',
   info: {
     title: 'Wallet App REST API',
-    version: '1.0.0',
+    version: '1.2.0',
     contact: {
       name: 'Hi5',
-      url: 'https://github.com/MarcinBolt/Wallet-App',
+      // url: 'https://github.com/MarcinBolt/Wallet-App',
+      url: 'https://wallet-app-hi5.vercel.app',
     },
   },
   servers: [
     {
-      url: 'https://wallet-lpqy.onrender.com',
+      // url: 'https://wallet-lpqy.onrender.com',
+      url: 'https://wallet-app-hi5.vercel.app/api',
       description: 'API base URL',
     },
   ],
@@ -169,7 +171,7 @@ const swaggerOutput = {
     },
     '/users/verify': {
       post: {
-        summary: 'Resends email for signup confirmation',
+        summary: 'Resend email for signup confirmation',
         tags: ['User'],
         requestBody: {
           required: true,
@@ -345,7 +347,7 @@ const swaggerOutput = {
     },
     '/transactions/{id}': {
       get: {
-        summary: `Resends transaction's details.`,
+        summary: `Resend transaction's details.`,
         tags: ['Transaction'],
         parameters: [
           {

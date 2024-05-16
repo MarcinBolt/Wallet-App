@@ -5,7 +5,7 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'Wallet App REST API',
-      version: '1.0.0',
+      version: '1.2.0',
       description:
         'API documentation for Express application to manage users and transactions in database',
     },
@@ -34,11 +34,12 @@ import swaggerAutogen from 'swagger-autogen';
 
 const doc = {
   info: {
-    version: '1.0.0',
+    version: '1.2.0',
     title: 'Wallet App REST API',
     description: 'Express App to manage users and transactions in db',
   },
-  host: 'https://wallet-lpqy.onrender.com',
+  // host: 'https://wallet-lpqy.onrender.com',
+  host: 'https://wallet-app-hi5.vercel.app/api',
   basePath: '/',
   schemes: ['http', 'https'],
   consumes: ['application/json'],
