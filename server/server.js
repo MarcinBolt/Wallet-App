@@ -71,4 +71,36 @@ connection
   }),
 );
 
-export default app;
+// export default app;
+
+// handle HTTP requests
+export default async function handler(req, res) {
+  const { url, method } = req;
+  let body = null;
+
+  try {
+    body = await getRawBody(req);
+  } catch {
+    return res.status(400).json({ message: 'Invalid request body' });
+  }
+
+  const responseFromApp = await app(req, res, body);
+
+  res.statusCode = responseFromApp.statusCode;
+  res.statusMessage = responseFromApp.statusMessage;
+  res.setHeader('Content-Type', 'application/json');
+
+  responseFromApp.body && res.write(JSON.stringify(responseFromApp.body));
+  res.end();
+}
+
+async function getRawBody(req) {
+  const chunks = [];
+  const promise = new Promise((resolve, reject) => {
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks).toString()));
+    req.on('error', reject);
+  });
+
+  return promise;
+}
