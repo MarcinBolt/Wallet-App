@@ -8,7 +8,7 @@ import usersRouter from './routers/users.router.js';
 import transactionsRouter from './routers/transactions.router.js';
 import 'dotenv/config';
 import './config/passport.config.js';
-import  swaggerOutput from './swagger-output.js';
+import swaggerOutput from './swagger-output.js';
 import swaggerUi from 'swagger-ui-express';
 
 const app = express();
@@ -71,4 +71,4 @@ connection
   }),
 );
 
-module.exports = app;
+export default app;
