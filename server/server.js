@@ -42,7 +42,7 @@ app.use((error, _, res, __) => {
   });
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = (process.env.NODE_ENV === 'production' ? process.env.PORT : 5000) || 4030;
 
 const databaseURI = process.env.DATABASE_URI;
 const connection = mongoose.connect(databaseURI, {
