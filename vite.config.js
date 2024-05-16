@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig({
   base: '/Wallet-App/',
   plugins: [react()],
+  resolve: {
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.svg'],
+  },
 });
