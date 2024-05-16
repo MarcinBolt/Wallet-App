@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import passport from 'passport';
 import {
   createUserInDB,
   findUserByIdInDB,
@@ -19,7 +18,6 @@ import {
   userEmailReqBodySchema,
 } from '../utils/joi.schemas.js';
 import capitalizeEachWord from '../utils/capitalizer.js';
-import { capitalize } from '@mui/material';
 import { deleteOwnerAllTransactionsIdInDB } from '../service/transactions.service.js';
 
 const createNewUser = async (req, res, _) => {
@@ -215,7 +213,7 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
   try {
     const { email, firstName } = req.user;
 
-    const capitalizedFirstName = capitalize(firstName);
+    const capitalizedFirstName = capitalizeEachWord(firstName);
     return res.json({
       status: 'success',
       code: 200,

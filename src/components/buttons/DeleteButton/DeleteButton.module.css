@@ -1,6 +1,4 @@
 .deleteButton {
-  /* width: 67px;
-  height: 26px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,11 +8,12 @@
   background-color: var(--color-bg-btn-delete);
   border-radius: var(--radius-btn-delete);
   border: 0;
-  transition: all 250ms ease-in-out;
+  transition: background 250ms ease-in-out;
   padding: 5px 10px;
   cursor: pointer;
 }
 
 .deleteButton:hover {
   background-color: var(--color-bg-btn-delete-hover);
+    transition: background 250ms;
 }

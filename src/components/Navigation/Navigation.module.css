@@ -13,7 +13,7 @@
   text-decoration: none;
   font-size: 18px;
   font-family: var(--font-primary);
-  transition: all 250ms ease-in-out;
+  transition: all 50ms ease-in-out;
 }
 
 .link * .svg {

@@ -21,7 +21,7 @@ const Navigation = () => {
                 height: '44px',
                 padding: '0px',
                 fill: 'var(--color-icon-navi-hover)',
-                transition: 'all 250ms ease-in-out',
+                transition: 'all 50ms ease-in-out',
                 '@media screen and (min-width: 768px)': {
                   width: '24px',
                   height: '24px',
@@ -50,7 +50,7 @@ const Navigation = () => {
                 height: '44px',
                 padding: '0px',
                 fill: 'var(--color-icon-navi-hover)',
-                transition: 'all 250ms ease-in-out',
+                transition: 'all 50ms ease-in-out',
                 '@media screen and (min-width: 768px)': {
                   width: '24px',
                   height: '24px',
@@ -81,7 +81,7 @@ const Navigation = () => {
                       height: '44px',
                       padding: '0px',
                       fill: 'var(--color-icon-navi-hover)',
-                      transition: 'all 250ms ease-in-out',
+                      transition: 'all 50ms ease-in-out',
                       '@media screen and (min-width: 768px)': {
                         width: '24px',
                         height: '24px',
