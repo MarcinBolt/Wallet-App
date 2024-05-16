@@ -7,7 +7,7 @@ import 'react-datetime/css/react-datetime.css';
 import { updateTransactionById } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
 import closeIcon from '../../assets/icons/close.svg';
-import calendaricon from '../../assets/icons/calendaricon.svg';
+import calendarIcon from '../../assets/icons/calendarIcon.svg';
 import SelectIcon from '../../assets/icons/select-category.svg';
 import { selectTransactionId, selectTransactions } from '../../redux/selectors';
 import css from './ModalEditTransaction.module.css';
@@ -257,7 +257,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                           <InputAdornment position="end">
                             <IconButton onClick={() => {}}>
                               <img
-                                src={calendaricon}
+                                src={calendarIcon}
                                 alt="Calendar"
                                 viewBox="0 0 100% 4"
                                 className={css.calendarIcon}
