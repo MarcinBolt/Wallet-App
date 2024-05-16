@@ -48,7 +48,7 @@ const CurrencyTable = () => {
               borderRadius: '30px',
               overflow: 'hidden',
               marginTop: '20px',
-              '@media screen and (min-width: 1280px)': {
+              '@media screen and (max-width: 1279px)': {
                 height: '182px',
               },
               '@media screen and (min-width: 1280px)': {
@@ -60,7 +60,7 @@ const CurrencyTable = () => {
               sx={{
                 width: [280, 336, 393],
                 height: '174px',
-                '@media screen and (min-width: 1280px)': {
+                '@media screen and (max-width: 1279px)': {
                   height: '182px',
                 },
                 '@media screen and (min-width: 1280px)': {
