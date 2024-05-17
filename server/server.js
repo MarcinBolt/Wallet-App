@@ -70,5 +70,3 @@ connection
     process.exit();
   }),
 );
-
-export default app;

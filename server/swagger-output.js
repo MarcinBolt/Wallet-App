@@ -6,13 +6,13 @@ const swaggerOutput = {
     contact: {
       name: 'Hi5',
       // url: 'https://github.com/MarcinBolt/Wallet-App',
-      url: 'https://wallet-app-hi5.vercel.app',
+      url: 'https://walletapphi5.toadres.pl',
     },
   },
   servers: [
     {
       // url: 'https://wallet-lpqy.onrender.com',
-      url: 'https://wallet-app-hi5.vercel.app/api',
+      url: 'https://walletapphi5.toadres.pl',
       description: 'API base URL',
     },
   ],

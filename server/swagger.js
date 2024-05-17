@@ -39,7 +39,7 @@ const doc = {
     description: 'Express App to manage users and transactions in db',
   },
   // host: 'https://wallet-lpqy.onrender.com',
-  host: 'https://wallet-app-hi5.vercel.app/api',
+  host: 'https://walletapphi5.toadres.pl',
   basePath: '/',
   schemes: ['http', 'https'],
   consumes: ['application/json'],
