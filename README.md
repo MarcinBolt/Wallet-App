@@ -1,5 +1,6 @@
 # Wallet App <img alt="logo" src="./public/icons/apple-touch-icon.png" width="40"/> 
 [![Vercel](https://img.shields.io/badge/Frontend%20Hosted%20on%20Vercel.com-black)](https://wallet-app-hi5.vercel.app/) 
+[![GitHub Pages](https://img.shields.io/badge/Frontend%20Backup%20on%20GitHub%20Pages-gray)](https://marcinbolt.github.io/Wallet-App/)
 [![MIKR.US](https://img.shields.io/badge/Backend%20Hosted%20on%20Mikr.us-blue)](https://mikr.us/?r=27475801) 
 [![Swagger](https://img.shields.io/badge/API%20Documentation-Swagger-green)](https://walletapphi5.toadres.pl/api-doc/#/)
 ## Made by: <img src="./imgReadme/hi5-logo.png" width="50" height="38"/> Team 
