@@ -1,4 +1,4 @@
-# Wallet App <img alt="logo" src="./public/icons/apple-touch-icon.png" width="40"/> [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-gray)](https://marcinbolt.github.io/Wallet-App/) [![Render](https://img.shields.io/badge/Backend%20Hosted%20on-Render.com-blue)](https://render.com/) [![Swagger](https://img.shields.io/badge/API%20Documentation-Swagger-green)](https://wallet-lpqy.onrender.com/api-doc/#/)
+# Wallet App <img alt="logo" src="./public/icons/apple-touch-icon.png" width="40"/> [![Frontend%20Hosted%20on%20Vercel](https://img.shields.io/badge/Vercel.com-brightgreen)](https://wallet-app-hi5.vercel.app/) [![Backend%20Hosted%20on%20MIKR.US](https://img.shields.io/badge/MIKR.US-brightgreen)](https://mikr.us/?r=27475801) [![Swagger](https://img.shields.io/badge/API%20Documentation-Swagger-green)](https://walletapphi5.toadres.pl/api-doc/#/)
 ## Made by: <img src="./imgReadme/hi5-logo.png" width="50" height="38"/> Team 
 
 
@@ -120,7 +120,7 @@
 - faker - generate mock transactions
 
 ### Frontend (client side):
-- Deployed on GitHub Pages
+- Deployed on Vercel (previously on GitHub Pages: https://marcinbolt.github.io/Wallet-App/ )
 - HTML5, CSS3
 - Modern-normalize
 - React.js: JavaScript framework for building the user interface.
@@ -143,8 +143,8 @@
 
 
 Backend (server side):
-- Deployed on https://render.com
-- Node.js (v18.17.1): The runtime environment for the server.
+- Deployed on MIKR.US VPS [Reflink: https://mikr.us/?r=27475801] (previously on https://render.com)
+- Node.js v20.12.1 (previously v18.17.1): The runtime environment for the server.
 - Nodemon
 - Express.js: Framework for creating an HTTP server.
 - MongoDB: NoSQL database, perhaps using mongoose as the database interaction tool.
@@ -194,9 +194,13 @@ List the ready features here:
 ### To run back-end server.js: npm run start:dev
 ---
 ### Node version: v18.17.1
-### npm version: 9.8.0
+### npm version: 10.8.0 (previously 9.8.0)
 
 ---
+
+Front-end and back-end deployed on Vercel now.
+
+___
 
 Deploying Vite App to GitHub Pages using gh-pages and script deploy:
 
