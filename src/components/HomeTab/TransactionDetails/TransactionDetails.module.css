@@ -11,6 +11,7 @@
 
   @media screen and (min-width: 768px) {
     display: grid;
+    padding: 3px 0;
     grid-template-columns: 14% 8% 22% 25% 16% 13%;
     background-color: transparent;
     border-radius: 0;
@@ -20,8 +21,6 @@
 
 .transactionDetailsList:hover {
   @media screen and (min-width: 768px) {
-    z-index: 3;
-    height: 105%;
     box-shadow: 0px 0px 8px 1px rgba(168, 166, 166, 0.5);
     -webkit-box-shadow: 0px 0px 8px 1px rgba(168, 166, 166, 0.5);
     -moz-box-shadow: 0px 0px 8px 1px rgba(168, 166, 166, 0.5);
@@ -47,19 +46,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
-  height: 47px;
+  padding: 15px 10px;
+  margin: 0;
+  height: fit-content;
 
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
     gap: 7px;
+    padding: 10px 10px;
+    margin: auto 0;
     justify-content: left;
-    height: 54px;
+    height: fit-content;
   }
 }
 
 .transactionDetailsItem:not(:first-child) {
   border-top: 1px solid var(--color-border-details-separator);
+
   @media screen and (min-width: 768px) {
     border-top: 0;
   }
@@ -80,7 +83,7 @@
 .transactionDetailsItem:last-child {
   @media screen and (min-width: 768px) {
     justify-content: center;
-    padding: 0 5px;
+    padding: 0 0 0 20px;
   }
 }
 
@@ -100,39 +103,12 @@
   }
 }
 
-.comment {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  padding: 0 0 0 5px;
-  height: fit-content;
-  width: 100%;
-  overflow: hidden;
-  flex-wrap: nowrap;
-  transition: all 50ms ease-in-out;
-
-  @media screen and (min-width: 768px) {
-    justify-content: start;
-  }
-}
-
-.transactionDetailsItem:nth-child(4):hover {
-  @media screen and (min-width: 768px) {
-    z-index: 2;
-    overflow: visible;
-    text-wrap: wrap;
-    text-align: left;
-    border: 1px black;
-    padding: 10px;
-    height: 100%;
-    width: 165%;
-    background-color: var(--color-bg-primary);
-  }
-}
-
 .itemType {
   font-family: var(--font-secondary-bold);
   font-size: 18px;
+  padding: 0;
+  margin: 0;
+
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -141,15 +117,20 @@
 .itemValue {
   font-family: var(--font-secondary);
   font-size: 16px;
+  padding: 0;
+  margin: 0;
   color: var(--color-text-primary);
 }
 
 .typeOperator {
   display: none;
+
   @media screen and (min-width: 768px) {
     display: flex;
     font-family: var(--font-secondary);
     font-size: 16px;
+    padding: 0;
+    margin: 0;
     color: var(--color-text-primary);
   }
 }
@@ -157,7 +138,10 @@
   display: flex;
   font-family: var(--font-secondary);
   font-size: 16px;
+  margin: 0;
+  padding: 0;
   color: var(--color-text-primary);
+
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -166,9 +150,44 @@
 .incomeText {
   color: var(--color-border-details-income);
   font-weight: 700;
+  padding: 0;
+  margin: 0;
 }
 
 .expanseText {
   color: var(--color-border-details-expanse);
   font-weight: 700;
+  padding: 0;
+  margin: 0;
+}
+
+.comment {
+  display: inline-block;
+  align-items: center;
+  justify-content: end;
+  text-align: right;
+  white-space: nowrap;
+  padding: 0 0 0 20px;
+  margin: auto 0;
+  height: fit-content;
+  width: 100%;
+  transition: all 50ms ease-in-out;
+
+  @media screen and (min-width: 768px) {
+    justify-content: start;
+    text-align: left;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0;
+  }
+}
+
+.comment:hover {
+  @media screen and (min-width: 768px) {
+    overflow: visible;
+    text-wrap: wrap;
+    text-align: left;
+    margin: auto 0;
+  }
 }
