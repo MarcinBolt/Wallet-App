@@ -17,7 +17,8 @@
     width: 300px;
   }
 }
-.buttonPrimary:hover {
+.buttonPrimary:hover,
+.buttonPrimary:focus {
   box-shadow: 0 2px 8px var(--color-bg-btn-active-hover-shadow);
   background-color: var(--color-bg-btn-active-hover-shadow-darker);
 }
@@ -42,7 +43,8 @@
     width: 300px;
   }
 }
-.buttonSecondary:hover {
+.buttonSecondary:hover,
+.buttonSecondary:focus {
   box-shadow:
     0 2px 2px var(--color-border-btn-cancel-shadow),
     inset 0 2px 8px var(--color-border-btn-cancel-shadow);

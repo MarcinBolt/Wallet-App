@@ -15,6 +15,7 @@
   backdrop-filter: blur(1px);
   overflow: hidden;
   position: fixed;
+
   @media screen and (min-width: 768px) {
     width: 100%;
     height: 100vh;
@@ -195,13 +196,13 @@
   margin-bottom: 20px;
 }
 
-.logo_btn:hover {
+.logo_btn:hover,
+.logo_btn:focus {
   background-color: var(--color-bg-btn-active-hover);
 }
 
 .text_green {
   color: #24cca7;
-
   padding: 0 20px;
 }
 

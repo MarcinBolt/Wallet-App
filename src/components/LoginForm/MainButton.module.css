@@ -26,19 +26,11 @@
     background-color: var(--color-bg-btn-active-hover);
     border: transparent;
     margin-bottom: 20px;
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: #35a78e;
       } 
   }    
-
-/* .register_btn { 
-    background-color: var(-- -color-grean);
-    border: transparent;
-   
-    &:hover {
-      background-color: #05bd95;
-    }
-  }   */
 
   .main_btn { 
     text-decoration: none;

@@ -61,7 +61,8 @@
   }
 }
 
-.exitWrapper:hover * {
+.exitWrapper:hover *,
+.exitWrapper:focus * {
   stroke: var(--color-text-nav-menu-gray-hover);
   color: var(--color-text-nav-menu-gray-hover);
 }

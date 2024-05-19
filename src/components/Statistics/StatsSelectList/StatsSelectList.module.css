@@ -60,7 +60,8 @@
 }
 
 .select option:checked,
-.select option:hover {
+.select option:hover,
+.select option:focus {
   background-color: var(--color-bg-secondary);
   cursor: pointer;
 }

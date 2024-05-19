@@ -13,7 +13,8 @@
   cursor: pointer;
 }
 
-.deleteButton:hover {
+.deleteButton:hover,
+.deleteButton:focus {
   background-color: var(--color-bg-btn-delete-hover);
     transition: background 250ms;
 }

@@ -134,37 +134,22 @@ const ModalEditTransaction = ({ toggleModal }) => {
           <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
         </IconButton>
         <TitleComponent text={'Edit transaction'} />
-
-        {/* Typ transakcji */}
         <div className={css.switch}>
           <div className={formData.isIncome ? css.text_green : css.text_defaultLeft}>Income</div>
           <div className={css.text_defaultLeft}>/</div>
-
           <div className={formData.isIncome ? css.text_defaultRight : css.text_pink}>Expense</div>
         </div>
-
-        {/* Lista kategorii */}
         {formData.isIncome ? null : (
           <FormControl className={css.selectContainer}>
             <Select
-              sx={{
+              style={{
                 borderWidth: 0,
                 boxShadow: 'none',
                 height: '32px',
                 textAlign: 'left',
-                borderBottom: '1px solid var(--color-border-bottom-btn-form)',
-                '&:hover': { borderBottom: '1px solid var(--color-border-bottom-btn-form)' },
-
-                '& .MuiOutlinedInput-notchedOutline': {
-                  border: 'none !important',
-                },
-                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  border: 'none !important',
-                },
-                '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
-                  border: 'none !important',
-                },
+                paddingLeft: '15px',
               }}
+              variant="standard"
               id="category"
               name="category"
               value={formData.category}
@@ -186,7 +171,6 @@ const ModalEditTransaction = ({ toggleModal }) => {
             </Select>
           </FormControl>
         )}
-
         <Formik
           initialValues={formData}
           validationSchema={Yup.object({
@@ -208,10 +192,12 @@ const ModalEditTransaction = ({ toggleModal }) => {
                     style: {
                       paddingBottom: 0,
                       height: 32,
-                      textAlign: 'center',
+                      textAlign: 'left',
                       paddingTop: 0,
+                      paddingLeft: '15px',
                     },
                   }}
+                  fullWidth
                   as={TextField}
                   type="standard-basic"
                   variant="standard"
@@ -220,19 +206,22 @@ const ModalEditTransaction = ({ toggleModal }) => {
                   onChange={handleInputChange}
                   value={formData.sum}
                   placeholder="0.00"
-                  className={css.input}
+                  className={css.sumInput}
                 />
               </div>
               <div className={css.inputWrapper}>
-                {/* Pole daty */}
                 <Datetime
                   className={css.tableDatetime}
                   inputProps={{
                     style: {
+                      paddingBottom: 0,
                       height: 32,
-                      width: '175px',
+                      textAlign: 'left',
+                      paddingTop: 0,
+                      paddingLeft: '0',
                     },
                   }}
+                  fullWidth
                   input={true}
                   dateFormat="DD.MM.YYYY"
                   timeFormat={false}
@@ -244,7 +233,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                       variant="standard"
                       id="date"
                       name="date"
-                      // fullWidth
+                      fullWidth
                       onChange={e => {
                         const inputDate = e.target.value;
                         setFormData({
@@ -253,6 +242,9 @@ const ModalEditTransaction = ({ toggleModal }) => {
                         });
                       }}
                       InputProps={{
+                        style: {
+                          paddingLeft: '15px',
+                        },
                         endAdornment: (
                           <InputAdornment position="end">
                             <IconButton onClick={() => {}}>
@@ -277,17 +269,25 @@ const ModalEditTransaction = ({ toggleModal }) => {
             <label className="label">
               <div className={css.textareaWrapper}>
                 <Field
+                  style={{
+                    paddingBottom: 0,
+                    textAlign: 'left',
+                    paddingInline: '15px',
+                    paddingTop: 0,
+                  }}
                   as="textarea"
+                  type="standard-basic"
+                  variant="standard"
+                  id="comment"
                   placeholder="Comment"
-                  rows={1}
+                  rows={Math.max(1, formData.comment.split(' ').length / 4)} // 4 words per row
                   name="comment"
                   value={formData.comment}
-                  className={css.textarea}
+                  className={css.comment}
                   onChange={handleInputChange}
-                  style={{ height: '40px' }}
                 />
               </div>
-            </label>{' '}
+            </label>
           </Form>
         </Formik>
         <div className={css.paddingButton}>

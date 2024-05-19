@@ -166,7 +166,7 @@
   align-items: center;
   justify-content: end;
   text-align: right;
-  white-space: nowrap;
+  white-space: wrap;
   padding: 0 0 0 20px;
   margin: auto 0;
   height: fit-content;
