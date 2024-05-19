@@ -48,6 +48,24 @@
   }
 }
 
+.exit {
+  display: none;
+  
+  @media screen and (min-width: 768px) {
+    display: block;
+    color: var(--color-text-nav-menu-gray);
+    font-family: var(--font-secondary);
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 8px;
+  }
+}
+
+.exitWrapper:hover * {
+  stroke: var(--color-text-nav-menu-gray-hover);
+  color: var(--color-text-nav-menu-gray-hover);
+}
+
 .logo {
   font-family: var(--font-primary);
   font-size: 24px;
@@ -63,17 +81,5 @@
   margin-right: 8px;
   @media screen and (min-width: 768px) {
     margin-right: 12px;
-  }
-}
-
-.exit {
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: block;
-    color: var(--color-text-nav-menu-gray);
-    font-family: var(--font-secondary);
-    font-size: 18px;
-    font-weight: 400;
-    margin-left: 8px;
   }
 }
