@@ -98,10 +98,12 @@ const transactionsSlice = createSlice({
       .addCase(updateTransactionById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.transactions.findIndex(
-          transaction => transaction.id === action.payload.transaction.id,
+        const updatedTransactions = state.transactions.map(transaction =>
+          transaction._id === action.payload.transaction._id
+            ? action.payload.transaction
+            : transaction,
         );
-        state.transactions[index] = action.payload.transaction;
+        state.transactions = updatedTransactions;
       })
       .addCase(fetchTransactionsByCategory.fulfilled, (state, action) => {
         state.isLoading = false;

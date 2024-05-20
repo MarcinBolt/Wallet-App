@@ -16,10 +16,6 @@ import {
 } from '../../redux/transactions/transactions.operations';
 import css from './HomeTab.module.css';
 import TransactionDetails from './TransactionDetails/TransactionDetails';
-import {
-  updateIsModalAddTransactionOpen,
-  updateIsModalEditTransactionOpen,
-} from '../../redux/global/global.slice';
 import { mediaQueries } from '../../utils/constants';
 import Balance from '../Balance/Balance.jsx';
 import ElementsLoader from '../ElementsLoader/ElementsLoader';
@@ -28,7 +24,6 @@ import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
 import { updateSelectedId } from '../../redux/transactions/transactions.slice';
 import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction';
 import formatDate from '../../utils/format.date';
-// import { updateSelectedCategory } from '../../redux/transactions/transactions.slice';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
@@ -150,10 +145,10 @@ const HomeTab = () => {
             {transactions.length > 0 &&
               sortedToNewestTransactions(transactions).map(
                 ({ _id, date, type, category, comment, sum }) => (
-                  <li key={`${_id}${sum}${comment}.transaction`} className={css.tableItem}>
+                  <li key={_id} className={css.tableItem}>
                     {
                       <TransactionDetails
-                        key={`${_id}.details`}
+                        key={_id}
                         id={_id}
                         date={date}
                         type={type}
