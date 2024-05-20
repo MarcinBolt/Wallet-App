@@ -1,5 +1,4 @@
 @import '../../stylesheet/vars.css';
-/* @import '../../utils/breakpoints.css'; */
 
 .backdrop {
   z-index: 99;
@@ -12,9 +11,6 @@
   justify-content: center;
   align-items: center;
   background-color: var(--color-bg-backdrop);
-  backdrop-filter: blur(1px);
-  overflow: hidden;
-  position: fixed;
 
   @media screen and (min-width: 768px) {
     width: 100%;
@@ -24,7 +20,7 @@
 }
 
 .overlay {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,39 +52,30 @@
   gap: 40px;
 }
 
-.textarea {
+.comment {
   border-top: 1px solid transparent;
   border-left: 1px;
   border-right: 1px;
   padding-left: 15px;
   width: 280px;
-  height: 32px;
-  font-family: var(--font-secondary);
-  font-size: 18px;
-  line-height: 27px;
+  line-height: 1.4rem;
   resize: none;
-  height: 32px;
   background-color: transparent;
   outline: none;
-  border-bottom: 1px solid var(--color-border-bottom-btn-form);
+  resize: vertical;
 }
 
 .inputWrapper {
   display: inline-block;
   width: 280px;
   height: 32px;
-  border-bottom: 1px solid var(--color-border-bottom-btn-form);
-}
-
-.textareaWrapper {
-  height: 50px;
 }
 
 .tableDatetime {
   position: absolute;
+  width: 280px;
   border-collapse: collapse;
   z-index: 5;
-  /* top: 298px; */
   padding: 0;
   margin: 0;
   background-color: var(--color-bg-blur);
@@ -100,18 +87,17 @@
   margin: 0;
 }
 .calendarIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  padding-bottom: 5px;
-  /* margin-bottom: 10px; */
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .selectCategoryIcon {
+  position: absolute;
   width: 18px;
   height: 9px;
+  right: 10px;
   color: var(--color-text-primary);
+  cursor: pointer;
 }
 
 .datetime input {
@@ -125,10 +111,12 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
   gap: 40px;
 }
+
 .selectContainer {
   width: 280px;
 }
@@ -166,6 +154,12 @@
     gap: 40px;
   }
   .inputWrapper {
+    display: inline-block;
+    width: 180px;
+    height: 32px;
+  }
+
+  .tableDatetime {
     width: 180px;
   }
 
@@ -174,12 +168,18 @@
   }
 
   .selectContainer {
-    width: 394px;
+    width: 400px;
   }
 
-  .textarea {
-    width: 394px;
-    height: 32px;
+  .selectContainer select:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .comment {
+    width: 400px;
+    height: min-content;
   }
 }
 
@@ -211,7 +211,7 @@
 }
 
 .text_defaultLeft {
-  padding: 0 20px;
+  padding: 0 20px 0 0;
   font-size: 16px;
   color: var(--color-text-disabled-btn-gray);
 }

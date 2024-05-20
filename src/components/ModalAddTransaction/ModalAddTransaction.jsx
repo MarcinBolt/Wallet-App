@@ -17,15 +17,17 @@ import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
-import vectorIcon from '../../assets/icons/vector.svg';
+import calendarIcon from '../../assets/icons/calendarIcon.svg';
 import SelectIcon from '../../assets/icons/select-category.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
 import closeIcon from '../../assets/icons/close.svg';
 import { selectTransactionsCategories } from '../../redux/selectors';
+import TitleComponent from '../TitleComponent/Title.Component';
 
 const ModalAddTransaction = ({ toggleModal }) => {
+  const [prevIsFormValid, setPrevIsFormValid] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const modalBackdropRef = useRef(null);
   const dispatch = useDispatch();
@@ -40,6 +42,11 @@ const ModalAddTransaction = ({ toggleModal }) => {
     sum: '',
   });
 
+  const [errors, setErrors] = useState({
+    sum: '',
+    date: '',
+  });
+
   useEffect(() => {
     const handleEscapeKey = ev => {
       if (ev.key === 'Escape') {
@@ -51,11 +58,6 @@ const ModalAddTransaction = ({ toggleModal }) => {
       window.removeEventListener('keydown', handleEscapeKey);
     };
   }, []);
-
-  /* tymczasowa funkcja - przyjdzie z propsów*/
-  // const toggleModal = () => {
-  //   console.log('modal do zamknięcia');
-  // };
 
   let extraMargin = formData.isChecked ? '0' : '20px';
 
@@ -95,6 +97,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
       dateValue: date.toDate(),
       date: date.toDate(),
     });
+    setErrors(prevErrors => ({ ...prevErrors, date: '' }));
     setSelectedDate(date.toDate());
   };
 
@@ -105,6 +108,20 @@ const ModalAddTransaction = ({ toggleModal }) => {
       ...prevFormData,
       [name]: value,
     }));
+
+    if (name === 'sum') {
+      if (value === '') {
+        setErrors(prevErrors => ({ ...prevErrors, sum: 'Sum is required' }));
+      } else if (parseFloat(value) <= 0) {
+        setErrors(prevErrors => ({ ...prevErrors, sum: 'Sum must be greater than 0' }));
+      } else {
+        setErrors(prevErrors => ({ ...prevErrors, sum: '' }));
+      }
+
+      if (value > 0) {
+        setPrevIsFormValid(true);
+      }
+    }
   };
 
   const closeOnBackdropClick = ev => {
@@ -133,6 +150,18 @@ const ModalAddTransaction = ({ toggleModal }) => {
     );
   };
 
+  const getButtonContent = () => {
+    if (errors.sum) {
+      return errors.sum;
+    } else if (errors.date) {
+      return errors.date;
+    } else {
+      return 'ADD';
+    }
+  };
+
+  const isFormValid = errors.sum === '' && errors.date === '' && prevIsFormValid;
+
   return (
     <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
       <div className={css.overlay}>
@@ -150,8 +179,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
         >
           <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
         </IconButton>
-        <h1>Add transaction</h1>
-
+        <TitleComponent text={'Add transaction'} />
         <div className={css.switch}>
           <div className={formData.isChecked ? css.text_green : css.text_defaultLeft}>Income</div>
           <ThemeProvider theme={theme}>
@@ -206,23 +234,14 @@ const ModalAddTransaction = ({ toggleModal }) => {
 
         <FormControl className={css.selectContainer}>
           <Select
-            sx={{
+            style={{
               borderWidth: 0,
               boxShadow: 'none',
               height: '32px',
               textAlign: 'left',
-              borderBottom: '1px solid var(--color-border-bottom-btn-form)',
-              '&:hover': { borderBottom: '1px solid var(--color-border-bottom-btn-form)' },
-              '& .MuiOutlinedInput-notchedOutline': {
-                border: 'none !important',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                border: 'none !important',
-              },
-              '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
-                border: 'none !important',
-              },
+              paddingLeft: '15px',
             }}
+            variant="standard"
             id="selectedCategory"
             name="selectedCategory"
             value={formData.selectedCategory}
@@ -241,122 +260,129 @@ const ModalAddTransaction = ({ toggleModal }) => {
             ))}
           </Select>
         </FormControl>
-
-        <Formik
-          initialValues={formData}
-          validationSchema={Yup.object({
-            sum: Yup.number().min(0.009).required('Dot is the separator / max two decimal places'),
-            dateValue: Yup.date().required('Date required'),
-            selectedCategory: Yup.string(),
-            comment: Yup.string(),
-          })}
-          onSubmit={(values, { setSubmitting }) => {
-            handleAddTransaction(values, dispatch);
-            setSubmitting(false);
-          }}
-        >
-          <Form className={css.form}>
-            <div className={css.inputContainer}>
-              <div className={css.inputWrapper}>
-                <Field
-                  inputProps={{
-                    style: {
-                      paddingBottom: 0,
-                      height: 32,
-                      paddingLeft: '5px',
-                      paddingTop: '0px',
-                      textAlign: 'center',
-                    },
-                  }}
-                  as={TextField}
-                  type="standard-basic"
-                  variant="standard"
-                  id="sum"
-                  name="sum"
-                  onChange={handleInputChange}
-                  value={formData.sum}
-                  placeholder="0.00"
-                  className={css.input}
-                />
-              </div>
-              <div className={css.inputWrapper}>
-                <Datetime
-                  className={css.tableDatetime}
-                  inputProps={{
-                    style: {
-                      height: 36,
-                      width: '175px',
-                    },
-                  }}
-                  input={true}
-                  dateFormat="DD.MM.YYYY"
-                  timeFormat={false}
-                  value={formData.dateValue}
-                  onChange={date => handleDateChange(date)}
-                  renderInput={props => (
-                    <TextField
-                      {...props}
-                      variant="standard"
-                      id="dateValue"
-                      name="dateValue"
-                      // fullWidth
-                      onChange={e => {
-                        const inputDate = e.target.value;
-                        setFormData({
-                          ...formData,
-                          dateInput: inputDate,
-                        });
-                      }}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton onClick={() => {}}>
-                              <img
-                                src={vectorIcon}
-                                alt="Calendar"
-                                viewBox="0 0 100% 4"
-                                className={css.calendarIcon}
-                              />
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  )}
-                />
-              </div>
+        <div className={css.form}>
+          <div className={css.inputContainer}>
+            <div className={css.inputWrapper}>
+              <TextField
+                inputProps={{
+                  style: {
+                    paddingBottom: 0,
+                    height: 32,
+                    textAlign: 'left',
+                    paddingTop: 0,
+                    paddingLeft: '15px',
+                  },
+                }}
+                fullWidth
+                type="number"
+                variant="standard"
+                id="sum"
+                name="sum"
+                onChange={handleInputChange}
+                value={formData.sum}
+                placeholder="0.00"
+                className={css.input}
+                error={!!errors.sum}
+                helperText={errors.sum}
+              />
             </div>
-            <ErrorMessage name="amount" component="div" />
-            <ErrorMessage name="dateValue" component="div" />
-            <label className="label">
-              <div className={css.textareaWrapper}>
-                <Field
-                  as="textarea"
-                  placeholder="Comment"
-                  rows={1}
-                  name="comment"
-                  value={formData.comment}
-                  className={css.textarea}
-                  onChange={handleInputChange}
-                  style={{ height: '40px' }}
-                />
-              </div>
-            </label>{' '}
-          </Form>
-        </Formik>
-        <div className={css.paddingButton}>
-          <CustomButton
-            type="button"
-            color="primary"
-            content="ADD"
-            onClick={handleAddTransaction}
-          ></CustomButton>
-          <CustomButton
-            type="button"
-            color="secondary"
-            content="Cancel"
-            onClick={toggleModal}
-          ></CustomButton>
+            <div className={css.inputWrapper}>
+              <Datetime
+                className={css.tableDatetime}
+                inputProps={{
+                  style: {
+                    paddingBottom: 0,
+                    height: 32,
+                    textAlign: 'left',
+                    paddingTop: 0,
+                    paddingLeft: '0',
+                  },
+                }}
+                fullWidth
+                input={true}
+                dateFormat="DD.MM.YYYY"
+                timeFormat={false}
+                value={formData.dateValue}
+                onChange={date => handleDateChange(date)}
+                renderInput={props => (
+                  <TextField
+                    {...props}
+                    variant="standard"
+                    id="dateValue"
+                    name="dateValue"
+                    fullWidth
+                    onChange={e => {
+                      const inputDate = e.target.value;
+                      setFormData({
+                        ...formData,
+                        dateInput: inputDate,
+                      });
+                      if (inputDate === '') {
+                        setErrors(prevErrors => ({ ...prevErrors, date: 'Date is required' }));
+                      } else {
+                        setErrors(prevErrors => ({ ...prevErrors, date: '' }));
+                      }
+                    }}
+                    InputProps={{
+                      style: {
+                        paddingLeft: '15px',
+                      },
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={() => {}}>
+                            <img
+                              src={calendarIcon}
+                              alt="Calendar"
+                              viewBox="0 0 100% 4"
+                              className={css.calendarIcon}
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    error={!!errors.date}
+                    helperText={errors.date}
+                  />
+                )}
+              />
+            </div>
+          </div>
+          <label className="label">
+            <div className={css.textareaWrapper}>
+              <TextField
+                style={{
+                  paddingBottom: 0,
+                  textAlign: 'left',
+                  paddingInline: '15px',
+                  paddingTop: 0,
+                }}
+                multiline
+                rows={Math.max(1, formData.comment.split(' ').length / 4)}
+                variant="standard"
+                id="comment"
+                placeholder="Comment"
+                name="comment"
+                value={formData.comment}
+                className={css.comment}
+                onChange={handleInputChange}
+              />
+            </div>
+          </label>
+          <div className={css.paddingButton}>
+            <CustomButton
+              type="submit"
+              color="primary"
+              content={getButtonContent()}
+              disabled={!isFormValid}
+              onClick={isFormValid ? handleAddTransaction : null}
+            ></CustomButton>
+            <CustomButton
+              type="button"
+              color="secondary"
+              content="Cancel"
+              onClick={toggleModal}
+            ></CustomButton>
+          </div>
         </div>
       </div>
     </div>

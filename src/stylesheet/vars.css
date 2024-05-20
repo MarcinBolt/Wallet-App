@@ -32,6 +32,7 @@
   --color-text-binance-label: #a6a6a6;
   --color-text-btn-active-hover: #ffffff;
   --color-text-btn-cancel: #4a56e2;
+  --color-text-btn-disabled: #ec000098;
   --color-text-income-green: #24cca7;
   --color-text-expanse-pink: #ff6596;
   --color-text-disabled-btn-gray: #e0e0e0;
@@ -55,6 +56,7 @@
   --color-bg-btn-active-hover-shadow-darker: #1eb896e0;
   --color-bg-hometab-dissolve-tabletanddesktop: #f1f2f7;
   --color-bg-btn-delete-hover: #e9000075;
+  --color-bg-btn-disabled: #dddcdc;
   
   /* ------ borders colors ----- */
   --color-border-btn-date-filter: #000000;
@@ -71,6 +73,7 @@
   --color-border-btn-cancel-shadow: #4a57e246;
   --color-border-btn-cancel-shadow-darker: #4a57e210;
   --color-border-btn-cancel-shadow-light: #ffffff98;
+  --color-border-btn-disabled: #ec000098;
   --color-border-transaction-shadow: rgba(93, 93, 93, 0.233);
   
   /* ------ categories colors ----- */
