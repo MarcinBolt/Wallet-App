@@ -18,8 +18,8 @@ const config = {
 
 const baseUrl =
   process.env.NODE_ENV === 'development'
-    ? `http://localhost:5173/Wallet-App/#/users/verify/`
-    : 'https://marcinbolt.github.io/Wallet-App/#/users/verify/';
+    ? `http://localhost:5173/#/users/verify/`
+    : `${process.env.FRONTEND_DEPLOY_URL}/#/users/verify/`;
 
 const send = async ({ to, firstName, verificationToken }) => {
   const capitalizedFirstName = capitalizeEachWord(firstName);
