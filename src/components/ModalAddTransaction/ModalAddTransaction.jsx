@@ -10,15 +10,12 @@ import {
   IconButton,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import css from './ModalAddTransaction.module.css';
 import plusbtn from '../../assets/icons/plusbtn.svg';
 import minusbtn from '../../assets/icons/minusbtn.svg';
 import calendarIcon from '../../assets/icons/calendarIcon.svg';
-import SelectIcon from '../../assets/icons/select-category.svg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addTransaction } from '../../redux/transactions/transactions.operations';
 import CustomButton from '../CustomButton/CustomButton';
@@ -94,15 +91,14 @@ const ModalAddTransaction = ({ toggleModal }) => {
   const handleDateChange = date => {
     setFormData({
       ...formData,
-      dateValue: date.toDate(),
-      date: date.toDate(),
+      dateValue: date,
+      date: date,
     });
     setErrors(prevErrors => ({ ...prevErrors, date: '' }));
-    setSelectedDate(date.toDate());
+    setSelectedDate(date);
   };
 
   const handleInputChange = ev => {
-    ev.preventDefault;
     const { name, value } = ev.target;
     setFormData(prevFormData => ({
       ...prevFormData,
@@ -131,7 +127,8 @@ const ModalAddTransaction = ({ toggleModal }) => {
     }
   };
 
-  const handleAddTransaction = () => {
+  const handleAddTransaction = ev => {
+    ev.preventDefault;
     toggleModal();
     const type = formData.isChecked ? 'Income' : 'Expense';
     const category = formData.isChecked ? 'Income' : formData.selectedCategory;
@@ -151,6 +148,10 @@ const ModalAddTransaction = ({ toggleModal }) => {
   };
 
   const getButtonContent = () => {
+    if (!prevIsFormValid) {
+      return 'Provide sum first';
+    }
+
     if (errors.sum) {
       return errors.sum;
     } else if (errors.date) {
@@ -158,6 +159,11 @@ const ModalAddTransaction = ({ toggleModal }) => {
     } else {
       return 'ADD';
     }
+  };
+
+  const validateDateFormat = dateString => {
+    const dateRegex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+    return dateRegex.test(dateString);
   };
 
   const isFormValid = errors.sum === '' && errors.date === '' && prevIsFormValid;
@@ -170,14 +176,16 @@ const ModalAddTransaction = ({ toggleModal }) => {
             position: 'absolute',
             top: '16px',
             right: '16px',
+            display: 'flex',
             width: '16px',
             height: '16px',
-            border: '0px solid #000',
+            border: '0',
+            padding: '10px',
             transform: 'rotate(90deg)',
           }}
           onClick={toggleModal}
         >
-          <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
+          <img src={closeIcon} alt="Close" viewBox="0 0 34px 4" />
         </IconButton>
         <TitleComponent text={'Add transaction'} />
         <div className={css.switch}>
@@ -220,10 +228,10 @@ const ModalAddTransaction = ({ toggleModal }) => {
                   }
                   name="transaction-type"
                   icon={
-                    <img src={plusbtn} alt="plus Icon" viewBox="0 0 100% 4" style={iconStyles} />
+                    <img src={plusbtn} alt="plus Icon" viewBox="0 0 45px 4" style={iconStyles} />
                   }
                   checkedIcon={
-                    <img src={minusbtn} alt="minus Icon" viewBox="0 0 100% 4" style={iconStyles} />
+                    <img src={minusbtn} alt="minus Icon" viewBox="0 0 45px 4" style={iconStyles} />
                   }
                 />
               }
@@ -246,10 +254,10 @@ const ModalAddTransaction = ({ toggleModal }) => {
             name="selectedCategory"
             value={formData.selectedCategory}
             disabled={formData.isChecked ? true : false}
-            onChange={e =>
+            onChange={ev =>
               setFormData({
                 ...formData,
-                selectedCategory: e.target.value,
+                selectedCategory: ev.target.value,
               })
             }
           >
@@ -281,7 +289,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                 onChange={handleInputChange}
                 value={formData.sum}
                 placeholder="0.00"
-                className={css.input}
+                className={css.sumInput}
                 error={!!errors.sum}
                 helperText={errors.sum}
               />
@@ -292,10 +300,10 @@ const ModalAddTransaction = ({ toggleModal }) => {
                 inputProps={{
                   style: {
                     paddingBottom: 0,
-                    height: 32,
+                    height: '32px',
                     textAlign: 'left',
                     paddingTop: 0,
-                    paddingLeft: '0',
+                    paddingLeft: 0,
                   },
                 }}
                 fullWidth
@@ -311,16 +319,17 @@ const ModalAddTransaction = ({ toggleModal }) => {
                     id="dateValue"
                     name="dateValue"
                     fullWidth
-                    onChange={e => {
-                      const inputDate = e.target.value;
-                      setFormData({
-                        ...formData,
-                        dateInput: inputDate,
-                      });
+                    onBlur={ev => {
+                      const inputDate = ev.target.value;
                       if (inputDate === '') {
                         setErrors(prevErrors => ({ ...prevErrors, date: 'Date is required' }));
                       } else {
-                        setErrors(prevErrors => ({ ...prevErrors, date: '' }));
+                        const isValidDate = validateDateFormat(inputDate);
+                        if (!isValidDate) {
+                          setErrors(prevErrors => ({ ...prevErrors, date: 'Invalid date format' }));
+                        } else {
+                          setErrors(prevErrors => ({ ...prevErrors, date: '' }));
+                        }
                       }
                     }}
                     InputProps={{
@@ -333,7 +342,7 @@ const ModalAddTransaction = ({ toggleModal }) => {
                             <img
                               src={calendarIcon}
                               alt="Calendar"
-                              viewBox="0 0 100% 4"
+                              viewBox="0 0 34px 4"
                               className={css.calendarIcon}
                             />
                           </IconButton>
@@ -350,14 +359,16 @@ const ModalAddTransaction = ({ toggleModal }) => {
           <label className="label">
             <div className={css.textareaWrapper}>
               <TextField
-                style={{
-                  paddingBottom: 0,
-                  textAlign: 'left',
-                  paddingInline: '15px',
-                  paddingTop: 0,
+                inputProps={{
+                  style: {
+                    paddingBottom: 0,
+                    textAlign: 'left',
+                    paddingTop: 0,
+                    paddingLeft: '15px',
+                  },
                 }}
                 multiline
-                rows={Math.max(1, formData.comment.split(' ').length / 4)}
+                maxRows={4}
                 variant="standard"
                 id="comment"
                 placeholder="Comment"

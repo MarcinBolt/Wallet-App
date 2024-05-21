@@ -2,7 +2,7 @@ import DeleteButton from '../../buttons/DeleteButton/DeleteButton';
 import EditButton from '../../buttons/EditButton/EditButton';
 import css from './TransactionDetails.module.css';
 import formatMoney from '../../../utils/formatMoney';
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 const TransactionDetails = memo(
   ({ id, date, type, category, comment, sum, handleEditBtn, handleDeleteBtn }) => {
@@ -11,7 +11,7 @@ const TransactionDetails = memo(
       isIncome() ? css.incomeBorder : css.expanseBorder
     }`;
     const textClassName = `${css.itemValue} ${isIncome() ? css.incomeText : css.expanseText}`;
-
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
     const typeOperator = type => {
       return type === 'Income' ? '+' : '-';
     };
@@ -31,6 +31,25 @@ const TransactionDetails = memo(
         (year < 10 ? '0' : '') +
         year;
       return formattedDate;
+    };
+
+    useEffect(() => {
+      const handleResize = () => {
+        setScreenHeight(window.innerHeight);
+      };
+
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handleEditClick = () => {
+      if (screenHeight <= 750) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+      handleEditBtn(id);
     };
 
     return (
@@ -61,7 +80,7 @@ const TransactionDetails = memo(
           </li>
           <li key={`${id}operations`} className={css.transactionDetailsItem}>
             <DeleteButton id={`${id}.del`} type="button" onClick={() => handleDeleteBtn(id)} />
-            <EditButton id={`${id}.edit`} type="button" onClick={() => handleEditBtn(id)} />
+            <EditButton id={`${id}.edit`} type="button" onClick={() => handleEditClick(id)} />
           </li>
         </ul>
       </>

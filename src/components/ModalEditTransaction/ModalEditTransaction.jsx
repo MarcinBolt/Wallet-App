@@ -6,7 +6,6 @@ import { updateTransactionById } from '../../redux/transactions/transactions.ope
 import CustomButton from '../CustomButton/CustomButton';
 import closeIcon from '../../assets/icons/close.svg';
 import calendarIcon from '../../assets/icons/calendarIcon.svg';
-import SelectIcon from '../../assets/icons/select-category.svg';
 import { selectTransactionId, selectTransactions } from '../../redux/selectors';
 import css from './ModalEditTransaction.module.css';
 
@@ -37,7 +36,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
     month: '',
     category: '',
     comment: '-',
-    sum: 0.01,
+    sum: '',
   });
 
   const [errors, setErrors] = useState({
@@ -75,13 +74,12 @@ const ModalEditTransaction = ({ toggleModal }) => {
   const handleDateChange = date => {
     setFormData({
       ...formData,
-      date: date.toDate(),
+      date: date,
     });
     setErrors(prevErrors => ({ ...prevErrors, date: '' }));
   };
 
   const handleInputChange = ev => {
-    ev.preventDefault;
     const { name, value } = ev.target;
     setFormData(prevFormData => ({
       ...prevFormData,
@@ -108,11 +106,11 @@ const ModalEditTransaction = ({ toggleModal }) => {
 
   const handleUpdateTransaction = ev => {
     ev.preventDefault;
+    toggleModal();
     const type = formData.isIncome ? 'Income' : 'Expense';
     const category = formData.isIncome ? 'Income' : formData.category;
     const year = new Date(formData.date).getFullYear();
     const month = new Date(formData.date).toLocaleString('en-US', { month: 'long' });
-    toggleModal();
     dispatch(
       updateTransactionById({
         id: transactionId,
@@ -128,16 +126,43 @@ const ModalEditTransaction = ({ toggleModal }) => {
   };
 
   const getButtonContent = () => {
+    if (!hasFormDataChanged()) {
+      return 'CHANGE SOMETHING FIRST';
+    }
+
     if (errors.sum) {
       return errors.sum;
     } else if (errors.date) {
       return errors.date;
     } else {
-      return 'Confirm';
+      return 'CONFIRM';
     }
   };
 
+  const validateDateFormat = dateString => {
+    const dateRegex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+    return dateRegex.test(dateString);
+  };
+
   const isFormValid = errors.sum === '' && errors.date === '';
+
+  const hasFormDataChanged = () => {
+    const initialFormData = {
+      // isIncome: transactionDetails.type === 'Income' ? true : false,
+      date: new Date(transactionDetails.date),
+      category: transactionDetails.category,
+      comment: transactionDetails.comment ? transactionDetails.comment : '-',
+      sum: parseFloat(transactionDetails.sum),
+    };
+
+    return (
+      // formData.isIncome !== initialFormData.isIncome ||
+      formData.date.toString() !== initialFormData.date.toString() ||
+      formData.category !== initialFormData.category ||
+      formData.comment !== initialFormData.comment ||
+      formData.sum !== initialFormData.sum
+    );
+  };
 
   return (
     <div className={css.backdrop} ref={modalBackdropRef} onClick={closeOnBackdropClick}>
@@ -150,12 +175,13 @@ const ModalEditTransaction = ({ toggleModal }) => {
             display: 'flex',
             width: '16px',
             height: '16px',
-            border: '0px solid #000',
+            border: '0',
+            padding: '10px',
             transform: 'rotate(90deg)',
           }}
           onClick={toggleModal}
         >
-          <img src={closeIcon} alt="Close" viewBox="0 0 100% 4" />
+          <img src={closeIcon} alt="Close" viewBox="0 0 34px 4" />
         </IconButton>
         <TitleComponent text={'Edit transaction'} />
         <div className={css.switch}>
@@ -163,30 +189,35 @@ const ModalEditTransaction = ({ toggleModal }) => {
           <div className={css.text_defaultLeft}>/</div>
           <div className={formData.isIncome ? css.text_defaultRight : css.text_pink}>Expense</div>
         </div>
-        {formData.isIncome ? null : (
-          <FormControl className={css.selectContainer}>
-            <Select
-              style={{
-                borderWidth: 0,
-                boxShadow: 'none',
-                height: '32px',
-                textAlign: 'left',
-                paddingLeft: '15px',
-              }}
-              variant="standard"
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-            >
-              {categories.map(option => (
+        <FormControl className={css.selectContainer}>
+          <Select
+            style={{
+              borderWidth: 0,
+              boxShadow: 'none',
+              height: '32px',
+              textAlign: 'left',
+              paddingLeft: '15px',
+            }}
+            variant="standard"
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={handleInputChange}
+            disabled={formData.isIncome}
+          >
+            {formData.isIncome ? (
+              <MenuItem key={`Income.cat`} value={'Income'}>
+                {'-'}
+              </MenuItem>
+            ) : (
+              categories.map(option => (
                 <MenuItem key={`${option}.cat`} value={option}>
                   {option}
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
+              ))
+            )}
+          </Select>
+        </FormControl>
         <div className={css.form}>
           <div className={css.inputContainer}>
             <div className={css.inputWrapper}>
@@ -219,10 +250,10 @@ const ModalEditTransaction = ({ toggleModal }) => {
                 inputProps={{
                   style: {
                     paddingBottom: 0,
-                    height: 32,
+                    height: '32px',
                     textAlign: 'left',
                     paddingTop: 0,
-                    paddingLeft: '0',
+                    paddingLeft: 0,
                   },
                 }}
                 fullWidth
@@ -238,16 +269,17 @@ const ModalEditTransaction = ({ toggleModal }) => {
                     id="date"
                     name="date"
                     fullWidth
-                    onChange={e => {
-                      const inputDate = e.target.value;
-                      setFormData({
-                        ...formData,
-                        date: inputDate,
-                      });
+                    onBlur={ev => {
+                      const inputDate = ev.target.value;
                       if (inputDate === '') {
                         setErrors(prevErrors => ({ ...prevErrors, date: 'Date is required' }));
                       } else {
-                        setErrors(prevErrors => ({ ...prevErrors, date: '' }));
+                        const isValidDate = validateDateFormat(inputDate);
+                        if (!isValidDate) {
+                          setErrors(prevErrors => ({ ...prevErrors, date: 'Invalid date format' }));
+                        } else {
+                          setErrors(prevErrors => ({ ...prevErrors, date: '' }));
+                        }
                       }
                     }}
                     InputProps={{
@@ -260,7 +292,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
                             <img
                               src={calendarIcon}
                               alt="Calendar"
-                              viewBox="0 0 100% 4"
+                              viewBox="0 0 34px 4"
                               className={css.calendarIcon}
                             />
                           </IconButton>
@@ -277,14 +309,16 @@ const ModalEditTransaction = ({ toggleModal }) => {
           <label className="label">
             <div className={css.textareaWrapper}>
               <TextField
-                style={{
-                  paddingBottom: 0,
-                  textAlign: 'left',
-                  paddingInline: '15px',
-                  paddingTop: 0,
+                inputProps={{
+                  style: {
+                    paddingBottom: 0,
+                    textAlign: 'left',
+                    paddingTop: 0,
+                    paddingLeft: '15px',
+                  },
                 }}
                 multiline
-                rows={Math.max(1, formData.comment.split(' ').length / 4)}
+                maxRows={4}
                 variant="standard"
                 id="comment"
                 placeholder="Comment"
@@ -300,8 +334,8 @@ const ModalEditTransaction = ({ toggleModal }) => {
               type="submit"
               color="primary"
               content={getButtonContent()}
-              disabled={!isFormValid}
-              onClick={isFormValid ? handleUpdateTransaction : null}
+              disabled={!isFormValid || !hasFormDataChanged()}
+              onClick={isFormValid && hasFormDataChanged() ? handleUpdateTransaction : null}
             ></CustomButton>
             <CustomButton
               type="button"

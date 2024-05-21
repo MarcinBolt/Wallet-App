@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Media from 'react-media';
 import {
   selectTransactions,
@@ -33,11 +33,11 @@ const HomeTab = () => {
   const selectedTransactionId = useSelector(selectTransactionId);
   // const categories = useSelector(selectTransactionsCategories);
   const selectedFilterCategory = useSelector(selectTransactionsFilterCategory);
-
+  const dashboardRef = useRef(null);
   const [isModalEditTransactionOpen, setIsModalEditTransactionOpen] = useState();
   const [isAddTransactionModalOpen, setIsAddTransactionModalOpen] = useState();
-
   const { mobile } = mediaQueries;
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   // useEffect(() => {
   //   dispatch(fetchTransactions());
@@ -66,7 +66,22 @@ const HomeTab = () => {
     sortedToNewestTransactions(transactions);
   }, [transactions]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const toggleAddTransactionModal = () => {
+    if (!isAddTransactionModalOpen && screenHeight <= 750) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
     setIsAddTransactionModalOpen(!isAddTransactionModalOpen);
   };
 
