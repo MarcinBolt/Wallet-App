@@ -89,7 +89,6 @@ const ModalAddTransaction = ({ toggleModal }) => {
   });
 
   const handleDateChange = date => {
-    console.log("date changed to: ", date);
     setFormData({
       ...formData,
       dateValue: date.toDate(),
