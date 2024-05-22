@@ -89,13 +89,14 @@ const ModalAddTransaction = ({ toggleModal }) => {
   });
 
   const handleDateChange = date => {
+    console.log("date changed to: ", date);
     setFormData({
       ...formData,
-      dateValue: date,
-      date: date,
+      dateValue: date.toDate(),
+      date: date.toDate(),
     });
     setErrors(prevErrors => ({ ...prevErrors, date: '' }));
-    setSelectedDate(date);
+    setSelectedDate(date.toDate());
   };
 
   const handleInputChange = ev => {

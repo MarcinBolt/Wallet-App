@@ -74,7 +74,7 @@ const ModalEditTransaction = ({ toggleModal }) => {
   const handleDateChange = date => {
     setFormData({
       ...formData,
-      date: date,
+      date: date.toDate(),
     });
     setErrors(prevErrors => ({ ...prevErrors, date: '' }));
   };
