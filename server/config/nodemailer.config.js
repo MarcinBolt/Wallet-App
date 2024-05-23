@@ -27,7 +27,7 @@ const send = async ({ to, firstName, verificationToken }) => {
       <div style="text-align: center;"><a href="${process.env.FRONTEND_DEPLOY_URL}" style="display: inline-block; font-size: 3em; font-weight: bold; color: #007BFF; text-decoration: none;">Wallet App</a></div>
       <h2 style="font-size: 1.5em; margin-top: 0; margin-bottom: 0.5em;">Dear ${capitalizedFirstName ?? 'User'},</h2>
       <p style="margin-top: 0;">Thank you for registering in our <a href="${process.env.FRONTEND_DEPLOY_URL}" style="color: #007BFF; text-decoration: none;">Wallet App</a>.</p>
-      <div style="text-align: center; margin-top: 2em;"><a href="${baseUrl}${verificationToken}" style="display: inline-block; padding: 1em 2em; font-size: 1em; font-weight: bold; color: #FFFFFF; text-decoration: none; background-color: #007BFF; border: none; border-radius: 0.5em; cursor: pointer;">Confirm your e-mail</a></div>
+      <div style="text-align: center; margin-top: 2em;"><a href="${baseUrl}${verificationToken}" style="display: inline-block; padding: 1em 2em; font-size: 1em; font-weight: bold; color: #FFFFFF; text-decoration: none; background-color: #24cca7; border: none; border-radius: 0.5em; cursor: pointer;">Confirm your e-mail</a></div>
       <p style="margin-top: 1em;">Please note that the link will only be active for ${process.env.VERIFICATION_TOKEN_EXPIRATION_TIME}.</p>
       <p style="margin-top: 1em;">If you did not register on our website, please ignore this message.</p> 
       <p style="margin-top: 1em;">If you have any questions or need assistance, please write us an email to <a href="mailto:${process.env.SUPPORT_EMAIL}" style="color: #007BFF; text-decoration: none;">${process.env.SUPPORT_EMAIL}</a>.</p>
