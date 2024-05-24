@@ -196,7 +196,7 @@ List the ready features here:
 ### To run front-end App: npm run dev
 ### To run back-end server.js: npm run start:dev
 ---
-### Node version: v18.17.1
+### Node version: v 20.12.1 (previously v18.17.1)
 ### npm version: 10.8.0 (previously 9.8.0)
 
 ---
