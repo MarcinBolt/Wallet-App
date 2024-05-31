@@ -21,13 +21,7 @@ const Header = () => {
     <div className={css.header}>
       <PageContainer>
         <div className={css.headerWrapper}>
-          <div
-            className={css.logoWrapper}
-            sx={{
-              display: 'flex',
-              justifyContent: 'left',
-            }}
-          >
+          <div className={css.logoWrapper}>
             <Logo />
           </div>
           <div className={css.userWrapper}>
