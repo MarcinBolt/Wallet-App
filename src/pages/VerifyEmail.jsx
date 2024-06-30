@@ -11,7 +11,7 @@ const VerifyEmail = () => {
   const navigate = useNavigate();
   const { verificationToken } = useParams();
 
-  const handleClick = event => {
+  const handleClick = () => {
     dispatch(verify(verificationToken));
     navigate('/login', { replace: true });
   };

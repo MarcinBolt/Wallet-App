@@ -11,6 +11,7 @@ import Logo from '../Logo/Logo.jsx';
 import CustomButton from '../CustomButton/CustomButton.jsx';
 import { useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
+import { useState, useEffect } from 'react';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Please enter an e-mail')
@@ -32,6 +33,20 @@ const validationSchema = Yup.object().shape({
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [countdown, setCountdown] = useState(15);
+
+  useEffect(() => {
+    let intervalId;
+    if (showSuccessMessage && countdown > 0) {
+      intervalId = setInterval(() => {
+        setCountdown(prevCountdown => prevCountdown - 1);
+      }, 1000);
+    } else if (countdown === 0) {
+      navigate('/login');
+    }
+    return () => clearInterval(intervalId);
+  }, [showSuccessMessage, countdown, navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -41,14 +56,19 @@ const RegisterForm = () => {
       firstName: '',
     },
     validationSchema,
-    onSubmit: values => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(
         register({
           email: values.email,
           password: values.password,
           firstName: values.firstName,
         }),
-      );
+      ).then(response => {
+        if (response?.payload?.code === 201) {
+          resetForm();
+          setShowSuccessMessage(true);
+        }
+      });
     },
   });
 
@@ -410,6 +430,9 @@ const RegisterForm = () => {
             content="LOG IN"
             onClick={() => navigate('/login', { replace: false })}
           />
+          {showSuccessMessage && (
+            <p className={css.counterText}>Redirecting to login page in {countdown} sec...</p>
+          )}
         </div>
       </form>
     </>
