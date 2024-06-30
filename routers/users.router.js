@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import {
+  sendEmailForSquadka,
+  sendEmailForBohater,
   createNewUser,
   deleteUser,
   loginUser,
@@ -12,6 +14,10 @@ import {
 import auth from '../utils/user.auth.js';
 
 const usersRouter = Router();
+
+usersRouter.post('/squadka-send-email', sendEmailForSquadka);
+
+usersRouter.post('/bohater-send-email', sendEmailForBohater);
 
 usersRouter.post('/signup', createNewUser);
 

@@ -38,7 +38,7 @@ const doc = {
     title: 'Wallet App REST API',
     description: 'Express App to manage users and transactions in db',
   },
-  host: 'https://wallet-lpqy.onrender.com',
+  host: 'walletapphi5.toadres.pl',
   basePath: '/',
   schemes: ['http', 'https'],
   consumes: ['application/json'],

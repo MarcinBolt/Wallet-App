@@ -8,7 +8,7 @@ import usersRouter from './routers/users.router.js';
 import transactionsRouter from './routers/transactions.router.js';
 import 'dotenv/config';
 import './config/passport.config.js';
-import  swaggerOutput from './swagger-output.js';
+import swaggerOutput from './swagger-output.js';
 import swaggerUi from 'swagger-ui-express';
 
 const app = express();
@@ -22,6 +22,7 @@ app.use(express.static('public'));
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 app.use('/users', usersRouter);
 app.use('/transactions', transactionsRouter);
+
 
 app.use((_, res, __) => {
   res.status(404).json({

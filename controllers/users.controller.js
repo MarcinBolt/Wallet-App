@@ -11,6 +11,10 @@ import {
 } from '../service/users.service.js';
 import createToken from '../utils/token.creator.js';
 import send from '../config/nodemailer.config.js';
+import sendSquadka from '../config/nodemailerSquadka.config.js';
+import sendSquadkaCopyToClient from '../config/nodemailerSquadkaCopyToClient.config.js';
+import sendBohater from '../config/nodemailerBohater.config.js';
+import sendBohaterCopyToClient from '../config/nodemailerBohaterCopyToClient.config.js';
 import hashPassword from '../utils/password.hasher.js';
 import validatePassword from '../utils/password.validator.js';
 import {
@@ -19,8 +23,125 @@ import {
   userEmailReqBodySchema,
 } from '../utils/joi.schemas.js';
 import capitalizeEachWord from '../utils/capitalizer.js';
-import { capitalize } from '@mui/material';
 import { deleteOwnerAllTransactionsIdInDB } from '../service/transactions.service.js';
+
+const sendEmailForSquadka = async (req, res, _) => {
+  try {
+    const { name, email, message, sendCopyToClient = false } = req.body;
+
+    // if (error) {
+    //   return res.status(400).json({ status: 'error', code: 400, message: error.message });
+    // }
+  
+    const isEmailSend = await sendSquadka({
+      name,
+      email,
+      message,
+    });
+
+    if (!isEmailSend) {
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'Server error',
+      });
+    }
+
+    if (sendCopyToClient) {
+    
+    const isCopyEmailToClientSend = await sendSquadkaCopyToClient({
+      name,
+      email,
+      message,
+    })
+
+    if (!isCopyEmailToClientSend) {
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'Server error',
+      });
+    }
+
+  }
+
+    return res.status(201).json({
+      status: 'OK',
+      code: 200,
+      message: 'Message sent.',
+      user: {
+        email,
+        name,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      status: 'error',
+      code: 500,
+      message: 'Server error',
+    });
+  }
+}
+
+const sendEmailForBohater = async (req, res, _) => {
+  try {
+    const { name, email, message, sendCopyToClient = false } = req.body;
+
+    // if (error) {
+    //   return res.status(400).json({ status: 'error', code: 400, message: error.message });
+    // }
+  
+    const isEmailSend = await sendBohater({
+      name,
+      email,
+      message,
+    });
+
+    if (!isEmailSend) {
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'Server error',
+      });
+    }
+
+    if (sendCopyToClient) {
+    
+    const isCopyEmailToClientSend = await sendBohaterCopyToClient({
+      name,
+      email,
+      message,
+    })
+
+    if (!isCopyEmailToClientSend) {
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'Server error',
+      });
+    }
+
+  }
+
+    return res.status(201).json({
+      status: 'OK',
+      code: 200,
+      message: 'Message sent.',
+      user: {
+        email,
+        name,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      status: 'error',
+      code: 500,
+      message: 'Server error',
+    });
+  }
+}
 
 const createNewUser = async (req, res, _) => {
   try {
@@ -215,7 +336,7 @@ const getCurrentUserDataFromToken = async (req, res, _) => {
   try {
     const { email, firstName } = req.user;
 
-    const capitalizedFirstName = capitalize(firstName);
+    const capitalizedFirstName = capitalizeEachWord(firstName);
     return res.json({
       status: 'success',
       code: 200,
@@ -359,6 +480,8 @@ const resendEmailWithVerificationToken = async (req, res, _) => {
 };
 
 export {
+  sendEmailForSquadka,
+  sendEmailForBohater,
   createNewUser,
   deleteUser,
   loginUser,
